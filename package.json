@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "server-gardu-reporter",
+  "version": "1.0.0",
+  "description": "gardu reporter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syafiqq/server-gardu-reporter.git"
+  },
+  "keywords": [
+    "gardu"
+  ],
+  "author": "Muhammad Syafiq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Syafiqq/server-gardu-reporter/issues"
+  },
+  "homepage": "https://github.com/Syafiqq/server-gardu-reporter#readme"
+}
