@@ -1,0 +1,21 @@
+{
+  "name": "server-gardu-reporter",
+  "homepage": "https://github.com/Syafiqq/server-gardu-reporter",
+  "authors": [
+    "Syafiqq <syafiq.rezpector@gmail.com>"
+  ],
+  "description": "gardu reporter",
+  "main": "public/index.php",
+  "keywords": [
+    "gardu"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
