@@ -21,6 +21,7 @@
   "dependencies": {
     "jquery": "^3.2.1",
     "bootstrap": "^3.3.7",
-    "AdminLTE": "admin-lte#^2.3.11"
+    "AdminLTE": "admin-lte#^2.3.11",
+    "html5-boilerplate": "^5.3.0"
   }
 }
