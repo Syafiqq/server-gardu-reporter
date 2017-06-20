@@ -18,7 +18,8 @@ $_SERVER = array_merge($_SERVER, $_ENV);
 $file = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['SCRIPT_NAME'];
 //echo $file, PHP_EOL;
 
-if (is_file($file)) {
+if (is_file($file))
+{
     return false;
 }
 
