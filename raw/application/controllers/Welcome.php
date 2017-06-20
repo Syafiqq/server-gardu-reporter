@@ -23,4 +23,19 @@ class Welcome extends CI_Controller
     {
         $this->load->view('welcome_message');
     }
+
+    public function html5_boilerplate()
+    {
+        $this->load->view('test/html5_boilerplate');
+    }
+
+    public function bootstrap()
+    {
+        $this->load->view('test/bootstrap');
+    }
+
+    public function admin_lte()
+    {
+        $this->load->view('test/admin_lte');
+    }
 }
