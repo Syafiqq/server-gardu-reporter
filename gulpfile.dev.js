@@ -23,20 +23,20 @@ gulp.task('move-application-assets', function ()
 
 gulp.task('move-assets', function ()
 {
-    return gulp.src('./resources/assets/raw/**', {base: './resources/assets/raw/'})
+    return gulp.src('./raw/assets/**', {base: './raw/assets/'})
         .pipe(gulp.dest('./public/assets/'));
 });
 
 gulp.task('minify-img', function ()
 {
-    return gulp.src('./resources/assets/raw/**/{*.png,*.jpg,*.jpeg}', {base: './resources/assets/raw/'})
+    return gulp.src('./raw/assets/**/{*.png,*.jpg,*.jpeg}', {base: './raw/assets/'})
         .pipe(gulp.dest('./public/assets/'));
 });
 
 gulp.task('minify-js', function (cb)
 {
     pump([
-            gulp.src(['./resources/assets/raw/**/*.js', '!./resources/assets/raw/**/*.min.js'], {base: './resources/assets/raw/'})
+            gulp.src(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], {base: './raw/assets/'})
                 .pipe(rename({
                     suffix: ".min",
                     extname: ".js"
@@ -49,7 +49,7 @@ gulp.task('minify-js', function (cb)
 
 gulp.task('minify-css', function ()
 {
-    return gulp.src(['./resources/assets/raw/**/*.css', '!./resources/assets/raw/**/*.min.css'], {base: './resources/assets/raw/'})
+    return gulp.src(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], {base: './raw/assets/'})
         .pipe(rename({
             suffix: ".min",
             extname: ".css"
@@ -59,8 +59,8 @@ gulp.task('minify-css', function ()
 
 gulp.task('minify-html', function ()
 {
-    return gulp.src('./resources/assets/views/**/{*.php,*.html}', {base: './resources/assets/views/'})
-        .pipe(gulp.dest('./resources/views/'));
+    return gulp.src('./raw/application/**/{*.php,*.html}', {base: './raw/application/'})
+        .pipe(gulp.dest('./application/'));
 });
 
 
@@ -77,9 +77,9 @@ gulp.task('watch-move-application-assets', function ()
 gulp.task('watch-move-assets', function ()
 {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./resources/assets/raw/**', function ()
+    return watch('./raw/assets/**', function ()
     {
-        return gulp.src('./resources/assets/raw/**', {base: './resources/assets/raw/'})
+        return gulp.src('./raw/assets/**', {base: './raw/assets/'})
             .pipe(gulp.dest('./public/assets/'));
     });
 });
@@ -87,9 +87,9 @@ gulp.task('watch-move-assets', function ()
 gulp.task('watch-minify-img', function ()
 {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./resources/assets/raw/**/{*.png,*.jpg,*.jpeg}', function ()
+    return watch('./raw/assets/**/{*.png,*.jpg,*.jpeg}', function ()
     {
-        return gulp.src('./resources/assets/raw/**/{*.png,*.jpg,*.jpeg}', {base: './resources/assets/raw/'})
+        return gulp.src('./raw/assets/**/{*.png,*.jpg,*.jpeg}', {base: './raw/assets/'})
             .pipe(gulp.dest('./public/assets/'));
     });
 });
@@ -97,10 +97,10 @@ gulp.task('watch-minify-img', function ()
 gulp.task('watch-minify-js', function ()
 {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch(['./resources/assets/raw/**/*.js', '!./resources/assets/raw/**/*.min.js'], function (cb)
+    return watch(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], function (cb)
     {
         pump([
-                gulp.src(['./resources/assets/raw/**/*.js', '!./resources/assets/raw/**/*.min.js'], {base: './resources/assets/raw/'})
+                gulp.src(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], {base: './raw/assets/'})
                     .pipe(rename({
                         suffix: ".min",
                         extname: ".js"
@@ -115,9 +115,9 @@ gulp.task('watch-minify-js', function ()
 gulp.task('watch-minify-css', function ()
 {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch(['./resources/assets/raw/**/*.css', '!./resources/assets/raw/**/*.min.css'], function ()
+    return watch(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], function ()
     {
-        return gulp.src(['./resources/assets/raw/**/*.css', '!./resources/assets/raw/**/*.min.css'], {base: './resources/assets/raw/'})
+        return gulp.src(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], {base: './raw/assets/'})
             .pipe(rename({
                 suffix: ".min",
                 extname: ".css"
@@ -129,9 +129,9 @@ gulp.task('watch-minify-css', function ()
 gulp.task('watch-minify-html', function ()
 {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./resources/assets/views/**/{*.php,*.html}', function ()
+    return watch('./raw/application/**/{*.php,*.html}', function ()
     {
-        return gulp.src('./resources/assets/views/**/{*.php,*.html}', {base: './resources/assets/views/'})
-            .pipe(gulp.dest('./resources/views/'));
+        return gulp.src('./raw/application/**/{*.php,*.html}', {base: './raw/application/'})
+            .pipe(gulp.dest('./application/'));
     });
 });
