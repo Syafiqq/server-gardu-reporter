@@ -32,14 +32,16 @@
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/skins/skin-blue.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
-    <script src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="/assets/js/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="/assets/js/respond/1.4.2/respond.min.js"></script>
+    <script type="text/javascript" src="/assets/js/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script type="text/javascript" src="/assets/js/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -73,7 +75,42 @@
 
             <!-- Main content -->
             <section class="content">
-
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Hover Data Table</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="table_report" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th>Platform(s)</th>
+                                        <th>Engine version</th>
+                                        <th>CSS grade</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Rendering engine</th>
+                                        <th>Browser</th>
+                                        <th>Platform(s)</th>
+                                        <th>Engine version</th>
+                                        <th>CSS grade</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                </div>
             </section>
             <!-- /.content -->
         </div>
@@ -99,16 +136,21 @@
 <!-- ./wrapper -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/assets/vendor/jquery/dist/jquery.min.js"><\/script>')</script>
-<script src="/assets/vendor/html5-boilerplate/dist/js/plugins.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery.min.js"><\/script>')</script>
+<script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/plugins.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
-<script src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="/assets/vendor/fastclick/lib/fastclick.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/fastclick/lib/fastclick.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
+<!-- DataTables -->
+<script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_layout.js"></script>
 </body>
 </html>
