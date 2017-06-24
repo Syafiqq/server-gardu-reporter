@@ -10,6 +10,9 @@
 
 require_once APPPATH . '/model/ModelLocation.php';
 
+/**
+ * Class DAOLocation
+ */
 class DAOLocation
 {
     /**
