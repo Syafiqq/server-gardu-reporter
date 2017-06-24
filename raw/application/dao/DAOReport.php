@@ -10,6 +10,9 @@
 
 require_once APPPATH . '/model/ModelReport.php';
 
+/**
+ * Class DAOReport
+ */
 class DAOReport
 {
     /**
@@ -24,18 +27,30 @@ class DAOReport
      * @var ModelReport
      */
     private $report;
+    /**
+     * @var string
+     */
+    private $createAt;
+    /**
+     * @var string
+     */
+    private $updateAt;
 
     /**
-     * ORMReport constructor.
+     * DAOReport constructor.
      * @param int $idReport
      * @param int $idLocation
      * @param ModelReport $report
+     * @param string $createAt
+     * @param string $updateAt
      */
-    public function __construct(int $idReport = null, int $idLocation = null, ModelReport $report = null)
+    public function __construct($idReport = null, $idLocation = null, ModelReport $report = null, $createAt = null, $updateAt = null)
     {
         $this->idReport = $idReport;
         $this->idLocation = $idLocation;
         $this->report = $report;
+        $this->createAt = $createAt;
+        $this->updateAt = $updateAt;
     }
 
     /**
@@ -84,6 +99,38 @@ class DAOReport
     public function setReport(ModelReport $report)
     {
         $this->report = $report;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreateAt(): string
+    {
+        return $this->createAt;
+    }
+
+    /**
+     * @param string $createAt
+     */
+    public function setCreateAt(string $createAt)
+    {
+        $this->createAt = $createAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdateAt(): string
+    {
+        return $this->updateAt;
+    }
+
+    /**
+     * @param string $updateAt
+     */
+    public function setUpdateAt(string $updateAt)
+    {
+        $this->updateAt = $updateAt;
     }
 
 
