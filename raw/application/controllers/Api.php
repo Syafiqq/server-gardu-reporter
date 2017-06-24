@@ -51,8 +51,14 @@ class Api extends \Restserver\Libraries\REST_Controller
                 isset($post['location']['longitude'])
             )
             {
+                $this->load->database();
+
                 $report = new DAOReport(null, null, new ModelReport($post['substation'], $post['voltage'], $post['current'], new ModelLocation($post['location']['latitude'], $post['location']['longitude'])));
-                log_message('ERROR', var_export($report, true));
+
+                $this->load->model('mLocation');
+                $this->load->model('mReport');
+                $this->mReport->insert($report, $this->mLocation);
+
                 $this->response([
                     'code' => \Restserver\Libraries\REST_Controller::HTTP_OK,
                     'data' => ['message' => 'Data Successfully Retrieved']
