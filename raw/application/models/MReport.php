@@ -29,31 +29,36 @@ class MReport extends CI_Model
     /**
      * @param DAOReport $report
      * @param MLocation $mLocation
-     * @return int
+     * @return int|null
      */
-    public function insert(DAOReport &$report, MLocation &$mLocation)
+    public function insert(DAOReport &$report, MLocation &$mLocation): ?int
     {
+        /** @var int|null $reportID */
+        $reportID = null;
+
         $location = new DAOLocation(null, $report->getReport()->getLocation());
-
-        /** @var int $locationID */
+        /** @var int|null $locationID */
         $locationID = $mLocation->insert($location);
-        $report->setIdLocation($locationID);
-
-        /** @var ModelReport $reportModel */
-        $reportModel = $report->getReport();
-        $query = 'INSERT INTO `report`(`id`, `substation`, `current`, `voltage`, `location`, `create_at`, `update_at`) VALUES (NULL, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);';
-        $this->db->query($query, [$reportModel->getSubstation(), $reportModel->getCurrent(), $reportModel->getVoltage(), $report->getIdLocation()]);
-
-        /** @var int $reportID */
-        $reportID = $this->db->insert_id();
-        $report->setIdReport($reportID);
+        if (!empty($locationID))
+        {
+            $report->setIdLocation($locationID);
+            if ($this->db->insert('`report`', $report->populate()))
+            {
+                $reportID = $this->db->insert_id();
+                $report->setIdReport($reportID);
+            }
+        }
 
         return $reportID;
     }
 
-    public function find(int $id = null)
+    /**
+     * @param int|null $id
+     * @return array
+     */
+    public function find(?int $id = null): array
     {
-        $this->db->select('`report`.`id` AS \'report_id\', `report`.`substation`, `report`.`current`, `report`.`voltage`, `report`.`location`, `report`.`create_at`, `report`.`update_at`, `location`.`id` AS \'location_id\', `location`.`latitude`, `location`.`longitude`');
+        $this->db->select('`report`.`id` AS \'report_id\', `report`.`substation`, `report`.`current`, `report`.`voltage`, `location`.`id` AS \'location_id\', `location`.`latitude`, `location`.`longitude`');
         $this->db->from('`report`');
         $this->db->join('`location`', '`report`.`location` = `location`.`id`', 'LEFT OUTER');
         if (!empty($id))

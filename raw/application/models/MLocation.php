@@ -25,19 +25,18 @@ class MLocation extends CI_Model
 
     /**
      * @param DAOLocation $location
-     * @return int
+     * @return int|null
      */
-    public function insert(DAOLocation $location)
+    public function insert(DAOLocation &$location): ?int
     {
-        /** @var ModelLocation $locationModel */
-        $locationModel = $location->getLocation();
+        /** @var int|null $locationID */
+        $locationID = null;
 
-        $query = 'INSERT INTO `location`(`id`, `latitude`, `longitude`) VALUES (NULL, ?, ?);';
-        $this->db->query($query, [$locationModel->getLatitude(), $locationModel->getLongitude()]);
-
-        /** @var int $locationID */
-        $locationID = $this->db->insert_id();
-        $location->setId($locationID);
+        if ($this->db->insert('`location`', $location->populate()))
+        {
+            $locationID = $this->db->insert_id();
+            $location->setId($locationID);
+        }
 
         return $locationID;
     }
