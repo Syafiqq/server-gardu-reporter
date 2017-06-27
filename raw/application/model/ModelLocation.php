@@ -13,23 +13,29 @@ class ModelLocation implements CSerializable
 {
 
     /**
-     * @var float
+     * @var float|null
      */
     private $latitude;
     /**
-     * @var float
+     * @var float|null
      */
     private $longitude;
 
     /**
-     * Location constructor.
-     * @param float $latitude
-     * @param float $longitude
+     * ModelLocation constructor.
+     * @param float|null $latitude
+     * @param float|null $longitude
      */
     public function __construct(float $latitude = null, float $longitude = null)
     {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
+        if ($latitude !== null)
+        {
+            $this->latitude = $latitude;
+        }
+        if ($longitude !== null)
+        {
+            $this->longitude = $longitude;
+        }
     }
 
     public function cSerialize(): array
@@ -38,33 +44,33 @@ class ModelLocation implements CSerializable
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getLatitude(): float
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
     /**
-     * @param float $latitude
+     * @param float|null $latitude
      */
-    public function setLatitude(float $latitude)
+    public function setLatitude(?float $latitude)
     {
         $this->latitude = $latitude;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getLongitude(): float
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
     /**
-     * @param float $longitude
+     * @param float|null $longitude
      */
-    public function setLongitude(float $longitude)
+    public function setLongitude(?float $longitude)
     {
         $this->longitude = $longitude;
     }

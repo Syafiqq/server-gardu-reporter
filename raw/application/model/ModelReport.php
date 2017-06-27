@@ -12,35 +12,47 @@ require_once APPPATH . '/model/util/CSerializable.php';
 class ModelReport implements CSerializable
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $substation;
     /**
-     * @var float
+     * @var float|null
      */
     private $voltage;
     /**
-     * @var float
+     * @var float|null
      */
     private $current;
     /**
-     * @var ModelLocation
+     * @var ModelLocation|null
      */
     private $location;
 
     /**
-     * Report constructor.
-     * @param string $substation
-     * @param float $voltage
-     * @param float $current
-     * @param ModelLocation $location
+     * ModelReport constructor.
+     * @param string|null $substation
+     * @param float|null $voltage
+     * @param float|null $current
+     * @param ModelLocation|null $location
      */
     public function __construct(string $substation = null, float $voltage = null, float $current = null, ModelLocation $location = null)
     {
-        $this->substation = $substation;
-        $this->voltage = $voltage;
-        $this->current = $current;
-        $this->location = $location;
+        if ($substation !== null)
+        {
+            $this->substation = $substation;
+        }
+        if ($voltage !== null)
+        {
+            $this->voltage = $voltage;
+        }
+        if ($current !== null)
+        {
+            $this->current = $current;
+        }
+        if ($location !== null)
+        {
+            $this->location = $location;
+        }
     }
 
     /**
@@ -57,68 +69,70 @@ class ModelReport implements CSerializable
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getSubstation(): string
+    public function getSubstation(): ?string
     {
         return $this->substation;
     }
 
     /**
-     * @param string $substation
+     * @param null|string $substation
      */
-    public function setSubstation(string $substation)
+    public function setSubstation(?string $substation)
     {
         $this->substation = $substation;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getCurrent(): float
+    public function getCurrent():?float
     {
         return $this->current;
     }
 
     /**
-     * @param float $current
+     * @param float|null $current
      */
-    public function setCurrent(float $current)
+    public function setCurrent(?float $current)
     {
         $this->current = $current;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getVoltage(): float
+    public function getVoltage():?float
     {
         return $this->voltage;
     }
 
     /**
-     * @param float $voltage
+     * @param float|null $voltage
      */
-    public function setVoltage(float $voltage)
+    public function setVoltage(?float $voltage)
     {
         $this->voltage = $voltage;
     }
 
     /**
-     * @return ModelLocation
+     * @return ModelLocation|null
      */
-    public function getLocation(): ModelLocation
+    public function getLocation(): ?ModelLocation
     {
         return $this->location;
     }
 
     /**
-     * @param ModelLocation $location
+     * @param ModelLocation|null $location
      */
-    public function setLocation(ModelLocation $location)
+    public function setLocation(?ModelLocation $location)
     {
         $this->location = $location;
     }
+
+
 }
 
 ?>
