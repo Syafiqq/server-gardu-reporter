@@ -14,6 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="This is landing page">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <?php foreach ((isset($meta) ? $meta : array()) as $k => $v)
+    {
+        echo "<meta name=\"${k}\" content=\"${v}\">";
+    }
+    ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Landing Page</title>
 
@@ -34,6 +39,7 @@
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/skins/skin-blue.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -86,22 +92,22 @@
                                 <table id="table_report" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>No</th>
+                                        <th>Substation</th>
+                                        <th>Current</th>
+                                        <th>Voltage</th>
+                                        <th>Location</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>No</th>
+                                        <th>Substation</th>
+                                        <th>Current</th>
+                                        <th>Voltage</th>
+                                        <th>Location</th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -150,7 +156,8 @@
 <!-- DataTables -->
 <script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
 
-<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_layout.js"></script>
+<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_layout.min.js"></script>
 </body>
 </html>
