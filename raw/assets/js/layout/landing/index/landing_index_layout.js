@@ -12,7 +12,7 @@
     {
         var table_report = '#table_report';
 
-        $(table_report).DataTable({
+        var table = $(table_report).DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -20,6 +20,50 @@
             "info": true,
             "autoWidth": false
         });
+
+        this.retreiveData = function (table, link, progress)
+        {
+            progress.start();
+            $.ajax({
+                type: 'get',
+                url: link,
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8; X-Requested-With: XMLHttpRequest'
+            })
+                .done(function (data)
+                {
+                    if (data.hasOwnProperty('data'))
+                    {
+                        if (data['data'].hasOwnProperty('reports'))
+                        {
+                            var contents = data['data']['reports'];
+                            for (var i = table.data().count() - 1; ++i < contents.length;)
+                            {
+                                var content = contents[i];
+                                var location = '<a target="_blank" href="http://www.google.com/maps/place/' + content['location']['latitude'] + ',' + content['location']['longitude'] + '/@' + content['location']['latitude'] + ',' + content['location']['longitude'] + ',17z">Latitude : ' + content['location']['latitude'] + '<br>Longitude : ' + content['location']['longitude'] + '</a>';
+                                table.row.add([(i + 1), content['substation'], content['current'], content['voltage'], location]);
+                            }
+                            table.draw(true);
+                        }
+                    }
+                    progress.done();
+                })
+                .fail(function ()
+                {
+                    progress.done();
+                });
+        };
+
+        NProgress.configure({
+            showSpinner: false,
+            template: '<div class="bar" role="bar" style="background-color: red"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+        });
+
+        var link = $('meta[name="retriever"]').attr('content');
+        if ((link !== undefined) && (link !== null))
+        {
+            this.retreiveData(table, link, NProgress);
+        }
     });
     /*
      * Run right away
