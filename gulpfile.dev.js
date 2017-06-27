@@ -8,12 +8,14 @@
 
 var gulp = require('gulp');
 var watch = require('gulp-watch');
+var util = require('gulp-util');
 var cleanCSS = require('gulp-clean-css');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var htmlmin = require('gulp-htmlmin');
 var pump = require('pump');
 var imagemin = require('gulp-imagemin');
+var jsonMinify = require('gulp-json-minify');
 
 gulp.task('move-application-assets', function ()
 {
@@ -63,6 +65,15 @@ gulp.task('minify-html', function ()
         .pipe(gulp.dest('./application/'));
 });
 
+gulp.task('minify-json', function ()
+{
+    return gulp.src(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], {base: './raw/assets/'})
+        .pipe(rename({
+            suffix: ".min",
+            extname: ".json"
+        }))
+        .pipe(gulp.dest('./public/assets/'));
+});
 
 gulp.task('watch-move-application-assets', function ()
 {
@@ -133,5 +144,19 @@ gulp.task('watch-minify-html', function ()
     {
         return gulp.src('./raw/application/**/{*.php,*.html}', {base: './raw/application/'})
             .pipe(gulp.dest('./application/'));
+    });
+});
+
+gulp.task('watch-minify-json', function ()
+{
+    // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
+    return watch(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], function ()
+    {
+        return gulp.src(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], {base: './raw/assets/'})
+            .pipe(rename({
+                suffix: ".min",
+                extname: ".json"
+            }))
+            .pipe(gulp.dest('./public/assets/'));
     });
 });
