@@ -53,20 +53,16 @@ class MReport extends CI_Model
 
     public function find(int $id = null)
     {
-        $constraint = empty($id) ? '' : "AND `report`.`id` = ${id}";
-
-        $query = "SELECT `report`.`id` AS 'report_id', `report`.`substation`, `report`.`current`, `report`.`voltage`, `report`.`location`, `report`.`create_at`, `report`.`update_at`, `location`.`id` AS 'location_id', `location`.`latitude`, `location`.`longitude` FROM `report` LEFT OUTER JOIN `location` ON `report`.`location` = `location`.`id` WHERE TRUE ${constraint} ORDER BY `report`.`id` ASC";
-        /** @var array $result */
-        $results = $this->db->query($query);
-
-        /** @var array $reports */
-        $reports = [];
-        foreach ($results->result_array() as $result)
+        $this->db->select('`report`.`id` AS \'report_id\', `report`.`substation`, `report`.`current`, `report`.`voltage`, `report`.`location`, `report`.`create_at`, `report`.`update_at`, `location`.`id` AS \'location_id\', `location`.`latitude`, `location`.`longitude`');
+        $this->db->from('`report`');
+        $this->db->join('`location`', '`report`.`location` = `location`.`id`', 'LEFT OUTER');
+        if (!empty($id))
         {
-            array_push($reports, new DAOReport($result['report_id'], $result['location_id'], new ModelReport($result['substation'], $result['voltage'], $result['current'], new ModelLocation($result['latitude'], $result['longitude'])), $result['create_at'], $result['update_at']));
+            $this->db->where('`report`.`id`', $id);
         }
+        $this->db->order_by('`report`.`id`', 'ASC');
 
-        return $reports;
+        return $this->db->get()->result('DAOReport');
     }
 }
 
