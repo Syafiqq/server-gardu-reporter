@@ -158,6 +158,6 @@
 <script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
 
-<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_client_common_layout.min.js"></script>
 </body>
 </html>
