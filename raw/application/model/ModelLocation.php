@@ -7,7 +7,9 @@
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
-class ModelLocation
+require_once APPPATH . '/model/util/CSerializable.php';
+
+class ModelLocation implements CSerializable
 {
 
     /**
@@ -30,6 +32,10 @@ class ModelLocation
         $this->longitude = $longitude;
     }
 
+    public function cSerialize(): array
+    {
+        return ['latitude' => $this->getLatitude(), 'longitude' => $this->getLongitude()];
+    }
 
     /**
      * @return float
@@ -62,8 +68,6 @@ class ModelLocation
     {
         $this->longitude = $longitude;
     }
-
-
 }
 
 ?>

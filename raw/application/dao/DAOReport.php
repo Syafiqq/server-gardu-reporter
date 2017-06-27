@@ -9,11 +9,12 @@
  */
 
 require_once APPPATH . '/model/ModelReport.php';
+require_once APPPATH . '/model/util/CSerializable.php';
 
 /**
  * Class DAOReport
  */
-class DAOReport
+class DAOReport implements CSerializable
 {
     /**
      * @var int
@@ -51,6 +52,22 @@ class DAOReport
         $this->report = $report;
         $this->createAt = $createAt;
         $this->updateAt = $updateAt;
+    }
+
+    /**
+     * @return array
+     */
+    public function cSerialize(): array
+    {
+        /** @var array $result */
+        $result = [];
+        $result['id_report'] = $this->getIdReport();
+        $result['id_location'] = $this->getIdLocation();
+        $result = array_merge($result, $this->getReport()->cSerialize());
+        $result['create_at'] = $this->getCreateAt();
+        $result['update_at'] = $this->getUpdateAt();
+
+        return $result;
     }
 
     /**
@@ -132,8 +149,6 @@ class DAOReport
     {
         $this->updateAt = $updateAt;
     }
-
-
 }
 
 ?>

@@ -9,11 +9,12 @@
  */
 
 require_once APPPATH . '/model/ModelLocation.php';
+require_once APPPATH . '/model/util/CSerializable.php';
 
 /**
  * Class DAOLocation
  */
-class DAOLocation
+class DAOLocation implements CSerializable
 {
     /**
      * @var int
@@ -33,6 +34,18 @@ class DAOLocation
     {
         $this->id = $id;
         $this->location = $location;
+    }
+
+    /**
+     * @return array
+     */
+    public function cSerialize(): array
+    {
+        /** @var array $result */
+        $result = ['id' => $this->getId()];
+        $result = array_merge($result, $this->getLocation()->cSerialize());
+
+        return $result;
     }
 
     /**
@@ -66,8 +79,6 @@ class DAOLocation
     {
         $this->location = $location;
     }
-
-
 }
 
 ?>

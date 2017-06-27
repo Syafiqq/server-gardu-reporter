@@ -7,7 +7,9 @@
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
-class ModelReport
+require_once APPPATH . '/model/util/CSerializable.php';
+
+class ModelReport implements CSerializable
 {
     /**
      * @var string
@@ -42,6 +44,19 @@ class ModelReport
     }
 
     /**
+     * @return array
+     */
+    public function cSerialize(): array
+    {
+        return [
+            'substation' => $this->getSubstation(),
+            'current' => $this->getCurrent(),
+            'voltage' => $this->getVoltage(),
+            'location' => $this->getLocation()->cSerialize(),
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getSubstation(): string
@@ -55,22 +70,6 @@ class ModelReport
     public function setSubstation(string $substation)
     {
         $this->substation = $substation;
-    }
-
-    /**
-     * @return float
-     */
-    public function getVoltage(): float
-    {
-        return $this->voltage;
-    }
-
-    /**
-     * @param float $voltage
-     */
-    public function setVoltage(float $voltage)
-    {
-        $this->voltage = $voltage;
     }
 
     /**
@@ -90,6 +89,22 @@ class ModelReport
     }
 
     /**
+     * @return float
+     */
+    public function getVoltage(): float
+    {
+        return $this->voltage;
+    }
+
+    /**
+     * @param float $voltage
+     */
+    public function setVoltage(float $voltage)
+    {
+        $this->voltage = $voltage;
+    }
+
+    /**
      * @return ModelLocation
      */
     public function getLocation(): ModelLocation
@@ -104,8 +119,6 @@ class ModelReport
     {
         $this->location = $location;
     }
-
-
 }
 
 ?>
