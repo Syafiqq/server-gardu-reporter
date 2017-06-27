@@ -53,16 +53,26 @@ class Api extends \Restserver\Libraries\REST_Controller
             {
                 $this->load->database();
 
-                $report = new DAOReport(null, null, new ModelReport($post['substation'], $post['voltage'], $post['current'], new ModelLocation($post['location']['latitude'], $post['location']['longitude'])));
+                $report = new DAOReport(null, null, new ModelReport($post['substation'], $post['voltage'], $post['current'], new ModelLocation($post['location']['latitude'], $post['location']['longitude'])), null, null, null);
 
                 $this->load->model('mLocation');
                 $this->load->model('mReport');
-                $this->mReport->insert($report, $this->mLocation);
-
-                $this->response([
-                    'code' => \Restserver\Libraries\REST_Controller::HTTP_OK,
-                    'data' => ['message' => 'Data Successfully Retrieved']
-                ], \Restserver\Libraries\REST_Controller::HTTP_OK);
+                /** @var int|null $reportID */
+                $reportID = $this->mReport->insert($report, $this->mLocation);
+                if (empty($reportID))
+                {
+                    $this->response([
+                        'code' => \Restserver\Libraries\REST_Controller::HTTP_INTERNAL_SERVER_ERROR,
+                        'data' => ['message' => 'Cannot store data to the server. Please try again later.']
+                    ], \Restserver\Libraries\REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+                }
+                else
+                {
+                    $this->response([
+                        'code' => \Restserver\Libraries\REST_Controller::HTTP_OK,
+                        'data' => ['message' => 'Data Successfully Retrieved']
+                    ], \Restserver\Libraries\REST_Controller::HTTP_OK);
+                }
             }
             else
             {
@@ -75,9 +85,9 @@ class Api extends \Restserver\Libraries\REST_Controller
         else
         {
             $this->response([
-                'code' => \Restserver\Libraries\REST_Controller::HTTP_BAD_REQUEST,
-                'data' => ['message' => 'Bad Request']
-            ], \Restserver\Libraries\REST_Controller::HTTP_BAD_REQUEST);
+                'code' => \Restserver\Libraries\REST_Controller::HTTP_FORBIDDEN,
+                'data' => ['message' => 'You are forbid to insert data']
+            ], \Restserver\Libraries\REST_Controller::HTTP_FORBIDDEN);
         }
     }
 
