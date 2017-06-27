@@ -9,6 +9,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . '/dao/DAOReport.php';
 require_once APPPATH . '/dao/DAOLocation.php';
+require_once APPPATH . '/model/ModelReport.php';
+require_once APPPATH . '/model/ModelLocation.php';
 
 /**
  * Class MReport
@@ -47,6 +49,24 @@ class MReport extends CI_Model
         $report->setIdReport($reportID);
 
         return $reportID;
+    }
+
+    public function find(int $id = null)
+    {
+        $constraint = empty($id) ? '' : "AND `report`.`id` = ${id}";
+
+        $query = "SELECT `report`.`id` AS 'report_id', `report`.`substation`, `report`.`current`, `report`.`voltage`, `report`.`location`, `report`.`create_at`, `report`.`update_at`, `location`.`id` AS 'location_id', `location`.`latitude`, `location`.`longitude` FROM `report` LEFT OUTER JOIN `location` ON `report`.`location` = `location`.`id` WHERE TRUE ${constraint} ORDER BY `report`.`id` ASC";
+        /** @var array $result */
+        $results = $this->db->query($query);
+
+        /** @var array $reports */
+        $reports = [];
+        foreach ($results->result_array() as $result)
+        {
+            array_push($reports, new DAOReport($result['report_id'], $result['location_id'], new ModelReport($result['substation'], $result['voltage'], $result['current'], new ModelLocation($result['latitude'], $result['longitude'])), $result['create_at'], $result['update_at']));
+        }
+
+        return $reports;
     }
 }
 
