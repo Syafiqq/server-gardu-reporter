@@ -18,7 +18,10 @@
             "searching": false,
             "ordering": true,
             "info": true,
-            "autoWidth": false
+            "autoWidth": false,
+            "language": {
+                "url": $('meta[name="datatable_lang"]').attr('content')
+            }
         });
 
         this.retreiveData = function (table, link, progress)
