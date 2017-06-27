@@ -34,7 +34,11 @@ class Landing extends CI_Controller
 
     public function index()
     {
-        $this->load->view('landing/index/landing_index_layout');
+        $this->load->helper('url');
+
+        $meta = [];
+        $meta['retriever'] = site_url('api/find/');
+        $this->load->view('landing/index/landing_index_layout', compact('meta'));
     }
 }
 
