@@ -59,8 +59,7 @@
             <div class="container">
                 <div class="navbar-header">
                     <a href="../../index2.html" class="navbar-brand">
-                        <b>Admin</b>
-                        LTE
+                        <b><?php echo $string['title'] ?></b>
                     </a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                         <i class="fa fa-bars"></i>
@@ -85,32 +84,34 @@
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title">Hover Data Table</h3>
+                                <h3 class="box-title"></h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <table id="table_report" class="table table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Substation</th>
-                                        <th>Current</th>
-                                        <th>Voltage</th>
-                                        <th>Location</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Substation</th>
-                                        <th>Current</th>
-                                        <th>Voltage</th>
-                                        <th>Location</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
+                                <?php
+                                echo '<table id="table_report" class="table table-bordered table-hover">';
+                                echo '<thead>';
+                                echo '<tr>';
+                                echo "<th>{$string['table_header_no']}</th>";
+                                echo "<th>{$string['table_header_substation']}</th>";
+                                echo "<th>{$string['table_header_current']}</th>";
+                                echo "<th>{$string['table_header_voltage']}</th>";
+                                echo "<th>{$string['table_header_location']}</th>";
+                                echo '</tr>';
+                                echo '</thead>';
+                                echo '<tbody>';
+                                echo '</tbody>';
+                                echo '<tfoot>';
+                                echo '<tr>';
+                                echo "<th>{$string['table_header_no']}</th>";
+                                echo "<th>{$string['table_header_substation']}</th>";
+                                echo "<th>{$string['table_header_current']}</th>";
+                                echo "<th>{$string['table_header_voltage']}</th>";
+                                echo "<th>{$string['table_header_location']}</th>";
+                                echo '</tr>';
+                                echo '</tfoot>';
+                                echo '</table>';
+                                ?>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -126,15 +127,9 @@
     <footer class="main-footer">
         <div class="container">
             <div class="pull-right hidden-xs">
-                <b>Version</b>
-                2.3.8
+
             </div>
-            <strong>Copyright &copy; 2014-2016
-                <a href="http://almsaeedstudio.com">Almsaeed Studio</a>
-                    .
-            </strong>
-            All rights
-            reserved.
+            <strong></strong>
         </div>
         <!-- /.container -->
     </footer>
