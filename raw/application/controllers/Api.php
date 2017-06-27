@@ -80,6 +80,30 @@ class Api extends \Restserver\Libraries\REST_Controller
             ], \Restserver\Libraries\REST_Controller::HTTP_BAD_REQUEST);
         }
     }
+
+    public function find_get()
+    {
+        $get = $this->post();
+        if (!isset($get['id']))
+        {
+            $get['id'] = null;
+        }
+
+        $this->load->database();
+
+        $this->load->model('mReport');
+        $reports = [];
+        /** @var DAOReport $report */
+        foreach ($this->mReport->find($get['id']) as $report)
+        {
+            array_push($reports, $report->cSerialize());
+        }
+
+        $this->response([
+            'code' => \Restserver\Libraries\REST_Controller::HTTP_OK,
+            'data' => ['reports' => $reports]
+        ], \Restserver\Libraries\REST_Controller::HTTP_OK);
+    }
 }
 
 ?>
