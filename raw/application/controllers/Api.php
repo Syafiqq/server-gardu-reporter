@@ -83,7 +83,7 @@ class Api extends \Restserver\Libraries\REST_Controller
 
     public function find_get()
     {
-        $get = $this->post();
+        $get = $this->get();
         if (!isset($get['id']))
         {
             $get['id'] = null;
@@ -93,6 +93,7 @@ class Api extends \Restserver\Libraries\REST_Controller
 
         $this->load->model('mReport');
         $reports = [];
+
         /** @var DAOReport $report */
         foreach ($this->mReport->find($get['id']) as $report)
         {
