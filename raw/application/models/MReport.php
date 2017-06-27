@@ -14,6 +14,7 @@ require_once APPPATH . '/model/ModelLocation.php';
 
 /**
  * Class MReport
+ * @property  CI_DB_mysqli_driver db
  */
 class MReport extends CI_Model
 {

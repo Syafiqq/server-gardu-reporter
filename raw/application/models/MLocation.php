@@ -11,6 +11,7 @@ require_once APPPATH . '/dao/DAOLocation.php';
 
 /**
  * Class MLocation
+ * @property CI_DB_mysqli_driver db
  */
 class MLocation extends CI_Model
 {

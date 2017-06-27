@@ -13,6 +13,11 @@ require_once APPPATH . '/model/ModelReport.php';
 require_once APPPATH . '/model/ModelLocation.php';
 require_once APPPATH . '/libraries/REST_Controller.php';
 
+/**
+ * @property MLocation mLocation
+ * @property MReport mReport
+ * @property CI_Input input
+ */
 class Api extends \Restserver\Libraries\REST_Controller
 {
     /**
