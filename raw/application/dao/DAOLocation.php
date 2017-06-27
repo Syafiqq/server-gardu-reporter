@@ -17,23 +17,29 @@ require_once APPPATH . '/model/util/CSerializable.php';
 class DAOLocation implements CSerializable
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $id;
     /**
-     * @var ModelLocation
+     * @var ModelLocation|null
      */
     private $location;
 
     /**
-     * ORMLocation constructor.
-     * @param int $id
-     * @param ModelLocation $location
+     * DAOLocation constructor.
+     * @param int|null $id
+     * @param ModelLocation|null $location
      */
     public function __construct(int $id = null, ModelLocation $location = null)
     {
-        $this->id = $id;
-        $this->location = $location;
+        if ($id !== null)
+        {
+            $this->id = $id;
+        }
+        if ($location !== null)
+        {
+            $this->location = $location;
+        }
     }
 
     /**
@@ -49,9 +55,9 @@ class DAOLocation implements CSerializable
     }
 
     /**
-     * @return int
+     * @return null|int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -59,15 +65,15 @@ class DAOLocation implements CSerializable
     /**
      * @param int $id
      */
-    public function setId(int $id)
+    public function setId(?int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return ModelLocation
+     * @return null|ModelLocation
      */
-    public function getLocation(): ModelLocation
+    public function getLocation(): ?ModelLocation
     {
         return $this->location;
     }
@@ -75,7 +81,7 @@ class DAOLocation implements CSerializable
     /**
      * @param ModelLocation $location
      */
-    public function setLocation(ModelLocation $location)
+    public function setLocation(?ModelLocation $location)
     {
         $this->location = $location;
     }

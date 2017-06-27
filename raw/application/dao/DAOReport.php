@@ -9,6 +9,7 @@
  */
 
 require_once APPPATH . '/model/ModelReport.php';
+require_once APPPATH . '/model/ModelLocation.php';
 require_once APPPATH . '/model/util/CSerializable.php';
 
 /**
@@ -17,41 +18,160 @@ require_once APPPATH . '/model/util/CSerializable.php';
 class DAOReport implements CSerializable
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $idReport;
     /**
-     * @var int
+     * @var int|null
      */
     private $idLocation;
     /**
-     * @var ModelReport
+     * @var ModelReport|null
      */
     private $report;
     /**
-     * @var string
+     * @var string|null
      */
     private $createAt;
     /**
-     * @var string
+     * @var string|null
      */
     private $updateAt;
 
     /**
      * DAOReport constructor.
-     * @param int $idReport
-     * @param int $idLocation
-     * @param ModelReport $report
-     * @param string $createAt
-     * @param string $updateAt
+     * @param int|null $idReport
+     * @param int|null $idLocation
+     * @param ModelReport|null $report
+     * @param string|null $createAt
+     * @param string|null $updateAt
      */
     public function __construct($idReport = null, $idLocation = null, ModelReport $report = null, $createAt = null, $updateAt = null)
     {
-        $this->idReport = $idReport;
-        $this->idLocation = $idLocation;
+        if ($idReport !== null)
+        {
+            $this->idReport = $idReport;
+        }
+        if ($idLocation !== null)
+        {
+            $this->idLocation = $idLocation;
+        }
+        if ($report !== null)
+        {
+            $this->report = $report;
+        }
+        if ($createAt !== null)
+        {
+            $this->createAt = $createAt;
+        }
+        if ($updateAt !== null)
+        {
+            $this->updateAt = $updateAt;
+        }
+    }
+
+    function __set($name, $value)
+    {
+        switch ($name)
+        {
+            case 'report_id' :
+            {
+                $this->setIdReport($value);
+            }
+            break;
+            case 'location_id' :
+            {
+                $this->setIdLocation($value);
+            }
+            break;
+            case 'create_at' :
+            {
+                $this->setCreateAt($value);
+            }
+            break;
+            case 'update_at' :
+            {
+                $this->setUpdateAt($value);
+            }
+            break;
+            case 'location' :
+            {
+            }
+            break;
+            case 'substation' :
+            {
+                if (!isset($this->report))
+                {
+                    $this->report = new ModelReport();
+                }
+                $this->getReport()->setSubstation($value);
+            }
+            break;
+            case 'voltage' :
+            {
+                if (!isset($this->report))
+                {
+                    $this->report = new ModelReport();
+                }
+                $this->getReport()->setVoltage($value);
+            }
+            break;
+            case 'current' :
+            {
+                if (!isset($this->report))
+                {
+                    $this->report = new ModelReport();
+                }
+                $this->getReport()->setCurrent($value);
+            }
+            break;
+            case 'latitude' :
+            {
+                if (!isset($this->report))
+                {
+                    $this->report = new ModelReport();
+                }
+                if ($this->report->getLocation() === null)
+                {
+                    $this->getReport()->setLocation(new ModelLocation());
+                }
+                $this->getReport()->getLocation()->setLatitude($value);
+            }
+            break;
+            case 'longitude' :
+            {
+                if (!isset($this->report))
+                {
+                    $this->report = new ModelReport();
+                }
+                if ($this->report->getLocation() === null)
+                {
+                    $this->getReport()->setLocation(new ModelLocation());
+                }
+                $this->getReport()->getLocation()->setLongitude($value);
+            }
+            break;
+            default :
+            {
+                $this->$name = $value;
+            }
+        }
+    }
+
+    /**
+     * @return ModelReport|null
+     */
+    public function getReport(): ?ModelReport
+    {
+        return $this->report;
+    }
+
+    /**
+     * @param ModelReport|null $report
+     */
+    public function setReport(?ModelReport $report)
+    {
         $this->report = $report;
-        $this->createAt = $createAt;
-        $this->updateAt = $updateAt;
     }
 
     /**
@@ -71,81 +191,65 @@ class DAOReport implements CSerializable
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIdReport(): int
+    public function getIdReport(): ?int
     {
         return $this->idReport;
     }
 
     /**
-     * @param int $idReport
+     * @param int|null $idReport
      */
-    public function setIdReport(int $idReport)
+    public function setIdReport(?int $idReport)
     {
         $this->idReport = $idReport;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIdLocation(): int
+    public function getIdLocation(): ?int
     {
         return $this->idLocation;
     }
 
     /**
-     * @param int $idLocation
+     * @param int|null $idLocation
      */
-    public function setIdLocation(int $idLocation)
+    public function setIdLocation(?int $idLocation)
     {
         $this->idLocation = $idLocation;
     }
 
     /**
-     * @return ModelReport
+     * @return null|string
      */
-    public function getReport(): ModelReport
-    {
-        return $this->report;
-    }
-
-    /**
-     * @param ModelReport $report
-     */
-    public function setReport(ModelReport $report)
-    {
-        $this->report = $report;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCreateAt(): string
+    public function getCreateAt(): ?string
     {
         return $this->createAt;
     }
 
     /**
-     * @param string $createAt
+     * @param null|string $createAt
      */
-    public function setCreateAt(string $createAt)
+    public function setCreateAt(?string $createAt)
     {
         $this->createAt = $createAt;
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getUpdateAt(): string
+    public function getUpdateAt(): ?string
     {
         return $this->updateAt;
     }
 
     /**
-     * @param string $updateAt
+     * @param null|string $updateAt
      */
-    public function setUpdateAt(string $updateAt)
+    public function setUpdateAt(?string $updateAt)
     {
         $this->updateAt = $updateAt;
     }
