@@ -54,7 +54,7 @@ class ModelLocation implements CSerializable
     /**
      * @param float|null $latitude
      */
-    public function setLatitude(?float $latitude)
+    public function setLatitude(?float $latitude = null)
     {
         $this->latitude = $latitude;
     }
@@ -70,7 +70,7 @@ class ModelLocation implements CSerializable
     /**
      * @param float|null $longitude
      */
-    public function setLongitude(?float $longitude)
+    public function setLongitude(?float $longitude = null)
     {
         $this->longitude = $longitude;
     }

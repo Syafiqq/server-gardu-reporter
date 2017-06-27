@@ -10,11 +10,12 @@
 
 require_once APPPATH . '/model/ModelLocation.php';
 require_once APPPATH . '/model/util/CSerializable.php';
+require_once APPPATH . '/model/util/CDBDataPopulator.php';
 
 /**
  * Class DAOLocation
  */
-class DAOLocation implements CSerializable
+class DAOLocation implements CSerializable, CDBDataPopulator
 {
     /**
      * @var int|null
@@ -42,6 +43,51 @@ class DAOLocation implements CSerializable
         }
     }
 
+    function __get($name)
+    {
+        switch ($name)
+        {
+            case 'latitude' :
+            {
+                return $this->getLocation()->getLatitude();
+            }
+            break;
+            case 'longitude' :
+            {
+                return $this->getLocation()->getLongitude();
+            }
+            break;
+            default:
+            {
+                return $this->$name;
+            }
+        }
+    }
+
+    /**
+     * @return null|ModelLocation
+     */
+    public function getLocation(): ?ModelLocation
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param ModelLocation $location
+     */
+    public function setLocation(?ModelLocation $location = null)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return array
+     */
+    public function populate(): array
+    {
+        return $this->cSerialize();
+    }
+
     /**
      * @return array
      */
@@ -65,25 +111,9 @@ class DAOLocation implements CSerializable
     /**
      * @param int $id
      */
-    public function setId(?int $id)
+    public function setId(?int $id = null)
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return null|ModelLocation
-     */
-    public function getLocation(): ?ModelLocation
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param ModelLocation $location
-     */
-    public function setLocation(?ModelLocation $location)
-    {
-        $this->location = $location;
     }
 }
 

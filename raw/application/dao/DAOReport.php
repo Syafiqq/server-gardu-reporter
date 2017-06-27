@@ -11,11 +11,12 @@
 require_once APPPATH . '/model/ModelReport.php';
 require_once APPPATH . '/model/ModelLocation.php';
 require_once APPPATH . '/model/util/CSerializable.php';
+require_once APPPATH . '/model/util/CDBDataPopulator.php';
 
 /**
  * Class DAOReport
  */
-class DAOReport implements CSerializable
+class DAOReport implements CSerializable, CDBDataPopulator
 {
     /**
      * @var int|null
@@ -39,14 +40,20 @@ class DAOReport implements CSerializable
     private $updateAt;
 
     /**
+     * @var string|null
+     */
+    private $deleteAt;
+
+    /**
      * DAOReport constructor.
      * @param int|null $idReport
      * @param int|null $idLocation
      * @param ModelReport|null $report
      * @param string|null $createAt
      * @param string|null $updateAt
+     * @param string|null $deleteAt
      */
-    public function __construct($idReport = null, $idLocation = null, ModelReport $report = null, $createAt = null, $updateAt = null)
+    public function __construct($idReport = null, $idLocation = null, ModelReport $report = null, $createAt = null, $updateAt = null, $deleteAt = null)
     {
         if ($idReport !== null)
         {
@@ -67,6 +74,10 @@ class DAOReport implements CSerializable
         if ($updateAt !== null)
         {
             $this->updateAt = $updateAt;
+        }
+        if ($deleteAt !== null)
+        {
+            $this->deleteAt = $deleteAt;
         }
     }
 
@@ -92,6 +103,11 @@ class DAOReport implements CSerializable
             case 'update_at' :
             {
                 $this->setUpdateAt($value);
+            }
+            break;
+            case 'delete_at' :
+            {
+                $this->setDeleteAt($value);
             }
             break;
             case 'location' :
@@ -169,7 +185,7 @@ class DAOReport implements CSerializable
     /**
      * @param ModelReport|null $report
      */
-    public function setReport(?ModelReport $report)
+    public function setReport(?ModelReport $report = null)
     {
         $this->report = $report;
     }
@@ -186,6 +202,7 @@ class DAOReport implements CSerializable
         $result = array_merge($result, $this->getReport()->cSerialize());
         $result['create_at'] = $this->getCreateAt();
         $result['update_at'] = $this->getUpdateAt();
+        $result['delete_at'] = $this->getDeleteAt();
 
         return $result;
     }
@@ -201,7 +218,7 @@ class DAOReport implements CSerializable
     /**
      * @param int|null $idReport
      */
-    public function setIdReport(?int $idReport)
+    public function setIdReport(?int $idReport = null)
     {
         $this->idReport = $idReport;
     }
@@ -217,7 +234,7 @@ class DAOReport implements CSerializable
     /**
      * @param int|null $idLocation
      */
-    public function setIdLocation(?int $idLocation)
+    public function setIdLocation(?int $idLocation = null)
     {
         $this->idLocation = $idLocation;
     }
@@ -233,7 +250,7 @@ class DAOReport implements CSerializable
     /**
      * @param null|string $createAt
      */
-    public function setCreateAt(?string $createAt)
+    public function setCreateAt(?string $createAt = null)
     {
         $this->createAt = $createAt;
     }
@@ -249,10 +266,46 @@ class DAOReport implements CSerializable
     /**
      * @param null|string $updateAt
      */
-    public function setUpdateAt(?string $updateAt)
+    public function setUpdateAt(?string $updateAt = null)
     {
         $this->updateAt = $updateAt;
     }
+
+    /**
+     * @return null|string
+     */
+    public function getDeleteAt(): ?string
+    {
+        return $this->deleteAt;
+    }
+
+    /**
+     * @param null|string $deleteAt
+     */
+    public function setDeleteAt(?string $deleteAt = null)
+    {
+        $this->deleteAt = $deleteAt;
+    }
+
+    /**
+     * @return array
+     */
+    public function populate(): array
+    {
+        /** @var array $result */
+        $result = [];
+        $result['id'] = $this->getIdReport();
+        $result['substation'] = $this->getReport()->getSubstation();
+        $result['current'] = $this->getReport()->getCurrent();
+        $result['voltage'] = $this->getReport()->getVoltage();
+        $result['location'] = $this->getIdLocation();
+        $result['create_at'] = $this->getCreateAt();
+        $result['update_at'] = $this->getUpdateAt();
+        $result['delete_at'] = $this->getDeleteAt();
+
+        return $result;
+    }
+
 }
 
 ?>

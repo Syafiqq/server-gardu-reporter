@@ -79,7 +79,7 @@ class ModelReport implements CSerializable
     /**
      * @param null|string $substation
      */
-    public function setSubstation(?string $substation)
+    public function setSubstation(?string $substation = null)
     {
         $this->substation = $substation;
     }
@@ -95,7 +95,7 @@ class ModelReport implements CSerializable
     /**
      * @param float|null $current
      */
-    public function setCurrent(?float $current)
+    public function setCurrent(?float $current = null)
     {
         $this->current = $current;
     }
@@ -111,7 +111,7 @@ class ModelReport implements CSerializable
     /**
      * @param float|null $voltage
      */
-    public function setVoltage(?float $voltage)
+    public function setVoltage(?float $voltage = null)
     {
         $this->voltage = $voltage;
     }
@@ -127,7 +127,7 @@ class ModelReport implements CSerializable
     /**
      * @param ModelLocation|null $location
      */
-    public function setLocation(?ModelLocation $location)
+    public function setLocation(?ModelLocation $location = null)
     {
         $this->location = $location;
     }
