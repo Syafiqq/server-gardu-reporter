@@ -75,7 +75,7 @@ if (!isset($string))
                     <ul class="nav navbar-nav">
                         <li>
                             <!-- Menu Toggle Button -->
-                            <a id="sign-out" href="<?php echo site_url('auth/do_login') ?>">
+                            <a id="sign-out" href="<?php echo site_url('auth/login') ?>">
                                 <!-- The user image in the navbar-->
                                 <i class="fa fa-sign-in"></i>
                                 &nbsp;&nbsp;<?php echo $string['auth_login'] ?>
