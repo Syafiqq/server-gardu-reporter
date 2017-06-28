@@ -58,14 +58,24 @@
         <nav class="navbar navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="../../index2.html" class="navbar-brand">
+                    <a href="<?php echo site_url('/') ?>" class="navbar-brand">
                         <b><?php echo $string['title'] ?></b>
                     </a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                        <i class="fa fa-bars"></i>
-                    </button>
                 </div>
                 <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <!-- Menu Toggle Button -->
+                            <a id="sign-out" href="<?php echo site_url('auth/do_login') ?>">
+                                <!-- The user image in the navbar-->
+                                <i class="fa fa-sign-in"></i>
+                                &nbsp;&nbsp;<?php echo $string['auth_login'] ?>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-custom-menu -->
             </div>
             <!-- /.container-fluid -->
         </nav>
