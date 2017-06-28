@@ -5,7 +5,15 @@
  * Date / Time  : 20 June 2017, 3:12 PM.
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
- */ ?>
+ */
+
+/** @var null|string $string */
+if (!isset($string))
+{
+    $string = [];
+}
+
+?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
