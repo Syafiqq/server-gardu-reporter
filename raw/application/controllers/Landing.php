@@ -53,17 +53,20 @@ class Landing extends CI_Controller
         $this->lang_prefix = 'landing_index_client_common_layout_';
 
         $this->lang->load('layout/landing/index/landing_index_client_common_layout', $this->language);
+        $this->lang->load('common/table/common_table_header', $this->language);
+        $this->lang->load('common/auth/common_auth_common', $this->language);
         $this->lang->load('common', $this->language);
 
         $string = [];
         $meta = [];
 
         $string['title'] = $this->lang->line('common_title');
-        $string['table_header_no'] = $this->lang->line("{$this->lang_prefix}table_header_no");
-        $string['table_header_substation'] = $this->lang->line("{$this->lang_prefix}table_header_substation");
-        $string['table_header_current'] = $this->lang->line("{$this->lang_prefix}table_header_current");
-        $string['table_header_voltage'] = $this->lang->line("{$this->lang_prefix}table_header_voltage");
-        $string['table_header_location'] = $this->lang->line("{$this->lang_prefix}table_header_location");
+        $string['table_header_no'] = $this->lang->line('common_table_header_no');
+        $string['table_header_substation'] = $this->lang->line('common_table_header_substation');
+        $string['table_header_current'] = $this->lang->line('common_table_header_current');
+        $string['table_header_voltage'] = $this->lang->line('common_table_header_voltage');
+        $string['table_header_location'] = $this->lang->line('common_table_header_location');
+        $string['auth_login'] = $this->lang->line('common_auth_common_login');
 
         $meta['retriever'] = site_url('api/find/');
         $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
