@@ -10,4 +10,5 @@
 $lang['common_auth_common_login'] = 'Login';
 $lang['common_auth_common_logout'] = 'Logout';
 $lang['common_auth_common_register'] = 'Register';
+$lang['common_auth_common_remember_me'] = 'Remember Me';
 ?>
