@@ -33,9 +33,11 @@ class Landing extends CI_Controller
 
     /**
      * @var string $language
+     * @var string $country
      * @var string $lang_prefix
      */
     private $language;
+    private $country;
     private $lang_prefix;
 
     public function __construct()
@@ -44,12 +46,13 @@ class Landing extends CI_Controller
         // Your own constructor code
         $this->load->helper('cookie');
 
-        $this->language = (!empty(get_cookie('common_language')) ?: $this->config->item('language'));
+        $this->language = empty($this->language = get_cookie('common_language')) ? $this->config->item('language') : $this->language;
+        $this->country = empty($this->country = get_cookie('common_country')) ? $this->config->item('country') : $this->country;
     }
 
     public function index()
     {
-        $this->load->helper('url');
+        $this->load->helper(['url', 'i18n']);
         $this->lang_prefix = 'landing_index_client_common_layout_';
 
         $this->lang->load('layout/landing/index/landing_index_client_common_layout', $this->language);
@@ -59,6 +62,7 @@ class Landing extends CI_Controller
 
         $string = [];
         $meta = [];
+        $data = [];
 
         $string['title'] = $this->lang->line('common_title');
         $string['table_header_no'] = $this->lang->line('common_table_header_no');
@@ -71,7 +75,10 @@ class Landing extends CI_Controller
         $meta['retriever'] = site_url('api/find/');
         $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
 
-        $this->load->view('landing/index/landing_index_client_common_layout', compact('meta', 'string'));
+        $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
+        $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+
+        $this->load->view('landing/index/landing_index_client_common_layout', compact('meta', 'string', 'data'));
     }
 }
 
