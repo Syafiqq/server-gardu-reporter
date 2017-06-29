@@ -51,6 +51,7 @@
     "datatables.net-scroller-bs": "^1.4.2",
     "datatables.net-select": "^1.2.2",
     "datatables.net-select-bs": "^1.2.2",
-    "nprogress": "^0.2.0"
+    "nprogress": "^0.2.0",
+    "iCheck": "https://github.com/fronteed/icheck.git#^1.0.2"
   }
 }
