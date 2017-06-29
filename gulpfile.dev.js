@@ -16,6 +16,7 @@ var htmlmin = require('gulp-htmlmin');
 var pump = require('pump');
 var imagemin = require('gulp-imagemin');
 var jsonMinify = require('gulp-json-minify');
+var shell = require('gulp-shell')
 
 gulp.task('move-application-assets', function ()
 {
@@ -159,4 +160,16 @@ gulp.task('watch-minify-json', function ()
             }))
             .pipe(gulp.dest('./public/assets/'));
     });
+});
+
+gulp.task('cleaning-generated-file', shell.task([
+    'cleaning.sh'
+]));
+
+gulp.task('cleaning-generated-file', function ()
+{
+    return gulp.src('cleaning.sh', {read: false})
+        .pipe(shell([
+            'sh <%= file.path %>'
+        ]))
 });
