@@ -19,15 +19,19 @@ if (!isset($string))
 {
     $string = [];
 }
+if (!isset($data))
+{
+    $data = [];
+}
 
 ?>
 
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="<?php echo "{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="This is landing page">
+    <meta name="description" content="Admin Login">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
@@ -35,7 +39,7 @@ if (!isset($string))
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Landing Page</title>
+    <title>Login</title>
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -52,9 +56,11 @@ if (!isset($string))
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/skins/skin-blue.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/assets/vendor/iCheck/skins/square/blue.min.css">
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="/assets/css/layout/admin/auth/login/admin_auth_login_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -65,101 +71,43 @@ if (!isset($string))
     <script type="text/javascript" src="/assets/js/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-<body class="hold-transition skin-blue layout-top-nav">
-<div class="wrapper">
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="<?php echo site_url('/') ?>"><?php echo $string['title'] ?></a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg"><?php echo $string['login_box_message'] ?></p>
 
-    <header class="main-header">
-        <nav class="navbar navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a href="<?php echo site_url('/') ?>" class="navbar-brand">
-                        <b><?php echo $string['title'] ?></b>
-                    </a>
-                </div>
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <!-- Menu Toggle Button -->
-                            <a id="sign-out" href="<?php echo site_url('auth/login') ?>">
-                                <!-- The user image in the navbar-->
-                                <i class="fa fa-sign-in"></i>
-                                &nbsp;&nbsp;<?php echo $string['auth_login'] ?>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-custom-menu -->
+        <form action="<?php echo site_url('/admin/auth/do_login') ?>" method="post">
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
-            <!-- /.container-fluid -->
-        </nav>
-    </header>
-    <!-- Full Width Column -->
-    <div class="content-wrapper">
-        <div class="container">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-
-            </section>
-
-            <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box">
-                            <div class="box-header">
-                                <h3 class="box-title"></h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <?php
-                                echo '<table id="table_report" class="table table-bordered table-hover">';
-                                echo '<thead>';
-                                echo '<tr>';
-                                echo "<th>{$string['table_header_no']}</th>";
-                                echo "<th>{$string['table_header_substation']}</th>";
-                                echo "<th>{$string['table_header_current']}</th>";
-                                echo "<th>{$string['table_header_voltage']}</th>";
-                                echo "<th>{$string['table_header_location']}</th>";
-                                echo '</tr>';
-                                echo '</thead>';
-                                echo '<tbody>';
-                                echo '</tbody>';
-                                echo '<tfoot>';
-                                echo '<tr>';
-                                echo "<th>{$string['table_header_no']}</th>";
-                                echo "<th>{$string['table_header_substation']}</th>";
-                                echo "<th>{$string['table_header_current']}</th>";
-                                echo "<th>{$string['table_header_voltage']}</th>";
-                                echo "<th>{$string['table_header_location']}</th>";
-                                echo '</tr>';
-                                echo '</tfoot>';
-                                echo '</table>';
-                                ?>
-                            </div>
-                            <!-- /.box-body -->
-                        </div>
-                        <!-- /.box -->
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox"> <?php echo $string['auth_remember_me'] ?>
+                        </label>
                     </div>
                 </div>
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="pull-right hidden-xs">
-
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo $string['auth_login'] ?></button>
+                </div>
+                <!-- /.col -->
             </div>
-            <strong></strong>
-        </div>
-        <!-- /.container -->
-    </footer>
+        </form>
+    </div>
+    <!-- /.login-box-body -->
 </div>
-<!-- ./wrapper -->
+<!-- /.login-box -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script type="text/javascript" src="/assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -173,12 +121,10 @@ if (!isset($string))
 <script type="text/javascript" src="/assets/vendor/fastclick/lib/fastclick.min.js"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
-<!-- DataTables -->
-<script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- iCheck -->
+<script type="text/javascript" src="/assets/vendor/iCheck/icheck.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
 
-<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_client_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/admin/auth/login/admin_auth_login_common_layout.min.js"></script>
 </body>
 </html>
-
