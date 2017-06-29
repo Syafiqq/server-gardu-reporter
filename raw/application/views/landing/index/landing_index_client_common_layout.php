@@ -7,22 +7,33 @@
  * Github       : syafiqq
  */
 
-/** @var null|string $string */
+/**
+ * @var array $string
+ * @var array $meta
+ */
+if (!isset($meta))
+{
+    $meta = [];
+}
 if (!isset($string))
 {
     $string = [];
+}
+if (!isset($data))
+{
+    $data = [];
 }
 
 ?>
 
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="<?php echo "{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="This is landing page">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <?php foreach ((isset($meta) ? $meta : array()) as $k => $v)
+    <?php foreach ($meta as $k => $v)
     {
         echo "<meta name=\"${k}\" content=\"${v}\">";
     }
