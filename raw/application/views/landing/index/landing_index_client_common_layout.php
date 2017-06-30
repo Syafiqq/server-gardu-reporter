@@ -27,7 +27,7 @@ if (!isset($data))
 ?>
 
 <!DOCTYPE html>
-<html class="no-js" lang="<?php echo "{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
+<html class="no-js" lang="<?php echo @"{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +35,7 @@ if (!isset($data))
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
-        echo "<meta name=\"${k}\" content=\"${v}\">";
+        echo @"<meta name=\"${k}\" content=\"${v}\">";
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -77,8 +77,8 @@ if (!isset($data))
         <nav class="navbar navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="<?php echo site_url('/') ?>" class="navbar-brand">
-                        <b><?php echo $string['title'] ?></b>
+                    <a href="<?php echo @site_url('/') ?>" class="navbar-brand">
+                        <b><?php echo @$string['title'] ?></b>
                     </a>
                 </div>
                 <!-- Navbar Right Menu -->
@@ -86,10 +86,10 @@ if (!isset($data))
                     <ul class="nav navbar-nav">
                         <li>
                             <!-- Menu Toggle Button -->
-                            <a id="sign-out" href="<?php echo site_url('auth/login') ?>">
+                            <a id="sign-out" href="<?php echo @site_url('auth/login') ?>">
                                 <!-- The user image in the navbar-->
                                 <i class="fa fa-sign-in"></i>
-                                &nbsp;&nbsp;<?php echo $string['auth_login'] ?>
+                                &nbsp;&nbsp;<?php echo @$string['auth_login'] ?>
                             </a>
                         </li>
                     </ul>
@@ -118,28 +118,28 @@ if (!isset($data))
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <?php
-                                echo '<table id="table_report" class="table table-bordered table-hover">';
-                                echo '<thead>';
-                                echo '<tr>';
-                                echo "<th>{$string['table_header_no']}</th>";
-                                echo "<th>{$string['table_header_substation']}</th>";
-                                echo "<th>{$string['table_header_current']}</th>";
-                                echo "<th>{$string['table_header_voltage']}</th>";
-                                echo "<th>{$string['table_header_location']}</th>";
-                                echo '</tr>';
-                                echo '</thead>';
-                                echo '<tbody>';
-                                echo '</tbody>';
-                                echo '<tfoot>';
-                                echo '<tr>';
-                                echo "<th>{$string['table_header_no']}</th>";
-                                echo "<th>{$string['table_header_substation']}</th>";
-                                echo "<th>{$string['table_header_current']}</th>";
-                                echo "<th>{$string['table_header_voltage']}</th>";
-                                echo "<th>{$string['table_header_location']}</th>";
-                                echo '</tr>';
-                                echo '</tfoot>';
-                                echo '</table>';
+                                echo @'<table id="table_report" class="table table-bordered table-hover">';
+                                echo @'<thead>';
+                                echo @'<tr>';
+                                echo @"<th>{$string['table_header_no']}</th>";
+                                echo @"<th>{$string['table_header_substation']}</th>";
+                                echo @"<th>{$string['table_header_current']}</th>";
+                                echo @"<th>{$string['table_header_voltage']}</th>";
+                                echo @"<th>{$string['table_header_location']}</th>";
+                                echo @'</tr>';
+                                echo @'</thead>';
+                                echo @'<tbody>';
+                                echo @'</tbody>';
+                                echo @'<tfoot>';
+                                echo @'<tr>';
+                                echo @"<th>{$string['table_header_no']}</th>";
+                                echo @"<th>{$string['table_header_substation']}</th>";
+                                echo @"<th>{$string['table_header_current']}</th>";
+                                echo @"<th>{$string['table_header_voltage']}</th>";
+                                echo @"<th>{$string['table_header_location']}</th>";
+                                echo @'</tr>';
+                                echo @'</tfoot>';
+                                echo @'</table>';
                                 ?>
                             </div>
                             <!-- /.box-body -->

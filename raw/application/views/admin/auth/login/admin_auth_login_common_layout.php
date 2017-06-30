@@ -27,7 +27,7 @@ if (!isset($data))
 ?>
 
 <!DOCTYPE html>
-<html class="no-js" lang="<?php echo "{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
+<html class="no-js" lang="<?php echo @"{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +35,7 @@ if (!isset($data))
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
-        echo "<meta name=\"${k}\" content=\"${v}\">";
+        echo @"<meta name=\"${k}\" content=\"${v}\">";
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -74,13 +74,13 @@ if (!isset($data))
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?php echo site_url('/') ?>"><?php echo $string['title'] ?></a>
+        <a href="<?php echo @site_url('/') ?>"><?php echo @$string['title'] ?></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg"><?php echo $string['login_box_message'] ?></p>
+        <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
-        <form action="<?php echo site_url('/admin/auth/do_login') ?>" method="post">
+        <form action="<?php echo @site_url('/admin/auth/do_login') ?>" method="post">
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -93,13 +93,13 @@ if (!isset($data))
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> <?php echo $string['auth_remember_me'] ?>
+                            <input type="checkbox"> <?php echo @$string['auth_remember_me'] ?>
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo $string['auth_login'] ?></button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo @$string['auth_login'] ?></button>
                 </div>
                 <!-- /.col -->
             </div>
