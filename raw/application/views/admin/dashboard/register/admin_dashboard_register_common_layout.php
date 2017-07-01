@@ -108,13 +108,53 @@ if (!isset($data))
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="box">
+                        <div class="box box-primary">
                             <div class="box-header">
-                                <h3 class="box-title"></h3>
+                                <h3 class="box-title"><?php echo $string['client_register'] ?></h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <form class="form-horizontal">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="<?php echo $string['inline_client_form_username_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_username_label'] ?></label>
 
+                                                    <div class="col-sm-9">
+                                                        <input type="email" class="form-control" id="<?php echo $string['inline_client_form_username_id'] ?>" placeholder="<?php echo $string['client_form_username_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="<?php echo $string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_email_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="email" class="form-control" id="<?php echo $string['inline_client_form_email_id'] ?>" placeholder="<?php echo $string['client_form_email_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="<?php echo $string['inline_client_form_password_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_password_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="<?php echo $string['inline_client_form_password_id'] ?>" placeholder="<?php echo $string['client_form_password_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="<?php echo $string['inline_client_form_password_confirmation_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_password_confirmation_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="<?php echo $string['inline_client_form_password_confirmation_id'] ?>" placeholder="<?php echo $string['client_form_password_confirmation_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-info pull-right"><?php echo $string['client_register'] ?></button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.box-body -->
                         </div>
