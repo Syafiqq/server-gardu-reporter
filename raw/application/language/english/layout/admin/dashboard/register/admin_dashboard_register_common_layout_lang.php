@@ -7,10 +7,10 @@
  * Github       : syafiqq
  */
 
-$lang['common_dashboard_register_common_layout_register_client_username_placeholder'] = 'Put the client username here!';
-$lang['common_dashboard_register_common_layout_register_client_email_placeholder'] = 'Put the client email here!';
-$lang['common_dashboard_register_common_layout_register_client_password_placeholder'] = 'Put the client password here!';
-$lang['common_dashboard_register_common_layout_register_client_password_confirmation_placeholder'] = 'Confirm the client password here!';
+$lang['admin_dashboard_register_common_layout_register_client_username_placeholder'] = 'Put the client username here!';
+$lang['admin_dashboard_register_common_layout_register_client_email_placeholder'] = 'Put the client email here!';
+$lang['admin_dashboard_register_common_layout_register_client_password_placeholder'] = 'Put the client password here!';
+$lang['admin_dashboard_register_common_layout_register_client_password_confirmation_placeholder'] = 'Confirm the client password here!';
 
 ?>
 
