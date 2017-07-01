@@ -27,7 +27,7 @@ if (!isset($data))
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="This is landing page">
+    <meta name="description" content="This is Client Registrator">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
@@ -35,7 +35,7 @@ if (!isset($data))
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Landing Page</title>
+    <title>Register</title>
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -52,9 +52,10 @@ if (!isset($data))
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/skins/skin-blue.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- NProgress -->
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="/assets/css/layout/admin/dashboard/register/admin_dashboard_register_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -82,10 +83,10 @@ if (!isset($data))
                     <ul class="nav navbar-nav">
                         <li>
                             <!-- Menu Toggle Button -->
-                            <a id="sign-out" href="<?php echo site_url('auth/login') ?>">
+                            <a id="sign-out" href="<?php echo site_url('admin/dashboard/register') ?>">
                                 <!-- The user image in the navbar-->
                                 <i class="fa fa-sign-in"></i>
-                                &nbsp;&nbsp;<?php echo $string['auth_login'] ?>
+                                &nbsp;&nbsp;<?php echo $string['client_register'] ?>
                             </a>
                         </li>
                     </ul>
@@ -113,30 +114,7 @@ if (!isset($data))
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?php
-                                echo '<table id="table_report" class="table table-bordered table-hover">';
-                                echo '<thead>';
-                                echo '<tr>';
-                                echo "<th>{$string['table_header_no']}</th>";
-                                echo "<th>{$string['table_header_substation']}</th>";
-                                echo "<th>{$string['table_header_current']}</th>";
-                                echo "<th>{$string['table_header_voltage']}</th>";
-                                echo "<th>{$string['table_header_location']}</th>";
-                                echo '</tr>';
-                                echo '</thead>';
-                                echo '<tbody>';
-                                echo '</tbody>';
-                                echo '<tfoot>';
-                                echo '<tr>';
-                                echo "<th>{$string['table_header_no']}</th>";
-                                echo "<th>{$string['table_header_substation']}</th>";
-                                echo "<th>{$string['table_header_current']}</th>";
-                                echo "<th>{$string['table_header_voltage']}</th>";
-                                echo "<th>{$string['table_header_location']}</th>";
-                                echo '</tr>';
-                                echo '</tfoot>';
-                                echo '</table>';
-                                ?>
+
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -173,11 +151,9 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/fastclick/lib/fastclick.min.js"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
-<!-- DataTables -->
-<script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
-
-<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_client_common_layout.min.js"></script>
+<!-- Custom -->
+<script type="text/javascript" src="/assets/js/layout/admin/dashboard/register/admin_dashboard_register_common_layout.min.js"></script>
 </body>
 </html>
