@@ -23,7 +23,7 @@ if (!isset($data))
 ?>
 
 <!DOCTYPE html>
-<html class="no-js" lang="<?php echo "{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
+<html class="no-js" lang="<?php echo @"{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,7 +31,7 @@ if (!isset($data))
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
-        echo "<meta name=\"${k}\" content=\"${v}\">";
+        echo @"<meta name=\"${k}\" content=\"${v}\">";
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -74,8 +74,8 @@ if (!isset($data))
         <nav class="navbar navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="<?php echo site_url('/') ?>" class="navbar-brand">
-                        <b><?php echo $string['title'] ?></b>
+                    <a href="<?php echo @site_url('/') ?>" class="navbar-brand">
+                        <b><?php echo @$string['title'] ?></b>
                     </a>
                 </div>
                 <!-- Navbar Right Menu -->
@@ -83,10 +83,10 @@ if (!isset($data))
                     <ul class="nav navbar-nav">
                         <li>
                             <!-- Menu Toggle Button -->
-                            <a id="sign-out" href="<?php echo site_url('admin/dashboard/register') ?>">
+                            <a id="sign-out" href="<?php echo @site_url('admin/dashboard/register') ?>">
                                 <!-- The user image in the navbar-->
                                 <i class="fa fa-sign-in"></i>
-                                &nbsp;&nbsp;<?php echo $string['client_register'] ?>
+                                &nbsp;&nbsp;<?php echo @$string['client_register'] ?>
                             </a>
                         </li>
                     </ul>
@@ -110,7 +110,7 @@ if (!isset($data))
                     <div class="col-xs-12">
                         <div class="box box-primary">
                             <div class="box-header">
-                                <h3 class="box-title"><?php echo $string['client_register'] ?></h3>
+                                <h3 class="box-title"><?php echo @$string['client_register'] ?></h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
@@ -119,37 +119,37 @@ if (!isset($data))
                                         <form class="form-horizontal">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                    <label for="<?php echo $string['inline_client_form_username_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_username_label'] ?></label>
+                                                    <label for="<?php echo @$string['inline_client_form_username_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_username_label'] ?></label>
 
                                                     <div class="col-sm-9">
-                                                        <input type="email" class="form-control" id="<?php echo $string['inline_client_form_username_id'] ?>" placeholder="<?php echo $string['client_form_username_placeholder'] ?>">
+                                                        <input type="email" class="form-control" id="<?php echo @$string['inline_client_form_username_id'] ?>" placeholder="<?php echo @$string['client_form_username_placeholder'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="<?php echo $string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_email_label'] ?></label>
+                                                    <label for="<?php echo @$string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_email_label'] ?></label>
 
                                                     <div class="col-sm-9">
-                                                        <input type="email" class="form-control" id="<?php echo $string['inline_client_form_email_id'] ?>" placeholder="<?php echo $string['client_form_email_placeholder'] ?>">
+                                                        <input type="email" class="form-control" id="<?php echo @$string['inline_client_form_email_id'] ?>" placeholder="<?php echo @$string['client_form_email_placeholder'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="<?php echo $string['inline_client_form_password_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_password_label'] ?></label>
+                                                    <label for="<?php echo @$string['inline_client_form_password_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_label'] ?></label>
 
                                                     <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="<?php echo $string['inline_client_form_password_id'] ?>" placeholder="<?php echo $string['client_form_password_placeholder'] ?>">
+                                                        <input type="password" class="form-control" id="<?php echo @$string['inline_client_form_password_id'] ?>" placeholder="<?php echo @$string['client_form_password_placeholder'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="<?php echo $string['inline_client_form_password_confirmation_id'] ?>" class="col-sm-3 control-label"><?php echo $string['client_form_password_confirmation_label'] ?></label>
+                                                    <label for="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_confirmation_label'] ?></label>
 
                                                     <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="<?php echo $string['inline_client_form_password_confirmation_id'] ?>" placeholder="<?php echo $string['client_form_password_confirmation_placeholder'] ?>">
+                                                        <input type="password" class="form-control" id="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" placeholder="<?php echo @$string['client_form_password_confirmation_placeholder'] ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- /.box-body -->
                                             <div class="box-footer">
-                                                <button type="submit" class="btn btn-info pull-right"><?php echo $string['client_register'] ?></button>
+                                                <button type="submit" class="btn btn-info pull-right"><?php echo @$string['client_register'] ?></button>
                                             </div>
                                             <!-- /.box-footer -->
                                         </form>
