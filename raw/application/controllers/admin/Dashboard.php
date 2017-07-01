@@ -56,6 +56,7 @@ class Dashboard extends CI_Controller
 
         $this->lang->load("layout/admin/dashboard/register/{$this->lang_prefix}_common_layout", $this->language);
         $this->lang->load('common/auth/common_auth_common', $this->language);
+        $this->lang->load('common/auth/common_auth_register_form', $this->language);
         $this->lang->load('common', $this->language);
 
         $string = [];
@@ -64,6 +65,18 @@ class Dashboard extends CI_Controller
 
         $string['title'] = $this->lang->line('common_title');
         $string['client_register'] = $this->lang->line('common_auth_common_register');
+        $string['client_form_username_label'] = $this->lang->line('common_auth_register_form_username_label');
+        $string['client_form_email_label'] = $this->lang->line('common_auth_register_form_email_label');
+        $string['client_form_password_label'] = $this->lang->line('common_auth_register_form_password_label');
+        $string['client_form_password_confirmation_label'] = $this->lang->line('common_auth_register_form_password_confirmation_label');
+        $string['client_form_username_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_username_placeholder');
+        $string['client_form_email_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_email_placeholder');
+        $string['client_form_password_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_password_placeholder');
+        $string['client_form_password_confirmation_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_password_confirmation_placeholder');
+        $string['inline_client_form_username_id'] = 'username';
+        $string['inline_client_form_email_id'] = 'email';
+        $string['inline_client_form_password_id'] = 'password';
+        $string['inline_client_form_password_confirmation_id'] = 'password_confirmation';
 
         $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
         $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
