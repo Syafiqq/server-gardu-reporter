@@ -69,10 +69,10 @@ class Dashboard extends CI_Controller
         $string['client_form_email_label'] = $this->lang->line('common_auth_register_form_email_label');
         $string['client_form_password_label'] = $this->lang->line('common_auth_register_form_password_label');
         $string['client_form_password_confirmation_label'] = $this->lang->line('common_auth_register_form_password_confirmation_label');
-        $string['client_form_username_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_username_placeholder');
-        $string['client_form_email_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_email_placeholder');
-        $string['client_form_password_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_password_placeholder');
-        $string['client_form_password_confirmation_placeholder'] = $this->lang->line('common_dashboard_register_common_layout_register_client_password_confirmation_placeholder');
+        $string['client_form_username_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_username_placeholder");
+        $string['client_form_email_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_email_placeholder");
+        $string['client_form_password_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_password_placeholder");
+        $string['client_form_password_confirmation_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_password_confirmation_placeholder");
         $string['inline_client_form_username_id'] = 'username';
         $string['inline_client_form_email_id'] = 'email';
         $string['inline_client_form_password_id'] = 'password';
