@@ -2,15 +2,11 @@
 /**
  * This <server-gardu-reporter> project created by :
  * Name         : syafiq
- * Date / Time  : 20 June 2017, 3:12 PM.
+ * Date / Time  : 30 June 2017, 6:38 AM.
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
 
-/**
- * @var array $string
- * @var array $meta
- */
 if (!isset($meta))
 {
     $meta = [];
@@ -31,7 +27,7 @@ if (!isset($data))
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="This is landing page">
+    <meta name="description" content="This is Client Registrator">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
@@ -39,7 +35,7 @@ if (!isset($data))
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Landing Page</title>
+    <title>Register</title>
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -56,9 +52,10 @@ if (!isset($data))
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/assets/vendor/AdminLTE/dist/css/skins/skin-blue.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- NProgress -->
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="/assets/css/layout/admin/dashboard/register/admin_dashboard_register_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -86,10 +83,10 @@ if (!isset($data))
                     <ul class="nav navbar-nav">
                         <li>
                             <!-- Menu Toggle Button -->
-                            <a id="sign-out" href="<?php echo @site_url('auth/login') ?>">
+                            <a id="sign-out" href="<?php echo @site_url('admin/dashboard/register') ?>">
                                 <!-- The user image in the navbar-->
                                 <i class="fa fa-sign-in"></i>
-                                &nbsp;&nbsp;<?php echo @$string['auth_login'] ?>
+                                &nbsp;&nbsp;<?php echo @$string['client_register'] ?>
                             </a>
                         </li>
                     </ul>
@@ -111,36 +108,53 @@ if (!isset($data))
             <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="box">
+                        <div class="box box-primary">
                             <div class="box-header">
-                                <h3 class="box-title"></h3>
+                                <h3 class="box-title"><?php echo @$string['client_register'] ?></h3>
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                <?php
-                                echo @'<table id="table_report" class="table table-bordered table-hover">';
-                                echo @'<thead>';
-                                echo @'<tr>';
-                                echo @"<th>{$string['table_header_no']}</th>";
-                                echo @"<th>{$string['table_header_substation']}</th>";
-                                echo @"<th>{$string['table_header_current']}</th>";
-                                echo @"<th>{$string['table_header_voltage']}</th>";
-                                echo @"<th>{$string['table_header_location']}</th>";
-                                echo @'</tr>';
-                                echo @'</thead>';
-                                echo @'<tbody>';
-                                echo @'</tbody>';
-                                echo @'<tfoot>';
-                                echo @'<tr>';
-                                echo @"<th>{$string['table_header_no']}</th>";
-                                echo @"<th>{$string['table_header_substation']}</th>";
-                                echo @"<th>{$string['table_header_current']}</th>";
-                                echo @"<th>{$string['table_header_voltage']}</th>";
-                                echo @"<th>{$string['table_header_location']}</th>";
-                                echo @'</tr>';
-                                echo @'</tfoot>';
-                                echo @'</table>';
-                                ?>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <form class="form-horizontal">
+                                            <div class="box-body">
+                                                <div class="form-group">
+                                                    <label for="<?php echo @$string['inline_client_form_username_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_username_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="email" class="form-control" id="<?php echo @$string['inline_client_form_username_id'] ?>" placeholder="<?php echo @$string['client_form_username_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="<?php echo @$string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_email_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="email" class="form-control" id="<?php echo @$string['inline_client_form_email_id'] ?>" placeholder="<?php echo @$string['client_form_email_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="<?php echo @$string['inline_client_form_password_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="<?php echo @$string['inline_client_form_password_id'] ?>" placeholder="<?php echo @$string['client_form_password_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_confirmation_label'] ?></label>
+
+                                                    <div class="col-sm-9">
+                                                        <input type="password" class="form-control" id="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" placeholder="<?php echo @$string['client_form_password_confirmation_placeholder'] ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-info pull-right"><?php echo @$string['client_register'] ?></button>
+                                            </div>
+                                            <!-- /.box-footer -->
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -177,11 +191,9 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/fastclick/lib/fastclick.min.js"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
-<!-- DataTables -->
-<script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
-
-<script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_client_common_layout.min.js"></script>
+<!-- Custom -->
+<script type="text/javascript" src="/assets/js/layout/admin/dashboard/register/admin_dashboard_register_common_layout.min.js"></script>
 </body>
 </html>
