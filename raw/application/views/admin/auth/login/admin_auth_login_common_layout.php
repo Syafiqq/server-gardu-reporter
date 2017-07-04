@@ -80,20 +80,20 @@ if (!isset($data))
     <div class="login-box-body">
         <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
-        <form action="<?php echo @site_url('/admin/auth/do_login') ?>" method="post">
+        <form action="<?php echo @site_url('/admin/auth/do_login') ?>" method="post" id="login">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" class="form-control" placeholder="Email" name="email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" name="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> <?php echo @$string['auth_remember_me'] ?>
+                            <input type="checkbox" name="remember_me"> <?php echo @$string['auth_remember_me'] ?>
                         </label>
                     </div>
                 </div>
@@ -123,8 +123,11 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
 <!-- iCheck -->
 <script type="text/javascript" src="/assets/vendor/iCheck/icheck.min.js"></script>
+<!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
-
+<!-- Serialize Object -->
+<script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
+<!-- Custom -->
 <script type="text/javascript" src="/assets/js/layout/admin/auth/login/admin_auth_login_common_layout.min.js"></script>
 </body>
 </html>
