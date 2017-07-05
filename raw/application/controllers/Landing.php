@@ -12,6 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Class Landing
  * @property CI_Config config
  * @property CI_Lang lang
+ * @property CI_Loader load
+ * @property CI_Session session
  */
 class Landing extends CI_Controller
 {
@@ -52,6 +54,7 @@ class Landing extends CI_Controller
 
     public function index()
     {
+        $this->load->library('session');
         $this->load->helper(['url', 'i18n']);
         $this->lang_prefix = 'landing_index_client_common_layout_';
 
@@ -77,6 +80,7 @@ class Landing extends CI_Controller
 
         $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
         $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+        $data['session']['flashdata'] = empty($this->session->userdata('flashdata')) ? [] : $this->session->userdata('flashdata');
 
         $this->load->view('landing/index/landing_index_client_common_layout', compact('meta', 'string', 'data'));
     }

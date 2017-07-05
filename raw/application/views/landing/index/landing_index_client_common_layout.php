@@ -180,8 +180,14 @@ if (!isset($data))
 <!-- DataTables -->
 <script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
-
+<!-- Notify -->
+<script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<!-- Custom -->
+<script type="text/javascript">
+    let sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
+</script>
 <script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_client_common_layout.min.js"></script>
 </body>
 </html>
