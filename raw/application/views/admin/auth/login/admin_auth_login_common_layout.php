@@ -80,7 +80,7 @@ if (!isset($data))
     <div class="login-box-body">
         <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
-        <form action="<?php echo @site_url('/admin/auth/do_login') ?>" method="post" id="login">
+        <?php echo @form_open('/admin/api/login', 'id="login"'); ?>
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email" name="email" value="admin@admin.com">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -103,7 +103,7 @@ if (!isset($data))
                 </div>
                 <!-- /.col -->
             </div>
-        </form>
+        <?php echo @form_close() ?>
     </div>
     <!-- /.login-box-body -->
 </div>
