@@ -67,14 +67,14 @@ class Api extends \Restserver\Libraries\REST_Controller
                 if (empty($reportID))
                 {
                     $this->response([
-                        'code' => \Restserver\Libraries\REST_Controller::HTTP_INTERNAL_SERVER_ERROR,
+                        'status' => \Restserver\Libraries\REST_Controller::HTTP_INTERNAL_SERVER_ERROR,
                         'data' => ['message' => 'Cannot store data to the server. Please try again later.']
                     ], \Restserver\Libraries\REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
                 }
                 else
                 {
                     $this->response([
-                        'code' => \Restserver\Libraries\REST_Controller::HTTP_OK,
+                        'status' => \Restserver\Libraries\REST_Controller::HTTP_OK,
                         'data' => ['message' => 'Data Successfully Retrieved']
                     ], \Restserver\Libraries\REST_Controller::HTTP_OK);
                 }
@@ -82,7 +82,7 @@ class Api extends \Restserver\Libraries\REST_Controller
             else
             {
                 $this->response([
-                    'code' => \Restserver\Libraries\REST_Controller::HTTP_UNAUTHORIZED,
+                    'status' => \Restserver\Libraries\REST_Controller::HTTP_UNAUTHORIZED,
                     'data' => ['message' => 'Insufficient Data']
                 ], \Restserver\Libraries\REST_Controller::HTTP_UNAUTHORIZED);
             }
@@ -90,7 +90,7 @@ class Api extends \Restserver\Libraries\REST_Controller
         else
         {
             $this->response([
-                'code' => \Restserver\Libraries\REST_Controller::HTTP_FORBIDDEN,
+                'status' => \Restserver\Libraries\REST_Controller::HTTP_FORBIDDEN,
                 'data' => ['message' => 'You are forbid to insert data']
             ], \Restserver\Libraries\REST_Controller::HTTP_FORBIDDEN);
         }
@@ -116,7 +116,7 @@ class Api extends \Restserver\Libraries\REST_Controller
         }
 
         $this->response([
-            'code' => \Restserver\Libraries\REST_Controller::HTTP_OK,
+            'status' => \Restserver\Libraries\REST_Controller::HTTP_OK,
             'data' => ['reports' => $reports]
         ], \Restserver\Libraries\REST_Controller::HTTP_OK);
     }
