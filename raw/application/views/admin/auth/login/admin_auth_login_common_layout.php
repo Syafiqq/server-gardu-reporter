@@ -73,33 +73,46 @@ if (!isset($data))
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+
     <div class="login-logo">
         <a href="<?php echo @site_url('/') ?>"><?php echo @$string['title'] ?></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
+        <div id="form-message-container">
+            <!--<div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet</li>
+                    <li>Consectetur adipiscing elit</li>
+                    <li>Integer molestie lorem at massa</li>
+                    <li>Facilisis in pretium nisl aliquet</li>
+                    <li>Nulla volutpat aliquam velit</li>
+                </ul>
+            </div>-->
+        </div>
         <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
         <?php echo @form_open('/admin/api/login', 'id="login"'); ?>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email" name="email" value="admin@admin.com">
+                <input type="text" class="form-control" placeholder="<?php echo @$string['login_identity'] ?>" name="identity" value="admin@admin.com">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password" name="password" value="password">
+                <input type="password" class="form-control" placeholder="<?php echo @$string['login_password'] ?>" name="password" value="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox" name="remember_me"> <?php echo @$string['auth_remember_me'] ?>
+                            <input type="checkbox" name="remember_me"> <?php echo @$string['login_remember_me'] ?>
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo @$string['auth_login'] ?></button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><?php echo @$string['login_submit'] ?></button>
                 </div>
                 <!-- /.col -->
             </div>
@@ -127,7 +140,12 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
 <!-- Serialize Object -->
 <script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
+<!-- Notify -->
+<script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
 <!-- Custom -->
+<script type="text/javascript">
+    let sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
+</script>
 <script type="text/javascript" src="/assets/js/layout/admin/auth/login/admin_auth_login_common_layout.min.js"></script>
 </body>
 </html>
