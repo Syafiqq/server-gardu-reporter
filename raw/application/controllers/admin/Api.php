@@ -14,6 +14,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  * Class Api
  * @property CI_Form_validation form_validation
  * @property CI_Lang lang
+ * @property CI_Loader load
  * @property CI_Config config
  * @property Ion_auth ion_auth
  * @property array data
@@ -47,72 +48,53 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
         $this->load->helper(array('url', 'language'));
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
-        $this->lang->load('auth');
     }
 
+    /**
+     *
+     */
     public function login_post()
     {
-        $data = $this->post();
+        $this->load->library('session');
 
-        $dancuk = $this->post('dancuk', 'DANCUK');
+        /** @var array $data
+         * @var array $response
+         */
+        $data = [];
+        $response = [];
 
-        log_message('ERROR', var_export([$data, $dancuk], true));
+        $data['identity'] = $this->postOrDefault('identity', null);
+        $data['password'] = $this->postOrDefault('password', null);
 
-        $this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required' . ($this->config->item('identity', 'ion_auth') !== 'email' ? '' : '|valid_email'));
-        $this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+        $this->lang->load(['common/auth/common_auth_login', 'auth']);
 
+        $this->form_validation->set_rules('identity', $this->lang->line('common_auth_login_email_label'), 'required|valid_email');
+        $this->form_validation->set_rules('password', $this->lang->line('common_auth_login_password_label'), 'required');
+
+        $this->form_validation->set_data($data);
         if ($this->form_validation->run() == true)
         {
-            log_message('ERROR', var_export($this->input->post(), true));
+            $remember = boolval(($this->postOrDefault('remember_me', false)));
 
-            // check to see if the user is logging in
-            // check for "remember me"
-            $remember = (bool)$this->input->post('remember');
-
-            if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+            if ($this->ion_auth->login($data['identity'], $data['password'], $remember))
             {
-                //if the login is successful
-                //redirect them back to the home page
-                $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect('xauth/login', 'refresh');
+                $response['data']['redirect'] = site_url('/');
+                $flashdata = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
+                $this->session->set_flashdata(['flashdata' => $flashdata]);
             }
             else
             {
-                log_message('ERROR', var_export($this->ion_auth->errors(), true));
-
-                // if the login was un-successful
-                // redirect them back to the login page
-                $this->session->set_flashdata('message', $this->ion_auth->errors());
-                redirect('xauth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+                $response['data']['message']['login']['danger'] = [];
+                $response['data']['message']['login']['danger'] = array_merge($response['data']['message']['login']['danger'], explode(PHP_EOL, trim($this->ion_auth->errors())));
             }
         }
         else
         {
-            // the user is not logging in so display the login page
-            // set the flash data error message if there is one
-            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-            //log_message('ERROR', var_export(explode(PHP_EOL, trim($this->data['message'])), true));
-            log_message('ERROR', var_export(['identity' => form_error('identity'), 'password' => form_error('password')], true));
-
-            $this->data['identity'] = array('name' => 'identity',
-                'id' => 'identity',
-                'type' => 'text',
-                'value' => $this->form_validation->set_value('identity'),
-            );
-            $this->data['password'] = array('name' => 'password',
-                'id' => 'password',
-                'type' => 'password',
-            );
-
-            $this->_render_page('auth/login', $this->data);
+            $response['data']['message']['validation']['info'] = $this->validation_errors();
         }
 
-        $this->response([
-            'status' => \Restserver\Libraries\REST_Controller::HTTP_OK,
-            'data' => ['message' => 'Data Successfully Retrieved']
-        ], \Restserver\Libraries\REST_Controller::HTTP_OK);
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
     }
 }
 
