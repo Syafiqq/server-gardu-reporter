@@ -162,14 +162,16 @@ gulp.task('watch-minify-json', function ()
     });
 });
 
-gulp.task('cleaning-generated-file', shell.task([
-    'cleaning.sh'
-]));
-
 gulp.task('cleaning-generated-file', function ()
 {
     return gulp.src('cleaning.sh', {read: false})
         .pipe(shell([
             'sh <%= file.path %>'
         ]))
+});
+
+gulp.task('move-application-sql-migration', function ()
+{
+    return gulp.src('./raw/application/sql/*ion_auth*.sql', {base: './raw/application/sql/'})
+        .pipe(gulp.dest('./assets/db/ddl/ion_auth/'));
 });
