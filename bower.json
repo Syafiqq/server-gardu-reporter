@@ -53,6 +53,7 @@
     "datatables.net-select-bs": "^1.2.2",
     "nprogress": "^0.2.0",
     "iCheck": "https://github.com/fronteed/icheck.git#^1.0.2",
-    "jquery-serialize-object": "^2.5.0"
+    "jquery-serialize-object": "^2.5.0",
+    "remarkable-bootstrap-notify": "^3.1.3"
   }
 }
