@@ -10,7 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * @property CI_Lang lang
+ * @property Ion_auth ion_auth
  * @property CI_Config config
+ * @property CI_Session session
  */
 class Auth extends CI_Controller
 {
@@ -51,27 +53,52 @@ class Auth extends CI_Controller
 
     public function login()
     {
+        $this->load->database();
+        $this->load->library(['ion_auth', 'session']);
         $this->load->helper(['url', 'i18n', 'form']);
-        $this->lang_prefix = 'admin_auth_login';
 
-        $this->lang->load("layout/admin/auth/login/{$this->lang_prefix}_common_layout", $this->language);
-        $this->lang->load('common/auth/common_auth_common', $this->language);
-        $this->lang->load('common/auth/common_auth_login', $this->language);
-        $this->lang->load('common', $this->language);
+        if (!$this->ion_auth->logged_in())
+        {
+            $this->lang_prefix = 'admin_auth_login';
 
-        $string = [];
-        $meta = [];
-        $data = [];
+            $this->lang->load("layout/admin/auth/login/{$this->lang_prefix}_common_layout", $this->language);
+            $this->lang->load('common/auth/common_auth_common', $this->language);
+            $this->lang->load('common/auth/common_auth_login', $this->language);
+            $this->lang->load('common', $this->language);
 
-        $string['title'] = $this->lang->line('common_title');
-        $string['auth_login'] = $this->lang->line('common_auth_common_login');
-        $string['auth_remember_me'] = $this->lang->line('common_auth_common_remember_me');
-        $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['auth_login']);
+            $string = [];
+            $meta = [];
+            $data = [];
 
-        $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
-        $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+            $string['title'] = $this->lang->line('common_title');
+            $string['login_identity'] = $this->lang->line('common_auth_login_email_label');
+            $string['login_password'] = $this->lang->line('common_auth_login_password_label');
+            $string['login_remember_me'] = $this->lang->line('common_auth_login_remember_me_label');
+            $string['login_submit'] = $this->lang->line('common_auth_common_login');
+            $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['login_submit']);
 
-        $this->load->view("admin/auth/login/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
+            $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
+            $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+            $data['session']['flashdata'] = empty($this->session->userdata('flashdata')) ? [] : $this->session->userdata('flashdata');
+
+            $this->load->view("admin/auth/login/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
+        }
+        else
+        {
+            $this->_logout();
+        }
+    }
+
+    private function _logout()
+    {
+        $this->data['title'] = "Logout";
+
+        // log the user out
+        $logout = $this->ion_auth->logout();
+
+        // redirect them to the login page
+        $this->session->set_flashdata('message', $this->ion_auth->messages());
+        redirect('/admin/auth/login', 'refresh');
     }
 }
 
