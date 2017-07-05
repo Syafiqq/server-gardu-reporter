@@ -51,7 +51,7 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        $this->load->helper(['url', 'i18n']);
+        $this->load->helper(['url', 'i18n', 'form']);
         $this->lang_prefix = 'admin_auth_login';
 
         $this->lang->load("layout/admin/auth/login/{$this->lang_prefix}_common_layout", $this->language);
