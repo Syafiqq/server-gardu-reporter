@@ -80,7 +80,7 @@ class Landing extends CI_Controller
 
         $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
         $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
-        $data['session']['flashdata'] = empty($this->session->userdata('flashdata')) ? [] : $this->session->userdata('flashdata');
+        $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
 
         $this->load->view('landing/index/landing_index_client_common_layout', compact('meta', 'string', 'data'));
     }

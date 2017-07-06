@@ -57,13 +57,18 @@ class Auth extends CI_Controller
         $this->load->library(['ion_auth', 'session']);
         $this->load->helper(['url', 'i18n', 'form']);
 
-        if (!$this->ion_auth->logged_in())
+        if ($this->ion_auth->logged_in())
+        {
+            $this->_logout();
+        }
+        else
         {
             $this->lang_prefix = 'admin_auth_login';
 
             $this->lang->load("layout/admin/auth/login/{$this->lang_prefix}_common_layout", $this->language);
             $this->lang->load('common/auth/common_auth_common', $this->language);
             $this->lang->load('common/auth/common_auth_login', $this->language);
+            $this->lang->load('common/auth/common_auth_login_form', $this->language);
             $this->lang->load('common', $this->language);
 
             $string = [];
@@ -71,21 +76,18 @@ class Auth extends CI_Controller
             $data = [];
 
             $string['title'] = $this->lang->line('common_title');
-            $string['login_identity'] = $this->lang->line('common_auth_login_email_label');
-            $string['login_password'] = $this->lang->line('common_auth_login_password_label');
-            $string['login_remember_me'] = $this->lang->line('common_auth_login_remember_me_label');
+            $string['login_identity'] = $this->lang->line('common_auth_login_form_email_label');
+            $string['login_password'] = $this->lang->line('common_auth_login_form_password_label');
+            $string['login_remember_me'] = $this->lang->line('common_auth_login_form_remember_me_label');
             $string['login_submit'] = $this->lang->line('common_auth_common_login');
             $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['login_submit']);
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
-            $data['session']['flashdata'] = empty($this->session->userdata('flashdata')) ? [] : $this->session->userdata('flashdata');
+            $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
+            $data['session']['redirector'] = empty(@$this->session->userdata('flashdata')['redirector']) ? null : $this->session->userdata('flashdata')['redirector'];
 
             $this->load->view("admin/auth/login/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
-        }
-        else
-        {
-            $this->_logout();
         }
     }
 

@@ -18,11 +18,11 @@
         $('form#login').on('submit', function (event)
         {
             event.preventDefault();
-            var form = $(this);
+            let form = $(this);
 
-            var input = form.serializeObject();
+            let input = form.serializeObject();
 
-            input['remember_me'] = $(this).find('input[type=checkbox][name=remember_me]').prop('checked');
+            input['remember_me'] = $(form).find('input:checkbox[name=remember_me]').prop('checked');
             if ((input['remember_me'] === undefined) || (input['remember_me'] === null))
             {
                 input['remember_me'] = 0;
@@ -73,6 +73,11 @@
                         if (response['data']['redirect'] !== undefined)
                         {
                             location.href = response['data']['redirect'];
+                        }
+
+                        if (response['data']['csrf'] !== undefined)
+                        {
+                            $(form).find('input:hidden[name=' + response['data']['csrf']['name'] + ']').val(response['data']['csrf']['hash']);
                         }
                     }
                 })
