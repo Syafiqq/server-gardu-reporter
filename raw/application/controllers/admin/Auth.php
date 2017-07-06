@@ -84,7 +84,8 @@ class Auth extends CI_Controller
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
-            $data['session']['flashdata'] = empty($this->session->userdata('flashdata')) ? [] : $this->session->userdata('flashdata');
+            $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
+            $data['session']['redirector'] = empty(@$this->session->userdata('flashdata')['redirector']) ? null : $this->session->userdata('flashdata')['redirector'];
 
             $this->load->view("admin/auth/login/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
         }
