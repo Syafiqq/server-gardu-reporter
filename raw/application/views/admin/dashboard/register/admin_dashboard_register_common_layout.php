@@ -116,43 +116,45 @@ if (!isset($data))
                             <div class="box-body">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
-                                        <form class="form-horizontal">
-                                            <div class="box-body">
-                                                <div class="form-group">
-                                                    <label for="<?php echo @$string['inline_client_form_username_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_username_label'] ?></label>
+                                        <div id="form-message-container">
+                                        </div>
+                                        <?php echo @form_open('/admin/api/register/client', 'id="register" class="form-horizontal'); ?>
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="<?php echo @$string['inline_client_form_username_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_username_label'] ?></label>
 
-                                                    <div class="col-sm-9">
-                                                        <input type="email" class="form-control" id="<?php echo @$string['inline_client_form_username_id'] ?>" placeholder="<?php echo @$string['client_form_username_placeholder'] ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="<?php echo @$string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_email_label'] ?></label>
-
-                                                    <div class="col-sm-9">
-                                                        <input type="email" class="form-control" id="<?php echo @$string['inline_client_form_email_id'] ?>" placeholder="<?php echo @$string['client_form_email_placeholder'] ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="<?php echo @$string['inline_client_form_password_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_label'] ?></label>
-
-                                                    <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="<?php echo @$string['inline_client_form_password_id'] ?>" placeholder="<?php echo @$string['client_form_password_placeholder'] ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_confirmation_label'] ?></label>
-
-                                                    <div class="col-sm-9">
-                                                        <input type="password" class="form-control" id="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" placeholder="<?php echo @$string['client_form_password_confirmation_placeholder'] ?>">
-                                                    </div>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="username" id="<?php echo @$string['inline_client_form_username_id'] ?>" placeholder="<?php echo @$string['client_form_username_placeholder'] ?>">
                                                 </div>
                                             </div>
-                                            <!-- /.box-body -->
-                                            <div class="box-footer">
-                                                <button type="submit" class="btn btn-info pull-right"><?php echo @$string['client_register'] ?></button>
+                                            <div class="form-group">
+                                                <label for="<?php echo @$string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_email_label'] ?></label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="email" class="form-control" name="identity" id="<?php echo @$string['inline_client_form_email_id'] ?>" placeholder="<?php echo @$string['client_form_email_placeholder'] ?>">
+                                                </div>
                                             </div>
-                                            <!-- /.box-footer -->
-                                        </form>
+                                            <div class="form-group">
+                                                <label for="<?php echo @$string['inline_client_form_password_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_label'] ?></label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" name="password" id="<?php echo @$string['inline_client_form_password_id'] ?>" placeholder="<?php echo @$string['client_form_password_placeholder'] ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_password_confirmation_label'] ?></label>
+
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" name="password_conf" id="<?php echo @$string['inline_client_form_password_confirmation_id'] ?>" placeholder="<?php echo @$string['client_form_password_confirmation_placeholder'] ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-info pull-right"><?php echo @$string['client_register'] ?></button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                        <?php echo @form_close() ?>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +195,14 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/AdminLTE/dist/js/app.min.js"></script>
 <!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
+<!-- Serialize Object -->
+<script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
+<!-- Notify -->
+<script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
 <!-- Custom -->
+<script type="text/javascript">
+    let sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
+</script>
 <script type="text/javascript" src="/assets/js/layout/admin/dashboard/register/admin_dashboard_register_common_layout.min.js"></script>
 </body>
 </html>
