@@ -80,16 +80,6 @@ if (!isset($data))
     <!-- /.login-logo -->
     <div class="login-box-body">
         <div id="form-message-container">
-            <!--<div class="alert alert-info alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <ul>
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>Consectetur adipiscing elit</li>
-                    <li>Integer molestie lorem at massa</li>
-                    <li>Facilisis in pretium nisl aliquet</li>
-                    <li>Nulla volutpat aliquam velit</li>
-                </ul>
-            </div>-->
         </div>
         <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
