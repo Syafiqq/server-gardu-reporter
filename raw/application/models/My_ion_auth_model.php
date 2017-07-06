@@ -22,7 +22,7 @@ class My_ion_auth_model extends Ion_auth_model
     public function __construct()
     {
         parent::__construct();
-        $this->lang->load('ion_auth_extend');
+        $this->lang->load('ion_auth_extended');
     }
 
     /**

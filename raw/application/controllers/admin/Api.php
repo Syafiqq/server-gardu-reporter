@@ -192,7 +192,7 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
         }
         else
         {
-            $this->lang->load(['ion_auth_extended']);
+            $this->lang->load('ion_auth_extended', $this->language);
 
             $response['data']['message']['register']['info'] = [$this->lang->line('client_account_creation_forbidden')];
         }
