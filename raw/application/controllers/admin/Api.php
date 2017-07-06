@@ -23,6 +23,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  */
 class Api extends \Restserver\Libraries\MY_REST_Controller
 {
+    private $authGroup;
     /**
      * Index Page for this controller.
      *
@@ -44,8 +45,11 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
         // Your own constructor code
 
         $this->load->database();
-        $this->load->library(array('ion_auth', 'form_validation'));
-        $this->load->helper(array('url', 'language'));
+        /** @noinspection PhpParamsInspection */
+        $this->load->library(['ion_auth', 'form_validation']);
+        $this->load->helper(['url', 'language']);
+
+        $this->authGroup = 'admin';
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
     }
@@ -66,17 +70,17 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
         $data['identity'] = $this->postOrDefault('identity', null);
         $data['password'] = $this->postOrDefault('password', null);
 
-        $this->lang->load(['common/auth/common_auth_login', 'auth']);
+        $this->lang->load(['common/auth/common_auth_login_form', 'auth']);
 
-        $this->form_validation->set_rules('identity', $this->lang->line('common_auth_login_email_label'), 'required|valid_email');
-        $this->form_validation->set_rules('password', $this->lang->line('common_auth_login_password_label'), 'required');
+        $this->form_validation->set_rules('identity', $this->lang->line('common_auth_login_form_email_label'), 'required|valid_email');
+        $this->form_validation->set_rules('password', $this->lang->line('common_auth_login_form_password_label'), 'required');
 
         $this->form_validation->set_data($data);
         if ($this->form_validation->run() == true)
         {
             $remember = boolval(($this->postOrDefault('remember_me', false)));
 
-            if ($this->ion_auth->login($data['identity'], $data['password'], $remember))
+            if ($this->ion_auth->login_and_check($data['identity'], $data['password'], $this->authGroup, $remember))
             {
                 $response['data']['redirect'] = site_url('/');
                 $flashdata = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
