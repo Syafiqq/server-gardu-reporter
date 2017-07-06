@@ -7,10 +7,13 @@
  * Github       : syafiqq
  */
 
+/** @var $lang array */
 $lang['admin_dashboard_register_common_layout_register_client_username_placeholder'] = 'Put the client username here!';
 $lang['admin_dashboard_register_common_layout_register_client_email_placeholder'] = 'Put the client email here!';
 $lang['admin_dashboard_register_common_layout_register_client_password_placeholder'] = 'Put the client password here!';
 $lang['admin_dashboard_register_common_layout_register_client_password_confirmation_placeholder'] = 'Confirm the client password here!';
+$lang['admin_dashboard_register_common_layout_register_client_forbidden_access'] = 'You Are Not Allowed To Registering Client';
+$lang['admin_dashboard_register_common_layout_register_client_forbidden_access_auth_redirection'] = 'Please Login First.';
 
 ?>
 
