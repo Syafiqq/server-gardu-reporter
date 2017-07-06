@@ -131,7 +131,7 @@ if (!isset($data))
                                                 <label for="<?php echo @$string['inline_client_form_email_id'] ?>" class="col-sm-3 control-label"><?php echo @$string['client_form_email_label'] ?></label>
 
                                                 <div class="col-sm-9">
-                                                    <input type="email" class="form-control" name="identity" id="<?php echo @$string['inline_client_form_email_id'] ?>" placeholder="<?php echo @$string['client_form_email_placeholder'] ?>">
+                                                    <input type="text" class="form-control" name="identity" id="<?php echo @$string['inline_client_form_email_id'] ?>" placeholder="<?php echo @$string['client_form_email_placeholder'] ?>">
                                                 </div>
                                             </div>
                                             <div class="form-group">
