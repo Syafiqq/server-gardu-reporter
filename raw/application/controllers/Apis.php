@@ -18,7 +18,7 @@ require_once APPPATH . '/libraries/REST_Controller.php';
  * @property MReport mReport
  * @property CI_Input input
  */
-class Api extends \Restserver\Libraries\REST_Controller
+class Apis extends \Restserver\Libraries\REST_Controller
 {
     /**
      * Index Page for this controller.
