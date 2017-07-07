@@ -11,6 +11,8 @@
 // Login / Logout
 $lang['login_already_active'] = 'Your account is already active';
 $lang['client_account_creation_forbidden'] = 'You are not allowed to execute this operation';
+$lang['deactivate_previous_token_successful'] = 'Previous token successfully deactivated';
+$lang['register_new_token_successful'] = 'Create new Token Successful';
 
 
 ?>
