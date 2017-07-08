@@ -7,6 +7,9 @@
  * Github       : syafiqq
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once APPPATH . '/dao/DAOReport.php';
+require_once APPPATH . '/model/ModelReport.php';
+require_once APPPATH . '/model/ModelLocation.php';
 require_once APPPATH . '/libraries/MY_REST_Controller.php';
 
 /**
@@ -20,6 +23,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  * @property array data
  * @property CI_Input input
  * @property CI_Session session
+ * @property MReport mReport
  */
 class Mobile extends \Restserver\Libraries\MY_REST_Controller
 {
@@ -151,6 +155,66 @@ class Mobile extends \Restserver\Libraries\MY_REST_Controller
                     else
                     {
                         $response['data']['message'] = $this->validation_errors();
+                    }
+                }
+            }
+        }
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
+
+    public function insert_post()
+    {
+        $this->language = $this->getOrDefault('lang', $this->config->item('language'));
+
+        /** @var array $response */
+        $response = [];
+        $response['data']['status'] = 0;
+
+        if (!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']))
+        {
+            if (strcmp(strtolower($_SERVER['HTTP_X_ACCESS_PERMISSION']), $this->config->item('non_csrf_permission')) === 0)
+            {
+                if (strcmp(strtolower($this->postOrDefault('guard', null)), $this->config->item('non_csrf_guard')) === 0)
+                {
+                    /** @var array $data */
+                    $data = [];
+                    $data['data'] = $this->postOrDefault('data', []);
+                    $data['token'] = $this->postOrDefault('token', null);
+
+                    if (
+                        isset($data['token']) &&
+                        isset($data['data']['substation']) &&
+                        isset($data['data']['voltage']) &&
+                        isset($data['data']['current']) &&
+                        isset($data['data']['location']) &&
+                        isset($data['data']['location']['latitude']) &&
+                        isset($data['data']['location']['longitude'])
+                    )
+                    {
+                        if ($this->ion_auth->check_token($data['token']))
+                        {
+                            $id = $this->ion_auth->getTokenId();
+                            log_message('ERROR', $id);
+                            $report = new DAOReport(null, null, $id, new ModelReport($data['data']['substation'], $data['data']['voltage'], $data['data']['current'], new ModelLocation($data['data']['location']['latitude'], $data['data']['location']['longitude'])), null, null, null);
+
+                            $this->load->model('mReport');
+                            /** @var int|null $reportID */
+                            $reportID = $this->mReport->insert($report);
+                            if (empty($reportID))
+                            {
+                                $response['data']['message'] = 'Cannot store data to the server. Please try again later.';
+                            }
+                            else
+                            {
+                                $response['data']['status'] = 1;
+                                $response['data']['message'] = 'Data Successfully Retrieved';
+                            }
+                        }
+                        else
+                        {
+                            $response['data']['message'] = 'Token Invalid';
+                        }
                     }
                 }
             }
