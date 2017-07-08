@@ -111,6 +111,53 @@ class Mobile extends \Restserver\Libraries\MY_REST_Controller
         $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
         $this->response($response, $response['status']);
     }
+
+    public function check_post()
+    {
+        $this->language = $this->getOrDefault('lang', $this->config->item('language'));
+
+        /** @var array $response */
+        $response = [];
+        $response['data']['status'] = 0;
+
+        if (!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']))
+        {
+            if (strcmp(strtolower($_SERVER['HTTP_X_ACCESS_PERMISSION']), $this->config->item('non_csrf_permission')) === 0)
+            {
+                if (strcmp(strtolower($this->postOrDefault('guard', null)), $this->config->item('non_csrf_guard')) === 0)
+                {
+                    $this->lang->load(['common/auth/common_auth_token_form', 'auth'], $this->language);
+
+                    /** @var array $data */
+                    $data = [];
+
+                    $data['token'] = $this->postOrDefault('token', null);
+
+                    $this->form_validation->set_rules('token', $this->lang->line('common_auth_token_form_token_label'), 'required');
+
+                    $this->form_validation->set_data($data);
+                    if ($this->form_validation->run() == true)
+                    {
+                        if ($this->ion_auth->check_token($data['token']))
+                        {
+                            $response['data']['status'] = 1;
+                            $response['data']['message'] = array_merge([], is_array($this->ion_auth->messages()) ? $this->ion_auth->messages() : explode(PHP_EOL, trim($this->ion_auth->messages())));
+                        }
+                        else
+                        {
+                            $response['data']['message'] = array_merge([], is_array($this->ion_auth->errors()) ? $this->ion_auth->errors() : explode(PHP_EOL, trim($this->ion_auth->errors())));
+                        }
+                    }
+                    else
+                    {
+                        $response['data']['message'] = $this->validation_errors();
+                    }
+                }
+            }
+        }
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
 }
 
 ?>
