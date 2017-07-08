@@ -19,8 +19,10 @@ class My_ion_auth_model extends Ion_auth_model
 
     /**
      * @var array $api_token ;
+     * @var int $token_id ;
      */
     private $api_token;
+    private $token_id;
 
     /**
      * My_ion_auth_model constructor.
@@ -355,6 +357,9 @@ class My_ion_auth_model extends Ion_auth_model
 
         if ($query->num_rows() === 1)
         {
+            $user = $query->row();
+            $this->setTokenId($user->user);
+
             $this->trigger_events(array('post_check_token', 'post_check_token_successful'));
             $this->messages = [];
             $this->set_message('check_token_successful');
@@ -365,6 +370,22 @@ class My_ion_auth_model extends Ion_auth_model
         $this->set_error('check_token_unsuccessful');
 
         return false;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTokenId(): int
+    {
+        return $this->token_id;
+    }
+
+    /**
+     * @param int $token_id
+     */
+    public function setTokenId(int $token_id)
+    {
+        $this->token_id = $token_id;
     }
 }
 
