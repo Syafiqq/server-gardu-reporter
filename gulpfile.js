@@ -134,10 +134,11 @@ gulp.task('watch-minify-js', function ()
     return watch(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], function (cb)
     {
         pump([
-                gulp.src(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], {base: './raw/assets/'}).pipe(rename({
-                    suffix: ".min",
-                    extname: ".js"
-                })),
+                gulp.src(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], {base: './raw/assets/'})
+                    .pipe(rename({
+                        suffix: ".min",
+                        extname: ".js"
+                    })),
                 uglify(),
                 gulp.dest('./public/assets/')
             ],
@@ -152,7 +153,7 @@ gulp.task('watch-minify-css', function ()
     return watch(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], function ()
     {
         return gulp.src(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], {base: './raw/assets/'})
-            .pipe(cleanCSS({compatibility: 'ie8'}))
+            .pipe(cleanCSS({compatibility: 'ie8', rebase: false}))
             .pipe(rename({
                 suffix: ".min",
                 extname: ".css"
