@@ -27,6 +27,10 @@ class DAOReport implements CSerializable, CDBDataPopulator
      */
     private $idLocation;
     /**
+     * @var int|null
+     */
+    private $idUser;
+    /**
      * @var ModelReport|null
      */
     private $report;
@@ -38,7 +42,6 @@ class DAOReport implements CSerializable, CDBDataPopulator
      * @var string|null
      */
     private $updateAt;
-
     /**
      * @var string|null
      */
@@ -48,12 +51,13 @@ class DAOReport implements CSerializable, CDBDataPopulator
      * DAOReport constructor.
      * @param int|null $idReport
      * @param int|null $idLocation
+     * @param int|null $idUser
      * @param ModelReport|null $report
      * @param string|null $createAt
      * @param string|null $updateAt
      * @param string|null $deleteAt
      */
-    public function __construct($idReport = null, $idLocation = null, ModelReport $report = null, $createAt = null, $updateAt = null, $deleteAt = null)
+    public function __construct($idReport = null, $idLocation = null, $idUser = null, ModelReport $report = null, $createAt = null, $updateAt = null, $deleteAt = null)
     {
         if ($idReport !== null)
         {
@@ -62,6 +66,10 @@ class DAOReport implements CSerializable, CDBDataPopulator
         if ($idLocation !== null)
         {
             $this->idLocation = $idLocation;
+        }
+        if ($idUser !== null)
+        {
+            $this->idUser = $idUser;
         }
         if ($report !== null)
         {
@@ -91,6 +99,11 @@ class DAOReport implements CSerializable, CDBDataPopulator
             }
             break;
             case 'location_id' :
+            {
+                $this->setIdLocation($value);
+            }
+            break;
+            case 'user_id' :
             {
                 $this->setIdLocation($value);
             }
@@ -199,6 +212,7 @@ class DAOReport implements CSerializable, CDBDataPopulator
         $result = [];
         $result['id_report'] = $this->getIdReport();
         $result['id_location'] = $this->getIdLocation();
+        $result['id_user'] = $this->getIdUser();
         $result = array_merge($result, $this->getReport()->cSerialize());
         $result['create_at'] = $this->getCreateAt();
         $result['update_at'] = $this->getUpdateAt();
@@ -237,6 +251,22 @@ class DAOReport implements CSerializable, CDBDataPopulator
     public function setIdLocation(?int $idLocation = null)
     {
         $this->idLocation = $idLocation;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getIdUser(): ?int
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param int|null $idUser
+     */
+    public function setIdUser(?int $idUser)
+    {
+        $this->idUser = $idUser;
     }
 
     /**
@@ -299,6 +329,7 @@ class DAOReport implements CSerializable, CDBDataPopulator
         $result['current'] = $this->getReport()->getCurrent();
         $result['voltage'] = $this->getReport()->getVoltage();
         $result['location'] = $this->getIdLocation();
+        $result['user'] = $this->getIdUser();
         $result['create_at'] = $this->getCreateAt();
         $result['update_at'] = $this->getUpdateAt();
         $result['delete_at'] = $this->getDeleteAt();
