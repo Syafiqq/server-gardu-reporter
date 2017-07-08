@@ -329,6 +329,43 @@ class My_ion_auth_model extends Ion_auth_model
     {
         return $this->api_token;
     }
+
+    /**
+     * @param string $token
+     * @return bool
+     */
+    public function check_token($token): bool
+    {
+        $this->trigger_events('pre_check_token');
+
+        if (empty($token))
+        {
+            $this->set_error('check_token_unsuccessful');
+
+            return false;
+        }
+
+        $query = $this->db->select('*')
+            ->where('token', $token)
+            ->where('`expiration` > NOW()', null, false)
+            ->where('active', 1)
+            ->limit(1)
+            ->order_by('id', 'desc')
+            ->get('token');
+
+        if ($query->num_rows() === 1)
+        {
+            $this->trigger_events(array('post_check_token', 'post_check_token_successful'));
+            $this->messages = [];
+            $this->set_message('check_token_successful');
+
+            return true;
+        }
+        $this->trigger_events('post_check_token_unsuccessful');
+        $this->set_error('check_token_unsuccessful');
+
+        return false;
+    }
 }
 
 ?>
