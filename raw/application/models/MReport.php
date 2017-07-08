@@ -15,6 +15,7 @@ require_once APPPATH . '/model/ModelLocation.php';
 /**
  * Class MReport
  * @property  CI_DB_mysqli_driver db
+ * @property  MLocation mLocation
  */
 class MReport extends CI_Model
 {
@@ -29,17 +30,19 @@ class MReport extends CI_Model
 
     /**
      * @param DAOReport $report
-     * @param MLocation $mLocation
      * @return int|null
      */
-    public function insert(DAOReport &$report, MLocation &$mLocation): ?int
+    public function insert(DAOReport &$report): ?int
     {
+        $CI =& get_instance();
+        $CI->load->model('mLocation');
+
         /** @var int|null $reportID */
         $reportID = null;
 
         $location = new DAOLocation(null, $report->getReport()->getLocation());
         /** @var int|null $locationID */
-        $locationID = $mLocation->insert($location);
+        $locationID = $CI->mLocation->insert($location);
         if (!empty($locationID))
         {
             $report->setIdLocation($locationID);

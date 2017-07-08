@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property CI_Loader load
  * @property CI_Session session
  */
-class Landing extends CI_Controller
+class Default_route extends CI_Controller
 {
     /**
      * Index Page for this controller.

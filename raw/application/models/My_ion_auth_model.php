@@ -16,6 +16,14 @@ require_once APPPATH . '/models/Ion_auth_model.php';
  */
 class My_ion_auth_model extends Ion_auth_model
 {
+
+    /**
+     * @var array $api_token ;
+     * @var int $token_id ;
+     */
+    private $api_token;
+    private $token_id;
+
     /**
      * My_ion_auth_model constructor.
      */
@@ -108,7 +116,6 @@ class My_ion_auth_model extends Ion_auth_model
         return false;
     }
 
-
     /**
      * in_group
      *
@@ -163,6 +170,222 @@ class My_ion_auth_model extends Ion_auth_model
          * if all, true
          */
         return $check_all;
+    }
+
+    /**
+     * @param $identity
+     * @param $password
+     * @param mixed $group
+     * @param bool $remember
+     * @return bool
+     */
+    public function login_for_api($identity, $password, $group, $remember = false): bool
+    {
+        $this->trigger_events('pre_login');
+
+        if (empty($identity) || empty($password))
+        {
+            $this->set_error('login_unsuccessful');
+
+            return false;
+        }
+
+        $this->trigger_events('extra_where');
+
+        $query = $this->db->select($this->identity_column . ', email, id, password, active, last_login')
+            ->where($this->identity_column, $identity)
+            ->limit(1)
+            ->order_by('id', 'desc')
+            ->get($this->tables['users']);
+
+        if ($this->is_max_login_attempts_exceeded($identity))
+        {
+            // Hash something anyway, just to take up time
+            $this->hash_password($password);
+
+            $this->trigger_events('post_login_unsuccessful');
+            $this->set_error('login_timeout');
+
+            return false;
+        }
+
+        if ($query->num_rows() === 1)
+        {
+
+            $user = $query->row();
+
+            $password = $this->hash_password_db($user->id, $password);
+
+            if (($password === true) && ($this->in_group($group, $user->id)))
+            {
+                if ($user->active == 0)
+                {
+                    $this->trigger_events('post_login_unsuccessful');
+                    $this->set_error('login_unsuccessful_not_active');
+
+                    return false;
+                }
+
+                $this->deactivate_previous_token($user->id);
+
+                $this->setApiToken($this->refreshToken());
+
+                $this->register_new_token($user->id, $this->getApiToken(), $this->config->item('csrf_expire'));
+
+                $this->update_last_login($user->id);
+
+                $this->clear_login_attempts($identity);
+
+                if ($remember && $this->config->item('remember_users', 'ion_auth'))
+                {
+                    $this->remember_user($user->id);
+                }
+
+                $this->trigger_events(array('post_login', 'post_login_successful'));
+                $this->messages = [];
+                $this->set_message('login_successful');
+
+                return true;
+            }
+        }
+
+        // Hash something anyway, just to take up time
+        $this->hash_password($password);
+
+        $this->increase_login_attempts($identity);
+
+        $this->trigger_events('post_login_unsuccessful');
+        $this->set_error('login_unsuccessful');
+
+        return false;
+    }
+
+    /**
+     * @param int $id
+     */
+    private function deactivate_previous_token(int $id): void
+    {
+        $this->trigger_events('pre_deactivate_previous_token');
+
+        $data = ['active' => 0];
+        $this->db->where('user', $id);
+        $this->db->update('token', $data);
+
+        $this->trigger_events(['post_deactivate_previous_token', 'post_deactivate_previous_token_successful']);
+        $this->set_message('deactivate_previous_token_successful');
+    }
+
+    /**
+     * @param array $session_token
+     */
+    private function setApiToken(array $session_token): void
+    {
+        $this->api_token = $session_token;
+    }
+
+    /**
+     * @return array
+     */
+    private function refreshToken(): array
+    {
+        return [
+            'token' => bin2hex(random_bytes(32)),
+            'refresh' => bin2hex(random_bytes(32)),
+        ];
+    }
+
+    /**
+     * @param int $id
+     * @param array $getApiToken
+     * @param int $expiration
+     */
+    private function register_new_token(int $id, array $getApiToken, int $expiration): void
+    {
+        $this->trigger_events('pre_register_new_token');
+
+        $data = [
+            'id' => null,
+            'user' => $id,
+            'token' => $getApiToken['token'],
+            'refresh' => $getApiToken['refresh'],
+            'active' => 1
+        ];
+        $this->db->set('create_at', 'NOW()', false);
+        $this->db->set('expiration', "DATE_ADD(NOW(), INTERVAL {$expiration} DAY)", false);
+
+        while (!$this->db->insert('token', $data))
+        {
+            $this->setApiToken($getApiToken = $this->refreshToken());
+            $data['token'] = $getApiToken['token'];
+            $data['refresh'] = $getApiToken['refresh'];
+        }
+
+        $this->trigger_events(['post_register_new_token', 'post_register_new_token_successful']);
+        $this->set_message('register_new_token_successful');
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getApiToken(): ?array
+    {
+        return $this->api_token;
+    }
+
+    /**
+     * @param string $token
+     * @return bool
+     */
+    public function check_token($token): bool
+    {
+        $this->trigger_events('pre_check_token');
+
+        if (empty($token))
+        {
+            $this->set_error('check_token_unsuccessful');
+
+            return false;
+        }
+
+        $query = $this->db->select('*')
+            ->where('token', $token)
+            ->where('`expiration` > NOW()', null, false)
+            ->where('active', 1)
+            ->limit(1)
+            ->order_by('id', 'desc')
+            ->get('token');
+
+        if ($query->num_rows() === 1)
+        {
+            $user = $query->row();
+            $this->setTokenId($user->user);
+
+            $this->trigger_events(array('post_check_token', 'post_check_token_successful'));
+            $this->messages = [];
+            $this->set_message('check_token_successful');
+
+            return true;
+        }
+        $this->trigger_events('post_check_token_unsuccessful');
+        $this->set_error('check_token_unsuccessful');
+
+        return false;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTokenId(): int
+    {
+        return $this->token_id;
+    }
+
+    /**
+     * @param int $token_id
+     */
+    public function setTokenId(int $token_id)
+    {
+        $this->token_id = $token_id;
     }
 }
 
