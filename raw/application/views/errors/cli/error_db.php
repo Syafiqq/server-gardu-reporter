@@ -6,3 +6,4 @@ $heading,
 "\n\n",
 $message,
 "\n\n";
+?>
