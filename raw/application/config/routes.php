@@ -54,6 +54,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
 $route['admin/api/register/client'] = '/admin/api/register_client';
 
+$route['api/mobile/(:any)'] = 'api/mobile/$1';
+$route['api/(:any)'] = 'api/default_route/$1';
+
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes
