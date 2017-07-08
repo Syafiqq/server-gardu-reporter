@@ -60,7 +60,7 @@ gulp.task('minify-js', function (cb)
 gulp.task('minify-css', function ()
 {
     return gulp.src(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], {base: './raw/assets/'})
-        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(cleanCSS({compatibility: 'ie8', rebase: false}))
         .pipe(rename({
             suffix: ".min",
             extname: ".css"
