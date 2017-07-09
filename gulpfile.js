@@ -16,7 +16,9 @@ var htmlmin = require('gulp-htmlmin');
 var pump = require('pump');
 var imagemin = require('gulp-imagemin');
 var jsonMinify = require('gulp-json-minify');
-var shell = require('gulp-shell')
+var shell = require('gulp-shell');
+//noinspection JSAnnotator
+var {phpMinify} = require('@cedx/gulp-php-minify');
 
 gulp.task('move-application-assets', function ()
 {
@@ -68,17 +70,28 @@ gulp.task('minify-css', function ()
         .pipe(gulp.dest('./public/assets/'));
 });
 
-gulp.task('minify-html', function ()
+gulp.task('minify-html-view', function ()
 {
     return gulp.src('./raw/application/views/**/{*.php,*.html}', {base: './raw/application/views/'})
+        .pipe(phpMinify({silent: true}))
         .pipe(htmlmin({
             collapseWhitespace: true,
             removeAttributeQuotes: true,
+            processConditionalComments: true,
             removeComments: true,
             minifyJS: true,
-            minifyCSS: true
+            minifyCSS: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true
         }))
         .pipe(gulp.dest('./application/views/'));
+});
+
+gulp.task('minify-php-content', function ()
+{
+    return gulp.src(['./raw/application/**/*.php', '!./raw/application/views/**'], {base: './raw/application/'})
+        .pipe(phpMinify({silent: true}))
+        .pipe(gulp.dest('./application/'));
 });
 
 gulp.task('minify-json', function ()
@@ -162,20 +175,35 @@ gulp.task('watch-minify-css', function ()
     });
 });
 
-gulp.task('watch-minify-html', function ()
+gulp.task('watch-minify-html-view', function ()
 {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
     return watch('./raw/application/views/**/{*.php,*.html}', function ()
     {
         return gulp.src('./raw/application/views/**/{*.php,*.html}', {base: './raw/application/views/'})
+            .pipe(phpMinify({silent: true}))
             .pipe(htmlmin({
                 collapseWhitespace: true,
                 removeAttributeQuotes: true,
+                processConditionalComments: true,
                 removeComments: true,
                 minifyJS: true,
-                minifyCSS: true
+                minifyCSS: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true
             }))
             .pipe(gulp.dest('./application/views/'));
+    });
+});
+
+gulp.task('watch-minify-php-content', function ()
+{
+    // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
+    return watch('./raw/application/**/*.php', function ()
+    {
+        return gulp.src(['./raw/application/**/*.php', '!./raw/application/views/**'], {base: './raw/application/'})
+            .pipe(phpMinify({silent: true}))
+            .pipe(gulp.dest('./application/'));
     });
 });
 
