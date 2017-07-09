@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://freelancer.gardu.reporter.app/';
+$config['base_url'] = 'https://gardureporter.000webhostapp.com/';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ $config['allow_get_array'] = true;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -235,7 +235,7 @@ $config['log_threshold'] = 1;
 | application/logs/ directory. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '../logs/';
+$config['log_path'] = '';
 
 /*
 |--------------------------------------------------------------------------
