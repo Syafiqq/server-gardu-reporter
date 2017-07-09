@@ -186,7 +186,7 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
 <!-- Custom -->
 <script type="text/javascript">
-    let sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
+    var sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
 </script>
 <script type="text/javascript" src="/assets/js/layout/landing/index/landing_index_client_common_layout.min.js"></script>
 </body>
