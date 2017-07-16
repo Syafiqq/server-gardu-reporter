@@ -1,0 +1,16 @@
+.main-footer {
+    background: #fff;
+    padding: 5px;
+    color: #444;
+    border-top: 1px solid #d2d6de;
+    font-size: 8px;
+    height: 35px;
+}
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
+.margin-bottom-50 {
+    margin-bottom: 50px;
+}
