@@ -103,7 +103,7 @@ if (!isset($data))
     <div class="login-box-body">
         <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
-        <form action="<?php echo @site_url('/auth/do_login') ?>" method="post">
+        <form action="<?php echo @site_url('/api/auth/login/client') ?>" method="post">
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

@@ -107,7 +107,7 @@ if (!isset($data))
         </div>
         <p class="login-box-msg"><?php echo @$string['login_box_message'] ?></p>
 
-        <?php echo @form_open('/admin/api/login', 'id="login"'); ?>
+        <?php echo @form_open('/api/auth/login/admin', 'id="login"'); ?>
         <?php if (!empty(@$data['session']['redirector']))
         {
             echo @form_hidden('redirector', $data['session']['redirector']);
