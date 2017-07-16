@@ -60,7 +60,7 @@ if (!isset($data))
     <link rel="stylesheet" href="/assets/vendor/iCheck/skins/square/blue.min.css">
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
     <!-- Custom -->
-    <link rel="stylesheet" href="/assets/css/layout/admin/auth/login/admin_auth_login_common_layout.min.css">
+    <link rel="stylesheet" href="/assets/css/layout/auth/login/admin/auth_login_admin_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -72,6 +72,30 @@ if (!isset($data))
     <![endif]-->
 </head>
 <body class="hold-transition login-page">
+<header class="main-header">
+    <nav class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <strong>Admin</strong>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="<?php echo site_url('/auth/login/members') ?>">
+                                    <strong>User</strong>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+
 <div class="login-box">
 
     <div class="login-logo">
@@ -140,6 +164,6 @@ if (!isset($data))
 <script type="text/javascript">
     var sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
 </script>
-<script type="text/javascript" src="/assets/js/layout/admin/auth/login/admin_auth_login_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/auth/login/admin/auth_login_admin_common_layout.min.js"></script>
 </body>
 </html>
