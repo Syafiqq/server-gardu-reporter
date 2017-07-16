@@ -37,6 +37,18 @@ class MY_REST_Controller extends REST_Controller
         return $value;
     }
 
+    public function patchOrDefault($key = null, $default_value = null, $xss_clean = null)
+    {
+        $value = parent::patch($key, $xss_clean);
+
+        if (!$value)
+        {
+            $value = $default_value;
+        }
+
+        return $value;
+    }
+
     /**
      * @param string $key
      * @param mixed|null $default_value
