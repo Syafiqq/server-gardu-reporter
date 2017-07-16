@@ -31,7 +31,7 @@ if (!isset($data))
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="index.php" title="Sistem Pendataan Status Gardu Trafo"><?php echo $string['title'] ?></a>
+        <a class="navbar-brand" href="index.php" title="Sistem Pendataan Status Gardu Trafo"><?php echo @$string['title'] ?></a>
     </div>
     <!-- /.navbar-header -->
 
@@ -39,27 +39,27 @@ if (!isset($data))
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>
-                <?php echo $data['profile']['username'] ?>
+                <?php echo @$data['profile']['username'] ?>
                 <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
                     <a style="color: red">
                         <i class="fa fa-user fa-fw"></i>
-                        [ <?php echo $data['profile']['group'] ?> ]
+                        [ <?php echo @$data['profile']['group'] ?> ]
                     </a>
                 </li>
                 <li>
-                    <a id="edit-user" data-toggle="modal" data-target="#update" data-email="<?php echo $data['profile']['email'] ?>" data-username="<?php echo $data['profile']['username'] ?>" data-role="<?php echo $data['profile']['group'] ?>">
+                    <a id="edit-user" data-toggle="modal" data-target="#update" data-email="<?php echo @$data['profile']['email'] ?>" data-username="<?php echo @$data['profile']['username'] ?>" data-role="<?php echo @$data['profile']['group'] ?>">
                         <i class="fa fa-gear fa-fw"></i>
-                        <?php echo $string['profile_edit'] ?>
+                        <?php echo @$string['profile_edit'] ?>
                     </a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="<?php echo site_url('/auth/logout') ?>">
+                    <a href="<?php echo @site_url('/auth/logout') ?>">
                         <i class="fa fa-sign-out fa-fw"></i>
-                        <?php echo $string['auth_logout'] ?>
+                        <?php echo @$string['auth_logout'] ?>
                     </a>
                 </li>
             </ul>
@@ -75,28 +75,28 @@ if (!isset($data))
                 <li>
                     <a href="<?php site_url('php') ?>">
                         <i class="fa fa-home fa-fw"></i>
-                        <?php echo $string['sidebar_home'] ?>
+                        <?php echo @$string['sidebar_home'] ?>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
                         <i class="fa fa-table fa-fw"></i>
-                        <?php echo $string['sidebar_recapitulation'] ?>
+                        <?php echo @$string['sidebar_recapitulation'] ?>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="?page=gncg67nh8"><?php echo $string['sidebar_recapitulation_measurement'] ?></a>
+                            <a href="?page=gncg67nh8"><?php echo @$string['sidebar_recapitulation_measurement'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=jf4qo3mx2d20dsk23"><?php echo $string['sidebar_recapitulation_voltage_end'] ?></a>
+                            <a href="?page=jf4qo3mx2d20dsk23"><?php echo @$string['sidebar_recapitulation_voltage_end'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=dyh2c3bh2x32un"><?php echo $string['sidebar_recapitulation_travo_load'] ?></a>
+                            <a href="?page=dyh2c3bh2x32un"><?php echo @$string['sidebar_recapitulation_travo_load'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=8932neu92d23ssw"><?php echo $string['sidebar_recapitulation_load_balance'] ?></a>
+                            <a href="?page=8932neu92d23ssw"><?php echo @$string['sidebar_recapitulation_load_balance'] ?></a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -105,18 +105,18 @@ if (!isset($data))
                 <li>
                     <a href="#">
                         <i class="fa fa-edit fa-fw"></i>
-                        <?php echo $string['sidebar_info_gardu'] ?>
+                        <?php echo @$string['sidebar_info_gardu'] ?>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="?page=j9e3x2n9"><?php echo $string['sidebar_info_gardu_hq'] ?></a>
+                            <a href="?page=j9e3x2n9"><?php echo @$string['sidebar_info_gardu_hq'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=g55cx09q2"><?php echo $string['sidebar_info_gardu_feeder'] ?></a>
+                            <a href="?page=g55cx09q2"><?php echo @$string['sidebar_info_gardu_feeder'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=ms4noi32r"><?php echo $string['sidebar_info_gardu_data'] ?></a>
+                            <a href="?page=ms4noi32r"><?php echo @$string['sidebar_info_gardu_data'] ?></a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -124,7 +124,7 @@ if (!isset($data))
                 <li>
                     <a href="?page=mfoa3i4fcid">
                         <i class="fa fa-users fa-fw"></i>
-                        <?php echo $string['sidebar_info_user_management'] ?>
+                        <?php echo @$string['sidebar_info_user_management'] ?>
                     </a>
                 </li>
             </ul>
