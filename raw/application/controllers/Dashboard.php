@@ -99,6 +99,7 @@ class Dashboard extends CI_Controller
             $string = [];
             $meta = [];
             $data = [];
+            $view = [];
 
             $_user = $this->ion_auth->user()->row_array();
             $data['profile']['username'] = $_user['username'];
@@ -137,7 +138,13 @@ class Dashboard extends CI_Controller
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
             $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
 
-            $this->load->view("{$this->lang_prefix_path}/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
+            $_properties = compact('meta', 'string', 'data');
+
+            $view['sidebar'] = $this->load->view('common/common_menus_common_layout', $_properties, true);
+            $view['edit_profile'] = $this->load->view('common/profile/common_profile_edit_common_layout', $_properties, true);
+
+            $_properties['view'] = $view;
+            $this->load->view("{$this->lang_prefix_path}/{$this->lang_prefix}_common_layout", $_properties);
         }
         else
         {

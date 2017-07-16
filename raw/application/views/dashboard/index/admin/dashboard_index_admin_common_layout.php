@@ -11,6 +11,7 @@
  * @var array $string
  * @var array $meta
  * @var array $data
+ * @var array $view
  */
 if (!isset($meta))
 {
@@ -23,6 +24,10 @@ if (!isset($string))
 if (!isset($data))
 {
     $data = [];
+}
+if (!isset($view))
+{
+    $view = [];
 }
 
 ?>
@@ -72,157 +77,13 @@ if (!isset($data))
 <body>
 <div id="wrapper">
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <a class="navbar-brand" href="index.php" title="Sistem Pendataan Status Gardu Trafo"><?php echo $string['title'] ?></a>
-        </div>
-        <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>
-                    <?php echo $data['profile']['username'] ?>
-                    <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li>
-                        <a style="color: red">
-                            <i class="fa fa-user fa-fw"></i>
-                            [ <?php echo $data['profile']['group'] ?> ]
-                        </a>
-                    </li>
-                    <li>
-                        <a id="edit-user" data-toggle="modal" data-target="#update" data-email="<?php echo $data['profile']['email'] ?>" data-username="<?php echo $data['profile']['username'] ?>" data-role="<?php echo $data['profile']['group'] ?>">
-                            <i class="fa fa-gear fa-fw"></i>
-                            <?php echo $string['profile_edit'] ?>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="<?php echo site_url('/auth/logout') ?>">
-                            <i class="fa fa-sign-out fa-fw"></i>
-                            <?php echo $string['auth_logout'] ?>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <a href="<?php site_url('php') ?>">
-                            <i class="fa fa-home fa-fw"></i>
-                            <?php echo $string['sidebar_home'] ?>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-table fa-fw"></i>
-                            <?php echo $string['sidebar_recapitulation'] ?>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="?page=gncg67nh8"><?php echo $string['sidebar_recapitulation_measurement'] ?></a>
-                            </li>
-                            <li>
-                                <a href="?page=jf4qo3mx2d20dsk23"><?php echo $string['sidebar_recapitulation_voltage_end'] ?></a>
-                            </li>
-                            <li>
-                                <a href="?page=dyh2c3bh2x32un"><?php echo $string['sidebar_recapitulation_travo_load'] ?></a>
-                            </li>
-                            <li>
-                                <a href="?page=8932neu92d23ssw"><?php echo $string['sidebar_recapitulation_load_balance'] ?></a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-edit fa-fw"></i>
-                            <?php echo $string['sidebar_info_gardu'] ?>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="?page=j9e3x2n9"><?php echo $string['sidebar_info_gardu_hq'] ?></a>
-                            </li>
-                            <li>
-                                <a href="?page=g55cx09q2"><?php echo $string['sidebar_info_gardu_feeder'] ?></a>
-                            </li>
-                            <li>
-                                <a href="?page=ms4noi32r"><?php echo $string['sidebar_info_gardu_data'] ?></a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="?page=mfoa3i4fcid">
-                            <i class="fa fa-users fa-fw"></i>
-                            <?php echo $string['sidebar_info_user_management'] ?>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
-        </div>
-        <!-- /.navbar-static-side -->
-    </nav>
+    <?php echo $view['sidebar'] ?>
 
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Edit Profile -->
-            <div id="update" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><?php echo $string['profile_edit'] ?></h4>
-                        </div>
-                        <div class="row margin-top-20">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <div id="form-message-container">
-                                </div>
-                            </div>
-                        </div>
-                        <?php echo form_open('/api/profile/update', 'id="update_form"'); ?>
-                        <?php if (!empty(@$data['session']['redirector']))
-                        {
-                            echo form_hidden('redirector', $data['session']['redirector']);
-                        } ?>
-                        <div class="modal-body" id="modal-update">
-                            <div class="form-group">
-                                <label class="control-label" for="<?php echo $string['inline_client_form_username_id'] ?>"><?php echo $string['client_form_username_label'] ?></label>
-                                <input type="text" name="<?php echo $string['inline_client_form_username_id'] ?>" class="form-control" id="update_<?php echo $string['inline_client_form_username_id'] ?>" placeholder="<?php echo $string['client_form_username_placeholder'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="<?php echo $string['inline_client_form_email_id'] ?>"><?php echo $string['client_form_email_label'] ?></label>
-                                <input type="text" name="<?php echo $string['inline_client_form_email_id'] ?>" class="form-control" id="update_<?php echo $string['inline_client_form_email_id'] ?>" placeholder="<?php echo $string['client_form_email_placeholder'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="<?php echo $string['inline_client_form_role_id'] ?>"><?php echo $string['client_form_role_label'] ?></label>
-                                <input type="text" class="form-control" id="update_<?php echo $string['inline_client_form_role_id'] ?>" disabled>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="<?php echo $string['profile_edit'] ?>">
-                        </div>
-                        <?php echo form_close() ?>
-                    </div>
-                </div>
-            </div>
+            <?php echo $view['edit_profile'] ?>
 
             <!-- Page Heading -->
             <div class="row">
