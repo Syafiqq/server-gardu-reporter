@@ -86,10 +86,11 @@ class Mobile extends \Restserver\Libraries\MY_REST_Controller
                     $data['identity'] = $this->postOrDefault('identity', null);
                     $data['password'] = $this->postOrDefault('password', null);
 
+                    $this->form_validation->set_data($data);
+
                     $this->form_validation->set_rules('identity', $this->lang->line('common_auth_login_form_email_label'), 'required|valid_email');
                     $this->form_validation->set_rules('password', $this->lang->line('common_auth_login_form_password_label'), 'required');
 
-                    $this->form_validation->set_data($data);
                     if ($this->form_validation->run() == true)
                     {
                         $remember = false;
@@ -136,10 +137,10 @@ class Mobile extends \Restserver\Libraries\MY_REST_Controller
                     $data = [];
 
                     $data['token'] = $this->postOrDefault('token', null);
+                    $this->form_validation->set_data($data);
 
                     $this->form_validation->set_rules('token', $this->lang->line('common_auth_token_form_token_label'), 'required');
 
-                    $this->form_validation->set_data($data);
                     if ($this->form_validation->run() == true)
                     {
                         if ($this->ion_auth->check_token($data['token']))

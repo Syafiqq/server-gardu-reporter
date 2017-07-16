@@ -89,11 +89,11 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
             $data['password'] = $this->postOrDefault('password', null);
 
             $this->lang->load(['common/auth/common_auth_login_form', 'auth'], $this->language);
+            $this->form_validation->set_data($data);
 
             $this->form_validation->set_rules('identity', $this->lang->line('common_auth_login_form_email_label'), 'required|valid_email');
             $this->form_validation->set_rules('password', $this->lang->line('common_auth_login_form_password_label'), 'required');
 
-            $this->form_validation->set_data($data);
             if ($this->form_validation->run() == true)
             {
                 $remember = boolval(($this->postOrDefault('remember_me', false)));
@@ -154,13 +154,14 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
 
             $this->lang->load(['common/auth/common_auth_register_form', 'auth'], $this->language);
 
+            $this->form_validation->set_data($data);
+
             // validate form input
             $this->form_validation->set_rules('username', $this->lang->line('common_auth_register_form_username_label'), 'required');
             $this->form_validation->set_rules('identity', $this->lang->line('common_auth_register_form_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
             $this->form_validation->set_rules('password', $this->lang->line('common_auth_register_form_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_conf]');
             $this->form_validation->set_rules('password_conf', $this->lang->line('common_auth_register_form_password_confirmation_label'), 'required');
 
-            $this->form_validation->set_data($data);
             $isValid = $this->form_validation->run();
             if ($isValid)
             {
