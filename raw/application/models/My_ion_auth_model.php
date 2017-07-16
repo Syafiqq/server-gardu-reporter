@@ -87,6 +87,8 @@ class My_ion_auth_model extends Ion_auth_model
                     return false;
                 }
 
+                $user->group = $group;
+
                 $this->set_session($user);
 
                 $this->update_last_login($user->id);
