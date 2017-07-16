@@ -96,14 +96,14 @@ if (!isset($data))
                         </a>
                     </li>
                     <li>
-                        <a id="edit-user" data-toggle="modal" data-target="#update" data-usr="<?php echo $data['profile']['email'] ?>" data-nmf="<?php echo $data['profile']['username'] ?>" data-lvl="<?php echo $data['profile']['group'] ?>" href="javascript:void(0)">
+                        <a id="edit-user" data-toggle="modal" data-target="#update" data-email="<?php echo $data['profile']['email'] ?>" data-username="<?php echo $data['profile']['username'] ?>" data-role="<?php echo $data['profile']['group'] ?>">
                             <i class="fa fa-gear fa-fw"></i>
                             <?php echo $string['profile_edit'] ?>
                         </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="logout.php">
+                        <a href="<?php echo site_url('/auth/logout') ?>">
                             <i class="fa fa-sign-out fa-fw"></i>
                             <?php echo $string['auth_logout'] ?>
                         </a>
@@ -191,6 +191,8 @@ if (!isset($data))
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title"><?php echo $string['profile_edit'] ?></h4>
                         </div>
+                        <div id="form-message-container">
+                        </div>
                         <?php echo form_open('/api/profile/patch', 'id="update_form"'); ?>
                         <?php if (!empty(@$data['session']['redirector']))
                         {
@@ -199,21 +201,21 @@ if (!isset($data))
                         <div class="modal-body" id="modal-update">
                             <div class="form-group">
                                 <label class="control-label" for="<?php echo $string['inline_client_form_username_id'] ?>"><?php echo $string['client_form_username_label'] ?></label>
-                                <input type="text" name="<?php echo $string['inline_client_form_username_id'] ?>" class="form-control" id="<?php echo $string['inline_client_form_username_id'] ?>" placeholder="<?php echo $string['client_form_username_placeholder'] ?>" required>
+                                <input type="text" name="<?php echo $string['inline_client_form_username_id'] ?>" class="form-control" id="update_<?php echo $string['inline_client_form_username_id'] ?>" placeholder="<?php echo $string['client_form_username_placeholder'] ?>" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="<?php echo $string['inline_client_form_email_id'] ?>"><?php echo $string['client_form_email_label'] ?></label>
-                                <input type="password" name="<?php echo $string['inline_client_form_email_id'] ?>" class="form-control" id="<?php echo $string['inline_client_form_email_id'] ?>" placeholder="<?php echo $string['client_form_email_placeholder'] ?>" required>
+                                <input type="text" name="<?php echo $string['inline_client_form_email_id'] ?>" class="form-control" id="update_<?php echo $string['inline_client_form_email_id'] ?>" placeholder="<?php echo $string['client_form_email_placeholder'] ?>" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="<?php echo $string['inline_client_form_role_id'] ?>"><?php echo $string['client_form_role_label'] ?></label>
-                                <input type="text" class="form-control" id="<?php echo $string['inline_client_form_role_id'] ?>" disabled>
+                                <input type="text" class="form-control" id="update_<?php echo $string['inline_client_form_role_id'] ?>" disabled>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <input type="submit" class="btn btn-primary" value="<?php echo $string['profile_edit'] ?>">
                         </div>
-                        <?php echo @form_close() ?>
+                        <?php echo form_close() ?>
                     </div>
                 </div>
             </div>
@@ -285,7 +287,16 @@ if (!isset($data))
 <script type="text/javascript" src="/assets/vendor/metisMenu/dist/metisMenu.min.js"></script>
 <!-- Startbootstrap -->
 <script type="text/javascript" src="/assets/vendor/startbootstrap-sb-admin-2/dist/js/sb-admin-2.min.js"></script>
+<!-- NProgress -->
+<script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
+<!-- Serialize Object -->
+<script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
+<!-- Notify -->
+<script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
 <!-- Custom -->
+<script type="text/javascript">
+    var sessionFlashdata = <?php echo json_encode($data['session']['flashdata'])?>;
+</script>
 <script type="text/javascript" src="/assets/js/layout/dashboard/index/dashboard_index_admin_common_layout.min.js"></script>
 </body>
 </html>
