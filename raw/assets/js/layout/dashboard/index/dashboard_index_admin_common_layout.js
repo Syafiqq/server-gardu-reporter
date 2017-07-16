@@ -6,47 +6,134 @@
  * Github       : syafiqq
  */
 
-$(document).on("click", "#edit-user", function ()
+(function ($)
 {
-
-    var id_usr = $(this).data('id');
-
-    var usr_nm = $(this).data('usr');
-    var pss_usr = $(this).data('pss');
-    var nmf_usr = $(this).data('nmf');
-    var lvl_usr = $(this).data('lvl');
-
-
-    $("#modal-update #kode_user").val(id_usr);
-
-    $("#modal-update #usrnm").val(usr_nm);
-    $("#modal-update #pass").val(pss_usr);
-    $("#modal-update #nmfull").val(nmf_usr);
-    $("#modal-update #level").val(lvl_usr);
-});
-
-$(document).ready(function (e)
-{
-    $("#formx").on("submit", (function (e)
+    $(function ()
     {
-        e.preventDefault();
-        $.ajax({
-            url: 'models/pcss_edituser.php',
-            type: 'POST',
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (msg)
-            {
-                $('.table').html(msg);
-            }
+        var update_selector = 'form#update_form';
 
+        NProgress.configure({
+            showSpinner: false,
+            template: '<div class="bar" role="bar" style="background-color: red"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
         });
-    }));
-});
 
-$(".tmpil-tooltip").tooltip({
-    selector: "[data-toggle=tooltip]",
-    trigger: "hover"
-});
+        $(update_selector).on('submit', function (event)
+        {
+            event.preventDefault();
+            var form = $(this);
+
+            var input = form.serializeObject();
+
+            console.log(input);
+            return;
+
+            NProgress.start();
+            $.ajax({
+                url: form.attr('action'),
+                data: input,
+                type: 'PATCH',
+                dataType: 'json'
+            })
+                .done(function (response)
+                {
+                    var kind = ['notify', 'message'];
+                    var type = ['validation', 'update'];
+                    var status = ['danger', 'info', 'warning', 'success'];
+                    if (response['data'] !== undefined)
+                    {
+                        if (response['data']['message'] !== undefined)
+                        {
+                            for (var i = -1, is = kind.length; ++i < is;)
+                            {
+                                if (response['data']['message'][kind[i]] !== undefined)
+                                {
+                                    for (var j = -1, js = type.length; ++j < js;)
+                                    {
+                                        if (response['data']['message'][kind[i]][type[j]] !== undefined)
+                                        {
+                                            for (var k = -1, ks = status.length; ++k < ks;)
+                                            {
+                                                if (response['data']['message'][kind[i]][type[j]][status[k]] !== undefined)
+                                                {
+                                                    if (kind[i] === 'notify')
+                                                    {
+                                                        //noinspection JSDuplicatedDeclaration
+                                                        for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
+                                                        {
+                                                            $.notify({
+                                                                message: response['data']['message'][kind[i]][type[j]][status[k]][l]
+                                                            }, {
+                                                                type: status[k]
+                                                            });
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        var template = '<div class="alert alert-' + status[k] + ' alert-dismissible">'
+                                                            + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
+                                                            + '<ul>';
+                                                        //noinspection JSDuplicatedDeclaration
+                                                        for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
+                                                        {
+                                                            template += '<li>' + response['data']['message'][kind[i]][type[j]][status[k]][l] + '</li>'
+                                                        }
+                                                        template += '</ul>'
+                                                            + '</div>';
+                                                        $("div#form-message-container").empty().append(template);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (response['data']['redirect'] !== undefined)
+                        {
+                            location.href = response['data']['redirect'];
+                        }
+
+                        if (response['data']['csrf'] !== undefined)
+                        {
+                            $(form).find('input:hidden[name=' + response['data']['csrf']['name'] + ']').val(response['data']['csrf']['hash']);
+                        }
+                    }
+                })
+                .fail(function ()
+                {
+                })
+                .always(function ()
+                {
+                    NProgress.done();
+                });
+        });
+
+
+        $('a#edit-user').on('click', function ()
+        {
+            var username = $(this).data('username');
+            var email = $(this).data('email');
+            var role = $(this).data('role');
+
+            $(update_selector).find("input#update_username").val(username);
+            $(update_selector).find("input#update_email").val(email);
+            $(update_selector).find("input#update_role").val(role);
+        });
+
+        if ((sessionFlashdata !== undefined) && (sessionFlashdata !== null))
+        {
+            for (var i = -1, is = sessionFlashdata.length; ++i < is;)
+            {
+                $.notify({
+                    message: sessionFlashdata[i]
+                }, {
+                    type: 'info'
+                });
+            }
+        }
+    });
+    /*
+     * Run right away
+     * */
+})(jQuery);
