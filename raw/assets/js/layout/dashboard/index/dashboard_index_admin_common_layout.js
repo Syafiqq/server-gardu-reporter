@@ -24,9 +24,6 @@
 
             var input = form.serializeObject();
 
-            console.log(input);
-            return;
-
             NProgress.start();
             $.ajax({
                 url: form.attr('action'),
