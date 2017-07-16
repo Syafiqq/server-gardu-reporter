@@ -11,7 +11,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
 
 
 /**
- * Class Api
+ * Class Auth
  * @property CI_Form_validation form_validation
  * @property CI_Lang lang
  * @property CI_Loader load
@@ -22,13 +22,8 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  * @property CI_Input input
  * @property CI_Session session
  */
-class Api extends \Restserver\Libraries\MY_REST_Controller
+class Auth extends \Restserver\Libraries\MY_REST_Controller
 {
-
-    /**
-     * @var string
-     */
-    private $authGroup;
     /**
      * @var int
      */
@@ -63,7 +58,6 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library(['ion_auth', 'form_validation']);
         $this->load->helper(['url', 'language']);
 
-        $this->authGroup = 'admin';
         $this->clientGroup = 2;
 
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -74,7 +68,7 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
     /**
      *
      */
-    public function login_post()
+    public function login_post($group = 'admin')
     {
         $this->load->library('session');
         /** @var array $response */
@@ -104,9 +98,9 @@ class Api extends \Restserver\Libraries\MY_REST_Controller
             {
                 $remember = boolval(($this->postOrDefault('remember_me', false)));
 
-                if ($this->ion_auth->login_and_check($data['identity'], $data['password'], $this->authGroup, $remember))
+                if ($this->ion_auth->login_and_check($data['identity'], $data['password'], $group, $remember))
                 {
-                    $response['data']['redirect'] = $this->postOrDefault('redirector', site_url('/'));
+                    $response['data']['redirect'] = $this->postOrDefault('redirector', site_url('/dashboard'));
                     $response['data']['status'] = 1;
                     $flashdata = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
                     $this->session->set_flashdata(['flashdata' => ['message' => $flashdata]]);
