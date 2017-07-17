@@ -99,6 +99,7 @@ class Management extends CI_Controller
 
             $this->lang->load('common/auth/common_auth_common', $this->language);
             $this->lang->load('common/profile/common_profile_common', $this->language);
+            $this->lang->load('common/profile/edit/common_profile_edit_common', $this->language);
             $this->lang->load('common/sidebar/common_sidebar_common', $this->language);
             $this->lang->load('common/auth/common_auth_register_form', $this->language);
             $this->lang->load('common', $this->language);
