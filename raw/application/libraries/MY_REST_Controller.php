@@ -66,6 +66,24 @@ class MY_REST_Controller extends REST_Controller
 
         return $value;
     }
+
+    /**
+     * @param string $key
+     * @param mixed|null $default_value
+     * @param bool $xss_clean
+     * @return mixed|array|null
+     */
+    public function deleteOrDefault($key = null, $default_value = null, $xss_clean = null)
+    {
+        $value = parent::delete($key, $xss_clean);
+
+        if (!$value)
+        {
+            $value = $default_value;
+        }
+
+        return $value;
+    }
 }
 
 ?>
