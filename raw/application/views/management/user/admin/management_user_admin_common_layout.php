@@ -127,6 +127,8 @@ if (!isset($view))
 <script type="text/javascript">
     var sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
 </script>
+<script type="text/javascript" src="/assets/js/layout/common/common_function.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/common/profile/common_profile_edit_common_layout.min.js"></script>
 <script type="text/javascript" src="/assets/js/layout/management/user/admin/management_user_admin_common_layout.min.js"></script>
 </body>
 </html>
