@@ -97,7 +97,7 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
                 if ($this->ion_auth->update($this->session->userdata('user_id'), $data))
                 {
                     $response['data']['status'] = 1;
-                    $response['data']['redirect'] = $this->postOrDefault('redirector', site_url('/dashboard'));
+                    $response['data']['redirect'] = $this->patchOrDefault('redirector', site_url('/dashboard'));
                     $flashdata = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
                     $this->session->set_flashdata(['flashdata' => ['message' => $flashdata]]);
                     $response['data']['message']['message']['update']['success'] = $flashdata;
