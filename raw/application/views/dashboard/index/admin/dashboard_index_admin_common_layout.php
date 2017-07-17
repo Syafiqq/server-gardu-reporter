@@ -63,6 +63,7 @@ if (!isset($view))
     <!-- Start Bootstrap -->
     <link rel="stylesheet" href="/assets/vendor/startbootstrap-sb-admin-2/dist/css/sb-admin-2.min.css">
     <!-- Custom -->
+    <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
     <link rel="stylesheet" href="/assets/css/layout/dashboard/index/admin/dashboard_index_admin_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -162,6 +163,6 @@ if (!isset($view))
 <script type="text/javascript">
     var sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
 </script>
-<script type="text/javascript" src="/assets/js/layout/dashboard/index/dashboard_index_admin_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/dashboard/index/admin/dashboard_index_admin_common_layout.min.js"></script>
 </body>
 </html>
