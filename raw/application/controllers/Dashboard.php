@@ -107,6 +107,7 @@ class Dashboard extends CI_Controller
             $data['profile']['username'] = $_user['username'];
             $data['profile']['email'] = $_user['email'];
             $data['profile']['group'] = 'Admin';
+            $data['update']['redirector'] = site_url('/dashboard');
 
             $string['title'] = $this->lang->line('common_title');
             $string['page_title'] = $this->lang->line("{$this->lang_prefix}_common_layout_page_title");

@@ -38,9 +38,9 @@ if (!isset($data))
                 </div>
             </div>
             <?php echo @form_open('/api/profile/update', 'id="update_form"'); ?>
-            <?php if (!empty(@$data['session']['redirector']))
+            <?php if (!empty(@$data['update']['redirector']))
             {
-                echo @form_hidden('redirector', $data['session']['redirector']);
+                echo @form_hidden('redirector', $data['update']['redirector']);
             } ?>
             <div class="modal-body" id="modal-update">
                 <div class="form-group">
