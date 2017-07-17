@@ -14,5 +14,9 @@ $lang['dashboard_index_admin_common_layout_forbidden_access'] = 'You Are Not All
 $lang['dashboard_index_admin_common_layout_forbidden_access_auth_redirection'] = 'Please Login First.';
 $lang['dashboard_index_admin_common_layout_register_client_username_placeholder'] = 'Enter Your New Username';
 $lang['dashboard_index_admin_common_layout_register_client_email_placeholder'] = 'Enter Your New Email';
+$lang['dashboard_index_admin_common_layout_menu_add_entry'] = 'Tambah Data Pengukuran';
+$lang['dashboard_index_admin_common_layout_menu_add_gardu_centre'] = 'Tambah Data Gardu Induk';
+$lang['dashboard_index_admin_common_layout_menu_add_feeder'] = 'Tambah Data Penyulang';
+$lang['dashboard_index_admin_common_layout_menu_add_gardu'] = 'Tambah Data Gardu';
 ?>
 

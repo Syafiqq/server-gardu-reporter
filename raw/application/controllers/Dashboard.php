@@ -50,6 +50,7 @@ class Dashboard extends CI_Controller
         // Your own constructor code
         $this->load->helper('cookie');
         $this->load->database();
+        /** @noinspection PhpParamsInspection */
         $this->load->library(['ion_auth', 'session']);
 
         $this->language = empty($this->language = get_cookie('common_language')) ? $this->config->item('language') : $this->language;
@@ -107,10 +108,10 @@ class Dashboard extends CI_Controller
             $data['profile']['group'] = 'Admin';
 
             $string['title'] = $this->lang->line('common_title');
-            $string['welcome_message'] = sprintf($this->lang->line('dashboard_index_admin_common_layout_welcome_message'), $data['profile']['username']);
             $string['page_title'] = $this->lang->line("{$this->lang_prefix}_common_layout_page_title");
-            $string['profile_edit'] = $this->lang->line('common_profile_common_edit_button');
             $string['auth_logout'] = $this->lang->line('common_auth_common_logout');
+            $string['profile_edit'] = $this->lang->line('common_profile_common_edit_button');
+
             $string['sidebar_home'] = $this->lang->line('common_sidebar_common_sidebar_home');
             $string['sidebar_recapitulation'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation');
             $string['sidebar_recapitulation_measurement'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation_measurement');
@@ -133,6 +134,12 @@ class Dashboard extends CI_Controller
             $string['inline_client_form_username_id'] = 'username';
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
+
+            $string['welcome_message'] = sprintf($this->lang->line("{$this->lang_prefix}_common_layout_welcome_message"), $data['profile']['username']);
+            $string['menu_add_entry'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_entry");
+            $string['menu_add_gardu_centre'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_gardu_centre");
+            $string['menu_add_feeder'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_feeder");
+            $string['menu_add_gardu'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_gardu");
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
