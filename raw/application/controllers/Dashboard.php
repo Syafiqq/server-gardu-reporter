@@ -93,6 +93,7 @@ class Dashboard extends CI_Controller
 
             $this->lang->load('common/auth/common_auth_common', $this->language);
             $this->lang->load('common/profile/common_profile_common', $this->language);
+            $this->lang->load('common/profile/edit/common_profile_edit_common', $this->language);
             $this->lang->load('common/sidebar/common_sidebar_common', $this->language);
             $this->lang->load('common/auth/common_auth_register_form', $this->language);
             $this->lang->load('common', $this->language);
@@ -128,8 +129,8 @@ class Dashboard extends CI_Controller
             $string['client_form_username_label'] = $this->lang->line('common_auth_register_form_username_label');
             $string['client_form_email_label'] = $this->lang->line('common_auth_register_form_email_label');
             $string['client_form_role_label'] = $this->lang->line('common_auth_register_form_role_label');
-            $string['client_form_username_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_username_placeholder");
-            $string['client_form_email_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_email_placeholder");
+            $string['client_form_username_placeholder'] = $this->lang->line("common_profile_edit_common_client_username_placeholder");
+            $string['client_form_email_placeholder'] = $this->lang->line("common_profile_edit_common_client_email_placeholder");
             $string['inline_client_form_id_id'] = 'id';
             $string['inline_client_form_username_id'] = 'username';
             $string['inline_client_form_email_id'] = 'email';

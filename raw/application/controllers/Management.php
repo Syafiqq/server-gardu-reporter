@@ -134,18 +134,12 @@ class Management extends CI_Controller
             $string['client_form_username_label'] = $this->lang->line('common_auth_register_form_username_label');
             $string['client_form_email_label'] = $this->lang->line('common_auth_register_form_email_label');
             $string['client_form_role_label'] = $this->lang->line('common_auth_register_form_role_label');
-            $string['client_form_username_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_username_placeholder");
-            $string['client_form_email_placeholder'] = $this->lang->line("{$this->lang_prefix}_common_layout_register_client_email_placeholder");
+            $string['client_form_username_placeholder'] = $this->lang->line("common_profile_edit_common_client_username_placeholder");
+            $string['client_form_email_placeholder'] = $this->lang->line("common_profile_edit_common_client_email_placeholder");
             $string['inline_client_form_id_id'] = 'id';
             $string['inline_client_form_username_id'] = 'username';
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
-
-            $string['welcome_message'] = sprintf($this->lang->line("{$this->lang_prefix}_common_layout_welcome_message"), $data['profile']['username']);
-            $string['menu_add_entry'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_entry");
-            $string['menu_add_gardu_centre'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_gardu_centre");
-            $string['menu_add_feeder'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_feeder");
-            $string['menu_add_gardu'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_gardu");
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];

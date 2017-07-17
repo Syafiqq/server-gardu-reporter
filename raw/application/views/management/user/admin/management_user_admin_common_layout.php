@@ -87,44 +87,7 @@ if (!isset($view))
             <!-- Edit Profile -->
             <?php echo @$view['edit_profile'] ?>
 
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        <?php echo @$string['welcome_message'] ?>
-                    </h1>
-                </div>
-            </div>
-            <!-- /.row -->
-            <!-- mulai konten -->
-            <div class="row">
-                <div class="col-lg-4">
-                    <!-- zonk -->
-                </div>
 
-                <div class="col-lg-4">
-                    <div class="row margin-top-50 margin-bottom-50">
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-primary btn-block" onClick="window.location='?page=fn9rec98wf3';"><?php echo @$string['menu_add_entry'] ?></button>
-                        </div>
-                    </div>
-                    <div class="row margin-top-50 margin-bottom-50">
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-default btn-block" onClick="window.location='?page=j9e3x2n9';"><?php echo @$string['menu_add_gardu_centre'] ?></button>
-                        </div>
-                    </div>
-                    <div class="row margin-top-50 margin-bottom-50">
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-default btn-block" onClick="window.location='?page=g55cx09q2';"><?php echo @$string['menu_add_feeder'] ?></button>
-                        </div>
-                    </div>
-                    <div class="row margin-top-50 margin-bottom-50">
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-default btn-block" onClick="window.location='?page=ms4noi32r';"><?php echo @$string['menu_add_gardu'] ?></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- /.container-fluid -->
     </div>
