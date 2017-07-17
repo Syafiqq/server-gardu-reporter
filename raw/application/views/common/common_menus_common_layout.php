@@ -31,7 +31,7 @@ if (!isset($data))
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="index.php" title="Sistem Pendataan Status Gardu Trafo"><?php echo @$string['title'] ?></a>
+        <a class="navbar-brand" href="<?php echo site_url('/') ?>" title="Sistem Pendataan Status Gardu Trafo"><?php echo @$string['title'] ?></a>
     </div>
     <!-- /.navbar-header -->
 
@@ -73,7 +73,7 @@ if (!isset($data))
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="<?php site_url('php') ?>">
+                    <a href="<?php echo site_url('/dashboard') ?>">
                         <i class="fa fa-home fa-fw"></i>
                         <?php echo @$string['sidebar_home'] ?>
                     </a>
