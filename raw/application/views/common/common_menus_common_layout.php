@@ -122,7 +122,7 @@ if (!isset($data))
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="?page=mfoa3i4fcid">
+                    <a href="<?php echo site_url('/management/user') ?>">
                         <i class="fa fa-users fa-fw"></i>
                         <?php echo @$string['sidebar_info_user_management'] ?>
                     </a>
