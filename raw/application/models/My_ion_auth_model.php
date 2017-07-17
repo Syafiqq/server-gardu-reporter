@@ -396,7 +396,7 @@ class My_ion_auth_model extends Ion_auth_model
 
         $this->db->select($select);
         $this->db->from('`users`');
-        $this->db->join('`users_groups`', '`users`.`id` = `users_groups`.`user_id`', 'LEFT OUTER');
+        $this->db->join('`users_groups`', '`users`.`id` = `users_groups`.`user_id`', 'RIGHT OUTER');
         $this->db->join('`groups`', '`users_groups`.`group_id` = `groups`.`id`', 'LEFT OUTER');
         $this->db->order_by('`users`.`id`', 'ASC');
         $this->db->order_by('`groups`.`id`', 'ASC');
