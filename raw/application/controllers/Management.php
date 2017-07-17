@@ -89,8 +89,8 @@ class Management extends CI_Controller
 
     private function _admin_user()
     {
-        $this->lang_prefix = 'dashboard_index_admin';
-        $this->lang_prefix_path = 'dashboard/index/admin';
+        $this->lang_prefix = 'management_user_admin';
+        $this->lang_prefix_path = 'management/user/admin';
         $this->lang->load("layout/$this->lang_prefix_path/{$this->lang_prefix}_common_layout", $this->language);
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
