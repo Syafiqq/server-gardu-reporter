@@ -43,6 +43,7 @@ class Management extends CI_Controller
     private $language;
     private $country;
     private $lang_prefix;
+    private $lang_layout;
     private $lang_prefix_path;
 
     public function __construct()
@@ -90,8 +91,9 @@ class Management extends CI_Controller
     private function _admin_user()
     {
         $this->lang_prefix = 'management_user_admin';
+        $this->lang_layout = 'common_layout';
         $this->lang_prefix_path = 'management/user/admin';
-        $this->lang->load("layout/$this->lang_prefix_path/{$this->lang_prefix}_common_layout", $this->language);
+        $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
@@ -116,7 +118,7 @@ class Management extends CI_Controller
             $data['update']['redirector'] = site_url('/management/user');
 
             $string['title'] = $this->lang->line('common_title');
-            $string['page_title'] = $this->lang->line("{$this->lang_prefix}_common_layout_page_title");
+            $string['page_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_page_title");
             $string['auth_logout'] = $this->lang->line('common_auth_common_logout');
             $string['profile_edit'] = $this->lang->line('common_profile_common_edit_button');
 
@@ -143,25 +145,34 @@ class Management extends CI_Controller
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
 
+            $string['table_header_email'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_email");
+            $string['table_header_username'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_username");
+            $string['table_header_role'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_role");
+            $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
+
+            $meta['retriever'] = site_url('/api/user/find?code=B24AC');
+            $meta['deleter'] = site_url('/api/user/delete');
+            $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
+
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
             $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
 
             $_properties = compact('meta', 'string', 'data');
 
-            $view['sidebar'] = $this->load->view('common/common_menus_common_layout', $_properties, true);
-            $view['edit_profile'] = $this->load->view('common/profile/common_profile_edit_common_layout', $_properties, true);
+            $view['sidebar'] = $this->load->view("common/common_menus_{$this->lang_layout}", $_properties, true);
+            $view['edit_profile'] = $this->load->view("common/profile/common_profile_edit_{$this->lang_layout}", $_properties, true);
 
             $_properties['view'] = $view;
-            $this->load->view("{$this->lang_prefix_path}/{$this->lang_prefix}_common_layout", $_properties);
+            $this->load->view("{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $_properties);
         }
         else
         {
             $this->session->set_flashdata([
                 'flashdata' => [
                     'message' => [
-                        $this->lang->line("{$this->lang_prefix}_common_layout_forbidden_access"),
-                        $this->lang->line("{$this->lang_prefix}_common_layout_forbidden_access_auth_redirection")
+                        $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
+                        $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
                     , 'redirector' => site_url("/{$this->lang_prefix_path}")
                 ]
