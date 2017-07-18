@@ -48,6 +48,11 @@ class User extends \Restserver\Libraries\MY_REST_Controller
     /**
      * @var array $callback_request
      */
+    private $callback_request;
+
+    /**
+     * @var array $callback_request
+     */
 
     public function __construct()
     {
@@ -174,6 +179,130 @@ class User extends \Restserver\Libraries\MY_REST_Controller
 
         $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
         $this->response($response, $response['status']);
+    }
+
+    /**
+     *
+     */
+    public function register_post()
+    {
+        $this->load->library('session');
+        /** @var array $response */
+        $response = [];
+
+        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        {
+            $this->load->library('form_validation');
+
+            /** @var array $data
+             * @var string $identity_column
+             */
+            $data = [];
+
+            $data['username'] = $this->postOrDefault('username', null);
+            $data['email'] = $this->postOrDefault('email', null);
+            $data['password'] = $this->postOrDefault('password', null);
+            $data['password_conf'] = $this->postOrDefault('password_conf', null);
+            $data['role'] = $this->postOrDefault('role', null);
+
+            $this->lang->load(['common/auth/common_auth_register_form', 'auth'], $this->language);
+
+            $this->callback_request['_email_existence_check'] = true;
+            $this->callback_request['_role_existence_check'] = true;
+
+            $this->form_validation->set_data($data);
+
+            // validate form input
+            $this->form_validation->set_rules('username', $this->lang->line('common_auth_register_form_username_label'), 'required');
+            $this->form_validation->set_rules('email', $this->lang->line('common_auth_register_form_email_label'), 'required|valid_email|callback__email_existence_check');
+            $this->form_validation->set_rules('role', $this->lang->line('common_auth_register_form_role_label'), 'required|callback__role_existence_check');
+            $this->form_validation->set_rules('password', $this->lang->line('common_auth_register_form_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_conf]');
+            $this->form_validation->set_rules('password_conf', $this->lang->line('common_auth_register_form_password_confirmation_label'), 'required');
+
+            $isValid = $this->form_validation->run();
+            if ($isValid)
+            {
+                $data['email'] = strtolower($data['email']);
+                if ($this->ion_auth->register($data['username'], $data['password'], $data['email'], [], [$data['role']]))
+                {
+                    $response['data']['status'] = 1;
+                    $response['data']['message']['message']['register']['success'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
+                }
+                else
+                {
+                    $response['data']['status'] = 0;
+                    $response['data']['message']['message']['register']['danger'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->errors())));
+                }
+            }
+            else
+            {
+                $response['data']['status'] = 0;
+                $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
+            }
+            $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
+            $response['data']['csrf']['hash'] = $this->security->get_csrf_hash();
+        }
+        else
+        {
+            $this->lang->load('ion_auth_extended', $this->language);
+
+            $response['data']['message']['message']['register']['info'] = [$this->lang->line('client_account_creation_forbidden')];
+        }
+
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
+
+    /**
+     * @param $email
+     * @return bool|mixed
+     */
+    public function _email_existence_check($email)
+    {
+        if (empty($this->callback_request['_email_existence_check']))
+        {
+            show_404();
+        }
+        else
+        {
+            if ($this->ion_auth->email_check($email))
+            {
+                $this->form_validation->set_message('_email_existence_check', $this->lang->line('form_validation_is_unique'));
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * @param $role
+     * @return bool|mixed
+     */
+    public function _role_existence_check($role)
+    {
+        if (empty($this->callback_request['_role_existence_check']))
+        {
+            show_404();
+        }
+        else
+        {
+            if (is_null($this->ion_auth->group($role)->result_array()))
+            {
+                $this->lang->load('ion_auth_extended', $this->language);
+
+                $this->form_validation->set_message('_role_existence_check', $this->lang->line('check_role_undefined'));
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
 
