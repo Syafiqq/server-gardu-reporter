@@ -145,6 +145,28 @@ class Management extends CI_Controller
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
 
+            $string['client_creation_register'] = $this->lang->line('common_auth_common_register');
+            $string['client_creation_reset'] = $this->lang->line('common_auth_common_reset');
+            $string['client_register_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_client_title");
+            $string['client_creation_form_username_label'] = $this->lang->line('common_auth_register_form_username_label');
+            $string['client_creation_form_identity_label'] = $this->lang->line('common_auth_register_form_email_label');
+            $string['client_creation_form_password_label'] = $this->lang->line('common_auth_register_form_password_label');
+            $string['client_creation_form_role_label'] = $this->lang->line('common_auth_register_form_role_label');
+            $string['client_creation_form_password_confirmation_label'] = $this->lang->line('common_auth_register_form_password_confirmation_label');
+            $string['client_creation_form_username_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_client_username_placeholder");
+            $string['client_creation_form_identity_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_client_email_placeholder");
+            $string['client_creation_form_password_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_client_password_placeholder");
+            $string['client_creation_form_password_confirmation_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_client_password_confirmation_placeholder");
+            $string['inline_client_creation_form_username_id'] = 'username';
+            $string['inline_client_creation_form_identity_id'] = 'email';
+            $string['inline_client_creation_form_role_id'] = 'role';
+            $string['inline_client_creation_form_password_id'] = 'password';
+            $string['inline_client_creation_form_password_confirmation_id'] = 'password_conf';
+            $string['inline_client_creation_form_role_admin_id'] = '1';
+            $string['inline_client_creation_form_role_members_id'] = '2';
+            $string['inline_client_creation_form_role_admin_label'] = 'Admin';
+            $string['inline_client_creation_form_role_members_label'] = 'User';
+
             $string['table_header_email'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_email");
             $string['table_header_username'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_username");
             $string['table_header_role'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_role");
