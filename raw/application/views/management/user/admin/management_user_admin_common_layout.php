@@ -92,46 +92,52 @@ if (!isset($view))
             <?php echo $view['edit_profile'] ?>
 
             <!--====================================================================================================-->
-            <div id="tambah" class="modal fade" role="dialog">
+            <div id="create_user" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Tambah Data Baru</h4>
+                            <h4 class="modal-title"><?php echo @$string['client_register_title'] ?></h4>
+                        </div>
+                        <div class="row margin-top-20">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div id="form-message-container">
+                                </div>
+                            </div>
+                        </div>
+                        <?php echo @form_open('/api/user/register', 'id="register"'); ?>
+                        <div class="modal-body" id="modal-add">
+                            <div class="form-group">
+                                <label class="control-label" for="<?php echo @$string['inline_client_creation_form_username_id'] ?>"><?php echo @$string['client_creation_form_username_label'] ?></label>
+                                <input type="text" name="<?php echo @$string['inline_client_creation_form_username_id'] ?>" class="form-control" id="<?php echo @$string['inline_client_creation_form_username_id'] ?>" placeholder="<?php echo @$string['client_creation_form_username_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="<?php echo @$string['inline_client_creation_form_identity_id'] ?>"><?php echo @$string['client_creation_form_identity_label'] ?></label>
+                                <input type="text" name="<?php echo @$string['inline_client_creation_form_identity_id'] ?>" class="form-control" id="<?php echo @$string['inline_client_creation_form_identity_id'] ?>" placeholder="<?php echo @$string['client_creation_form_identity_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="<?php echo @$string['inline_client_creation_form_password_id'] ?>"><?php echo @$string['client_creation_form_password_label'] ?></label>
+                                <input type="password" name="<?php echo @$string['inline_client_creation_form_password_id'] ?>" class="form-control" id="<?php echo @$string['inline_client_creation_form_password_id'] ?>" placeholder="<?php echo @$string['client_creation_form_password_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="<?php echo @$string['inline_client_creation_form_password_confirmation_id'] ?>"><?php echo @$string['client_creation_form_password_confirmation_label'] ?></label>
+                                <input type="password" name="<?php echo @$string['inline_client_creation_form_password_confirmation_id'] ?>" class="form-control" id="<?php echo @$string['inline_client_creation_form_password_confirmation_id'] ?>" placeholder="<?php echo @$string['client_creation_form_password_confirmation_placeholder'] ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="<?php echo @$string['inline_client_creation_form_role_id'] ?>"><?php echo @$string['client_creation_form_role_label'] ?></label>
+                                <select class="form-control" name="<?php echo @$string['inline_client_creation_form_role_id'] ?>" id="<?php echo @$string['inline_client_creation_form_role_id'] ?>">
+                                    <option value="<?php echo @$string['inline_client_creation_form_role_admin_id'] ?>"><?php echo @$string['inline_client_creation_form_role_admin_label'] ?></option>
+                                    <option value="<?php echo @$string['inline_client_creation_form_role_members_id'] ?>"><?php echo @$string['inline_client_creation_form_role_members_label'] ?></option>
+                                </select>
+                            </div>
                         </div>
 
-                        <form id="reg-form" autocomplete="off" action="" method="post" enctype="multipart/form-data">
-                            <div class="modal-body" id="modal-add">
-                                <div class="form-group">
-                                    <label class="control-label" for="usrnm">Username</label>
-                                    <input type="text" name="usrnm" class="form-control" id="usrnm" placeholder="Masukkan Username" required>
-                                    <span id="result"></span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label" for="pass">Password</label>
-                                    <input type="password" name="pass" class="form-control" id="pass" placeholder="Masukkan Password" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label" for="nmfull">Nama Lengkap</label>
-                                    <input type="text" name="nmfull" class="form-control" id="nmfull" placeholder="Masukkan Nama Lengkap" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label" for="level">Level</label>
-                                    <select class="form-control" name="level" id="level">
-                                        <option value="User">User</option>
-                                        <option value="Admin">Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer" id="modal-to">
-                                <button type="reset" class="btn btn-danger">Reset</button>
-                                <input type="submit" class="btn btn-primary" name="tambah" value="Simpan">
-                            </div>
-                        </form>
+                        <div class="modal-footer" id="modal-to">
+                            <button type="reset" class="btn btn-danger"><?php echo @$string['client_creation_reset'] ?></button>
+                            <input type="submit" class="btn btn-primary" value="<?php echo @$string['client_creation_register'] ?>">
+                        </div>
+                        <?php echo @form_close() ?>
                     </div>
                 </div>
             </div>
@@ -145,7 +151,7 @@ if (!isset($view))
             <!-- mulai konten -->
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#tambah">
+                    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="div#create_user">
                         <i class="fa fa-plus"></i>
                         Tambah Data
                     </button>
