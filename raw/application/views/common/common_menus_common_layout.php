@@ -110,7 +110,7 @@ if (!isset($data))
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="?page=j9e3x2n9"><?php echo @$string['sidebar_info_gardu_hq'] ?></a>
+                            <a href="<?php echo site_url('/gardu/induk') ?>"><?php echo @$string['sidebar_info_gardu_hq'] ?></a>
                         </li>
                         <li>
                             <a href="?page=g55cx09q2"><?php echo @$string['sidebar_info_gardu_feeder'] ?></a>
