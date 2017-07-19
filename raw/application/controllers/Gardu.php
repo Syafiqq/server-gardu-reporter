@@ -154,6 +154,14 @@ class Gardu extends CI_Controller
             $string['item_creation_form_name_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_name_placeholder");
             $string['item_creation_form_id_id'] = 'id';
             $string['item_creation_form_name_id'] = 'name';
+            $string['item_manipulation_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_title");
+            $string['item_manipulation_update'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_button");
+            $string['item_manipulation_reset'] = $string['item_creation_reset'];
+            $string['item_manipulation_form_id_label'] = $string['item_creation_form_id_label'];
+            $string['item_manipulation_form_name_label'] = $string['item_creation_form_name_label'];
+            $string['item_manipulation_form_name_placeholder'] = $string['item_creation_form_name_placeholder'];
+            $string['item_manipulation_form_id_id'] = $string['item_creation_form_id_id'];
+            $string['item_manipulation_form_name_id'] = $string['item_creation_form_name_id'];
 
             //Table
             $string['add_new_item'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_add_new_item");
