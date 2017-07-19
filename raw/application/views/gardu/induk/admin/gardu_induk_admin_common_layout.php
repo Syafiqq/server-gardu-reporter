@@ -99,7 +99,7 @@ if (!isset($view))
                         </div>
                         <div class="row margin-top-20">
                             <div class="col-xs-10 col-xs-offset-1">
-                                <div id="form-message-container">
+                                <div id="form-creation-message-container">
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@ if (!isset($view))
                         </div>
                         <div class="row margin-top-20">
                             <div class="col-xs-10 col-xs-offset-1">
-                                <div id="form-message-container">
+                                <div id="form-update-message-container">
                                 </div>
                             </div>
                         </div>

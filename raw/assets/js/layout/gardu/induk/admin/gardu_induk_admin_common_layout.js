@@ -79,17 +79,7 @@
                                                         }
                                                         else
                                                         {
-                                                            var template = '<div class="alert alert-' + status[k] + ' alert-dismissible">'
-                                                                + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
-                                                                + '<ul>';
-                                                            //noinspection JSDuplicatedDeclaration
-                                                            for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
-                                                            {
-                                                                template += '<li>' + response['data']['message'][kind[i]][type[j]][status[k]][l] + '</li>'
-                                                            }
-                                                            template += '</ul>'
-                                                                + '</div>';
-                                                            $("div#form-message-container").empty().append(template);
+
                                                         }
                                                     }
                                                 }
@@ -186,17 +176,6 @@
                                                     }
                                                     else
                                                     {
-                                                        var template = '<div class="alert alert-' + status[k] + ' alert-dismissible">'
-                                                            + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
-                                                            + '<ul>';
-                                                        //noinspection JSDuplicatedDeclaration
-                                                        for (l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
-                                                        {
-                                                            template += '<li>' + response['data']['message'][kind[i]][type[j]][status[k]][l] + '</li>'
-                                                        }
-                                                        template += '</ul>'
-                                                            + '</div>';
-                                                        $("div#form-message-container").empty().append(template);
                                                     }
                                                 }
                                             }
@@ -286,7 +265,7 @@
                                                         }
                                                         template += '</ul>'
                                                             + '</div>';
-                                                        $("div#form-message-container").empty().append(template);
+                                                        $("div#form-creation-message-container").empty().append(template);
                                                     }
                                                 }
                                             }
@@ -381,7 +360,7 @@
                                                         }
                                                         template += '</ul>'
                                                             + '</div>';
-                                                        $("div#form-message-container").empty().append(template);
+                                                        $("div#form-update-message-container").empty().append(template);
                                                     }
                                                 }
                                             }
