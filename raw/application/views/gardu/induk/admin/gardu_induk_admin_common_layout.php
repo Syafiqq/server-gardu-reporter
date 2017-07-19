@@ -106,17 +106,46 @@ if (!isset($view))
                         <?php echo @form_open('/api/gardu/induk/register', 'id="create_gardu_induk"'); ?>
                         <div class="modal-body" id="modal-add">
                             <div class="form-group">
-                                <label class="control-label" for="<?php echo @$string['item_creation_form_id_id'] ?>"><?php echo @$string['item_creation_form_id_label'] ?></label>
-                                <input type="text" name="<?php echo @$string['item_creation_form_id_id'] ?>" class="form-control" id="<?php echo @$string['item_creation_form_id_id'] ?>" placeholder="<?php echo @$string['item_creation_form_id_placeholder'] ?>">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_id'] ?>"><?php echo @$string['item_creation_form_id_label'] ?></label>
+                                <input type="text" name="<?php echo @$string['item_creation_form_id_id'] ?>" class="form-control" id="create_<?php echo @$string['item_creation_form_id_id'] ?>" placeholder="<?php echo @$string['item_creation_form_id_placeholder'] ?>">
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="<?php echo @$string['item_creation_form_name_id'] ?>"><?php echo @$string['item_creation_form_name_label'] ?></label>
-                                <input type="text" name="<?php echo @$string['item_creation_form_name_id'] ?>" class="form-control" id="<?php echo @$string['item_creation_form_name_id'] ?>" placeholder="<?php echo @$string['item_creation_form_name_placeholder'] ?>">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_name_id'] ?>"><?php echo @$string['item_creation_form_name_label'] ?></label>
+                                <input type="text" name="<?php echo @$string['item_creation_form_name_id'] ?>" class="form-control" id="create_<?php echo @$string['item_creation_form_name_id'] ?>" placeholder="<?php echo @$string['item_creation_form_name_placeholder'] ?>">
                             </div>
                         </div>
                         <div class="modal-footer" id="modal-to">
                             <button type="reset" class="btn btn-danger"><?php echo @$string['item_creation_reset'] ?></button>
                             <input type="submit" class="btn btn-primary" value="<?php echo @$string['item_creation_register'] ?>">
+                        </div>
+                        <?php echo @form_close() ?>
+                    </div>
+                </div>
+            </div>
+            <div id="update_item" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><?php echo @$string['item_manipulation_title'] ?></h4>
+                        </div>
+                        <div class="row margin-top-20">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <div id="form-message-container">
+                                </div>
+                            </div>
+                        </div>
+                        <?php echo @form_open('/api/gardu/induk/update', 'id="update_gardu_induk"'); ?>
+                        <div class="modal-body" id="modal-add">
+                            <input type="hidden" name="<?php echo @$string['item_manipulation_form_id_id'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_id'] ?>">
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_name_id'] ?>"><?php echo @$string['item_manipulation_form_name_label'] ?></label>
+                                <input type="text" name="<?php echo @$string['item_manipulation_form_name_id'] ?>" class="form-control" id="update_<?php echo @$string['item_manipulation_form_name_id'] ?>" placeholder="<?php echo @$string['item_manipulation_form_name_placeholder'] ?>">
+                            </div>
+                        </div>
+                        <div class="modal-footer" id="modal-to">
+                            <button type="reset" class="btn btn-danger"><?php echo @$string['item_manipulation_reset'] ?></button>
+                            <input type="submit" class="btn btn-primary" value="<?php echo @$string['item_manipulation_update'] ?>">
                         </div>
                         <?php echo @form_close() ?>
                     </div>

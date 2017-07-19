@@ -23,4 +23,6 @@ $lang['gardu_induk_admin_common_layout_item_creation_form_id_label'] = 'ID Gardu
 $lang['gardu_induk_admin_common_layout_item_creation_form_name_label'] = 'Nama Gardu Induk';
 $lang['gardu_induk_admin_common_layout_item_creation_form_id_placeholder'] = 'Masukkan ID Gardu Induk';
 $lang['gardu_induk_admin_common_layout_item_creation_form_name_placeholder'] = 'Masukkan Nama Gardu Induk';
+$lang['gardu_induk_admin_common_layout_update_existing_item_title'] = 'Perbarui Data Gardu Induk';
+$lang['gardu_induk_admin_common_layout_update_existing_item_button'] = 'Simpan';
 ?>
