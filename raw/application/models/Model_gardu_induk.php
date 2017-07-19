@@ -76,6 +76,13 @@ class Model_gardu_induk extends CI_Model
 
         return is_bool($result) ? $result : true;
     }
+
+    public function update($id, $data)
+    {
+        $this->db->where('`id_tb_gardu_induk`', $id);
+
+        return $this->db->update('`datagarduinduk_tb`', $data);
+    }
 }
 
 ?>
