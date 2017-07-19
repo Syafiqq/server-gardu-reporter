@@ -199,7 +199,7 @@
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user=" + content['user_id'] + " dx-group=" + content['group_id'] + " type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button></a>";
+                                var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['user_id'] + "' dx-group='" + content['group_id'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button></a>";
                                 table.row.add([content['user_email'], content['user_username'], content['group_description'], del]);
                             }
                             table.draw(true);
