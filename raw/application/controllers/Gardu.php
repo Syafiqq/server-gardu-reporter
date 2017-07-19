@@ -99,6 +99,7 @@ class Gardu extends CI_Controller
             $this->lang->load('common/profile/common_profile_common', $this->language);
             $this->lang->load('common/profile/edit/common_profile_edit_common', $this->language);
             $this->lang->load('common/sidebar/common_sidebar_common', $this->language);
+            $this->lang->load('common/auth/common_auth_register_form', $this->language);
             $this->lang->load('common', $this->language);
 
             $string = [];
@@ -142,6 +143,23 @@ class Gardu extends CI_Controller
             $string['inline_client_form_username_id'] = 'username';
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
+
+            //Item Creation Form
+            $string['item_creation_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_new_item_title");
+            $string['item_creation_register'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_new_item_button");
+            $string['item_creation_reset'] = $this->lang->line('common_auth_common_reset');
+            $string['item_creation_form_id_label'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_id_label");
+            $string['item_creation_form_name_label'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_name_label");
+            $string['item_creation_form_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_id_placeholder");
+            $string['item_creation_form_name_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_name_placeholder");
+            $string['item_creation_form_id_id'] = 'id';
+            $string['item_creation_form_name_id'] = 'name';
+
+            //Table
+            $string['add_new_item'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_add_new_item");
+            $string['table_header_code'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_code");
+            $string['table_header_name'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_name");
+            $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
 
             $meta['retriever'] = site_url('/api/gardu/induk/find?code=C41AF');
             $meta['deleter'] = site_url('/api/gardu/induk/delete');
