@@ -285,6 +285,17 @@
                         {
                             $(form).find('input:hidden[name=' + response['data']['csrf']['name'] + ']').val(response['data']['csrf']['hash']);
                         }
+
+                        if (response['data']['status'] !== undefined)
+                        {
+                            if (response['data']['status'] === 1)
+                            {
+                                $(form).find('input:text, input:password').each(function ()
+                                {
+                                    $(this).val('');
+                                });
+                            }
+                        }
                     }
                 })
                 .fail(function ()
