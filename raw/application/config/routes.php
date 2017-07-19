@@ -52,7 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'default_route';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
-$route['admin/api/register/client'] = '/admin/api/register_client';
+$route['api/gardu/induk/find'] = '/api/gardu/induk_find';
+$route['api/gardu/induk/register'] = '/api/gardu/induk_register';
 
 $route['api/mobile/(:any)'] = 'api/mobile/$1';
 $route['api/(:any)'] = 'api/default_route/$1';
