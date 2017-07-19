@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = true;
 $route['api/gardu/induk/find'] = '/api/gardu/induk_find';
 $route['api/gardu/induk/register'] = '/api/gardu/induk_register';
 $route['api/gardu/induk/delete'] = '/api/gardu/induk_delete';
+$route['api/gardu/induk/update'] = '/api/gardu/induk_update';
 
 $route['api/mobile/(:any)'] = 'api/mobile/$1';
 $route['api/(:any)'] = 'api/default_route/$1';
