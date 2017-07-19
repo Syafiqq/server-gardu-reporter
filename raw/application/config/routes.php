@@ -56,6 +56,10 @@ $route['api/gardu/induk/find'] = '/api/gardu/induk_find';
 $route['api/gardu/induk/register'] = '/api/gardu/induk_register';
 $route['api/gardu/induk/delete'] = '/api/gardu/induk_delete';
 $route['api/gardu/induk/update'] = '/api/gardu/induk_update';
+$route['api/gardu/penyulang/find'] = '/api/gardu/penyulang_find';
+$route['api/gardu/penyulang/register'] = '/api/gardu/penyulang_register';
+$route['api/gardu/penyulang/delete'] = '/api/gardu/penyulang_delete';
+$route['api/gardu/penyulang/update'] = '/api/gardu/penyulang_update';
 
 $route['api/mobile/(:any)'] = 'api/mobile/$1';
 $route['api/(:any)'] = 'api/default_route/$1';
