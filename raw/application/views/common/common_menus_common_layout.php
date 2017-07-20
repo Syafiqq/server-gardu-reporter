@@ -116,7 +116,7 @@ if (!isset($data))
                             <a href="<?php echo site_url('/gardu/penyulang') ?>"><?php echo @$string['sidebar_info_gardu_feeder'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=ms4noi32r"><?php echo @$string['sidebar_info_gardu_data'] ?></a>
+                            <a href="<?php echo site_url('/gardu') ?>"><?php echo @$string['sidebar_info_gardu_data'] ?></a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
