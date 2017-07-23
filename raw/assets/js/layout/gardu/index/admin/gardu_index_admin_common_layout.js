@@ -125,15 +125,39 @@
         $(table_report).on('click', 'button.c-upd-button', function (event) {
             event.preventDefault();
 
-            var user_id = $(this).attr('dx-user');
-            var user_content = $(this).attr('dx-content');
-            if (user_id !== undefined
-                && user_content !== undefined
+            var c_jenis = $(this).attr('dx-jenis');
+            var c_no = $(this).attr('dx-no');
+            var c_lokasi = $(this).attr('dx-lokasi');
+            var c_merk = $(this).attr('dx-merk');
+            var c_serial = $(this).attr('dx-serial');
+            var c_fasa = $(this).attr('dx-fasa');
+            var c_tap = $(this).attr('dx-tap');
+            var c_jurusan = $(this).attr('dx-jurusan');
+            var c_lat = $(this).attr('dx-lat');
+            var c_long = $(this).attr('dx-long');
+            if (c_jenis !== undefined
+                && c_no !== undefined
+                && c_lokasi !== undefined
+                && c_merk !== undefined
+                && c_serial !== undefined
+                && c_fasa !== undefined
+                && c_tap !== undefined
+                && c_jurusan !== undefined
+                && c_lat !== undefined
+                && c_long !== undefined
                 && editer !== undefined)
             {
                 var update_form_selector = 'form#update_gardu_index';
-                $(update_form_selector).find("input#update_id").val(user_id);
-                $(update_form_selector).find("input#update_name").val(user_content);
+                $(update_form_selector).find("input#update_no").val(c_no);
+                $(update_form_selector).find("input#update_lokasi").val(c_lokasi);
+                $(update_form_selector).find("input#update_merk").val(c_merk);
+                $(update_form_selector).find("input#update_serial").val(c_serial);
+                $(update_form_selector).find("input#update_fasa").val(c_fasa);
+                $(update_form_selector).find("input#update_tap").val(c_tap);
+                $(update_form_selector).find("input#update_jurusan").val(c_jurusan);
+                $(update_form_selector).find("input#update_lat").val(c_lat);
+                $(update_form_selector).find("input#update_long").val(c_long);
+                $(update_form_selector).find("select#update_jenis").find("option[value=\"" + c_jenis + "\"]").prop('selected', true);
                 $('div#update_item').modal('show');
             }
         });
@@ -197,8 +221,20 @@
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
+                                console.log(content);
                                 var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['no'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button>";
-                                var upd = "<button class='btn btn-info btn-xs c-upd-button' dx-user='" + content['induk_id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button>";
+                                var upd = "<button class='btn btn-info btn-xs c-upd-button' " +
+                                    "dx-jenis='" + content['jenis'] + "' " +
+                                    "dx-no='" + content['no'] + "' " +
+                                    "dx-lokasi='" + content['lokasi'] + "' " +
+                                    "dx-merk='" + content['merk'] + "' " +
+                                    "dx-serial='" + content['serial'] + "' " +
+                                    "dx-fasa='" + content['fasa'] + "' " +
+                                    "dx-tap='" + content['tap'] + "' " +
+                                    "dx-jurusan='" + content['jurusan'] + "' " +
+                                    "dx-lat='" + content['lat'] + "' " +
+                                    "dx-long='" + content['long'] + "' " +
+                                    "type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button>";
                                 var dtl = "<a class='btn btn-info btn-xs' type='button' href='" + sprintf(detail, content['no']) + "' data-toggle='tooltip' data-placement='right' title='Detail'><i class='fa fa-search'></i></a>";
                                 table.row.add([content['induk_id'], content['penyulang_id'], content['no'], content['lokasi'], dtl + "&nbsp;&nbsp;" + upd + "&nbsp;&nbsp;" + del]);
                             }
