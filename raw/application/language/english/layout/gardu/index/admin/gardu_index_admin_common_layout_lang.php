@@ -9,7 +9,7 @@
 
 /** @var $lang array */
 //Page Propertis======================================================================================================
-$lang['gardu_index_admin_common_layout_page_title'] = 'Data Gardu';
+$lang['gardu_index_admin_common_layout_page_title'] = 'Data Gardu Trafo';
 $lang['gardu_index_admin_common_layout_add_new_item'] = 'Tambah Data';
 
 
