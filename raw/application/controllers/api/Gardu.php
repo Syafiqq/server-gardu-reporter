@@ -712,7 +712,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         `datagardu_tb`.`merk_trafo` AS 'merk', 
         `datagardu_tb`.`no_seri_trafo` AS 'serial', 
         `datagardu_tb`.`daya_trafo` AS 'daya', 
-        `datagardu_tb`.`fasa` AS 'fase', 
+        `datagardu_tb`.`fasa` AS 'fasa', 
         `datagardu_tb`.`tap` AS 'tap', 
         `datagardu_tb`.`jml_jurusan` AS 'jurusan', 
         `datagardu_tb`.`latitude` AS 'lat', 
@@ -890,9 +890,17 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['id_tb_gardu_penyulang'] = $this->patchOrDefault('id', null);
-            $data['nama_penyulang'] = $this->patchOrDefault('name', null);
-
+            $data['jns_gardu'] = $this->patchOrDefault('jenis', null);
+            $data['no_gardu'] = $this->patchOrDefault('no', null);
+            $data['lokasi'] = $this->patchOrDefault('lokasi', null);
+            $data['merk_trafo'] = $this->patchOrDefault('merk', null);
+            $data['no_seri_trafo'] = $this->patchOrDefault('serial', null);
+            $data['fasa'] = $this->patchOrDefault('fasa', null);
+            $data['tap'] = $this->patchOrDefault('tap', null);
+            $data['jml_jurusan'] = $this->patchOrDefault('jurusan', null);
+            $data['latitude'] = $this->patchOrDefault('lat', null);
+            $data['longitude'] = $this->patchOrDefault('long', null);
+            
             $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $this->callback_request['_id_gardu_index_existence_check'] = true;
@@ -901,16 +909,23 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $this->form_validation->set_data($data);
 
             // validate form input
-            $this->form_validation->set_rules('id_tb_gardu_penyulang', $this->lang->line('gardu_index_common_form_id_label'), 'required|callback__id_gardu_index_existence_check');
-            $this->form_validation->set_rules('nama_penyulang', $this->lang->line('gardu_index_common_form_name_label'), 'required');
-
+            $this->form_validation->set_rules('jns_gardu', $this->lang->line('gardu_index_common_form_jenis_label'), 'required|in_list[Portal,Cantol]');
+            $this->form_validation->set_rules('no_gardu', $this->lang->line('gardu_index_common_form_no_label'), 'required|callback__id_gardu_index_existence_check');
+            $this->form_validation->set_rules('lokasi', $this->lang->line('gardu_index_common_form_lokasi_label'), 'required');
+            $this->form_validation->set_rules('merk_trafo', $this->lang->line('gardu_index_common_form_merk_label'), 'required');
+            $this->form_validation->set_rules('no_seri_trafo', $this->lang->line('gardu_index_common_form_serial_label'), 'required');
+            $this->form_validation->set_rules('fasa', $this->lang->line('gardu_index_common_form_fasa_label'), 'required');
+            $this->form_validation->set_rules('tap', $this->lang->line('gardu_index_common_form_tap_label'), 'required|integer');
+            $this->form_validation->set_rules('jml_jurusan', $this->lang->line('gardu_index_common_form_jurusan_label'), 'required|integer');
+            $this->form_validation->set_rules('latitude', $this->lang->line('gardu_index_common_form_lat_label'), 'required');
+            $this->form_validation->set_rules('longitude', $this->lang->line('gardu_index_common_form_long_label'), 'required');
+            
             $isValid = $this->form_validation->run();
-            $isValid &= (($data['id_tb_gardu_penyulang'] = intval($data['id_tb_gardu_penyulang'])) != 0);
             if ($isValid)
             {
                 $this->load->model('model_gardu_index', 'mgidx');
-                $id = $data['id_tb_gardu_penyulang'];
-                unset($data['id_tb_gardu_penyulang']);
+                $id = $data['no_gardu'];
+                unset($data['no_gardu']);
                 if ($this->mgidx->update($id, $data))
                 {
                     $response['data']['status'] = 1;
