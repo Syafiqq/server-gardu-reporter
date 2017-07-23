@@ -17,7 +17,7 @@
 
 (function ($) {
     $(function () {
-        var table_report = 'table#table_gardu_penyulang';
+        var table_report = 'table#table_gardu_index';
         var table = $(table_report).DataTable({
             "paging": true,
             "lengthChange": false,
@@ -127,7 +127,7 @@
                 && user_content !== undefined
                 && editer !== undefined)
             {
-                var update_form_selector = 'form#update_gardu_penyulang';
+                var update_form_selector = 'form#update_gardu_index';
                 $(update_form_selector).find("input#update_id").val(user_id);
                 $(update_form_selector).find("input#update_name").val(user_content);
                 $('div#update_item').modal('show');
@@ -186,9 +186,9 @@
                             }
                         }
 
-                        if (response['data']['gardu_penyulang'] !== undefined)
+                        if (response['data']['gardu_index'] !== undefined)
                         {
-                            var contents = response['data']['gardu_penyulang'];
+                            var contents = response['data']['gardu_index'];
                             table.clear();
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
@@ -207,7 +207,7 @@
                 });
         };
 
-        $('form#create_gardu_penyulang').on('submit', function (event) {
+        $('form#create_gardu_index').on('submit', function (event) {
             event.preventDefault();
             var form = $(this);
 
@@ -296,7 +296,7 @@
                 });
         });
 
-        $('form#update_gardu_penyulang').on('submit', function (event) {
+        $('form#update_gardu_index').on('submit', function (event) {
             event.preventDefault();
             var form = $(this);
 
