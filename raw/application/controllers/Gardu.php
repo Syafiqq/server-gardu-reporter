@@ -176,6 +176,7 @@ class Gardu extends CI_Controller
             $meta['retriever'] = site_url('/api/gardu/index/find?code=FE37A');
             $meta['deleter'] = site_url('/api/gardu/index/delete');
             $meta['editer'] = site_url('/api/gardu/index/update');
+            $meta['detail'] = site_url('/gardu/detail?gardu=%s');
             $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
