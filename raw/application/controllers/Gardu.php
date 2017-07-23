@@ -169,7 +169,7 @@ class Gardu extends CI_Controller
             $string['table_header_name'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_name");
             $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
 
-            $meta['retriever'] = site_url('/api/gardu/index/find?code=B28FE');
+            $meta['retriever'] = site_url('/api/gardu/index/find?code=FE37A');
             $meta['deleter'] = site_url('/api/gardu/index/delete');
             $meta['editer'] = site_url('/api/gardu/index/update');
             $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
