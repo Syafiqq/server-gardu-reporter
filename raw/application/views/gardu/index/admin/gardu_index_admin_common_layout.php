@@ -68,7 +68,7 @@ if (!isset($view))
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
     <!-- Custom -->
     <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
-    <link rel="stylesheet" href="/assets/css/layout/gardu/penyulang/admin/gardu_penyulang_admin_common_layout.min.css">
+    <link rel="stylesheet" href="/assets/css/layout/gardu/index/admin/gardu_index_admin_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -104,7 +104,7 @@ if (!isset($view))
                                 </div>
                             </div>
                         </div>
-                        <?php echo @form_open('/api/gardu/penyulang/register', 'id="create_gardu_penyulang"'); ?>
+                        <?php echo @form_open('/api/gardu/index/register', 'id="create_gardu_index"'); ?>
                         <div class="modal-body" id="modal-add">
                             <div class="form-group">
                                 <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_id'] ?>"><?php echo @$string['item_creation_form_id_label'] ?></label>
@@ -136,7 +136,7 @@ if (!isset($view))
                                 </div>
                             </div>
                         </div>
-                        <?php echo @form_open('/api/gardu/penyulang/update', 'id="update_gardu_penyulang"'); ?>
+                        <?php echo @form_open('/api/gardu/index/update', 'id="update_gardu_index"'); ?>
                         <div class="modal-body" id="modal-add">
                             <input type="hidden" name="<?php echo @$string['item_manipulation_form_id_id'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_id'] ?>">
                             <div class="form-group">
@@ -175,7 +175,7 @@ if (!isset($view))
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table id="table_gardu_penyulang" class="table table-bordered table-hover table-striped">
+                            <table id="table_gardu_index" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th><?php echo @$string['table_header_code'] ?></th>
@@ -242,7 +242,7 @@ if (!isset($view))
 </script>
 <script type="text/javascript" src="/assets/js/layout/common/common_function.min.js"></script>
 <script type="text/javascript" src="/assets/js/layout/common/profile/common_profile_edit_common_layout.min.js"></script>
-<script type="text/javascript" src="/assets/js/layout/gardu/penyulang/admin/gardu_penyulang_admin_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/gardu/index/admin/gardu_index_admin_common_layout.min.js"></script>
 </body>
 </html>
 
