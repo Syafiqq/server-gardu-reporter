@@ -32,6 +32,7 @@
         var retriever = $('meta[name="retriever"]').attr('content');
         var deleter = $('meta[name="deleter"]').attr('content');
         var editer = $('meta[name="editer"]').attr('content');
+        var detail = $('meta[name="detail"]').attr('content');
         var creator = $('meta[name="creator"]').attr('content');
 
         $(table_report).on('click', 'button.c-del-button', function (event) {
@@ -195,7 +196,7 @@
                                 var content = contents[i];
                                 var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['induk_id'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button>";
                                 var upd = "<button class='btn btn-info btn-xs c-upd-button' dx-user='" + content['induk_id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button>";
-                                var dtl = "<a class='btn btn-info btn-xs' dx-user='" + content['induk_id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Detail'><i class='fa fa-search'></i></a>";
+                                var dtl = "<a class='btn btn-info btn-xs' type='button' href='" + sprintf(detail, content['no']) + "' data-toggle='tooltip' data-placement='right' title='Detail'><i class='fa fa-search'></i></a>";
                                 table.row.add([content['induk_id'], content['penyulang_id'], content['no'], content['lokasi'], dtl + "&nbsp;&nbsp;" + upd + "&nbsp;&nbsp;" + del]);
                             }
                             table.draw(true);
