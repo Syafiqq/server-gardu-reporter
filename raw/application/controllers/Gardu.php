@@ -196,11 +196,49 @@ class Gardu extends CI_Controller
             $string['item_manipulation_update'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_button");
             $string['item_manipulation_detail'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_detail");
             $string['item_manipulation_reset'] = $string['item_creation_reset'];
-            $string['item_manipulation_form_id_label'] = $string['item_creation_form_induk_id_label'];
-            $string['item_manipulation_form_name_label'] = $string['item_creation_form_lokasi_label'];
-            $string['item_manipulation_form_name_placeholder'] = $string['item_creation_form_lokasi_placeholder'];
-            $string['item_manipulation_form_id_id'] = $string['item_creation_form_id_induk_id'];
-            $string['item_manipulation_form_name_id'] = $string['item_creation_form_id_lokasi'];
+
+
+            $string['item_manipulation_form_induk_id_label'] = $this->lang->line("gardu_index_common_form_induk_id_label");
+            $string['item_manipulation_form_penyulang_id_label'] = $this->lang->line("gardu_index_common_form_penyulang_id_label");
+            $string['item_manipulation_form_jenis_label'] = $this->lang->line("gardu_index_common_form_jenis_label");
+            $string['item_manipulation_form_no_label'] = $this->lang->line("gardu_index_common_form_no_label");
+            $string['item_manipulation_form_lokasi_label'] = $this->lang->line("gardu_index_common_form_lokasi_label");
+            $string['item_manipulation_form_merk_label'] = $this->lang->line("gardu_index_common_form_merk_label");
+            $string['item_manipulation_form_serial_label'] = $this->lang->line("gardu_index_common_form_serial_label");
+            $string['item_manipulation_form_daya_label'] = $this->lang->line("gardu_index_common_form_daya_label");
+            $string['item_manipulation_form_fasa_label'] = $this->lang->line("gardu_index_common_form_fasa_label");
+            $string['item_manipulation_form_tap_label'] = $this->lang->line("gardu_index_common_form_tap_label");
+            $string['item_manipulation_form_jurusan_label'] = $this->lang->line("gardu_index_common_form_jurusan_label");
+            $string['item_manipulation_form_lat_label'] = $this->lang->line("gardu_index_common_form_lat_label");
+            $string['item_manipulation_form_long_label'] = $this->lang->line("gardu_index_common_form_long_label");
+
+            $string['item_manipulation_form_induk_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_induk_id_placeholder");
+            $string['item_manipulation_form_penyulang_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_penyulang_id_placeholder");
+            $string['item_manipulation_form_jenis_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_jenis_placeholder");
+            $string['item_manipulation_form_no_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_no_placeholder");
+            $string['item_manipulation_form_lokasi_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_lokasi_placeholder");
+            $string['item_manipulation_form_merk_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_merk_placeholder");
+            $string['item_manipulation_form_serial_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_serial_placeholder");
+            $string['item_manipulation_form_daya_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_daya_placeholder");
+            $string['item_manipulation_form_fasa_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_fasa_placeholder");
+            $string['item_manipulation_form_tap_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_tap_placeholder");
+            $string['item_manipulation_form_jurusan_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_jurusan_placeholder");
+            $string['item_manipulation_form_lat_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_lat_placeholder");
+            $string['item_manipulation_form_long_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_long_placeholder");
+
+            $string['item_manipulation_form_id_induk_id'] = 'induk_id';
+            $string['item_manipulation_form_id_penyulang_id'] = 'penyulang_id';
+            $string['item_manipulation_form_id_jenis'] = 'jenis';
+            $string['item_manipulation_form_id_no'] = 'no';
+            $string['item_manipulation_form_id_lokasi'] = 'lokasi';
+            $string['item_manipulation_form_id_merk'] = 'merk';
+            $string['item_manipulation_form_id_serial'] = 'serial';
+            $string['item_manipulation_form_id_daya'] = 'daya';
+            $string['item_manipulation_form_id_fasa'] = 'fasa';
+            $string['item_manipulation_form_id_tap'] = 'tap';
+            $string['item_manipulation_form_id_jurusan'] = 'jurusan';
+            $string['item_manipulation_form_id_lat'] = 'lat';
+            $string['item_manipulation_form_id_long'] = 'long';
 
             //Table
             $string['add_new_item'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_add_new_item");
