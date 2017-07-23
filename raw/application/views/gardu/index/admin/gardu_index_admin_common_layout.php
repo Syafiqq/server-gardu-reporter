@@ -108,17 +108,17 @@ if (!isset($view))
                         <div class="modal-body" id="modal-add">
                             <div class="form-group">
                                 <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>"><?php echo @$string['item_creation_form_induk_id_label'] ?></label>
-                                <select class="form-control" name="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>" id="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>" required>
+                                <select class="form-control" name="<?php echo @$string['item_creation_form_id_induk_id'] ?>" id="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>" required>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>"><?php echo @$string['item_creation_form_penyulang_id_label'] ?></label>
-                                <select class="form-control" name="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>" id="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>" required>
+                                <select class="form-control" name="<?php echo @$string['item_creation_form_id_penyulang_id'] ?>" id="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>" required>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_jenis'] ?>"><?php echo @$string['item_creation_form_jenis_label'] ?></label>
-                                <select class="form-control" name="create_<?php echo @$string['item_creation_form_id_jenis'] ?>" id="create_<?php echo @$string['item_creation_form_id_jenis'] ?>" required>
+                                <select class="form-control" name="<?php echo @$string['item_creation_form_id_jenis'] ?>" id="create_<?php echo @$string['item_creation_form_id_jenis'] ?>" required>
                                     <option value="Portal">Portal</option>
                                     <option value="Cantol">Cantol</option>
                                 </select>
