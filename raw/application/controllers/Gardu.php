@@ -156,6 +156,7 @@ class Gardu extends CI_Controller
             $string['item_creation_form_name_id'] = 'name';
             $string['item_manipulation_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_title");
             $string['item_manipulation_update'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_button");
+            $string['item_manipulation_detail'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_detail");
             $string['item_manipulation_reset'] = $string['item_creation_reset'];
             $string['item_manipulation_form_id_label'] = $string['item_creation_form_id_label'];
             $string['item_manipulation_form_name_label'] = $string['item_creation_form_name_label'];
@@ -165,8 +166,11 @@ class Gardu extends CI_Controller
 
             //Table
             $string['add_new_item'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_add_new_item");
-            $string['table_header_code'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_code");
-            $string['table_header_name'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_name");
+
+            $string['table_header_induk_id'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_induk_id");
+            $string['table_header_penyulang_id'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_penyulang_id");
+            $string['table_header_no'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_no");
+            $string['table_header_location'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_location");
             $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
 
             $meta['retriever'] = site_url('/api/gardu/index/find?code=FE37A');
