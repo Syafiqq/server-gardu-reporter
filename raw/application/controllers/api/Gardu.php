@@ -22,6 +22,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  * @property CI_Session session
  * @property Model_gardu_induk mgi
  * @property Model_gardu_penyulang mgp
+ * @property Model_gardu_index mgidx
  * @property MReport mReport
  */
 class Gardu extends \Restserver\Libraries\MY_REST_Controller
@@ -700,9 +701,23 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        $this->load->model('model_gardu_index', 'mgp');
+        $this->load->model('model_gardu_index', 'mgidx');
 
-        $users = $this->mgp->find("`datagardupenyulang_tb`.`id_tb_gardu_penyulang` AS 'id', `datagardupenyulang_tb`.`nama_penyulang` AS 'name'")->result_array();
+        $users = $this->mgidx->find("
+        `datagardu_tb`.`id_tb_gardu_induk` AS 'induk_id', 
+        `datagardu_tb`.`id_tb_gardu_penyulang` AS 'penyulang_id', 
+        `datagardu_tb`.`jns_gardu` AS 'jenis', 
+        `datagardu_tb`.`no_gardu` AS 'no', 
+        `datagardu_tb`.`lokasi` AS 'lokasi', 
+        `datagardu_tb`.`merk_trafo` AS 'merk', 
+        `datagardu_tb`.`no_seri_trafo` AS 'serial', 
+        `datagardu_tb`.`daya_trafo` AS 'daya', 
+        `datagardu_tb`.`fasa` AS 'fase', 
+        `datagardu_tb`.`tap` AS 'tap', 
+        `datagardu_tb`.`jml_jurusan` AS 'jurusan', 
+        `datagardu_tb`.`latitude` AS 'lat', 
+        `datagardu_tb`.`longitude` AS 'long'"
+        )->result_array();
         if (empty($users))
         {
             $response['data']['gardu_index'] = [];
@@ -738,8 +753,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $isValid = !empty($data['id_tb_gardu_index']);
             if ($isValid)
             {
-                $this->load->model('model_gardu_index', 'mgp');
-                if ($this->mgp->delete($data['id_tb_gardu_index']))
+                $this->load->model('model_gardu_index', 'mgidx');
+                if ($this->mgidx->delete($data['id_tb_gardu_index']))
                 {
                     $response['data']['status'] = 1;
                     $response['data']['message']['notify']['delete']['success'] = [$this->lang->line('gardu_index_common_delete_success')];
@@ -803,8 +818,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $isValid &= (($data['id_tb_gardu_penyulang'] = intval($data['id_tb_gardu_penyulang'])) != 0);
             if ($isValid)
             {
-                $this->load->model('model_gardu_index', 'mgp');
-                if ($this->mgp->insert($data))
+                $this->load->model('model_gardu_index', 'mgidx');
+                if ($this->mgidx->insert($data))
                 {
                     $response['data']['status'] = 1;
                     $response['data']['message']['message']['register']['success'] = [$this->lang->line('gardu_index_common_insert_success')];
@@ -868,10 +883,10 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $isValid &= (($data['id_tb_gardu_penyulang'] = intval($data['id_tb_gardu_penyulang'])) != 0);
             if ($isValid)
             {
-                $this->load->model('model_gardu_index', 'mgp');
+                $this->load->model('model_gardu_index', 'mgidx');
                 $id = $data['id_tb_gardu_penyulang'];
                 unset($data['id_tb_gardu_penyulang']);
-                if ($this->mgp->update($id, $data))
+                if ($this->mgidx->update($id, $data))
                 {
                     $response['data']['status'] = 1;
                     $response['data']['message']['message']['update']['success'] = [$this->lang->line('gardu_index_common_update_success')];
@@ -916,8 +931,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $need_exist = isset($this->callback_request['_id_gardu_index_existence_check_need_exists']) ? $this->callback_request['_id_gardu_index_existence_check_need_exists'] : false;
             $id = intval($id);
 
-            $this->load->model('model_gardu_index', 'mgp');
-            if ($this->mgp->id_check($id))
+            $this->load->model('model_gardu_index', 'mgidx');
+            if ($this->mgidx->id_check($id))
             {
                 if ($need_exist)
                 {

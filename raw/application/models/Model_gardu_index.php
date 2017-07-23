@@ -21,13 +21,13 @@ class Model_gardu_index extends CI_Model
 
     /**
      * @param string $select
-     * @param null|int|array $id
+     * @param null|string|array $id
      * @return CI_DB_result array
      */
     public function find($select, $id = null)
     {
         $this->db->select($select);
-        $this->db->from('`datagardupenyulang_tb`');
+        $this->db->from('`datagardu_tb`');
         if (!is_null($id))
         {
             $ids = [];
@@ -44,11 +44,11 @@ class Model_gardu_index extends CI_Model
             {
                 if (is_numeric($_id))
                 {
-                    $this->db->or_where('`datagardupenyulang_tb`.`id_tb_gardu_penyulang`', $_id);
+                    $this->db->or_where('`datagardu_tb`.`no_gardu`', $_id);
                 }
             }
         }
-        $this->db->order_by('`datagardupenyulang_tb`.`id_tb_gardu_penyulang`', 'ASC');
+        $this->db->order_by('`datagardu_tb`.`no_gardu`', 'ASC');
         $response = $this->db->get();
 
         return $response;
@@ -56,9 +56,9 @@ class Model_gardu_index extends CI_Model
 
     public function id_check($id = 0)
     {
-        $this->db->select('`datagardupenyulang_tb`.`id_tb_gardu_penyulang`');
-        $this->db->from('`datagardupenyulang_tb`');
-        $this->db->where('`datagardupenyulang_tb`.`id_tb_gardu_penyulang`', $id);
+        $this->db->select('`datagardu_tb`.`no_gardu`');
+        $this->db->from('`datagardu_tb`');
+        $this->db->where('`datagardu_tb`.`no_gardu`', $id);
         $response = $this->db->get();
 
         return $response->num_rows() > 0;
@@ -66,22 +66,22 @@ class Model_gardu_index extends CI_Model
 
     public function insert($data)
     {
-        return $this->db->insert('`datagardupenyulang_tb`', $data);
+        return $this->db->insert('`datagardu_tb`', $data);
     }
 
     public function delete($id)
     {
-        $this->db->where('`id_tb_gardu_penyulang`', $id);
-        $result = $this->db->delete('`datagardupenyulang_tb`');
+        $this->db->where('`no_gardu`', $id);
+        $result = $this->db->delete('`datagardu_tb`');
 
         return is_bool($result) ? $result : true;
     }
 
     public function update($id, $data)
     {
-        $this->db->where('`id_tb_gardu_penyulang`', $id);
+        $this->db->where('`no_gardu`', $id);
 
-        return $this->db->update('`datagardupenyulang_tb`', $data);
+        return $this->db->update('`datagardu_tb`', $data);
     }
 }
 
