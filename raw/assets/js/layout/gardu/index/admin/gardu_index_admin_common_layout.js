@@ -193,9 +193,10 @@
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['id'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button></a>";
-                                var upd = "<button class='btn btn-info btn-xs c-upd-button' dx-user='" + content['id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button></a>";
-                                table.row.add([content['id'], content['name'], upd + "&nbsp;&nbsp;" + del]);
+                                var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['induk_id'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button>";
+                                var upd = "<button class='btn btn-info btn-xs c-upd-button' dx-user='" + content['induk_id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button>";
+                                var dtl = "<a class='btn btn-info btn-xs' dx-user='" + content['induk_id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Detail'><i class='fa fa-search'></i></a>";
+                                table.row.add([content['induk_id'], content['penyulang_id'], content['no'], content['lokasi'], dtl + "&nbsp;&nbsp;" + upd + "&nbsp;&nbsp;" + del]);
                             }
                             table.draw(true);
                         }
