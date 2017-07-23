@@ -86,9 +86,9 @@ class Gardu extends CI_Controller
 
     public function _index_admin()
     {
-        /*$this->lang_prefix = 'gardu_penyulang_admin';
+        $this->lang_prefix = 'gardu_index_admin';
         $this->lang_layout = 'common_layout';
-        $this->lang_prefix_path = 'gardu/penyulang/admin';
+        $this->lang_prefix_path = 'gardu/index/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
@@ -169,9 +169,9 @@ class Gardu extends CI_Controller
             $string['table_header_name'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_name");
             $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
 
-            $meta['retriever'] = site_url('/api/gardu/penyulang/find?code=B28FE');
-            $meta['deleter'] = site_url('/api/gardu/penyulang/delete');
-            $meta['editer'] = site_url('/api/gardu/penyulang/update');
+            $meta['retriever'] = site_url('/api/gardu/index/find?code=B28FE');
+            $meta['deleter'] = site_url('/api/gardu/index/delete');
+            $meta['editer'] = site_url('/api/gardu/index/update');
             $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
@@ -198,7 +198,7 @@ class Gardu extends CI_Controller
                 ]
             ]);
             redirect('/auth/login/admin');
-        }*/
+        }
     }
 
     private function _index_member()
