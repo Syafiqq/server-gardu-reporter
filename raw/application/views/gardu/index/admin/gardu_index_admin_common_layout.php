@@ -107,12 +107,61 @@ if (!isset($view))
                         <?php echo @form_open('/api/gardu/index/register', 'id="create_gardu_index"'); ?>
                         <div class="modal-body" id="modal-add">
                             <div class="form-group">
-                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_id'] ?>"><?php echo @$string['item_creation_form_id_label'] ?></label>
-                                <input type="text" name="<?php echo @$string['item_creation_form_id_id'] ?>" class="form-control" id="create_<?php echo @$string['item_creation_form_id_id'] ?>" placeholder="<?php echo @$string['item_creation_form_id_placeholder'] ?>">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>"><?php echo @$string['item_creation_form_induk_id_label'] ?></label>
+                                <select class="form-control" name="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>" id="create_<?php echo @$string['item_creation_form_id_induk_id'] ?>" required>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_name_id'] ?>"><?php echo @$string['item_creation_form_name_label'] ?></label>
-                                <input type="text" name="<?php echo @$string['item_creation_form_name_id'] ?>" class="form-control" id="create_<?php echo @$string['item_creation_form_name_id'] ?>" placeholder="<?php echo @$string['item_creation_form_name_placeholder'] ?>">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>"><?php echo @$string['item_creation_form_penyulang_id_label'] ?></label>
+                                <select class="form-control" name="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>" id="create_<?php echo @$string['item_creation_form_id_penyulang_id'] ?>" required>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_jenis'] ?>"><?php echo @$string['item_creation_form_jenis_label'] ?></label>
+                                <select class="form-control" name="create_<?php echo @$string['item_creation_form_id_jenis'] ?>" id="create_<?php echo @$string['item_creation_form_id_jenis'] ?>" required>
+                                    <option value="Portal">Portal</option>
+                                    <option value="Cantol">Cantol</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_no'] ?>"><?php echo @$string['item_creation_form_no_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_no'] ?>" id="create_<?php echo @$string['item_creation_form_id_no'] ?>" placeholder="<?php echo @$string['item_creation_form_no_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_lokasi'] ?>"><?php echo @$string['item_creation_form_lokasi_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_lokasi'] ?>" id="create_<?php echo @$string['item_creation_form_id_lokasi'] ?>" placeholder="<?php echo @$string['item_creation_form_lokasi_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_merk'] ?>"><?php echo @$string['item_creation_form_merk_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_merk'] ?>" id="create_<?php echo @$string['item_creation_form_id_merk'] ?>" placeholder="<?php echo @$string['item_creation_form_merk_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_serial'] ?>"><?php echo @$string['item_creation_form_serial_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_serial'] ?>" id="create_<?php echo @$string['item_creation_form_id_serial'] ?>" placeholder="<?php echo @$string['item_creation_form_serial_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_daya'] ?>"><?php echo @$string['item_creation_form_daya_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_daya'] ?>" id="create_<?php echo @$string['item_creation_form_id_daya'] ?>" placeholder="<?php echo @$string['item_creation_form_daya_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_fasa'] ?>"><?php echo @$string['item_creation_form_fasa_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_fasa'] ?>" id="create_<?php echo @$string['item_creation_form_id_fasa'] ?>" placeholder="<?php echo @$string['item_creation_form_fasa_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_tap'] ?>"><?php echo @$string['item_creation_form_tap_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_tap'] ?>" id="create_<?php echo @$string['item_creation_form_id_tap'] ?>" placeholder="<?php echo @$string['item_creation_form_tap_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_jurusan'] ?>"><?php echo @$string['item_creation_form_jurusan_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_jurusan'] ?>" id="create_<?php echo @$string['item_creation_form_id_jurusan'] ?>" placeholder="<?php echo @$string['item_creation_form_jurusan_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_lat'] ?>"><?php echo @$string['item_creation_form_lat_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_lat'] ?>" id="create_<?php echo @$string['item_creation_form_id_lat'] ?>" placeholder="<?php echo @$string['item_creation_form_lat_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="create_<?php echo @$string['item_creation_form_id_long'] ?>"><?php echo @$string['item_creation_form_long_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_creation_form_id_long'] ?>" id="create_<?php echo @$string['item_creation_form_id_long'] ?>" placeholder="<?php echo @$string['item_creation_form_long_placeholder'] ?>">
                             </div>
                         </div>
                         <div class="modal-footer" id="modal-to">

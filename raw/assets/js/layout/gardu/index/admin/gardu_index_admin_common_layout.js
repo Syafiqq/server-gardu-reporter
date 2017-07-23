@@ -17,6 +17,7 @@
 
 (function ($) {
     $(function () {
+        var create_selector = "div#create_item";
         var table_report = 'table#table_gardu_index';
         var table = $(table_report).DataTable({
             "paging": true,
@@ -30,6 +31,8 @@
             }
         });
         var retriever = $('meta[name="retriever"]').attr('content');
+        var induk_retriever = $('meta[name="induk_retriever"]').attr('content');
+        var penyulang_retriever = $('meta[name="penyulang_retriever"]').attr('content');
         var deleter = $('meta[name="deleter"]').attr('content');
         var editer = $('meta[name="editer"]').attr('content');
         var detail = $('meta[name="detail"]').attr('content');
@@ -387,8 +390,63 @@
                 });
         });
 
-        $('div#create_item').on('hide.bs.modal', function (e) {
+        $(create_selector).on('hide.bs.modal', function (e) {
             retreiveData(table, retriever, NProgress);
+        });
+
+        $(create_selector).on('show.bs.modal', function (e) {
+
+            if ((induk_retriever !== undefined) && (induk_retriever !== null))
+            {
+                NProgress.start();
+                $.ajax({
+                    type: 'get',
+                    url: induk_retriever,
+                    dataType: 'json'
+                })
+                    .done(function (response) {
+                        var i;
+                        if (response['data'] !== undefined)
+                        {
+                            if (response['data']['gardu_induk'] !== undefined)
+                            {
+                                var contents = response['data']['gardu_induk'];
+                                for (var i = -1, is = contents.length; ++i < is;)
+                                {
+                                    var content = contents[i];
+                                    $('select#create_induk_id').append('<option value="' + content['id'] + '">' + content['name'] + '</option>');
+                                }
+                            }
+                        }
+                        NProgress.done();
+                    })
+            }
+
+            if ((penyulang_retriever !== undefined) && (penyulang_retriever !== null))
+            {
+                NProgress.start();
+                $.ajax({
+                    type: 'get',
+                    url: penyulang_retriever,
+                    dataType: 'json'
+                })
+                    .done(function (response) {
+                        var i;
+                        if (response['data'] !== undefined)
+                        {
+                            if (response['data']['gardu_penyulang'] !== undefined)
+                            {
+                                var contents = response['data']['gardu_penyulang'];
+                                for (var i = -1, is = contents.length; ++i < is;)
+                                {
+                                    var content = contents[i];
+                                    $('select#create_penyulang_id').append('<option value="' + content['id'] + '">' + content['name'] + '</option>');
+                                }
+                            }
+                        }
+                        NProgress.done();
+                    })
+            }
         });
 
         if ((retriever !== undefined) && (retriever !== null))
