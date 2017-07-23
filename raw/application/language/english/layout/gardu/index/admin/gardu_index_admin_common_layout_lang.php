@@ -32,20 +32,6 @@ $lang['gardu_index_admin_common_layout_table_content_cell_detail'] = 'Detail';
 $lang['gardu_index_admin_common_layout_register_new_item_title'] = 'Tambah Data Baru';
 $lang['gardu_index_admin_common_layout_register_new_item_button'] = 'Simpan';
 
-$lang['gardu_index_admin_common_layout_item_creation_form_induk_id_label'] = 'ID Gardu Induk';
-$lang['gardu_index_admin_common_layout_item_creation_form_penyulang_id_label'] = 'ID Gardu Penyulang';
-$lang['gardu_index_admin_common_layout_item_creation_form_jenis_label'] = 'Jenis Gardu';
-$lang['gardu_index_admin_common_layout_item_creation_form_no_label'] = 'No. Gardu';
-$lang['gardu_index_admin_common_layout_item_creation_form_lokasi_label'] = 'Lokasi';
-$lang['gardu_index_admin_common_layout_item_creation_form_merk_label'] = 'Merk Trafo';
-$lang['gardu_index_admin_common_layout_item_creation_form_serial_label'] = 'No. Seri Trafo';
-$lang['gardu_index_admin_common_layout_item_creation_form_daya_label'] = 'Daya Trafo';
-$lang['gardu_index_admin_common_layout_item_creation_form_fasa_label'] = 'Fasa';
-$lang['gardu_index_admin_common_layout_item_creation_form_tap_label'] = 'Tap';
-$lang['gardu_index_admin_common_layout_item_creation_form_jurusan_label'] = 'Jumlah Jurusan';
-$lang['gardu_index_admin_common_layout_item_creation_form_lat_label'] = 'Latitude';
-$lang['gardu_index_admin_common_layout_item_creation_form_long_label'] = 'Longitude';
-
 $lang['gardu_index_admin_common_layout_item_creation_form_induk_id_placeholder'] = 'Masukkan ID Gardu Induk';
 $lang['gardu_index_admin_common_layout_item_creation_form_penyulang_id_placeholder'] = 'Masukkan ID Gardu Penyulang';
 $lang['gardu_index_admin_common_layout_item_creation_form_jenis_placeholder'] = 'Masukkan Jenis Gardu';
@@ -62,5 +48,6 @@ $lang['gardu_index_admin_common_layout_item_creation_form_long_placeholder'] = '
 
 $lang['gardu_index_admin_common_layout_update_existing_item_title'] = 'Perbarui Data Gardu';
 $lang['gardu_index_admin_common_layout_update_existing_item_button'] = 'Simpan';
+$lang['gardu_index_admin_common_layout_update_existing_item_detail'] = 'Detail';
 ?>
 
