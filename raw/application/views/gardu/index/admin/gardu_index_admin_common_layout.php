@@ -178,11 +178,11 @@ if (!isset($view))
                             <table id="table_gardu_index" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th><?php echo @$string['table_header_induk_id'] ?></th>
-                                    <th><?php echo @$string['table_header_penyulang_id'] ?></th>
-                                    <th><?php echo @$string['table_header_no'] ?></th>
+                                    <th width="15%"><?php echo @$string['table_header_induk_id'] ?></th>
+                                    <th width="15%"><?php echo @$string['table_header_penyulang_id'] ?></th>
+                                    <th width="20%"><?php echo @$string['table_header_no'] ?></th>
                                     <th><?php echo @$string['table_header_location'] ?></th>
-                                    <th><?php echo @$string['table_header_option'] ?></th>
+                                    <th width="15%"><?php echo @$string['table_header_option'] ?></th>
                                 </tr>
                                 </thead>
                                 <tbody>
