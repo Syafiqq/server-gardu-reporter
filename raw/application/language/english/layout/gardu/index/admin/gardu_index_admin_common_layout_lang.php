@@ -46,6 +46,20 @@ $lang['gardu_index_admin_common_layout_item_creation_form_jurusan_placeholder'] 
 $lang['gardu_index_admin_common_layout_item_creation_form_lat_placeholder'] = 'Masukkan Koordinat Latitude';
 $lang['gardu_index_admin_common_layout_item_creation_form_long_placeholder'] = 'Masukkan Koordinat Longitude';
 
+$lang['gardu_index_admin_common_layout_item_manipulation_form_induk_id_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_induk_id_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_penyulang_id_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_penyulang_id_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_jenis_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_jenis_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_no_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_no_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_lokasi_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_lokasi_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_merk_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_merk_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_serial_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_serial_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_daya_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_daya_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_fasa_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_fasa_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_tap_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_tap_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_jurusan_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_jurusan_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_lat_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_lat_placeholder'];
+$lang['gardu_index_admin_common_layout_item_manipulation_form_long_placeholder'] = $lang['gardu_index_admin_common_layout_item_creation_form_long_placeholder'];
+
 $lang['gardu_index_admin_common_layout_update_existing_item_title'] = 'Perbarui Data Gardu';
 $lang['gardu_index_admin_common_layout_update_existing_item_button'] = 'Simpan';
 $lang['gardu_index_admin_common_layout_update_existing_item_detail'] = 'Detail';

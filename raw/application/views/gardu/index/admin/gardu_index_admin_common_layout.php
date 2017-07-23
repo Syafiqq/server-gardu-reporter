@@ -187,10 +187,45 @@ if (!isset($view))
                         </div>
                         <?php echo @form_open('/api/gardu/index/update', 'id="update_gardu_index"'); ?>
                         <div class="modal-body" id="modal-add">
-                            <input type="hidden" name="<?php echo @$string['item_manipulation_form_id_id'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_id'] ?>">
+                            <input type="hidden" name="<?php echo @$string['item_manipulation_form_id_no'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_no'] ?>">
                             <div class="form-group">
-                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_name_id'] ?>"><?php echo @$string['item_manipulation_form_name_label'] ?></label>
-                                <input type="text" name="<?php echo @$string['item_manipulation_form_name_id'] ?>" class="form-control" id="update_<?php echo @$string['item_manipulation_form_name_id'] ?>" placeholder="<?php echo @$string['item_manipulation_form_name_placeholder'] ?>">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_jenis'] ?>"><?php echo @$string['item_manipulation_form_jenis_label'] ?></label>
+                                <select class="form-control" name="<?php echo @$string['item_manipulation_form_id_jenis'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_jenis'] ?>" required>
+                                    <option value="Portal">Portal</option>
+                                    <option value="Cantol">Cantol</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_lokasi'] ?>"><?php echo @$string['item_manipulation_form_lokasi_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_lokasi'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_lokasi'] ?>" placeholder="<?php echo @$string['item_manipulation_form_lokasi_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_merk'] ?>"><?php echo @$string['item_manipulation_form_merk_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_merk'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_merk'] ?>" placeholder="<?php echo @$string['item_manipulation_form_merk_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_serial'] ?>"><?php echo @$string['item_manipulation_form_serial_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_serial'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_serial'] ?>" placeholder="<?php echo @$string['item_manipulation_form_serial_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_fasa'] ?>"><?php echo @$string['item_manipulation_form_fasa_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_fasa'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_fasa'] ?>" placeholder="<?php echo @$string['item_manipulation_form_fasa_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_tap'] ?>"><?php echo @$string['item_manipulation_form_tap_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_tap'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_tap'] ?>" placeholder="<?php echo @$string['item_manipulation_form_tap_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_jurusan'] ?>"><?php echo @$string['item_manipulation_form_jurusan_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_jurusan'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_jurusan'] ?>" placeholder="<?php echo @$string['item_manipulation_form_jurusan_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_lat'] ?>"><?php echo @$string['item_manipulation_form_lat_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_lat'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_lat'] ?>" placeholder="<?php echo @$string['item_manipulation_form_lat_placeholder'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="update_<?php echo @$string['item_manipulation_form_id_long'] ?>"><?php echo @$string['item_manipulation_form_long_label'] ?></label>
+                                <input class="form-control" name="<?php echo @$string['item_manipulation_form_id_long'] ?>" id="update_<?php echo @$string['item_manipulation_form_id_long'] ?>" placeholder="<?php echo @$string['item_manipulation_form_long_placeholder'] ?>">
                             </div>
                         </div>
                         <div class="modal-footer" id="modal-to">
