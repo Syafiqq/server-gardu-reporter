@@ -240,6 +240,8 @@ if (!isset($view))
 <!-- DataTables -->
 <script type="text/javascript" src="/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- Sprintf -->
+<script type="text/javascript" src="/assets/vendor/sprintf/dist/sprintf.min.js"></script>
 <!-- Custom -->
 <script type="text/javascript">
     var sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
