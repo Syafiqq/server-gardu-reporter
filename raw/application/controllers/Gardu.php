@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property Ion_auth ion_auth
  * @property CI_Config config
  * @property CI_Session session
+ * @property CI_Input input
  */
 class Gardu extends CI_Controller
 {
@@ -289,7 +290,7 @@ class Gardu extends CI_Controller
 
     }
 
-    public function index_detail()
+    public function detail()
     {
         $this->load->helper(['url', 'i18n']);
         $group = $this->session->userdata('group');
@@ -298,12 +299,12 @@ class Gardu extends CI_Controller
         {
             case 'admin' :
             {
-                return $this->_index_detail_admin();
+                return $this->_detail_admin();
             }
             break;
             case 'members':
             {
-                return $this->_index_detail_member();
+                return $this->_detail_member();
             }
             break;
             default :
@@ -313,13 +314,22 @@ class Gardu extends CI_Controller
         }
     }
 
-    public function _index_detail_admin()
+    public function _detail_admin()
     {
-        $this->lang_prefix = 'gardu_index_detail_admin';
+        $this->lang_prefix = 'gardu_detail_admin';
         $this->lang_layout = 'common_layout';
-        $this->lang_prefix_path = 'gardu/index/admin';
+        $this->lang_prefix_path = 'gardu/detail/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/gardu/index/gardu_index_common", $this->language);
+
+        $gardu = $this->input->get('gardu');
+        if (empty($gardu))
+        {
+            redirect('/gardu');
+
+            return;
+        }
+
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
@@ -374,117 +384,7 @@ class Gardu extends CI_Controller
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
 
-            //Item Creation Form
-            $string['item_creation_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_new_item_title");
-            $string['item_creation_register'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_register_new_item_button");
-            $string['item_creation_reset'] = $this->lang->line('common_auth_common_reset');
-
-            $string['item_creation_form_induk_id_label'] = $this->lang->line("gardu_index_common_form_induk_id_label");
-            $string['item_creation_form_penyulang_id_label'] = $this->lang->line("gardu_index_common_form_penyulang_id_label");
-            $string['item_creation_form_jenis_label'] = $this->lang->line("gardu_index_common_form_jenis_label");
-            $string['item_creation_form_no_label'] = $this->lang->line("gardu_index_common_form_no_label");
-            $string['item_creation_form_lokasi_label'] = $this->lang->line("gardu_index_common_form_lokasi_label");
-            $string['item_creation_form_merk_label'] = $this->lang->line("gardu_index_common_form_merk_label");
-            $string['item_creation_form_serial_label'] = $this->lang->line("gardu_index_common_form_serial_label");
-            $string['item_creation_form_daya_label'] = $this->lang->line("gardu_index_common_form_daya_label");
-            $string['item_creation_form_fasa_label'] = $this->lang->line("gardu_index_common_form_fasa_label");
-            $string['item_creation_form_tap_label'] = $this->lang->line("gardu_index_common_form_tap_label");
-            $string['item_creation_form_jurusan_label'] = $this->lang->line("gardu_index_common_form_jurusan_label");
-            $string['item_creation_form_lat_label'] = $this->lang->line("gardu_index_common_form_lat_label");
-            $string['item_creation_form_long_label'] = $this->lang->line("gardu_index_common_form_long_label");
-
-            $string['item_creation_form_induk_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_induk_id_placeholder");
-            $string['item_creation_form_penyulang_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_penyulang_id_placeholder");
-            $string['item_creation_form_jenis_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_jenis_placeholder");
-            $string['item_creation_form_no_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_no_placeholder");
-            $string['item_creation_form_lokasi_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_lokasi_placeholder");
-            $string['item_creation_form_merk_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_merk_placeholder");
-            $string['item_creation_form_serial_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_serial_placeholder");
-            $string['item_creation_form_daya_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_daya_placeholder");
-            $string['item_creation_form_fasa_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_fasa_placeholder");
-            $string['item_creation_form_tap_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_tap_placeholder");
-            $string['item_creation_form_jurusan_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_jurusan_placeholder");
-            $string['item_creation_form_lat_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_lat_placeholder");
-            $string['item_creation_form_long_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_creation_form_long_placeholder");
-
-            $string['item_creation_form_id_induk_id'] = 'induk_id';
-            $string['item_creation_form_id_penyulang_id'] = 'penyulang_id';
-            $string['item_creation_form_id_jenis'] = 'jenis';
-            $string['item_creation_form_id_no'] = 'no';
-            $string['item_creation_form_id_lokasi'] = 'lokasi';
-            $string['item_creation_form_id_merk'] = 'merk';
-            $string['item_creation_form_id_serial'] = 'serial';
-            $string['item_creation_form_id_daya'] = 'daya';
-            $string['item_creation_form_id_fasa'] = 'fasa';
-            $string['item_creation_form_id_tap'] = 'tap';
-            $string['item_creation_form_id_jurusan'] = 'jurusan';
-            $string['item_creation_form_id_lat'] = 'lat';
-            $string['item_creation_form_id_long'] = 'long';
-
-            $string['item_manipulation_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_title");
-            $string['item_manipulation_update'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_button");
-            $string['item_manipulation_detail'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_update_existing_item_detail");
-            $string['item_manipulation_reset'] = $string['item_creation_reset'];
-
-
-            $string['item_manipulation_form_induk_id_label'] = $this->lang->line("gardu_index_common_form_induk_id_label");
-            $string['item_manipulation_form_penyulang_id_label'] = $this->lang->line("gardu_index_common_form_penyulang_id_label");
-            $string['item_manipulation_form_jenis_label'] = $this->lang->line("gardu_index_common_form_jenis_label");
-            $string['item_manipulation_form_no_label'] = $this->lang->line("gardu_index_common_form_no_label");
-            $string['item_manipulation_form_lokasi_label'] = $this->lang->line("gardu_index_common_form_lokasi_label");
-            $string['item_manipulation_form_merk_label'] = $this->lang->line("gardu_index_common_form_merk_label");
-            $string['item_manipulation_form_serial_label'] = $this->lang->line("gardu_index_common_form_serial_label");
-            $string['item_manipulation_form_daya_label'] = $this->lang->line("gardu_index_common_form_daya_label");
-            $string['item_manipulation_form_fasa_label'] = $this->lang->line("gardu_index_common_form_fasa_label");
-            $string['item_manipulation_form_tap_label'] = $this->lang->line("gardu_index_common_form_tap_label");
-            $string['item_manipulation_form_jurusan_label'] = $this->lang->line("gardu_index_common_form_jurusan_label");
-            $string['item_manipulation_form_lat_label'] = $this->lang->line("gardu_index_common_form_lat_label");
-            $string['item_manipulation_form_long_label'] = $this->lang->line("gardu_index_common_form_long_label");
-
-            $string['item_manipulation_form_induk_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_induk_id_placeholder");
-            $string['item_manipulation_form_penyulang_id_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_penyulang_id_placeholder");
-            $string['item_manipulation_form_jenis_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_jenis_placeholder");
-            $string['item_manipulation_form_no_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_no_placeholder");
-            $string['item_manipulation_form_lokasi_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_lokasi_placeholder");
-            $string['item_manipulation_form_merk_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_merk_placeholder");
-            $string['item_manipulation_form_serial_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_serial_placeholder");
-            $string['item_manipulation_form_daya_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_daya_placeholder");
-            $string['item_manipulation_form_fasa_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_fasa_placeholder");
-            $string['item_manipulation_form_tap_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_tap_placeholder");
-            $string['item_manipulation_form_jurusan_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_jurusan_placeholder");
-            $string['item_manipulation_form_lat_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_lat_placeholder");
-            $string['item_manipulation_form_long_placeholder'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_item_manipulation_form_long_placeholder");
-
-            $string['item_manipulation_form_id_induk_id'] = 'induk_id';
-            $string['item_manipulation_form_id_penyulang_id'] = 'penyulang_id';
-            $string['item_manipulation_form_id_jenis'] = 'jenis';
-            $string['item_manipulation_form_id_no'] = 'no';
-            $string['item_manipulation_form_id_lokasi'] = 'lokasi';
-            $string['item_manipulation_form_id_merk'] = 'merk';
-            $string['item_manipulation_form_id_serial'] = 'serial';
-            $string['item_manipulation_form_id_daya'] = 'daya';
-            $string['item_manipulation_form_id_fasa'] = 'fasa';
-            $string['item_manipulation_form_id_tap'] = 'tap';
-            $string['item_manipulation_form_id_jurusan'] = 'jurusan';
-            $string['item_manipulation_form_id_lat'] = 'lat';
-            $string['item_manipulation_form_id_long'] = 'long';
-
-            //Table
-            $string['add_new_item'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_add_new_item");
-
-            $string['table_header_induk_id'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_induk_id");
-            $string['table_header_penyulang_id'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_penyulang_id");
-            $string['table_header_no'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_no");
-            $string['table_header_location'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_location");
-            $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
-
-            $meta['retriever'] = site_url('/api/gardu/index/find?code=FE37A');
-            $meta['induk_retriever'] = site_url('/api/gardu/induk/find?code=C41AF');
-            $meta['penyulang_retriever'] = site_url('/api/gardu/penyulang/find?code=B28FE');
-            $meta['deleter'] = site_url('/api/gardu/index/delete');
-            $meta['editer'] = site_url('/api/gardu/index/update');
-            $meta['detail'] = site_url('/gardu/detail?gardu=%s');
-            $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
+            $meta['retriever'] = site_url('/api/gardu/index/detail?gardu=FE37A');
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
@@ -513,7 +413,7 @@ class Gardu extends CI_Controller
         }
     }
 
-    private function _index_detail_member()
+    private function _detail_member()
     {
 
     }
