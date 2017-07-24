@@ -221,7 +221,6 @@
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                console.log(content);
                                 var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['no'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button>";
                                 var upd = "<button class='btn btn-info btn-xs c-upd-button' " +
                                     "dx-jenis='" + content['jenis'] + "' " +
