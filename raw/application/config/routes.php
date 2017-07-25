@@ -61,6 +61,7 @@ $route['api/gardu/penyulang/register'] = '/api/gardu/penyulang_register';
 $route['api/gardu/penyulang/delete'] = '/api/gardu/penyulang_delete';
 $route['api/gardu/penyulang/update'] = '/api/gardu/penyulang_update';
 $route['api/gardu/index/find'] = '/api/gardu/index_find';
+$route['api/gardu/index/detail'] = '/api/gardu/index_detail';
 $route['api/gardu/index/register'] = '/api/gardu/index_register';
 $route['api/gardu/index/delete'] = '/api/gardu/index_delete';
 $route['api/gardu/index/update'] = '/api/gardu/index_update';
