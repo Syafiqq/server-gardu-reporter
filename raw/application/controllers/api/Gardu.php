@@ -732,6 +732,46 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     }
 
     /**
+     * @return array
+     */
+    public function index_detail_get()
+    {
+        /** @var array $response */
+        $response = [];
+
+        $this->load->model('model_gardu_index', 'mgidx');
+        $id = $this->getOrDefault('gardu', null);
+
+        $users = $this->mgidx->find("
+        `datagardu_tb`.`id_tb_gardu_induk` AS 'induk_id', 
+        `datagardu_tb`.`id_tb_gardu_penyulang` AS 'penyulang_id', 
+        `datagardu_tb`.`jns_gardu` AS 'jenis', 
+        `datagardu_tb`.`no_gardu` AS 'no', 
+        `datagardu_tb`.`lokasi` AS 'lokasi', 
+        `datagardu_tb`.`merk_trafo` AS 'merk', 
+        `datagardu_tb`.`no_seri_trafo` AS 'serial', 
+        `datagardu_tb`.`daya_trafo` AS 'daya', 
+        `datagardu_tb`.`fasa` AS 'fasa', 
+        `datagardu_tb`.`tap` AS 'tap', 
+        `datagardu_tb`.`jml_jurusan` AS 'jurusan', 
+        `datagardu_tb`.`latitude` AS 'lat', 
+        `datagardu_tb`.`longitude` AS 'long'"
+            , $id)->result_array();
+        if (empty($users))
+        {
+            $response['data']['gardu_index_detail'] = [];
+        }
+        else
+        {
+            $response['data']['gardu_index_detail'] = $users;
+        }
+        $response['data']['status'] = 1;
+
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
+
+    /**
      *
      */
     public function index_delete_delete()
@@ -900,7 +940,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['jml_jurusan'] = $this->patchOrDefault('jurusan', null);
             $data['latitude'] = $this->patchOrDefault('lat', null);
             $data['longitude'] = $this->patchOrDefault('long', null);
-            
+
             $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $this->callback_request['_id_gardu_index_existence_check'] = true;
@@ -919,7 +959,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $this->form_validation->set_rules('jml_jurusan', $this->lang->line('gardu_index_common_form_jurusan_label'), 'required|integer');
             $this->form_validation->set_rules('latitude', $this->lang->line('gardu_index_common_form_lat_label'), 'required');
             $this->form_validation->set_rules('longitude', $this->lang->line('gardu_index_common_form_long_label'), 'required');
-            
+
             $isValid = $this->form_validation->run();
             if ($isValid)
             {
