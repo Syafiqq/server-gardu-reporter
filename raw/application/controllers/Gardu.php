@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @property CI_Config config
  * @property CI_Session session
  * @property CI_Input input
+ * @property Model_gardu_index mgidx
  */
 class Gardu extends CI_Controller
 {
@@ -323,15 +324,23 @@ class Gardu extends CI_Controller
         $this->lang->load("layout/gardu/index/gardu_index_common", $this->language);
 
         $gardu = $this->input->get('gardu');
+        $this->load->model('model_gardu_index', 'mgidx');
         if (empty($gardu))
         {
+            $flashdata = [$this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_no_gardu_filled")];
+            $this->session->set_flashdata(['flashdata' => ['message' => $flashdata]]);
+            redirect('/gardu');
+
+        }
+        else if (!$this->mgidx->id_check($gardu))
+        {
+            $flashdata = [$this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_no_gardu_found")];
+            $this->session->set_flashdata(['flashdata' => ['message' => $flashdata]]);
             redirect('/gardu');
 
             return;
         }
-
-
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        else if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
             $this->load->helper('form');
 
@@ -384,7 +393,7 @@ class Gardu extends CI_Controller
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
 
-            $meta['retriever'] = site_url('/api/gardu/index/detail?gardu=FE37A');
+            $meta['retriever'] = site_url("/api/gardu/index/detail?gardu={$gardu}");
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
