@@ -5,10 +5,12 @@
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
+var map, marker;
 
 (function ($) {
     $(function () {
         var retriever = $('meta[name="retriever"]').attr('content');
+        var location = {};
 
         var retreiveData = function (link, progress) {
             progress.start();
@@ -65,7 +67,30 @@
                         if (response['data']['gardu_index_detail'] !== undefined)
                         {
                             var contents = response['data']['gardu_index_detail'];
-                            console.log(contents)
+                            for (i = -1, is = contents.length; ++i < is;)
+                            {
+                                var content = contents[i];
+                                $.each(content, function (key, value) {
+                                    $('dl#detail_content').find('dd[x-c-item="' + key + '"]').text(value);
+                                });
+                                if ((map !== undefined) && (map !== null))
+                                {
+                                    map.addMarker({
+                                        lat: content['lat'],
+                                        lng: content['long'],
+                                        icon: "/assets/img/map/gardu-marker(32).png"
+                                    });
+                                    map.setZoom(16);
+                                    map.setCenter(
+                                        content['lat'],
+                                        content['long']
+                                    );
+
+                                    location['destination'] = {};
+                                    location['destination']['lat'] = content['lat'];
+                                    location['destination']['lng'] = content['long'];
+                                }
+                            }
                         }
                     }
                     progress.done();
@@ -75,10 +100,65 @@
                 });
         };
 
+        $('button#setrute').on('click', function () {
+            GMaps.geolocate({
+                success: function (position) {
+                    map.setCenter(position.coords.latitude, position.coords.longitude);
+
+                    location['origin'] = {};
+                    location['origin']['lat'] = position.coords.latitude;
+                    location['origin']['lng'] = position.coords.longitude;
+
+                    // Creating marker of user location
+                    map.addMarker({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                        icon: "/assets/img/map/gardu-marker(32).png"
+                    });
+
+                    if (((location['origin'] !== undefined) && (location['origin'] !== null))
+                        && ((location['destination'] !== undefined) && (location['destination'] !== null)))
+                    {
+                        map.drawRoute({
+                            origin: [location['origin']['lat'], location['origin']['lng']],
+                            destination: [location['destination']['lat'], location['destination']['lng']],
+                            travelMode: 'driving',
+                            strokeColor: '#252525',
+                            strokeOpacity: 0.6,
+                            strokeWeight: 6
+                        });
+                        map.fitZoom();
+                    }
+
+                },
+                error: function (error) {
+                    $.notify({
+                        message: 'Set Current Location Failed'
+                    }, {
+                        type: 'warning'
+                    });
+                },
+                not_supported: function () {
+                    $.notify({
+                        message: 'Your browser does not support geolocation'
+                    }, {
+                        type: 'warning'
+                    });
+                }
+            });
+        });
+
         if ((retriever !== undefined) && (retriever !== null))
         {
             retreiveData(retriever, NProgress);
         }
+
+        var map = new GMaps({
+            el: '#map',
+            lat: 0,
+            lng: 0,
+            zoom: 1
+        });
     });
     /*
      * Run right away
