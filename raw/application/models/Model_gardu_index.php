@@ -39,13 +39,9 @@ class Model_gardu_index extends CI_Model
             {
                 $ids = array_merge($ids, $id);
             }
-
             foreach ($ids as $_id)
             {
-                if (is_numeric($_id))
-                {
-                    $this->db->or_where('`datagardu_tb`.`no_gardu`', $_id);
-                }
+                $this->db->or_where('`datagardu_tb`.`no_gardu`', $_id);
             }
         }
         $this->db->order_by('`datagardu_tb`.`no_gardu`', 'ASC');
