@@ -77,7 +77,7 @@
 
         if ((retriever !== undefined) && (retriever !== null))
         {
-            //retreiveData(retriever, NProgress);
+            retreiveData(retriever, NProgress);
         }
     });
     /*
