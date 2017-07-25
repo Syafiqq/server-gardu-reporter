@@ -393,6 +393,37 @@ class Gardu extends CI_Controller
             $string['inline_client_form_email_id'] = 'email';
             $string['inline_client_form_role_id'] = 'role';
 
+            $string['item']['label']['induk_id'] = $this->lang->line("gardu_index_common_form_induk_id_label");
+            $string['item']['label']['penyulang_id'] = $this->lang->line("gardu_index_common_form_penyulang_id_label");
+            $string['item']['label']['jenis'] = $this->lang->line("gardu_index_common_form_jenis_label");
+            $string['item']['label']['no'] = $this->lang->line("gardu_index_common_form_no_label");
+            $string['item']['label']['lokasi'] = $this->lang->line("gardu_index_common_form_lokasi_label");
+            $string['item']['label']['merk'] = $this->lang->line("gardu_index_common_form_merk_label");
+            $string['item']['label']['serial'] = $this->lang->line("gardu_index_common_form_serial_label");
+            $string['item']['label']['daya'] = $this->lang->line("gardu_index_common_form_daya_label");
+            $string['item']['label']['fasa'] = $this->lang->line("gardu_index_common_form_fasa_label");
+            $string['item']['label']['tap'] = $this->lang->line("gardu_index_common_form_tap_label");
+            $string['item']['label']['jurusan'] = $this->lang->line("gardu_index_common_form_jurusan_label");
+            $string['item']['label']['lat'] = $this->lang->line("gardu_index_common_form_lat_label");
+            $string['item']['label']['long'] = $this->lang->line("gardu_index_common_form_long_label");
+
+            $string['item']['id']['induk_id'] = 'induk_id';
+            $string['item']['id']['penyulang_id'] = 'penyulang_id';
+            $string['item']['id']['jenis'] = 'jenis';
+            $string['item']['id']['no'] = 'no';
+            $string['item']['id']['lokasi'] = 'lokasi';
+            $string['item']['id']['merk'] = 'merk';
+            $string['item']['id']['serial'] = 'serial';
+            $string['item']['id']['daya'] = 'daya';
+            $string['item']['id']['fasa'] = 'fasa';
+            $string['item']['id']['tap'] = 'tap';
+            $string['item']['id']['jurusan'] = 'jurusan';
+            $string['item']['id']['lat'] = 'lat';
+            $string['item']['id']['long'] = 'long';
+
+            $string['map']['title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_map_title");
+            $string['map']['button']['show_route'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_map_button_show_route");
+
             $meta['retriever'] = site_url("/api/gardu/index/detail?gardu={$gardu}");
 
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
