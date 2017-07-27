@@ -446,7 +446,7 @@ class Gardu extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/{$this->lang_prefix_path}")
+                    , 'redirector' => site_url("/{$this->lang_prefix_path}?gardu={$gardu}")
                 ]
             ]);
             redirect('/auth/login/admin');
