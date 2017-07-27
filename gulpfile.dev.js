@@ -16,7 +16,7 @@ var htmlmin = require('gulp-htmlmin');
 var pump = require('pump');
 var imagemin = require('gulp-imagemin');
 var jsonMinify = require('gulp-json-minify');
-var shell = require('gulp-shell')
+var shell = require('gulp-shell');
 
 gulp.task('move-application-assets', function ()
 {
