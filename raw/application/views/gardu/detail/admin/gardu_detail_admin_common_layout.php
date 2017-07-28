@@ -183,5 +183,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/gardu/detail/admin/gardu_detail_admin_common_layout.min.js"></script>
 </body>
 </html>
-
-?>
