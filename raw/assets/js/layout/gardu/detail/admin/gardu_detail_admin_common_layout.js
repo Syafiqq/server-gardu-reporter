@@ -119,6 +119,7 @@ var map, marker;
                     if (((location['origin'] !== undefined) && (location['origin'] !== null))
                         && ((location['destination'] !== undefined) && (location['destination'] !== null)))
                     {
+                        map.cleanRoute();
                         map.drawRoute({
                             origin: [location['origin']['lat'], location['origin']['lng']],
                             destination: [location['destination']['lat'], location['destination']['lng']],
