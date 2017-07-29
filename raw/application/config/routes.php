@@ -66,9 +66,6 @@ $route['api/gardu/index/register'] = '/api/gardu/index_register';
 $route['api/gardu/index/delete'] = '/api/gardu/index_delete';
 $route['api/gardu/index/update'] = '/api/gardu/index_update';
 
-$route['api/mobile/(:any)'] = 'api/mobile/$1';
-$route['api/(:any)'] = 'api/default_route/$1';
-
 /*
 | -------------------------------------------------------------------------
 | Sample REST API Routes
