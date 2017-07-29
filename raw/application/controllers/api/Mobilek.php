@@ -25,7 +25,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  * @property CI_Session session
  * @property MReport mReport
  */
-class Mobile extends \Restserver\Libraries\MY_REST_Controller
+class Mobilek extends \Restserver\Libraries\MY_REST_Controller
 {
     /**
      * @var string
