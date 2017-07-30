@@ -69,6 +69,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->helper(['url']);
     }
 
+    //==================================================================================================================
+
     /**
      *
      */
@@ -186,6 +188,119 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             }
         }
     }
+
+    //==================================================================================================================
+
+    /**
+     *
+     */
+    public function penyulang_find_get()
+    {
+        /** @var array $response */
+        $response = [];
+
+        if ($this->ion_auth->logged_in())
+        {
+            $code = $this->getOrDefault('code', '');
+            switch ($code)
+            {
+                case 'B28FE' :
+                {
+                    $response = array_merge($response, $this->get_all_gardu_penyulang());
+                }
+                break;
+                default:
+                {
+                    $response['data']['status'] = 0;
+                    $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
+                }
+            }
+        }
+        else
+        {
+            $this->lang->load('ion_auth_extended', $this->language);
+
+            $response['data']['message']['notify']['find']['info'] = [$this->lang->line('user_get_forbidden')];
+        }
+
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
+
+    /**
+     * @return array
+     */
+    private function get_all_gardu_penyulang(): array
+    {
+        /** @var array $response */
+        $response = [];
+
+        $this->load->model('model_gardu_penyulang', 'mgp');
+
+        $users = $this->mgp->find("`datagardupenyulang_tb`.`id_tb_gardu_penyulang` AS 'id', `datagardupenyulang_tb`.`nama_penyulang` AS 'name'")->result_array();
+        if (empty($users))
+        {
+            $response['data']['gardu_penyulang'] = [];
+        }
+        else
+        {
+            $response['data']['gardu_penyulang'] = $users;
+        }
+        $response['data']['status'] = 1;
+
+        return $response;
+    }
+
+    /**
+     * @param int $id
+     * @return bool|mixed
+     */
+    public function _id_gardu_penyulang_existence_check($id)
+    {
+        if (empty($this->callback_request['_id_gardu_penyulang_existence_check']))
+        {
+            show_404();
+
+            return false;
+        }
+        else
+        {
+            unset($this->callback_request['_id_gardu_penyulang_existence_check']);
+            $need_exist = isset($this->callback_request['_id_gardu_penyulang_existence_check_need_exists']) ? $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] : false;
+            $id = intval($id);
+
+            $this->load->model('model_gardu_penyulang', 'mgp');
+            if ($this->mgp->id_check($id))
+            {
+                if ($need_exist)
+                {
+                    return true;
+                }
+                else
+                {
+                    $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
+                    $this->form_validation->set_message('_id_gardu_penyulang_existence_check', $this->lang->line('gardu_penyulang_common_form_id_exists_error'));
+
+                    return false;
+                }
+            }
+            else
+            {
+                if ($need_exist)
+                {
+                    $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
+                    $this->form_validation->set_message('_id_gardu_penyulang_existence_check', $this->lang->line('gardu_penyulang_common_form_id_not_exists_error'));
+
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+    }
+
 }
 
 ?>
