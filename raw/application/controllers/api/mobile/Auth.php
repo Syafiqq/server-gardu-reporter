@@ -75,8 +75,6 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
         $response['data']['status'] = 0;
-        log_message('ERROR', var_export(['post' => $this->post(),
-            'get' => $_GET], true));
 
         if (!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']) && !empty($_SERVER['HTTP_X_ACCESS_GUARD']))
         {
@@ -131,8 +129,6 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
         $response['data']['status'] = 0;
-        log_message('ERROR', var_export(['post' => $this->post(),
-            'get' => $_GET], true));
 
         if (!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']) && !empty($_SERVER['HTTP_X_ACCESS_GUARD']))
         {
