@@ -116,8 +116,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     /**
      * @return array
      */
-    private
-    function get_all_gardu_induk(): array
+    private function get_all_gardu_induk(): array
     {
         /** @var array $response */
         $response = [];
@@ -142,8 +141,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      * @param int $id
      * @return bool|mixed
      */
-    public
-    function _id_gardu_induk_existence_check($id)
+    public function _id_gardu_induk_existence_check($id)
     {
         if (empty($this->callback_request['_id_gardu_induk_existence_check']))
         {
@@ -199,20 +197,26 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in())
+        if ((!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']) && !empty($_SERVER['HTTP_X_ACCESS_GUARD']) && !empty($_SERVER['HTTP_X_ACCESS_TOKEN']))
+            && (strcmp(strtolower($_SERVER['HTTP_X_ACCESS_PERMISSION']), $this->config->item('non_csrf_permission')) === 0)
+            && (strcmp(strtolower($_SERVER['HTTP_X_ACCESS_GUARD']), $this->config->item('non_csrf_guard')) === 0)
+            && ($this->ion_auth->check_token($_SERVER['HTTP_X_ACCESS_TOKEN']))
+        )
         {
             $code = $this->getOrDefault('code', '');
             switch ($code)
             {
                 case 'B28FE' :
                 {
+                    //Must Be located on library preventing code redundancy
                     $response = array_merge($response, $this->get_all_gardu_penyulang());
                 }
                 break;
                 default:
                 {
                     $response['data']['status'] = 0;
-                    $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
+                    $response['data']['message'] = array_merge([], $this->ion_auth->messages());
+                    $response['data']['message'] = array_merge($response['data']['message'], $this->validation_errors());
                 }
             }
         }
@@ -220,7 +224,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         {
             $this->lang->load('ion_auth_extended', $this->language);
 
-            $response['data']['message']['notify']['find']['info'] = [$this->lang->line('user_get_forbidden')];
+            $response['data']['message'] = [$this->lang->line('user_get_forbidden')];
         }
 
         $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
