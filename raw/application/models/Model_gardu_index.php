@@ -50,7 +50,7 @@ class Model_gardu_index extends CI_Model
         return $response;
     }
 
-    public function id_check($id = 0)
+    public function id_check($id = null)
     {
         $this->db->select('`datagardu_tb`.`no_gardu`');
         $this->db->from('`datagardu_tb`');
