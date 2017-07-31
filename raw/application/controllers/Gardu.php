@@ -86,7 +86,79 @@ class Gardu extends CI_Controller
         }
     }
 
-    public function _index_admin()
+    public function penyulang()
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                return $this->_penyulang_admin();
+            }
+            break;
+            case 'members':
+            {
+                return $this->_penyulang_memeber();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    public function induk()
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                return $this->_induk_admin();
+            }
+            break;
+            case 'members':
+            {
+                return $this->_induk_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    public function detail()
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                return $this->_detail_admin();
+            }
+            break;
+            case 'members':
+            {
+                return $this->_detail_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    private function _index_admin()
     {
         $this->lang_prefix = 'gardu_index_admin';
         $this->lang_layout = 'common_layout';
@@ -291,31 +363,7 @@ class Gardu extends CI_Controller
 
     }
 
-    public function detail()
-    {
-        $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
-        {
-            case 'admin' :
-            {
-                return $this->_detail_admin();
-            }
-            break;
-            case 'members':
-            {
-                return $this->_detail_member();
-            }
-            break;
-            default :
-            {
-                show_404();
-            }
-        }
-    }
-
-    public function _detail_admin()
+    private function _detail_admin()
     {
         $this->lang_prefix = 'gardu_detail_admin';
         $this->lang_layout = 'common_layout';
@@ -458,30 +506,6 @@ class Gardu extends CI_Controller
 
     }
 
-    public function induk()
-    {
-        $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
-        {
-            case 'admin' :
-            {
-                return $this->_induk_admin();
-            }
-            break;
-            case 'members':
-            {
-                return $this->_induk_member();
-            }
-            break;
-            default :
-            {
-                show_404();
-            }
-        }
-    }
-
     private function _induk_admin()
     {
         $this->lang_prefix = 'gardu_induk_admin';
@@ -603,31 +627,7 @@ class Gardu extends CI_Controller
     {
     }
 
-    public function penyulang()
-    {
-        $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
-        {
-            case 'admin' :
-            {
-                return $this->_penyulang_admin();
-            }
-            break;
-            case 'members':
-            {
-                return $this->_penyulang_memeber();
-            }
-            break;
-            default :
-            {
-                show_404();
-            }
-        }
-    }
-
-    public function _penyulang_admin()
+    private function _penyulang_admin()
     {
         $this->lang_prefix = 'gardu_penyulang_admin';
         $this->lang_layout = 'common_layout';
