@@ -68,6 +68,7 @@ $route['api/gardu/index/update'] = '/api/gardu/index_update';
 
 $route['api/mobile/gardu/induk/find'] = '/api/mobile/gardu/induk_find';
 $route['api/mobile/gardu/penyulang/find'] = '/api/mobile/gardu/penyulang_find';
+$route['api/mobile/gardu/index/insert'] = '/api/mobile/gardu/index_register';
 
 
 /*
