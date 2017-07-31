@@ -29,7 +29,7 @@ class MY_REST_Controller extends REST_Controller
     {
         $value = parent::post($key, $xss_clean);
 
-        if (!$value)
+        if (!isset($value))
         {
             $value = $default_value;
         }
@@ -41,7 +41,7 @@ class MY_REST_Controller extends REST_Controller
     {
         $value = parent::patch($key, $xss_clean);
 
-        if (!$value)
+        if (!isset($value))
         {
             $value = $default_value;
         }
@@ -59,7 +59,7 @@ class MY_REST_Controller extends REST_Controller
     {
         $value = parent::get($key, $xss_clean);
 
-        if (!$value)
+        if (!isset($value))
         {
             $value = $default_value;
         }
@@ -77,7 +77,7 @@ class MY_REST_Controller extends REST_Controller
     {
         $value = parent::delete($key, $xss_clean);
 
-        if (!$value)
+        if (!isset($value))
         {
             $value = $default_value;
         }
