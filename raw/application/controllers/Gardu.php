@@ -1099,9 +1099,14 @@ class Gardu extends CI_Controller
 
 
             $string['form']['create_gardu_index']['link'] = site_url('/gardu/');
+            $string['form']['dashboard']['link'] = site_url('/dashboard');
 
 
             $string['form']['create_gardu_index']['description'] = 'Masukkan Data Gardu Baru';
+
+            $string['form']['button']['go_back'] = 'Kembali';
+            $string['form']['button']['reset'] = 'Reset';
+            $string['form']['button']['submit'] = 'Simpan';
 
 
             $meta['retriever'] = site_url('/api/gardu/index/find?code=B231A');
