@@ -65,6 +65,8 @@ if (!isset($view))
     <link rel="stylesheet" href="/assets/vendor/startbootstrap-sb-admin-2/dist/css/sb-admin-2.min.css">
     <!-- NProgress -->
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
+    <!-- Jquery Confirm -->
+    <link rel="stylesheet" href="/assets/vendor/jquery-confirm2/dist/jquery-confirm.min.css">
     <!-- Custom -->
     <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
     <link rel="stylesheet" href="/assets/css/layout/gardu/pengukuran/index/admin/gardu_pengukuran_index_admin_common_layout.min.css">
@@ -463,9 +465,12 @@ if (!isset($view))
 <!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
 <!-- Serialize Object -->
+<script type="text/javascript" src="/assets/js/common/serializer/common_serializer.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
 <!-- Notify -->
 <script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
+<!-- Jquery Confirm -->
+<script type="text/javascript" src="/assets/vendor/jquery-confirm2/dist/jquery-confirm.min.js"></script>
 <!-- Moment -->
 <script type="text/javascript" src="/assets/vendor/moment/min/moment.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/moment/min/moment-with-locales.min.js"></script>
