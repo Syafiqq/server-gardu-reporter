@@ -675,6 +675,11 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                     $response = array_merge($response, $this->get_all_gardu_index());
                 }
                 break;
+                case 'B231A' :
+                {
+                    $response = array_merge($response, $this->get_all_gardu_index_id());
+                }
+                break;
                 default:
                 {
                     $response['data']['status'] = 0;
@@ -717,6 +722,36 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         `datagardu_tb`.`jml_jurusan` AS 'jurusan', 
         `datagardu_tb`.`latitude` AS 'lat', 
         `datagardu_tb`.`longitude` AS 'long'"
+        )->result_array();
+        if (empty($users))
+        {
+            $response['data']['gardu_index'] = [];
+        }
+        else
+        {
+            $response['data']['gardu_index'] = $users;
+        }
+        $response['data']['status'] = 1;
+
+        return $response;
+    }
+
+    /**
+     * @return array
+     */
+    private function get_all_gardu_index_id(): array
+    {
+        /** @var array $response */
+        $response = [];
+
+        $this->load->model('model_gardu_index', 'mgidx');
+
+        $users = $this->mgidx->find("
+        `datagardu_tb`.`id_tb_gardu_induk` AS 'induk_id', 
+        `datagardu_tb`.`id_tb_gardu_penyulang` AS 'penyulang_id', 
+        `datagardu_tb`.`jns_gardu` AS 'jenis', 
+        `datagardu_tb`.`no_gardu` AS 'no', 
+        `datagardu_tb`.`lokasi` AS 'lokasi'"
         )->result_array();
         if (empty($users))
         {
