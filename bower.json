@@ -61,6 +61,7 @@
     "sprintf": "^1.1.1",
     "gmaps": "https://github.com/hpneo/gmaps.git#^0.4.25",
     "moment": "^2.18.1",
-    "moment-timezone": "^0.5.13"
+    "moment-timezone": "^0.5.13",
+    "jquery-confirm2": "craftpip/jquery-confirm#^3.2.3"
   }
 }
