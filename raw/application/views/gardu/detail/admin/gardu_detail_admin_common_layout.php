@@ -34,7 +34,7 @@ if (!isset($view))
 ?>
 
 <!DOCTYPE html>
-<html class="no-js" lang="<?php echo "{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
+<html class="no-js" lang="<?php echo @"{$data['meta']['i18n']['language']}-{$data['meta']['i18n']['country']}" ?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,11 +42,11 @@ if (!isset($view))
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <?php foreach ($meta as $k => $v)
     {
-        echo "<meta name=\"${k}\" content=\"${v}\">";
+        echo @"<meta name=\"${k}\" content=\"${v}\">";
     }
     ?>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title><?php echo $string['page_title'] ?></title>
+    <title><?php echo @$string['page_title'] ?></title>
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -81,19 +81,19 @@ if (!isset($view))
 <body>
 <div id="wrapper">
     <!-- Navigation -->
-    <?php echo $view['sidebar'] ?>
+    <?php echo @$view['sidebar'] ?>
 
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Edit Profile -->
-            <?php echo $view['edit_profile'] ?>
+            <?php echo @$view['edit_profile'] ?>
 
             <!--====================================================================================================-->
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        <?php echo $string['page_title'] ?>
+                        <?php echo @$string['page_title'] ?>
                     </h1>
                 </div>
             </div>
@@ -119,7 +119,7 @@ if (!isset($view))
                     <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <?php echo $string['map']['title'] ?>
+                                <?php echo @$string['map']['title'] ?>
                             </div>
                             <div class="panel-body">
                                 <form role="form">
@@ -129,7 +129,7 @@ if (!isset($view))
                                         </div>
                                     </div>
                                     <div class="form-group tmpil-tooltip">
-                                        <button id="setrute" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Klik untuk menampilkan rute menuju lokasi gardu dari posisi Anda saat ini"><?php echo $string['map']['button']['show_route'] ?></button>
+                                        <button id="setrute" type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Klik untuk menampilkan rute menuju lokasi gardu dari posisi Anda saat ini"><?php echo @$string['map']['button']['show_route'] ?></button>
                                     </div>
                                 </form>
                             </div>
@@ -176,7 +176,7 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/vendor/gmaps/gmaps.min.js"></script>
 <!-- Custom -->
 <script type="text/javascript">
-    var sessionFlashdata = <?php echo json_encode($data['session']['flashdata'])?>;
+    var sessionFlashdata = <?php echo @json_encode($data['session']['flashdata'])?>;
 </script>
 <script type="text/javascript" src="/assets/js/layout/common/common_function.min.js"></script>
 <script type="text/javascript" src="/assets/js/layout/common/profile/common_profile_edit_common_layout.min.js"></script>
