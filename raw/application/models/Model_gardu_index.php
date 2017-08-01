@@ -79,6 +79,15 @@ class Model_gardu_index extends CI_Model
 
         return $this->db->update('`datagardu_tb`', $data);
     }
+
+    public function insert_measurement($data)
+    {
+        $this->db->set('id_ukur_gardu', null);
+        $this->db->set('tgl_pengukuran', 'NOW()', false);
+        $this->db->set('wkt_pengukuran', 'NOW()', false);
+
+        return $this->db->insert('`ukurgardu_tb`', $data);
+    }
 }
 
 ?>
