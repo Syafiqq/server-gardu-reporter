@@ -100,333 +100,333 @@ if (!isset($view))
             <!-- mulai konten -->
             <div class="row">
                 <div class="col-lg-12">
+                    <?php echo @form_open('/api/gardu/pengukuran/index/register', 'id="create_index_measurement"'); ?>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
 
-                    <form action="models/pcss_ukurgardu.php" method="post">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="control-label" for="common_<?php echo @$string['form']['no_gardu']['id'] ?>"><?php echo @$string['form']['no_gardu']['label'] ?></label>
-                                        <span><a data-toggle="tooltip" data-placement="bottom" title="<?php echo @$string['form']['create_gardu_index']['description'] ?>" style="float: right" href="<?php echo @$string['form']['create_gardu_index']['link'] ?>"><?php echo @$string['form']['create_gardu_index']['label'] ?></a></span>
-                                        <select class="form-control" name="<?php echo @$string['form']['no_gardu']['id'] ?>" id="common_<?php echo @$string['form']['no_gardu']['id'] ?>">
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label" for="common_<?php echo @$string['form']['date']['id'] ?>"><?php echo @$string['form']['date']['label'] ?></label>
-                                        <input class="form-control" id="common_<?php echo @$string['form']['date']['id'] ?>" disabled>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label" for="common_<?php echo @$string['form']['time']['id'] ?>"><?php echo @$string['form']['time']['label'] ?></label>
-                                        <input class="form-control" id="common_<?php echo @$string['form']['time']['id'] ?>" disabled>
-                                    </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="common_<?php echo @$string['form']['no_gardu']['id'] ?>"><?php echo @$string['form']['no_gardu']['label'] ?></label>
+                                    <span><a data-toggle="tooltip" data-placement="bottom" title="<?php echo @$string['form']['create_gardu_index']['description'] ?>" style="float: right" href="<?php echo @$string['form']['create_gardu_index']['link'] ?>"><?php echo @$string['form']['create_gardu_index']['label'] ?></a></span>
+                                    <select class="form-control" name="<?php echo @$string['form']['no_gardu']['id'] ?>" id="common_<?php echo @$string['form']['no_gardu']['id'] ?>">
+                                    </select>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <?php foreach ((@isset($string['form']['worker']) ? $string['form']['worker'] : []) as $v)
-                                    {
-                                        ?>
-                                        <div class="form-group">
-                                            <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
-                                            <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
-                                        </div>
-                                        <?php
-                                    }
+                                <div class="form-group">
+                                    <label class="control-label" for="common_<?php echo @$string['form']['date']['id'] ?>"><?php echo @$string['form']['date']['label'] ?></label>
+                                    <input class="form-control" id="common_<?php echo @$string['form']['date']['id'] ?>" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="common_<?php echo @$string['form']['time']['id'] ?>"><?php echo @$string['form']['time']['label'] ?></label>
+                                    <input class="form-control" id="common_<?php echo @$string['form']['time']['id'] ?>" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <?php foreach ((@isset($string['form']['worker']) ? $string['form']['worker'] : []) as $v)
+                                {
                                     ?>
-                                </div>
-
+                                    <div class="form-group">
+                                        <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
+                                        <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
-                        </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <?php foreach ((@isset($string['form']['arus'][0]) ? $string['form']['arus'][0] : []) as $v)
-                                                {
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
-                                                        <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
-                                                    </div>
-                                                    <?php
-                                                }
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <?php foreach ((@isset($string['form']['arus'][0]) ? $string['form']['arus'][0] : []) as $v)
+                                            {
                                                 ?>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <?php foreach ((@isset($string['form']['arus'][1]) ? $string['form']['arus'][1] : []) as $v)
-                                                {
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
-                                                        <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
-                                                    </div>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
+                                                    <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
+                                                </div>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <hr>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <?php foreach ((@isset($string['form']['tegangan'][0]) ? $string['form']['tegangan'][0] : []) as $v)
-                                                {
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
-                                                        <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
-                                                    </div>
-                                                    <?php
-                                                }
+                                        <div class="col-lg-6">
+                                            <?php foreach ((@isset($string['form']['arus'][1]) ? $string['form']['arus'][1] : []) as $v)
+                                            {
                                                 ?>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <?php foreach ((@isset($string['form']['tegangan'][1]) ? $string['form']['tegangan'][1] : []) as $v)
-                                                {
-                                                    ?>
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
-                                                        <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
-                                                    </div>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
+                                                    <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
+                                                </div>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
-                                    <div class="col-lg-7">
-                                        <div class="panel-group" id="accordion">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                        <h4 class="panel-title">
-                                                            <b><?php echo @$string['form']['jurusan']['umum']['title'] ?></b>
-                                                        </h4>
-                                                    </a>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <?php foreach ((@isset($string['form']['tegangan'][0]) ? $string['form']['tegangan'][0] : []) as $v)
+                                            {
+                                                ?>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
+                                                    <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
                                                 </div>
-                                                <div id="collapseOne" class="panel-collapse collapse in">
-                                                    <div class="panel-body">
-                                                        <!-- Nav tabs -->
-                                                        <ul class="nav nav-tabs nav-pills">
-                                                            <?php
-                                                            foreach (@isset($string['form']['jurusan']['umum']['content']) ? $string['form']['jurusan']['umum']['content'] : [] as $k => $v)
-                                                            {
-                                                                ?>
-                                                                <li <?php echo @($k == 0 ? 'class="active"' : '') ?>>
-                                                                    <a href="#umum_<?php echo @$v['id'] ?>" data-toggle="tab"><?php echo @$v['title'] ?></a>
-                                                                </li>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </ul>
-
-                                                        <!-- Tab panes -->
-                                                        <div class="tab-content">
-                                                            <?php
-                                                            foreach (@isset($string['form']['jurusan']['umum']['content']) ? $string['form']['jurusan']['umum']['content'] : [] as $k => $v)
-                                                            {
-                                                                ?>
-                                                                <div class="tab-pane fade<?php echo @($k == 0 ? 'in active' : '') ?>" id="umum_<?php echo @$v['id'] ?>">
-                                                                    <!-- isi jurusan1 -->
-                                                                    <br>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="form-group form-inline">
-                                                                            <label class="control-label" for="umum_<?php echo @$v['jurusan']['id'] ?>"><?php echo @$v['jurusan']['label'] ?></label>
-                                                                            <input name="<?php echo @$v['jurusan']['id'] ?>" class="form-control" id="umum_<?php echo @$v['jurusan']['id'] ?>">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['arus'][0]) ? $v['arus'][0] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['arus'][1]) ? $v['arus'][1] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12">
-                                                                            <hr>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['tegangan'][0]) ? $v['tegangan'][0] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['tegangan'][1]) ? $v['tegangan'][1] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.isi jurusan1 -->
-                                                                </div>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.panel-body -->
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <?php foreach ((@isset($string['form']['tegangan'][1]) ? $string['form']['tegangan'][1] : []) as $v)
+                                            {
+                                                ?>
+                                                <div class="form-group">
+                                                    <label class="control-label" for="common_<?php echo @$v['id'] ?>"><?php echo @$v['label'] ?></label>
+                                                    <input name="<?php echo @$v['id'] ?>" class="form-control" id="common_<?php echo @$v['id'] ?>" placeholder="<?php echo @$v['placeholder'] ?>">
                                                 </div>
-                                            </div>
-
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                        <h4 class="panel-title">
-                                                            <b><?php echo @$string['form']['jurusan']['khusus']['title'] ?></b>
-                                                        </h4>
-                                                    </a>
-                                                </div>
-                                                <div id="collapseTwo" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <!-- Nav tabs -->
-                                                        <ul class="nav nav-tabs nav-pills">
-                                                            <?php
-                                                            foreach (@isset($string['form']['jurusan']['khusus']['content']) ? $string['form']['jurusan']['khusus']['content'] : [] as $k => $v)
-                                                            {
-                                                                ?>
-                                                                <li <?php echo @($k == 0 ? 'class="active"' : '') ?>>
-                                                                    <a href="#khusus_<?php echo @$v['id'] ?>" data-toggle="tab"><?php echo @$v['title'] ?></a>
-                                                                </li>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </ul>
-
-                                                        <!-- Tab panes -->
-                                                        <div class="tab-content">
-                                                            <?php
-                                                            foreach (@isset($string['form']['jurusan']['khusus']['content']) ? $string['form']['jurusan']['khusus']['content'] : [] as $k => $v)
-                                                            {
-                                                                ?>
-                                                                <div class="tab-pane fade<?php echo @($k == 0 ? 'in active' : '') ?>" id="khusus_<?php echo @$v['id'] ?>">
-                                                                    <!-- isi jurusan1 -->
-                                                                    <br>
-                                                                    <div class="col-lg-12">
-                                                                        <div class="form-group form-inline">
-                                                                            <label class="control-label" for="khusus_<?php echo @$v['jurusan']['id'] ?>"><?php echo @$v['jurusan']['label'] ?></label>
-                                                                            <input name="<?php echo @$v['jurusan']['id'] ?>" class="form-control" id="khusus_<?php echo @$v['jurusan']['id'] ?>">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['arus'][0]) ? $v['arus'][0] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['arus'][1]) ? $v['arus'][1] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12">
-                                                                            <hr>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['tegangan'][0]) ? $v['tegangan'][0] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                        <div class="col-lg-6">
-                                                                            <?php foreach ((@$v['tegangan'][1]) ? $v['tegangan'][1] : [] as $vv)
-                                                                            {
-                                                                                ?>
-                                                                                <div class="form-group">
-                                                                                    <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
-                                                                                    <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
-                                                                                </div>
-                                                                                <?php
-                                                                            }
-                                                                            ?>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.isi jurusan1 -->
-                                                                </div>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.panel-body -->
-                                                </div>
-                                            </div>
+                                                <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-7">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                    <h4 class="panel-title">
+                                                        <b><?php echo @$string['form']['jurusan']['umum']['title'] ?></b>
+                                                    </h4>
+                                                </a>
+                                            </div>
+                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs nav-pills">
+                                                        <?php
+                                                        foreach (@isset($string['form']['jurusan']['umum']['content']) ? $string['form']['jurusan']['umum']['content'] : [] as $k => $v)
+                                                        {
+                                                            ?>
+                                                            <li <?php echo @($k == 0 ? 'class="active"' : '') ?>>
+                                                                <a href="#umum_<?php echo @$v['id'] ?>" data-toggle="tab"><?php echo @$v['title'] ?></a>
+                                                            </li>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </ul>
+
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content">
+                                                        <?php
+                                                        foreach (@isset($string['form']['jurusan']['umum']['content']) ? $string['form']['jurusan']['umum']['content'] : [] as $k => $v)
+                                                        {
+                                                            ?>
+                                                            <div class="tab-pane fade<?php echo @($k == 0 ? 'in active' : '') ?>" id="umum_<?php echo @$v['id'] ?>">
+                                                                <!-- isi jurusan1 -->
+                                                                <br>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group form-inline">
+                                                                        <label class="control-label" for="umum_<?php echo @$v['jurusan']['id'] ?>"><?php echo @$v['jurusan']['label'] ?></label>
+                                                                        <input name="<?php echo @$v['jurusan']['id'] ?>" class="form-control" id="umum_<?php echo @$v['jurusan']['id'] ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['arus'][0]) ? $v['arus'][0] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['arus'][1]) ? $v['arus'][1] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['tegangan'][0]) ? $v['tegangan'][0] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['tegangan'][1]) ? $v['tegangan'][1] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="umum_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="umum_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /.isi jurusan1 -->
+                                                            </div>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                <!-- /.panel-body -->
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                    <h4 class="panel-title">
+                                                        <b><?php echo @$string['form']['jurusan']['khusus']['title'] ?></b>
+                                                    </h4>
+                                                </a>
+                                            </div>
+                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs nav-pills">
+                                                        <?php
+                                                        foreach (@isset($string['form']['jurusan']['khusus']['content']) ? $string['form']['jurusan']['khusus']['content'] : [] as $k => $v)
+                                                        {
+                                                            ?>
+                                                            <li <?php echo @($k == 0 ? 'class="active"' : '') ?>>
+                                                                <a href="#khusus_<?php echo @$v['id'] ?>" data-toggle="tab"><?php echo @$v['title'] ?></a>
+                                                            </li>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </ul>
+
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content">
+                                                        <?php
+                                                        foreach (@isset($string['form']['jurusan']['khusus']['content']) ? $string['form']['jurusan']['khusus']['content'] : [] as $k => $v)
+                                                        {
+                                                            ?>
+                                                            <div class="tab-pane fade<?php echo @($k == 0 ? 'in active' : '') ?>" id="khusus_<?php echo @$v['id'] ?>">
+                                                                <!-- isi jurusan1 -->
+                                                                <br>
+                                                                <div class="col-lg-12">
+                                                                    <div class="form-group form-inline">
+                                                                        <label class="control-label" for="khusus_<?php echo @$v['jurusan']['id'] ?>"><?php echo @$v['jurusan']['label'] ?></label>
+                                                                        <input name="<?php echo @$v['jurusan']['id'] ?>" class="form-control" id="khusus_<?php echo @$v['jurusan']['id'] ?>">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['arus'][0]) ? $v['arus'][0] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['arus'][1]) ? $v['arus'][1] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['tegangan'][0]) ? $v['tegangan'][0] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <?php foreach ((@$v['tegangan'][1]) ? $v['tegangan'][1] : [] as $vv)
+                                                                        {
+                                                                            ?>
+                                                                            <div class="form-group">
+                                                                                <label class="control-label" for="khusus_<?php echo @$vv['id'] ?>"><?php echo @$vv['label'] ?></label>
+                                                                                <input name="<?php echo @$vv['id'] ?>" class="form-control" id="khusus_<?php echo @$vv['id'] ?>" placeholder="<?php echo @$vv['placeholder'] ?>">
+                                                                            </div>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /.isi jurusan1 -->
+                                                            </div>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                                <!-- /.panel-body -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div style="float: right;margin-bottom: 15px">
-                            <button type="reset" class="btn btn-danger">Reset</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
+                    </div>
+                    <div style="float: right;margin-bottom: 15px">
+                        <a href="<?php echo @site_url('/dashboard') ?>" class="btn btn-default"><?php echo @$string['form']['button']['go_back'] ?></a>
+                        <button type="reset" class="btn btn-danger"><?php echo @$string['form']['button']['reset'] ?></button>
+                        <input type="submit" class="btn btn-primary" value="<?php echo @$string['form']['button']['submit'] ?>">
+                    </div>
+                    <?php echo @form_close() ?>
                 </div>
             </div>
 
@@ -462,6 +462,8 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/vendor/startbootstrap-sb-admin-2/dist/js/sb-admin-2.min.js"></script>
 <!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
+<!-- Serialize Object -->
+<script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
 <!-- Notify -->
 <script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
 <!-- Moment -->
