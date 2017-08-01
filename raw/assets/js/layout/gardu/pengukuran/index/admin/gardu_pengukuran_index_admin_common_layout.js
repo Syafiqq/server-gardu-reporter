@@ -69,7 +69,7 @@
                             for (i = -1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                console.log(content);
+                                $('select#common_no_gardu').append('<option value="' + content['no'] + '">' + content['no'] + '</option>');
                             }
                         }
                     }
@@ -84,6 +84,13 @@
         {
             retreiveData(retriever, NProgress);
         }
+
+        setInterval(function () {
+            moment.locale('id');
+            var mmt = moment().tz('Asia/Jakarta');
+            $('input#common_date').val(mmt.format('dddd, D MMMM YYYY'));
+            $('input#common_time').val(mmt.format('HH:mm:ss zz'));
+        }, 1000);
     });
     /*
      * Run right away
