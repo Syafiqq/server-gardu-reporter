@@ -86,7 +86,109 @@ class Gardu extends CI_Controller
         }
     }
 
-    public function _index_admin()
+    public function penyulang()
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                return $this->_penyulang_admin();
+            }
+            break;
+            case 'members':
+            {
+                return $this->_penyulang_memeber();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    public function induk()
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                return $this->_induk_admin();
+            }
+            break;
+            case 'members':
+            {
+                return $this->_induk_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    public function detail()
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                return $this->_detail_admin();
+            }
+            break;
+            case 'members':
+            {
+                return $this->_detail_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    public function pengukuran($gardu = 'index')
+    {
+        $this->load->helper(['url', 'i18n']);
+        $group = $this->session->userdata('group');
+        $group = empty($group) ? 'admin' : $group;
+        switch ($group)
+        {
+            case 'admin' :
+            {
+                switch ($gardu)
+                {
+                    case 'index' :
+                    {
+                        return $this->_pengukuran_index_admin();
+                    }
+                }
+            }
+            break;
+            case 'members':
+            {
+                //return $this->_pengukuran_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    private function _index_admin()
     {
         $this->lang_prefix = 'gardu_index_admin';
         $this->lang_layout = 'common_layout';
@@ -279,7 +381,7 @@ class Gardu extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/{$this->lang_prefix_path}")
+                    , 'redirector' => site_url("/gardu")
                 ]
             ]);
             redirect('/auth/login/admin');
@@ -291,31 +393,7 @@ class Gardu extends CI_Controller
 
     }
 
-    public function detail()
-    {
-        $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
-        {
-            case 'admin' :
-            {
-                return $this->_detail_admin();
-            }
-            break;
-            case 'members':
-            {
-                return $this->_detail_member();
-            }
-            break;
-            default :
-            {
-                show_404();
-            }
-        }
-    }
-
-    public function _detail_admin()
+    private function _detail_admin()
     {
         $this->lang_prefix = 'gardu_detail_admin';
         $this->lang_layout = 'common_layout';
@@ -458,30 +536,6 @@ class Gardu extends CI_Controller
 
     }
 
-    public function induk()
-    {
-        $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
-        {
-            case 'admin' :
-            {
-                return $this->_induk_admin();
-            }
-            break;
-            case 'members':
-            {
-                return $this->_induk_member();
-            }
-            break;
-            default :
-            {
-                show_404();
-            }
-        }
-    }
-
     private function _induk_admin()
     {
         $this->lang_prefix = 'gardu_induk_admin';
@@ -592,7 +646,7 @@ class Gardu extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/{$this->lang_prefix_path}")
+                    , 'redirector' => site_url("/gardu/induk")
                 ]
             ]);
             redirect('/auth/login/admin');
@@ -603,31 +657,7 @@ class Gardu extends CI_Controller
     {
     }
 
-    public function penyulang()
-    {
-        $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
-        {
-            case 'admin' :
-            {
-                return $this->_penyulang_admin();
-            }
-            break;
-            case 'members':
-            {
-                return $this->_penyulang_memeber();
-            }
-            break;
-            default :
-            {
-                show_404();
-            }
-        }
-    }
-
-    public function _penyulang_admin()
+    private function _penyulang_admin()
     {
         $this->lang_prefix = 'gardu_penyulang_admin';
         $this->lang_layout = 'common_layout';
@@ -737,7 +767,7 @@ class Gardu extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/{$this->lang_prefix_path}")
+                    , 'redirector' => site_url("/gardu/penyulangf")
                 ]
             ]);
             redirect('/auth/login/admin');
@@ -747,6 +777,365 @@ class Gardu extends CI_Controller
     private function _penyulang_memeber()
     {
 
+    }
+
+    private function _pengukuran_index_admin()
+    {
+        $this->lang_prefix = 'gardu_pengukuran_index_admin';
+        $this->lang_layout = 'common_layout';
+        $this->lang_prefix_path = 'gardu/pengukuran/index/admin';
+        $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
+        $this->lang->load("layout/gardu/pengukuran/index/gardu_pengukuran_index_common", $this->language);
+
+        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        {
+            $this->load->helper('form');
+
+            $this->lang->load('common/auth/common_auth_common', $this->language);
+            $this->lang->load('common/profile/common_profile_common', $this->language);
+            $this->lang->load('common/profile/edit/common_profile_edit_common', $this->language);
+            $this->lang->load('common/sidebar/common_sidebar_common', $this->language);
+            $this->lang->load('common/auth/common_auth_register_form', $this->language);
+            $this->lang->load('common', $this->language);
+
+            $string = [];
+            $meta = [];
+            $data = [];
+            $view = [];
+
+            $_user = $this->ion_auth->user()->row_array();
+            $data['profile']['username'] = $_user['username'];
+            $data['profile']['email'] = $_user['email'];
+            $data['profile']['group'] = 'Admin';
+            $data['update']['redirector'] = site_url('/management/user');
+
+            //Core Data
+            $string['title'] = $this->lang->line('common_title');
+            $string['page_title'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_page_title");
+            $string['auth_logout'] = $this->lang->line('common_auth_common_logout');
+            $string['profile_edit'] = $this->lang->line('common_profile_common_edit_button');
+
+            //Sidebar
+            $string['sidebar_home'] = $this->lang->line('common_sidebar_common_sidebar_home');
+            $string['sidebar_recapitulation'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation');
+            $string['sidebar_recapitulation_measurement'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation_measurement');
+            $string['sidebar_recapitulation_voltage_end'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation_voltage_end');
+            $string['sidebar_recapitulation_travo_load'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation_travo_load');
+            $string['sidebar_recapitulation_load_balance'] = $this->lang->line('common_sidebar_common_sidebar_recapitulation_load_balance');
+            $string['sidebar_info_gardu'] = $this->lang->line('common_sidebar_common_sidebar_info_gardu');
+            $string['sidebar_info_gardu_hq'] = $this->lang->line('common_sidebar_common_sidebar_info_gardu_hq');
+            $string['sidebar_info_gardu_feeder'] = $this->lang->line('common_sidebar_common_sidebar_info_gardu_feeder');
+            $string['sidebar_info_gardu_data'] = $this->lang->line('common_sidebar_common_sidebar_info_gardu_data');
+            $string['sidebar_info_user_management'] = $this->lang->line('common_sidebar_common_sidebar_info_user_management');
+
+            //Profile
+            $string['client_register'] = $this->lang->line('common_auth_common_register');
+            $string['client_form_username_label'] = $this->lang->line('common_auth_register_form_username_label');
+            $string['client_form_email_label'] = $this->lang->line('common_auth_register_form_email_label');
+            $string['client_form_role_label'] = $this->lang->line('common_auth_register_form_role_label');
+            $string['client_form_username_placeholder'] = $this->lang->line("common_profile_edit_common_client_username_placeholder");
+            $string['client_form_email_placeholder'] = $this->lang->line("common_profile_edit_common_client_email_placeholder");
+            $string['inline_client_form_id_id'] = 'id';
+            $string['inline_client_form_username_id'] = 'username';
+            $string['inline_client_form_email_id'] = 'email';
+            $string['inline_client_form_role_id'] = 'role';
+
+            //Form
+            $string['form']['jurusan']['umum']['title'] = 'Jurusan Umum';
+            $string['form']['jurusan']['umum']['content'][0]['title'] = 'Jurusan 1';
+            $string['form']['jurusan']['umum']['content'][1]['title'] = 'Jurusan 2';
+            $string['form']['jurusan']['umum']['content'][2]['title'] = 'Jurusan 3';
+            $string['form']['jurusan']['umum']['content'][3]['title'] = 'Jurusan 4';
+            $string['form']['jurusan']['khusus']['title'] = 'Jurusan Khusus';
+            $string['form']['jurusan']['khusus']['content'][0]['title'] = 'Jurusan 1';
+            $string['form']['jurusan']['khusus']['content'][1]['title'] = 'Jurusan 2';
+
+            $string['form']['no_gardu']['label'] = 'No Gardu';
+            $string['form']['create_gardu_index']['label'] = 'Masukkan Data Gardu';
+            $string['form']['date']['label'] = 'Tanggal';
+            $string['form']['time']['label'] = 'Waktu';
+            $string['form']['worker']['worker1']['label'] = 'Nama Petugas 1';
+            $string['form']['worker']['worker2']['label'] = 'Nama Petugas 2';
+            $string['form']['worker']['contract']['label'] = 'No. Kontrak';
+            $string['form']['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['tegangan'][1][2]['label'] = 'Tegangan ST';
+            $string['form']['jurusan']['umum']['content'][0]['jurusan']['label'] = 'ID Jurusan';
+            $string['form']['jurusan']['umum']['content'][1]['jurusan']['label'] = 'ID Jurusan';
+            $string['form']['jurusan']['umum']['content'][2]['jurusan']['label'] = 'ID Jurusan';
+            $string['form']['jurusan']['umum']['content'][3]['jurusan']['label'] = 'ID Jurusan';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][2]['label'] = 'Tegangan ST';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][2]['label'] = 'Tegangan ST';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][2]['label'] = 'Tegangan ST';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][2]['label'] = 'Tegangan ST';
+            $string['form']['jurusan']['khusus']['content'][0]['jurusan']['label'] = 'ID Jurusan';
+            $string['form']['jurusan']['khusus']['content'][1]['jurusan']['label'] = 'ID Jurusan';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][2]['label'] = 'Tegangan ST';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][0][0]['label'] = 'Arus R';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][0][1]['label'] = 'Arus S';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][1][0]['label'] = 'Arus T';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][1][1]['label'] = 'Arus N';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][0]['label'] = 'Tegangan RN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][1]['label'] = 'Tegangan SN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][2]['label'] = 'Tegangan TN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][0]['label'] = 'Tegangan RS';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][1]['label'] = 'Tegangan RT';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][2]['label'] = 'Tegangan ST';
+
+            $string['form']['worker']['worker1']['placeholder'] = 'Nama Petugas 1';
+            $string['form']['worker']['worker2']['placeholder'] = 'Nama Petugas 2';
+            $string['form']['worker']['contract']['placeholder'] = 'No. Kontrak';
+            $string['form']['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['tegangan'][1][2]['placeholder'] = 'VST';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][2]['placeholder'] = 'VST';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][2]['placeholder'] = 'VST';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][2]['placeholder'] = 'VST';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][2]['placeholder'] = 'VST';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][2]['placeholder'] = 'VST';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][0][0]['placeholder'] = 'IR';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][0][1]['placeholder'] = 'IS';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][1][0]['placeholder'] = 'IT';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][1][1]['placeholder'] = 'IN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][0]['placeholder'] = 'VRN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][1]['placeholder'] = 'VSN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][2]['placeholder'] = 'VTN';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][0]['placeholder'] = 'VRS';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][1]['placeholder'] = 'VRT';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][2]['placeholder'] = 'VST';
+
+            $string['form']['no_gardu']['id'] = 'no_gardu';
+            $string['form']['date']['id'] = 'date';
+            $string['form']['time']['id'] = 'time';
+            $string['form']['worker']['worker1']['id'] = 'petugas1';
+            $string['form']['worker']['worker2']['id'] = 'petugas2';
+            $string['form']['worker']['contract']['id'] = 'no_kontrak';
+            $string['form']['arus'][0][0]['id'] = 'ir';
+            $string['form']['arus'][0][1]['id'] = 'is';
+            $string['form']['arus'][1][0]['id'] = 'it';
+            $string['form']['arus'][1][1]['id'] = 'in';
+            $string['form']['tegangan'][0][0]['id'] = 'vrn';
+            $string['form']['tegangan'][0][1]['id'] = 'vsn';
+            $string['form']['tegangan'][0][2]['id'] = 'vtn';
+            $string['form']['tegangan'][1][0]['id'] = 'vrs';
+            $string['form']['tegangan'][1][1]['id'] = 'vrt';
+            $string['form']['tegangan'][1][2]['id'] = 'vst';
+            $string['form']['jurusan']['umum']['content'][0]['id'] = 'umum1';
+            $string['form']['jurusan']['umum']['content'][1]['id'] = 'umum2';
+            $string['form']['jurusan']['umum']['content'][2]['id'] = 'umum3';
+            $string['form']['jurusan']['umum']['content'][3]['id'] = 'umum4';
+            $string['form']['jurusan']['umum']['content'][0]['jurusan']['id'] = 'j_u1';
+            $string['form']['jurusan']['umum']['content'][1]['jurusan']['id'] = 'j_u2';
+            $string['form']['jurusan']['umum']['content'][2]['jurusan']['id'] = 'j_u3';
+            $string['form']['jurusan']['umum']['content'][3]['jurusan']['id'] = 'j_u4';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][0][0]['id'] = 'ir_u1';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][0][1]['id'] = 'is_u1';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][1][0]['id'] = 'it_u1';
+            $string['form']['jurusan']['umum']['content'][0]['arus'][1][1]['id'] = 'in_u1';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][0]['id'] = 'vrn_u1';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][1]['id'] = 'vsn_u1';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][0][2]['id'] = 'vtn_u1';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][0]['id'] = 'vrs_u1';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][1]['id'] = 'vrt_u1';
+            $string['form']['jurusan']['umum']['content'][0]['tegangan'][1][2]['id'] = 'vst_u1';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][0][0]['id'] = 'ir_u2';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][0][1]['id'] = 'is_u2';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][1][0]['id'] = 'it_u2';
+            $string['form']['jurusan']['umum']['content'][1]['arus'][1][1]['id'] = 'in_u2';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][0]['id'] = 'vrn_u2';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][1]['id'] = 'vsn_u2';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][0][2]['id'] = 'vtn_u2';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][0]['id'] = 'vrs_u2';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][1]['id'] = 'vrt_u2';
+            $string['form']['jurusan']['umum']['content'][1]['tegangan'][1][2]['id'] = 'vst_u2';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][0][0]['id'] = 'ir_u3';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][0][1]['id'] = 'is_u3';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][1][0]['id'] = 'it_u3';
+            $string['form']['jurusan']['umum']['content'][2]['arus'][1][1]['id'] = 'in_u3';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][0]['id'] = 'vrn_u3';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][1]['id'] = 'vsn_u3';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][0][2]['id'] = 'vtn_u3';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][0]['id'] = 'vrs_u3';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][1]['id'] = 'vrt_u3';
+            $string['form']['jurusan']['umum']['content'][2]['tegangan'][1][2]['id'] = 'vst_u3';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][0][0]['id'] = 'ir_u4';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][0][1]['id'] = 'is_u4';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][1][0]['id'] = 'it_u4';
+            $string['form']['jurusan']['umum']['content'][3]['arus'][1][1]['id'] = 'in_u4';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][0]['id'] = 'vrn_u4';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][1]['id'] = 'vsn_u4';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][0][2]['id'] = 'vtn_u4';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][0]['id'] = 'vrs_u4';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][1]['id'] = 'vrt_u4';
+            $string['form']['jurusan']['umum']['content'][3]['tegangan'][1][2]['id'] = 'vst_u4';
+            $string['form']['jurusan']['khusus']['content'][0]['id'] = 'khusus1';
+            $string['form']['jurusan']['khusus']['content'][1]['id'] = 'khusus2';
+            $string['form']['jurusan']['khusus']['content'][0]['jurusan']['id'] = 'j_k1';
+            $string['form']['jurusan']['khusus']['content'][1]['jurusan']['id'] = 'j_k2';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][0][0]['id'] = 'ir_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][0][1]['id'] = 'is_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][1][0]['id'] = 'it_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['arus'][1][1]['id'] = 'in_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][0]['id'] = 'vrn_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][1]['id'] = 'vsn_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][0][2]['id'] = 'vtn_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][0]['id'] = 'vrs_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][1]['id'] = 'vrt_k1';
+            $string['form']['jurusan']['khusus']['content'][0]['tegangan'][1][2]['id'] = 'vst_k1';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][0][0]['id'] = 'ir_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][0][1]['id'] = 'is_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][1][0]['id'] = 'it_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['arus'][1][1]['id'] = 'in_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][0]['id'] = 'vrn_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][1]['id'] = 'vsn_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][0][2]['id'] = 'vtn_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][0]['id'] = 'vrs_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][1]['id'] = 'vrt_k2';
+            $string['form']['jurusan']['khusus']['content'][1]['tegangan'][1][2]['id'] = 'vst_k2';
+
+
+            $string['form']['create_gardu_index']['link'] = site_url('/gardu/');
+            $string['form']['dashboard']['link'] = site_url('/dashboard');
+
+
+            $string['form']['create_gardu_index']['description'] = 'Masukkan Data Gardu Baru';
+
+            $string['form']['button']['go_back'] = 'Kembali';
+            $string['form']['button']['reset'] = 'Reset';
+            $string['form']['button']['submit'] = 'Simpan';
+
+
+            $meta['retriever'] = site_url('/api/gardu/index/find?code=B231A');
+
+            $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
+            $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+            $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
+
+            $_properties = compact('meta', 'string', 'data');
+
+            $view['sidebar'] = $this->load->view("common/common_menus_{$this->lang_layout}", $_properties, true);
+            $view['edit_profile'] = $this->load->view("common/profile/common_profile_edit_{$this->lang_layout}", $_properties, true);
+
+            $_properties['view'] = $view;
+            $this->load->view("{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $_properties);
+        }
+        else
+        {
+            $this->session->set_flashdata([
+                'flashdata' => [
+                    'message' => [
+                        $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
+                        $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
+                    ]
+                    , 'redirector' => site_url("/gardu/pengukuran")
+                ]
+            ]);
+            redirect('/auth/login/admin');
+        }
     }
 }
 

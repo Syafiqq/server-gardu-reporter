@@ -143,6 +143,11 @@ class Dashboard extends CI_Controller
             $string['menu_add_feeder'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_feeder");
             $string['menu_add_gardu'] = $this->lang->line("{$this->lang_prefix}_common_layout_menu_add_gardu");
 
+            $string['link']['pengukuran_gardu_index'] = site_url('/gardu/pengukuran');
+            $string['link']['gardu_induk'] = site_url('/gardu/induk');
+            $string['link']['gardu_penyulang'] = site_url('/gardu/penyulang');
+            $string['link']['gardu_index'] = site_url('/gardu');
+
             $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
             $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];

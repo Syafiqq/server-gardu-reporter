@@ -104,22 +104,22 @@ if (!isset($view))
                 <div class="col-lg-4">
                     <div class="row margin-top-50 margin-bottom-50">
                         <div class="col-lg-12">
-                            <button type="button" class="btn btn-primary btn-block" onClick="window.location='?page=fn9rec98wf3';"><?php echo @$string['menu_add_entry'] ?></button>
+                            <a type="button" class="btn btn-primary btn-block" href="<?php echo @$string['link']['pengukuran_gardu_index'] ?>"><?php echo @$string['menu_add_entry'] ?></a>
                         </div>
                     </div>
                     <div class="row margin-top-50 margin-bottom-50">
                         <div class="col-lg-12">
-                            <button type="button" class="btn btn-default btn-block" onClick="window.location='?page=j9e3x2n9';"><?php echo @$string['menu_add_gardu_centre'] ?></button>
+                            <a type="button" class="btn btn-default btn-block" href="<?php echo @$string['link']['gardu_induk'] ?>"><?php echo @$string['menu_add_gardu_centre'] ?></a>
                         </div>
                     </div>
                     <div class="row margin-top-50 margin-bottom-50">
                         <div class="col-lg-12">
-                            <button type="button" class="btn btn-default btn-block" onClick="window.location='?page=g55cx09q2';"><?php echo @$string['menu_add_feeder'] ?></button>
+                            <a type="button" class="btn btn-default btn-block" href="<?php echo @$string['link']['gardu_penyulang'] ?>"><?php echo @$string['menu_add_feeder'] ?></a>
                         </div>
                     </div>
                     <div class="row margin-top-50 margin-bottom-50">
                         <div class="col-lg-12">
-                            <button type="button" class="btn btn-default btn-block" onClick="window.location='?page=ms4noi32r';"><?php echo @$string['menu_add_gardu'] ?></button>
+                            <a type="button" class="btn btn-default btn-block" href="<?php echo @$string['link']['gardu_index'] ?>"><?php echo @$string['menu_add_gardu'] ?></a>
                         </div>
                     </div>
                 </div>

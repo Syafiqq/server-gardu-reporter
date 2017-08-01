@@ -49,9 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'default_route';
+$route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = true;
+$route['gardu/pengukuran'] = '/gardu/pengukuran/index';
+
 $route['api/gardu/induk/find'] = '/api/gardu/induk_find';
 $route['api/gardu/induk/register'] = '/api/gardu/induk_register';
 $route['api/gardu/induk/delete'] = '/api/gardu/induk_delete';
@@ -69,6 +71,8 @@ $route['api/gardu/index/update'] = '/api/gardu/index_update';
 $route['api/mobile/gardu/induk/find'] = '/api/mobile/gardu/induk_find';
 $route['api/mobile/gardu/penyulang/find'] = '/api/mobile/gardu/penyulang_find';
 $route['api/mobile/gardu/index/insert'] = '/api/mobile/gardu/index_register';
+
+$route['api/gardu/pengukuran/index/register'] = '/api/gardu/pengukuran_index_register';
 
 
 /*
