@@ -5,7 +5,6 @@
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
-var map, marker;
 
 (function ($) {
     $(function () {
