@@ -1076,6 +1076,146 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             }
         }
     }
+
+    //==================================================================================================================
+
+    public function pengukuran_index_register_post()
+    {
+        $this->load->library('session');
+        $this->lang->load('layout/gardu/pengukuran/index/gardu_pengukuran_index_common', $this->language);
+
+        /** @var array $response */
+        $response = [];
+
+        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        {
+            $this->load->library('form_validation');
+
+            /** @var array $data
+             * @var string $identity_column
+             */
+            $data = [];
+
+            $data['no_gardu'] = $this->postOrDefault('no_gardu', null);
+            $data['nama_petugas1'] = $this->postOrDefault('petugas1', '');
+            $data['nama_petugas2'] = $this->postOrDefault('petugas2', '');
+            $data['no_kontrak'] = $this->postOrDefault('no_kontrak', '');
+            $data['arus_R'] = $this->postOrDefault('ir', '');
+            $data['arus_S'] = $this->postOrDefault('is', '');
+            $data['arus_T'] = $this->postOrDefault('it', '');
+            $data['arus_N'] = $this->postOrDefault('in', '');
+            $data['teg_RN'] = $this->postOrDefault('vrn', '');
+            $data['teg_SN'] = $this->postOrDefault('vsn', '');
+            $data['teg_TN'] = $this->postOrDefault('vtn', '');
+            $data['teg_RS'] = $this->postOrDefault('vrs', '');
+            $data['teg_RT'] = $this->postOrDefault('vrt', '');
+            $data['teg_ST'] = $this->postOrDefault('vst', '');
+            $data['id_jurusan1'] = $this->postOrDefault('j_u1', '');
+            $data['arus_R_jurusan1'] = $this->postOrDefault('ir_u1', '');
+            $data['arus_S_jurusan1'] = $this->postOrDefault('is_u1', '');
+            $data['arus_T_jurusan1'] = $this->postOrDefault('it_u1', '');
+            $data['arus_N_jurusan1'] = $this->postOrDefault('in_u1', '');
+            $data['teg_RN_jurusan1'] = $this->postOrDefault('vrn_u1', '');
+            $data['teg_SN_jurusan1'] = $this->postOrDefault('vsn_u1', '');
+            $data['teg_TN_jurusan1'] = $this->postOrDefault('vtn_u1', '');
+            $data['teg_RS_jurusan1'] = $this->postOrDefault('vrs_u1', '');
+            $data['teg_RT_jurusan1'] = $this->postOrDefault('vrt_u1', '');
+            $data['teg_ST_jurusan1'] = $this->postOrDefault('vst_u1', '');
+            $data['id_jurusan2'] = $this->postOrDefault('j_u2', '');
+            $data['arus_R_jurusan2'] = $this->postOrDefault('ir_u2', '');
+            $data['arus_S_jurusan2'] = $this->postOrDefault('is_u2', '');
+            $data['arus_T_jurusan2'] = $this->postOrDefault('it_u2', '');
+            $data['arus_N_jurusan2'] = $this->postOrDefault('in_u2', '');
+            $data['teg_RN_jurusan2'] = $this->postOrDefault('vrn_u2', '');
+            $data['teg_SN_jurusan2'] = $this->postOrDefault('vsn_u2', '');
+            $data['teg_TN_jurusan2'] = $this->postOrDefault('vtn_u2', '');
+            $data['teg_RS_jurusan2'] = $this->postOrDefault('vrs_u2', '');
+            $data['teg_RT_jurusan2'] = $this->postOrDefault('vrt_u2', '');
+            $data['teg_ST_jurusan2'] = $this->postOrDefault('vst_u2', '');
+            $data['id_jurusan3'] = $this->postOrDefault('j_u3', '');
+            $data['arus_R_jurusan3'] = $this->postOrDefault('ir_u3', '');
+            $data['arus_S_jurusan3'] = $this->postOrDefault('is_u3', '');
+            $data['arus_T_jurusan3'] = $this->postOrDefault('it_u3', '');
+            $data['arus_N_jurusan3'] = $this->postOrDefault('in_u3', '');
+            $data['teg_RN_jurusan3'] = $this->postOrDefault('vrn_u3', '');
+            $data['teg_SN_jurusan3'] = $this->postOrDefault('vsn_u3', '');
+            $data['teg_TN_jurusan3'] = $this->postOrDefault('vtn_u3', '');
+            $data['teg_RS_jurusan3'] = $this->postOrDefault('vrs_u3', '');
+            $data['teg_RT_jurusan3'] = $this->postOrDefault('vrt_u3', '');
+            $data['teg_ST_jurusan3'] = $this->postOrDefault('vst_u3', '');
+            $data['id_jurusan4'] = $this->postOrDefault('j_u4', '');
+            $data['arus_R_jurusan4'] = $this->postOrDefault('ir_u4', '');
+            $data['arus_S_jurusan4'] = $this->postOrDefault('is_u4', '');
+            $data['arus_T_jurusan4'] = $this->postOrDefault('it_u4', '');
+            $data['arus_N_jurusan4'] = $this->postOrDefault('in_u4', '');
+            $data['teg_RN_jurusan4'] = $this->postOrDefault('vrn_u4', '');
+            $data['teg_SN_jurusan4'] = $this->postOrDefault('vsn_u4', '');
+            $data['teg_TN_jurusan4'] = $this->postOrDefault('vtn_u4', '');
+            $data['teg_RS_jurusan4'] = $this->postOrDefault('vrs_u4', '');
+            $data['teg_RT_jurusan4'] = $this->postOrDefault('vrt_u4', '');
+            $data['teg_ST_jurusan4'] = $this->postOrDefault('vst_u4', '');
+            $data['id_jurusank1'] = $this->postOrDefault('j_k1', '');
+            $data['arus_R_jurusank1'] = $this->postOrDefault('ir_k1', '');
+            $data['arus_S_jurusank1'] = $this->postOrDefault('is_k1', '');
+            $data['arus_T_jurusank1'] = $this->postOrDefault('it_k1', '');
+            $data['arus_N_jurusank1'] = $this->postOrDefault('in_k1', '');
+            $data['teg_RN_jurusank1'] = $this->postOrDefault('vrn_k1', '');
+            $data['teg_SN_jurusank1'] = $this->postOrDefault('vsn_k1', '');
+            $data['teg_TN_jurusank1'] = $this->postOrDefault('vtn_k1', '');
+            $data['teg_RS_jurusank1'] = $this->postOrDefault('vrs_k1', '');
+            $data['teg_RT_jurusank1'] = $this->postOrDefault('vrt_k1', '');
+            $data['teg_ST_jurusank1'] = $this->postOrDefault('vst_k1', '');
+            $data['id_jurusank2'] = $this->postOrDefault('j_k2', '');
+            $data['arus_R_jurusank2'] = $this->postOrDefault('ir_k2', '');
+            $data['arus_S_jurusank2'] = $this->postOrDefault('is_k2', '');
+            $data['arus_T_jurusank2'] = $this->postOrDefault('it_k2', '');
+            $data['arus_N_jurusank2'] = $this->postOrDefault('in_k2', '');
+            $data['teg_RN_jurusank2'] = $this->postOrDefault('vrn_k2', '');
+            $data['teg_SN_jurusank2'] = $this->postOrDefault('vsn_k2', '');
+            $data['teg_TN_jurusank2'] = $this->postOrDefault('vtn_k2', '');
+            $data['teg_RS_jurusank2'] = $this->postOrDefault('vrs_k2', '');
+            $data['teg_RT_jurusank2'] = $this->postOrDefault('vrt_k2', '');
+            $data['teg_ST_jurusank2'] = $this->postOrDefault('vst_k2', '');
+
+            $this->callback_request['_id_gardu_index_existence_check'] = true;
+            $this->callback_request['_id_gardu_index_existence_check_need_exists'] = true;
+
+            $this->form_validation->set_data($data);
+
+            // validate form input
+            $this->form_validation->set_rules('no_gardu', $this->lang->line('gardu_pengukuran_index_common_form_no_gardu_label'), 'required|callback__id_gardu_index_existence_check');
+
+            $isValid = $this->form_validation->run();
+            if ($isValid)
+            {
+                $this->load->model('model_gardu_index', 'mgidx');
+                if ($this->mgidx->insert_measurement($data))
+                {
+                    $response['data']['status'] = 1;
+                    $response['data']['message']['notify']['register']['success'] = [$this->lang->line('gardu_pengukuran_index_common_insert_success')];
+                }
+                else
+                {
+                    $response['data']['status'] = 0;
+                    $response['data']['message']['notify']['register']['danger'] = [$this->lang->line('gardu_pengukuran_index_common_insert_failed')];
+                }
+            }
+            else
+            {
+                $response['data']['status'] = 0;
+                $response['data']['message']['notify']['validation']['info'] = $this->validation_errors();
+            }
+            $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
+            $response['data']['csrf']['hash'] = $this->security->get_csrf_hash();
+        }
+        else
+        {
+            $response['data']['message']['notify']['register']['info'] = [$this->lang->line('gardu_pengukuran_index_common_creation_forbidden')];
+        }
+
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
 }
 
 ?>
