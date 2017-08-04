@@ -87,16 +87,16 @@ if (!isset($data))
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="?page=gncg67nh8"><?php echo @$string['sidebar_recapitulation_measurement'] ?></a>
+                            <a href="<?php echo site_url('/rekap/pengukuran/gardu') ?>"><?php echo @$string['sidebar_recapitulation_measurement'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=jf4qo3mx2d20dsk23"><?php echo @$string['sidebar_recapitulation_voltage_end'] ?></a>
+                            <a href="<?php echo site_url('/rekap/tegangan/ujung') ?>"><?php echo @$string['sidebar_recapitulation_voltage_end'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=dyh2c3bh2x32un"><?php echo @$string['sidebar_recapitulation_travo_load'] ?></a>
+                            <a href="<?php echo site_url('/rekap/beban/trafo') ?>"><?php echo @$string['sidebar_recapitulation_travo_load'] ?></a>
                         </li>
                         <li>
-                            <a href="?page=8932neu92d23ssw"><?php echo @$string['sidebar_recapitulation_load_balance'] ?></a>
+                            <a href="<?php echo site_url('/rekap/beban/imbang') ?>"><?php echo @$string['sidebar_recapitulation_load_balance'] ?></a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
