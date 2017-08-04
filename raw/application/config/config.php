@@ -460,6 +460,8 @@ $config['csrf_exclude_uris'] = array(
     'api/mobile/gardu/induk/find',
     'api/mobile/gardu/penyulang/find',
     'api/mobile/gardu/index/insert',
+    'api/mobile/gardu/index/find',
+    'api/mobile/gardu/pengukuran/index/register'
 );
 $config['non_csrf_guard'] = 'cca0f1b5701d4f00dc3729b83b7000da';
 $config['non_csrf_permission'] = 'edd22733c75459253d27126e8d9f628baae653b36cd2e86ac81776580a41645407ee6fc5219c675cd3a4ba1bdab8401376f6909fbcb7e5e22b07fa8480430f45';
