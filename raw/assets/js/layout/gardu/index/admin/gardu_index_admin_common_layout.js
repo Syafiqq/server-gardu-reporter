@@ -6,15 +6,6 @@
  * Github       : syafiqq
  */
 
-
-/**
- * This <server-gardu-reporter> project created by :
- * Name         : syafiq
- * Date / Time  : 19 July 2017, 6:08 PM.
- * Email        : syafiq.rezpector@gmail.com
- * Github       : syafiqq
- */
-
 (function ($) {
     $(function () {
         var create_selector = "div#create_item";
