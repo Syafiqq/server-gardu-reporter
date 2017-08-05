@@ -73,7 +73,7 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
         $this->language = $this->getOrDefault('lang', $this->config->item('language'));
 
         /** @var array $response */
-        $response = [];
+        $response                   = [];
         $response['data']['status'] = 0;
 
         if (!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']) && !empty($_SERVER['HTTP_X_ACCESS_GUARD']))
@@ -101,8 +101,8 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
 
                         if ($this->ion_auth->login_for_api($data['identity'], $data['password'], $group, $remember))
                         {
-                            $response['data']['token'] = $this->ion_auth->getApiToken();
-                            $response['data']['status'] = 1;
+                            $response['data']['token']   = $this->ion_auth->getApiToken();
+                            $response['data']['status']  = 1;
                             $response['data']['message'] = array_merge([], is_array($this->ion_auth->messages()) ? $this->ion_auth->messages() : explode(PHP_EOL, trim($this->ion_auth->messages())));
                         }
                         else
@@ -127,7 +127,7 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
         $this->language = $this->getOrDefault('lang', $this->config->item('language'));
 
         /** @var array $response */
-        $response = [];
+        $response                   = [];
         $response['data']['status'] = 0;
 
         if (!empty($_SERVER['HTTP_X_ACCESS_PERMISSION']) && !empty($_SERVER['HTTP_X_ACCESS_GUARD']))
@@ -150,7 +150,7 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
                     {
                         if ($this->ion_auth->check_token($data['token']))
                         {
-                            $response['data']['status'] = 1;
+                            $response['data']['status']  = 1;
                             $response['data']['message'] = array_merge([], is_array($this->ion_auth->messages()) ? $this->ion_auth->messages() : explode(PHP_EOL, trim($this->ion_auth->messages())));
                         }
                         else

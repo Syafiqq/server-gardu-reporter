@@ -101,25 +101,25 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
                 if ($this->ion_auth->login_and_check($data['identity'], $data['password'], $group, $remember))
                 {
                     $response['data']['redirect'] = $this->postOrDefault('redirector', site_url('/dashboard'));
-                    $response['data']['status'] = 1;
-                    $flashdata = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
+                    $response['data']['status']   = 1;
+                    $flashdata                    = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
                     $this->session->set_flashdata(['flashdata' => ['message' => $flashdata]]);
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                     = 0;
                     $response['data']['message']['login']['danger'] = [];
                     $response['data']['message']['login']['danger'] = array_merge($response['data']['message']['login']['danger'], explode(PHP_EOL, trim($this->ion_auth->errors())));
-                    $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
-                    $response['data']['csrf']['hash'] = $this->security->get_csrf_hash();
+                    $response['data']['csrf']['name']               = $this->security->get_csrf_token_name();
+                    $response['data']['csrf']['hash']               = $this->security->get_csrf_hash();
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                        = 0;
                 $response['data']['message']['validation']['info'] = $this->validation_errors();
-                $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
-                $response['data']['csrf']['hash'] = $this->security->get_csrf_hash();
+                $response['data']['csrf']['name']                  = $this->security->get_csrf_token_name();
+                $response['data']['csrf']['hash']                  = $this->security->get_csrf_hash();
             }
         }
 
@@ -144,12 +144,12 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
              * @var string $tables
              * @var string $identity_column
              */
-            $data = [];
+            $data   = [];
             $tables = $this->config->item('tables', 'ion_auth');
 
-            $data['username'] = $this->postOrDefault('username', null);
-            $data['identity'] = $this->postOrDefault('identity', null);
-            $data['password'] = $this->postOrDefault('password', null);
+            $data['username']      = $this->postOrDefault('username', null);
+            $data['identity']      = $this->postOrDefault('identity', null);
+            $data['password']      = $this->postOrDefault('password', null);
             $data['password_conf'] = $this->postOrDefault('password_conf', null);
 
             $this->lang->load(['common/auth/common_auth_register_form', 'auth'], $this->language);
@@ -168,18 +168,18 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
                 $data['identity'] = strtolower($data['identity']);
                 if ($this->ion_auth->register($data['username'], $data['password'], $data['identity'], [], [$this->clientGroup]))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                       = 1;
                     $response['data']['message']['notify']['success'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                        = 0;
                     $response['data']['message']['register']['danger'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->errors())));
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                        = 0;
                 $response['data']['message']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();

@@ -170,8 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var App = App || {};
 
     // Basic rest module using an IIFE as a way of enclosing private variables
-    App.rest = (function restModule(window)
-    {
+    App.rest = (function restModule(window) {
         // Fields
         var _alert = window.alert;
         var _JSON = window.JSON;
@@ -229,8 +228,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         function _bindEvents()
         {
             // Namespace the 'click' event
-            _$ajax.on('click.app.rest.module', function (event)
-            {
+            _$ajax.on('click.app.rest.module', function (event) {
                 event.preventDefault();
 
                 // Pass this to the Ajax event function
@@ -256,8 +254,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              * @param {object} jQuery Reference to jQuery
              * @return {undefined}
              */
-            init: function init(jQuery)
-            {
+            init: function init(jQuery) {
                 $ = jQuery;
 
                 // Cache the DOM and bind event(s)
@@ -268,8 +265,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }(window));
 
     // DOM ready event
-    $(function domReady($)
-    {
+    $(function domReady($) {
         // Initialise the App module
         App.rest.init($);
     });

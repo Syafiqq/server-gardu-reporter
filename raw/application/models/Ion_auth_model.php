@@ -176,22 +176,22 @@ class Ion_auth_model extends CI_Model
 
         //initialize data
         $this->identity_column = $this->config->item('identity', 'ion_auth');
-        $this->store_salt = $this->config->item('store_salt', 'ion_auth');
-        $this->salt_length = $this->config->item('salt_length', 'ion_auth');
-        $this->join = $this->config->item('join', 'ion_auth');
+        $this->store_salt      = $this->config->item('store_salt', 'ion_auth');
+        $this->salt_length     = $this->config->item('salt_length', 'ion_auth');
+        $this->join            = $this->config->item('join', 'ion_auth');
 
 
         // initialize hash method options (Bcrypt)
-        $this->hash_method = $this->config->item('hash_method', 'ion_auth');
+        $this->hash_method    = $this->config->item('hash_method', 'ion_auth');
         $this->default_rounds = $this->config->item('default_rounds', 'ion_auth');
-        $this->random_rounds = $this->config->item('random_rounds', 'ion_auth');
-        $this->min_rounds = $this->config->item('min_rounds', 'ion_auth');
-        $this->max_rounds = $this->config->item('max_rounds', 'ion_auth');
+        $this->random_rounds  = $this->config->item('random_rounds', 'ion_auth');
+        $this->min_rounds     = $this->config->item('min_rounds', 'ion_auth');
+        $this->max_rounds     = $this->config->item('max_rounds', 'ion_auth');
 
 
         // initialize messages and error
-        $this->messages = array();
-        $this->errors = array();
+        $this->messages    = array();
+        $this->errors      = array();
         $delimiters_source = $this->config->item('delimiters_source', 'ion_auth');
 
         // load the error delimeters either from the config file or use what's been supplied to form validation
@@ -204,21 +204,21 @@ class Ion_auth_model extends CI_Model
 
             $error_prefix = $form_validation_class->getProperty("_error_prefix");
             $error_prefix->setAccessible(true);
-            $this->error_start_delimiter = $error_prefix->getValue($this->form_validation);
+            $this->error_start_delimiter   = $error_prefix->getValue($this->form_validation);
             $this->message_start_delimiter = $this->error_start_delimiter;
 
             $error_suffix = $form_validation_class->getProperty("_error_suffix");
             $error_suffix->setAccessible(true);
-            $this->error_end_delimiter = $error_suffix->getValue($this->form_validation);
+            $this->error_end_delimiter   = $error_suffix->getValue($this->form_validation);
             $this->message_end_delimiter = $this->error_end_delimiter;
         }
         else
         {
             // use delimiters from config
             $this->message_start_delimiter = $this->config->item('message_start_delimiter', 'ion_auth');
-            $this->message_end_delimiter = $this->config->item('message_end_delimiter', 'ion_auth');
-            $this->error_start_delimiter = $this->config->item('error_start_delimiter', 'ion_auth');
-            $this->error_end_delimiter = $this->config->item('error_end_delimiter', 'ion_auth');
+            $this->message_end_delimiter   = $this->config->item('message_end_delimiter', 'ion_auth');
+            $this->error_start_delimiter   = $this->config->item('error_start_delimiter', 'ion_auth');
+            $this->error_end_delimiter     = $this->config->item('error_end_delimiter', 'ion_auth');
         }
 
 
@@ -230,7 +230,7 @@ class Ion_auth_model extends CI_Model
         {
             if ($this->random_rounds)
             {
-                $rand = rand($this->min_rounds, $this->max_rounds);
+                $rand   = rand($this->min_rounds, $this->max_rounds);
                 $params = array('rounds' => $rand);
             }
             else
@@ -425,7 +425,7 @@ class Ion_auth_model extends CI_Model
             return false;
         }
 
-        $activation_code = sha1(md5(microtime()));
+        $activation_code       = sha1(md5(microtime()));
         $this->activation_code = $activation_code;
 
         $data = array(
@@ -493,7 +493,7 @@ class Ion_auth_model extends CI_Model
         $this->trigger_events('order_by');
 
         $this->_ion_order_by = $by;
-        $this->_ion_order = $order;
+        $this->_ion_order    = $order;
 
         return $this;
     }
@@ -567,7 +567,7 @@ class Ion_auth_model extends CI_Model
             }
 
             // verify if group name or group id was used and create and put elements in different arrays
-            $group_ids = array();
+            $group_ids   = array();
             $group_names = array();
             foreach ($groups as $group)
             {
@@ -620,7 +620,7 @@ class Ion_auth_model extends CI_Model
         {
             $this->db->limit($this->_ion_limit, $this->_ion_offset);
 
-            $this->_ion_limit = null;
+            $this->_ion_limit  = null;
             $this->_ion_offset = null;
         }
         else if (isset($this->_ion_limit))
@@ -635,7 +635,7 @@ class Ion_auth_model extends CI_Model
         {
             $this->db->order_by($this->_ion_order_by, $this->_ion_order);
 
-            $this->_ion_order = null;
+            $this->_ion_order    = null;
             $this->_ion_order_by = null;
         }
 
@@ -801,7 +801,7 @@ class Ion_auth_model extends CI_Model
 
         $raw_salt_len = 16;
 
-        $buffer = '';
+        $buffer       = '';
         $buffer_valid = false;
 
         if (function_exists('random_bytes'))
@@ -833,12 +833,12 @@ class Ion_auth_model extends CI_Model
 
         if (!$buffer_valid && @is_readable('/dev/urandom'))
         {
-            $f = fopen('/dev/urandom', 'r');
+            $f    = fopen('/dev/urandom', 'r');
             $read = strlen($buffer);
             while ($read < $raw_salt_len)
             {
                 $buffer .= fread($f, $raw_salt_len - $read);
-                $read = strlen($buffer);
+                $read   = strlen($buffer);
             }
             fclose($f);
             if ($read >= $raw_salt_len)
@@ -866,10 +866,10 @@ class Ion_auth_model extends CI_Model
         $salt = $buffer;
 
         // encode string with the Base64 variant used by crypt
-        $base64_digits = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+        $base64_digits   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
         $bcrypt64_digits = './ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        $base64_string = base64_encode($salt);
-        $salt = strtr(rtrim($base64_string, '='), $base64_digits, $bcrypt64_digits);
+        $base64_string   = base64_encode($salt);
+        $salt            = strtr(rtrim($base64_string, '='), $base64_digits, $bcrypt64_digits);
 
         $salt = substr($salt, 0, $this->salt_length);
 
@@ -912,7 +912,7 @@ class Ion_auth_model extends CI_Model
         {
             // store the new password and reset the remember code so all remembered instances have to re-login
             $hashed_new_password = $this->hash_password($new, $user->salt);
-            $data = array(
+            $data                = array(
                 'password' => $hashed_new_password,
                 'remember_code' => null,
             );
@@ -1222,8 +1222,8 @@ class Ion_auth_model extends CI_Model
 
         // IP Address
         $ip_address = $this->_prepare_ip($this->input->ip_address());
-        $salt = $this->store_salt ? $this->salt() : false;
-        $password = $this->hash_password($password, $salt);
+        $salt       = $this->store_salt ? $this->salt() : false;
+        $password   = $this->hash_password($password, $salt);
 
         // Users table.
         $data = array(
@@ -1289,7 +1289,7 @@ class Ion_auth_model extends CI_Model
     protected function _filter_data($table, $data)
     {
         $filtered_data = array();
-        $columns = $this->db->list_fields($table);
+        $columns       = $this->db->list_fields($table);
 
         if (is_array($data))
         {
@@ -1336,8 +1336,8 @@ class Ion_auth_model extends CI_Model
                 }
                 else
                 {
-                    $group = $this->group($group_id)->result();
-                    $group_name = $group[0]->name;
+                    $group                          = $this->group($group_id)->result();
+                    $group_name                     = $group[0]->name;
                     $this->_cache_groups[$group_id] = $group_name;
                 }
                 $this->_cache_user_in_group[$user_id][$group_id] = $group_name;
@@ -1395,7 +1395,7 @@ class Ion_auth_model extends CI_Model
         {
             $this->db->limit($this->_ion_limit, $this->_ion_offset);
 
-            $this->_ion_limit = null;
+            $this->_ion_limit  = null;
             $this->_ion_offset = null;
         }
         else if (isset($this->_ion_limit))
@@ -2376,9 +2376,9 @@ class Ion_auth_model extends CI_Model
      */
     public function set_hook($event, $name, $class, $method, $arguments)
     {
-        $this->_ion_hooks->{$event}[$name] = new stdClass;
-        $this->_ion_hooks->{$event}[$name]->class = $class;
-        $this->_ion_hooks->{$event}[$name]->method = $method;
+        $this->_ion_hooks->{$event}[$name]            = new stdClass;
+        $this->_ion_hooks->{$event}[$name]->class     = $class;
+        $this->_ion_hooks->{$event}[$name]->method    = $method;
         $this->_ion_hooks->{$event}[$name]->arguments = $arguments;
     }
 
@@ -2416,7 +2416,7 @@ class Ion_auth_model extends CI_Model
     public function set_message_delimiters($start_delimiter, $end_delimiter)
     {
         $this->message_start_delimiter = $start_delimiter;
-        $this->message_end_delimiter = $end_delimiter;
+        $this->message_end_delimiter   = $end_delimiter;
 
         return true;
     }
@@ -2432,7 +2432,7 @@ class Ion_auth_model extends CI_Model
     public function set_error_delimiters($start_delimiter, $end_delimiter)
     {
         $this->error_start_delimiter = $start_delimiter;
-        $this->error_end_delimiter = $end_delimiter;
+        $this->error_end_delimiter   = $end_delimiter;
 
         return true;
     }
@@ -2451,7 +2451,7 @@ class Ion_auth_model extends CI_Model
         foreach ($this->messages as $message)
         {
             $messageLang = $this->lang->line($message) ? $this->lang->line($message) : '##' . $message . '##';
-            $_output .= $this->message_start_delimiter . $messageLang . $this->message_end_delimiter;
+            $_output     .= $this->message_start_delimiter . $messageLang . $this->message_end_delimiter;
         }
 
         return $_output;
@@ -2473,7 +2473,7 @@ class Ion_auth_model extends CI_Model
             foreach ($this->messages as $message)
             {
                 $messageLang = $this->lang->line($message) ? $this->lang->line($message) : '##' . $message . '##';
-                $_output[] = $this->message_start_delimiter . $messageLang . $this->message_end_delimiter;
+                $_output[]   = $this->message_start_delimiter . $messageLang . $this->message_end_delimiter;
             }
 
             return $_output;
@@ -2513,7 +2513,7 @@ class Ion_auth_model extends CI_Model
         foreach ($this->errors as $error)
         {
             $errorLang = $this->lang->line($error) ? $this->lang->line($error) : '##' . $error . '##';
-            $_output .= $this->error_start_delimiter . $errorLang . $this->error_end_delimiter;
+            $_output   .= $this->error_start_delimiter . $errorLang . $this->error_end_delimiter;
         }
 
         return $_output;

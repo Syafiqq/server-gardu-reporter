@@ -81,13 +81,13 @@ class User extends \Restserver\Libraries\MY_REST_Controller
             {
                 case 'B24AC' :
                 {
-                    $response = array_merge($response, $this->get_all_user_and_its_group());
+                    $response                   = array_merge($response, $this->get_all_user_and_its_group());
                     $response['data']['status'] = 1;
                 }
                 break;
                 default:
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
                 }
             }
@@ -140,7 +140,7 @@ class User extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['user_id'] = $this->deleteOrDefault('user_id', null);
+            $data['user_id']  = $this->deleteOrDefault('user_id', null);
             $data['group_id'] = $this->deleteOrDefault('group_id', null);
 
             $isValid = !empty($data['user_id']);
@@ -159,7 +159,7 @@ class User extends \Restserver\Libraries\MY_REST_Controller
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                = 0;
                     $response['data']['message']['notify']['delete']['danger'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->errors())));
                 }
             }
@@ -199,16 +199,16 @@ class User extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['username'] = $this->postOrDefault('username', null);
-            $data['email'] = $this->postOrDefault('email', null);
-            $data['password'] = $this->postOrDefault('password', null);
+            $data['username']      = $this->postOrDefault('username', null);
+            $data['email']         = $this->postOrDefault('email', null);
+            $data['password']      = $this->postOrDefault('password', null);
             $data['password_conf'] = $this->postOrDefault('password_conf', null);
-            $data['role'] = $this->postOrDefault('role', null);
+            $data['role']          = $this->postOrDefault('role', null);
 
             $this->lang->load(['common/auth/common_auth_register_form', 'auth'], $this->language);
 
             $this->callback_request['_email_existence_check'] = true;
-            $this->callback_request['_role_existence_check'] = true;
+            $this->callback_request['_role_existence_check']  = true;
 
             $this->form_validation->set_data($data);
 
@@ -225,18 +225,18 @@ class User extends \Restserver\Libraries\MY_REST_Controller
                 $data['email'] = strtolower($data['email']);
                 if ($this->ion_auth->register($data['username'], $data['password'], $data['email'], [], [$data['role']]))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                    = 1;
                     $response['data']['message']['message']['register']['success'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['register']['danger'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->errors())));
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
