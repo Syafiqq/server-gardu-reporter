@@ -8,14 +8,17 @@
 
 (function ($) {
     $(function () {
-        var table_report = 'table#table_gardu_index';
+        var table_report = 'table#tabel_pengukuran';
         var table = $(table_report).DataTable({
             "paging": true,
             "lengthChange": false,
-            "searching": true,
-            "ordering": true,
+            "searching": false,
+            "ordering": false,
             "info": true,
             "autoWidth": true,
+            "sScrollX": "100%",
+            "bScrollCollapse": true,
+            "sScrollXInner": "100%",
             "language": {
                 "url": $('meta[name="datatable_lang"]').attr('content')
             }
@@ -74,28 +77,103 @@
                             }
                         }
 
-                        if (response['data']['gardu_index'] !== undefined)
+                        if (response['data']['rekap_pengukuran_gardu'] !== undefined)
                         {
-                            var contents = response['data']['gardu_index'];
+                            moment.locale('id');
+                            var contents = response['data']['rekap_pengukuran_gardu'];
                             table.clear();
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                var del = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['no'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button>";
-                                var upd = "<button class='btn btn-info btn-xs c-upd-button' " +
-                                    "dx-jenis='" + content['jenis'] + "' " +
-                                    "dx-no='" + content['no'] + "' " +
-                                    "dx-lokasi='" + content['lokasi'] + "' " +
-                                    "dx-merk='" + content['merk'] + "' " +
-                                    "dx-serial='" + content['serial'] + "' " +
-                                    "dx-fasa='" + content['fasa'] + "' " +
-                                    "dx-tap='" + content['tap'] + "' " +
-                                    "dx-jurusan='" + content['jurusan'] + "' " +
-                                    "dx-lat='" + content['lat'] + "' " +
-                                    "dx-long='" + content['long'] + "' " +
-                                    "type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button>";
-                                var dtl = "<a class='btn btn-info btn-xs' type='button' href='" + sprintf(detail, content['no']) + "' data-toggle='tooltip' data-placement='right' title='Detail'><i class='fa fa-search'></i></a>";
-                                table.row.add([content['induk_id'], content['penyulang_id'], content['no'], content['lokasi'], dtl + "&nbsp;&nbsp;" + upd + "&nbsp;&nbsp;" + del]);
+                                table.row.add([
+                                    content['no_gardu'],
+                                    content['gardu_induk'],
+                                    content['gardu_penyulang'],
+                                    content['lokasi'],
+                                    content['latitude'],
+                                    content['longitude'],
+                                    content['petugas_1'],
+                                    content['petugas_2'],
+                                    content['no_kontrak'],
+                                    moment(content['date'], "YYYY-MM-DD").tz('Asia/Jakarta').format('dddd, D MMMM YYYY'),
+                                    moment(content['time'], "HH:mm:ss").tz('Asia/Jakarta').format('HH:mm:ss zz'),
+                                    content['ir'],
+                                    content['is'],
+                                    content['it'],
+                                    content['in'],
+                                    content['vrn'],
+                                    content['vsn'],
+                                    content['vtn'],
+                                    content['vrs'],
+                                    content['vrt'],
+                                    content['vst'],
+                                    content['id_u1'],
+                                    content['ir_u1'],
+                                    content['is_u1'],
+                                    content['it_u1'],
+                                    content['in_u1'],
+                                    content['vrn_u1'],
+                                    content['vsn_u1'],
+                                    content['vtn_u1'],
+                                    content['vrs_u1'],
+                                    content['vrt_u1'],
+                                    content['vst_u1'],
+                                    content['id_u2'],
+                                    content['ir_u2'],
+                                    content['is_u2'],
+                                    content['it_u2'],
+                                    content['in_u2'],
+                                    content['vrn_u2'],
+                                    content['vsn_u2'],
+                                    content['vtn_u2'],
+                                    content['vrs_u2'],
+                                    content['vrt_u2'],
+                                    content['vst_u2'],
+                                    content['id_u3'],
+                                    content['ir_u3'],
+                                    content['is_u3'],
+                                    content['it_u3'],
+                                    content['in_u3'],
+                                    content['vrn_u3'],
+                                    content['vsn_u3'],
+                                    content['vtn_u3'],
+                                    content['vrs_u3'],
+                                    content['vrt_u3'],
+                                    content['vst_u3'],
+                                    content['id_u4'],
+                                    content['ir_u4'],
+                                    content['is_u4'],
+                                    content['it_u4'],
+                                    content['in_u4'],
+                                    content['vrn_u4'],
+                                    content['vsn_u4'],
+                                    content['vtn_u4'],
+                                    content['vrs_u4'],
+                                    content['vrt_u4'],
+                                    content['vst_u4'],
+                                    content['id_k1'],
+                                    content['ir_k1'],
+                                    content['is_k1'],
+                                    content['it_k1'],
+                                    content['in_k1'],
+                                    content['vrn_k1'],
+                                    content['vsn_k1'],
+                                    content['vtn_k1'],
+                                    content['vrs_k1'],
+                                    content['vrt_k1'],
+                                    content['vst_k1'],
+                                    content['id_k2'],
+                                    content['ir_k2'],
+                                    content['is_k2'],
+                                    content['it_k2'],
+                                    content['in_k2'],
+                                    content['vrn_k2'],
+                                    content['vsn_k2'],
+                                    content['vtn_k2'],
+                                    content['vrs_k2'],
+                                    content['vrt_k2'],
+                                    content['vst_k2']
+                                ]);
                             }
                             table.draw(true);
                         }
@@ -109,7 +187,7 @@
 
         if ((retriever !== undefined) && (retriever !== null))
         {
-            //retreiveData(table, retriever, NProgress);
+            retreiveData(table, retriever, NProgress);
         }
     });
     /*
