@@ -66,6 +66,10 @@ if (!isset($view))
     <link rel="stylesheet" href="/assets/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- NProgress -->
     <link rel="stylesheet" href="/assets/vendor/nprogress/nprogress.min.css">
+    <!-- Bootstrap Date Time Picker -->
+    <link rel="stylesheet" href="/assets/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <!-- Datatabl YADCF -->
+    <link rel="stylesheet" href="/assets/vendor/yadcf/jquery.dataTables.yadcf.css">
     <!-- Custom -->
     <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
     <link rel="stylesheet" href="/assets/css/layout/rekap/pengukuran/gardu/admin/rekap_pengukuran_gardu_admin_common_layout.min.css">
@@ -101,10 +105,24 @@ if (!isset($view))
             <!-- mulai konten -->
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="div#create_item">
-                        <i class="fa fa-download"></i>
-                        <?php echo $string['button']['download'] ?>
-                    </button>
+                    <div class="well well-sm">
+                        <div class="row">
+                            <div class="col-sm-2 align-right text-right">
+                                <strong>Pencarian</strong>
+                            </div>
+                            <div class="col-sm-4">
+                                <span id="timestamp-filter"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="div#create_item">
+                                    <i class="fa fa-download"></i>
+                                    <?php echo $string['button']['download'] ?>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             <div class="margin-top-20">
@@ -126,6 +144,7 @@ if (!isset($view))
                                     <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['petugas_1'] ?></th>
                                     <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['petugas_2'] ?></th>
                                     <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['no_kontrak'] ?></th>
+                                    <th rowspan="2" style="vertical-align:middle">Timestamp</th>
                                     <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['date'] ?></th>
                                     <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['time'] ?></th>
                                     <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['ir'] ?></th>
@@ -146,6 +165,7 @@ if (!isset($view))
                                     <th colspan="11"><?php echo $string['tabel']['header']['khusus_2'] ?></th>
                                 </tr>
                                 <tr>
+                                    <th><?php echo $string['tabel']['header']['id_u1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['ir_u1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['is_u1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['it_u1']; ?></th>
@@ -156,6 +176,7 @@ if (!isset($view))
                                     <th><?php echo $string['tabel']['header']['vrs_u1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vrt_u1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vst_u1']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['id_u2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['ir_u2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['is_u2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['it_u2']; ?></th>
@@ -166,6 +187,7 @@ if (!isset($view))
                                     <th><?php echo $string['tabel']['header']['vrs_u2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vrt_u2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vst_u2']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['id_u3']; ?></th>
                                     <th><?php echo $string['tabel']['header']['ir_u3']; ?></th>
                                     <th><?php echo $string['tabel']['header']['is_u3']; ?></th>
                                     <th><?php echo $string['tabel']['header']['it_u3']; ?></th>
@@ -176,6 +198,7 @@ if (!isset($view))
                                     <th><?php echo $string['tabel']['header']['vrs_u3']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vrt_u3']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vst_u3']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['id_u4']; ?></th>
                                     <th><?php echo $string['tabel']['header']['ir_u4']; ?></th>
                                     <th><?php echo $string['tabel']['header']['is_u4']; ?></th>
                                     <th><?php echo $string['tabel']['header']['it_u4']; ?></th>
@@ -186,6 +209,7 @@ if (!isset($view))
                                     <th><?php echo $string['tabel']['header']['vrs_u4']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vrt_u4']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vst_u4']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['id_k1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['ir_k1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['is_k1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['it_k1']; ?></th>
@@ -196,6 +220,7 @@ if (!isset($view))
                                     <th><?php echo $string['tabel']['header']['vrs_k1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vrt_k1']; ?></th>
                                     <th><?php echo $string['tabel']['header']['vst_k1']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['id_k2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['ir_k2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['is_k2']; ?></th>
                                     <th><?php echo $string['tabel']['header']['it_k2']; ?></th>
@@ -260,6 +285,10 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 <!-- Sprintf -->
 <script type="text/javascript" src="/assets/vendor/sprintf/dist/sprintf.min.js"></script>
+<!-- Bootstrap Date Time Picker -->
+<script type="text/javascript" src="/assets/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- Datatable YADCF -->
+<script type="text/javascript" src="/assets/vendor/yadcf/jquery.dataTables.yadcf.min.js"></script>
 <!-- Custom -->
 <script type="text/javascript">
     var sessionFlashdata = <?php echo json_encode($data['session']['flashdata'])?>;
