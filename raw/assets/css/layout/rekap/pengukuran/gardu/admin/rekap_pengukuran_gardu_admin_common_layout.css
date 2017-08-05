@@ -6,3 +6,11 @@ th, td {
 .table > thead > tr > th {
     padding: 8px 32px;
 }
+
+.yadcf-filter-wrapper {
+    display: block;
+}
+
+.dataTables_filter {
+    display: none;
+}
