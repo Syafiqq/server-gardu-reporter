@@ -116,7 +116,7 @@ if (!isset($view))
                                 <span id="timestamp-filter"></span>
                             </div>
                             <div class="col-sm-6">
-                                <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="div#create_item">
+                                <button type="button" class="btn btn-success pull-right" id="content-download">
                                     <i class="fa fa-download"></i>
                                     <?php echo $string['button']['download'] ?>
                                 </button>
@@ -275,6 +275,7 @@ if (!isset($view))
 <!-- NProgress -->
 <script type="text/javascript" src="/assets/vendor/nprogress/nprogress.min.js"></script>
 <!-- Serialize Object -->
+<script type="text/javascript" src="/assets/js/common/serializer/common_serializer.min.js"></script>
 <script type="text/javascript" src="/assets/vendor/jquery-serialize-object/dist/jquery.serialize-object.min.js"></script>
 <!-- Notify -->
 <script type="text/javascript" src="/assets/vendor/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js"></script>
