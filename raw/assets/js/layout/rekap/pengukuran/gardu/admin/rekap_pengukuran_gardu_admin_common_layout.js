@@ -12,6 +12,7 @@
         moment.locale('id');
         var selector = {};
         selector['table_report'] = 'table#tabel_pengukuran';
+        selector['timestamp-filter'] = 'span#timestamp-filter';
 
         var table = $(selector['table_report']).DataTable({
             "paging": true,
@@ -44,6 +45,100 @@
 
 
         var retriever = $('meta[name="retriever"]').attr('content');
+
+        $('button#content-download').on('click', function () {
+            event.preventDefault();
+            var input = {};
+            input['from'] = $(selector['timestamp-filter']).find('input#yadcf-filter--tabel_pengukuran-from-date-9').val();
+            input['to'] = $(selector['timestamp-filter']).find('input#yadcf-filter--tabel_pengukuran-to-date-9').val();
+            input = removeEmptyValues(input);
+
+            var download = $('meta[name="download"]').attr('content');
+
+            if ((retriever !== undefined) && (retriever !== null))
+            {
+                NProgress.start();
+                $.ajax({
+                    type: 'get',
+                    data: input,
+                    url: download,
+                    dataType: 'json'
+                })
+                    .done(function (response) {
+                        var kind = ['notify', 'message'];
+                        var type = ['validation', 'download'];
+                        var status = ['danger', 'info', 'warning', 'success'];
+                        if (response['data'] !== undefined)
+                        {
+                            if (response['data']['message'] !== undefined)
+                            {
+                                for (var i = -1, is = kind.length; ++i < is;)
+                                {
+                                    if (response['data']['message'][kind[i]] !== undefined)
+                                    {
+                                        for (var j = -1, js = type.length; ++j < js;)
+                                        {
+                                            if (response['data']['message'][kind[i]][type[j]] !== undefined)
+                                            {
+                                                for (var k = -1, ks = status.length; ++k < ks;)
+                                                {
+                                                    if (response['data']['message'][kind[i]][type[j]][status[k]] !== undefined)
+                                                    {
+                                                        if (kind[i] === 'notify')
+                                                        {
+                                                            //noinspection JSDuplicatedDeclaration
+                                                            for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
+                                                            {
+                                                                $.notify({
+                                                                    message: response['data']['message'][kind[i]][type[j]][status[k]][l]
+                                                                }, {
+                                                                    type: status[k]
+                                                                });
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            var template = '<div class="alert alert-' + status[k] + ' alert-dismissible">'
+                                                                + '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'
+                                                                + '<ul>';
+                                                            //noinspection JSDuplicatedDeclaration
+                                                            for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
+                                                            {
+                                                                template += '<li>' + response['data']['message'][kind[i]][type[j]][status[k]][l] + '</li>'
+                                                            }
+                                                            template += '</ul>'
+                                                                + '</div>';
+                                                            $("div#form-creation-message-container").empty().append(template);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (response['data']['status'] !== undefined)
+                            {
+                                if (response['data']['status'] === 1)
+                                {
+                                    var $a = $("<a>");
+                                    $a.attr("href", response['data']['download']['content']);
+                                    $("body").append($a);
+                                    $a.attr("download", response['data']['download']['filename']);
+                                    $a[0].click();
+                                    $a.remove();
+                                }
+                            }
+                        }
+                    })
+                    .fail(function () {
+                    })
+                    .always(function () {
+                        NProgress.done();
+                    });
+            }
+        });
 
         var retreiveData = function (table, link, progress) {
             progress.start();
