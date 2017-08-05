@@ -251,7 +251,8 @@ class Rekap extends CI_Controller
             $string['tabel']['header']['vrt_k2']          = 'Tegangan RT';
             $string['tabel']['header']['vst_k2']          = 'Tegangan ST';
 
-            $string['button']['download'] = 'Unduh';
+            $string['button']['download']                    = 'Unduh';
+            $string['form']['label']['title']['filter_date'] = 'Pencarian';
 
             $meta['retriever']      = site_url('/api/rekap/pengukuran/gardu/find?code=82AF2');
             $meta['download']       = site_url('/api/rekap/pengukuran/gardu/download?from=%s&to=%s');
