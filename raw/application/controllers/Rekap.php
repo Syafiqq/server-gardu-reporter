@@ -255,7 +255,7 @@ class Rekap extends CI_Controller
             $string['form']['label']['title']['filter_date'] = 'Pencarian';
 
             $meta['retriever']      = site_url('/api/rekap/pengukuran/gardu/find?code=82AF2');
-            $meta['download']       = site_url('/api/rekap/pengukuran/gardu/download?from=%s&to=%s');
+            $meta['download']       = site_url('/api/rekap/pengukuran/gardu/download');
             $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
 
             $data['meta']['i18n']['country']  = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
