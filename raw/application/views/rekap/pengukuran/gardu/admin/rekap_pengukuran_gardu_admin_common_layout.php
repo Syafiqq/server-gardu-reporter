@@ -52,6 +52,8 @@ if (!isset($view))
 
     <link rel="stylesheet" href="/assets/vendor/html5-boilerplate/dist/css/normalize.min.css">
     <link rel="stylesheet" href="/assets/vendor/html5-boilerplate/dist/css/main.min.css">
+    <!-- Jquery UI -->
+    <link rel="stylesheet" href="/assets/vendor/jquery-ui/themes/base/jquery-ui.min.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/assets/vendor/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -108,7 +110,7 @@ if (!isset($view))
                     <div class="well well-sm">
                         <div class="row">
                             <div class="col-sm-2 align-right text-right">
-                                <strong>Pencarian</strong>
+                                <strong><?php echo $string['form']['label']['title']['filter_date'] ?></strong>
                             </div>
                             <div class="col-sm-4">
                                 <span id="timestamp-filter"></span>
@@ -120,8 +122,6 @@ if (!isset($view))
                                 </button>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -260,6 +260,8 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/vendor/jquery/dist/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script type="text/javascript" src="/assets/vendor/jquery/dist/jquery.min.js"><\/script>')</script>
 <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/plugins.min.js"></script>
+<!-- Jquery UI -->
+<script type="text/javascript" src="/assets/vendor/jquery-ui/jquery-ui.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script type="text/javascript" src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
