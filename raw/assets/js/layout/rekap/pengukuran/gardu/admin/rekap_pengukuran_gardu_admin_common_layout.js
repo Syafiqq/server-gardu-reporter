@@ -8,11 +8,15 @@
 
 (function ($) {
     $(function () {
-        var table_report = 'table#tabel_pengukuran';
-        var table = $(table_report).DataTable({
+        'use strict';
+        moment.locale('id');
+        var selector = {};
+        selector['table_report'] = 'table#tabel_pengukuran';
+
+        var table = $(selector['table_report']).DataTable({
             "paging": true,
             "lengthChange": false,
-            "searching": false,
+            "searching": true,
             "ordering": false,
             "info": true,
             "autoWidth": true,
@@ -21,8 +25,24 @@
             "sScrollXInner": "100%",
             "language": {
                 "url": $('meta[name="datatable_lang"]').attr('content')
-            }
+            },
+            "columnDefs": [
+                {
+                    "targets": [9],
+                    "visible": false
+                }
+            ]
         });
+
+        yadcf.init(table, [{
+            column_number: 9,
+            filter_type: "range_date",
+            datepicker_type: 'jquery-ui',
+            date_format: 'yyyy-mm-dd',
+            filter_container_id: 'timestamp-filter'
+        }]);
+
+
         var retriever = $('meta[name="retriever"]').attr('content');
 
         var retreiveData = function (table, link, progress) {
@@ -79,7 +99,6 @@
 
                         if (response['data']['rekap_pengukuran_gardu'] !== undefined)
                         {
-                            moment.locale('id');
                             var contents = response['data']['rekap_pengukuran_gardu'];
                             table.clear();
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
@@ -95,6 +114,7 @@
                                     content['petugas_1'],
                                     content['petugas_2'],
                                     content['no_kontrak'],
+                                    content['date'],
                                     moment(content['date'], "YYYY-MM-DD").tz('Asia/Jakarta').format('dddd, D MMMM YYYY'),
                                     moment(content['time'], "HH:mm:ss").tz('Asia/Jakarta').format('HH:mm:ss zz'),
                                     content['ir'],
