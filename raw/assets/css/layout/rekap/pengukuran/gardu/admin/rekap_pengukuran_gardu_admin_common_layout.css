@@ -1,9 +1,9 @@
-table#tabel_pengukuran th, table#tabel_pengukuran td {
+th, td {
     white-space: nowrap;
     text-align: center;
 }
 
-#tabel_pengukuran.table > thead > tr > th {
+.table > thead > tr > th {
     padding: 8px 32px;
 }
 
