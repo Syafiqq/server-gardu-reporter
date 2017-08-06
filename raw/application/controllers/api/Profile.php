@@ -79,7 +79,7 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['username'] = $this->patchOrDefault('username', null);
-            $data['email'] = $this->patchOrDefault('email', null);
+            $data['email']    = $this->patchOrDefault('email', null);
 
             $this->lang->load(['common/auth/common_auth_register_form', 'auth'], $this->language);
             $this->form_validation->set_data($data);
@@ -96,21 +96,21 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
                 $data['email'] = strtolower($data['email']);
                 if ($this->ion_auth->update($this->session->userdata('user_id'), $data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']   = 1;
                     $response['data']['redirect'] = $this->patchOrDefault('redirector', site_url('/dashboard'));
-                    $flashdata = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
+                    $flashdata                    = array_merge([], explode(PHP_EOL, trim($this->ion_auth->messages())));
                     $this->session->set_flashdata(['flashdata' => ['message' => $flashdata]]);
                     $response['data']['message']['message']['update']['success'] = $flashdata;
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                 = 0;
                     $response['data']['message']['message']['update']['danger'] = array_merge([], explode(PHP_EOL, trim($this->ion_auth->errors())));
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();

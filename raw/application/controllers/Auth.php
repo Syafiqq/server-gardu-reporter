@@ -50,7 +50,7 @@ class Auth extends CI_Controller
         $this->load->library(['ion_auth', 'session']);
 
         $this->language = empty($this->language = get_cookie('common_language')) ? $this->config->item('language') : $this->language;
-        $this->country = empty($this->country = get_cookie('common_country')) ? $this->config->item('country') : $this->country;
+        $this->country  = empty($this->country = get_cookie('common_country')) ? $this->config->item('country') : $this->country;
     }
 
     public function login($group = 'admin')
@@ -90,20 +90,20 @@ class Auth extends CI_Controller
             $this->lang->load('common', $this->language);
 
             $string = [];
-            $meta = [];
-            $data = [];
+            $meta   = [];
+            $data   = [];
 
-            $string['title'] = $this->lang->line('common_title');
-            $string['login_identity'] = $this->lang->line('common_auth_login_form_email_label');
-            $string['login_password'] = $this->lang->line('common_auth_login_form_password_label');
+            $string['title']             = $this->lang->line('common_title');
+            $string['login_identity']    = $this->lang->line('common_auth_login_form_email_label');
+            $string['login_password']    = $this->lang->line('common_auth_login_form_password_label');
             $string['login_remember_me'] = $this->lang->line('common_auth_login_form_remember_me_label');
-            $string['login_submit'] = $this->lang->line('common_auth_common_login');
+            $string['login_submit']      = $this->lang->line('common_auth_common_login');
             $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['login_submit']);
 
-            $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
+            $data['meta']['i18n']['country']  = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
             $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
-            $data['session']['flashdata'] = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
-            $data['session']['redirector'] = empty(@$this->session->userdata('flashdata')['redirector']) ? null : $this->session->userdata('flashdata')['redirector'];
+            $data['session']['flashdata']     = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
+            $data['session']['redirector']    = empty(@$this->session->userdata('flashdata')['redirector']) ? null : $this->session->userdata('flashdata')['redirector'];
 
             $this->load->view("auth/login/admin/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
         }
@@ -119,15 +119,15 @@ class Auth extends CI_Controller
         $this->lang->load('common', $this->language);
 
         $string = [];
-        $meta = [];
-        $data = [];
+        $meta   = [];
+        $data   = [];
 
-        $string['title'] = $this->lang->line('common_title');
-        $string['auth_login'] = $this->lang->line('common_auth_common_login');
-        $string['auth_remember_me'] = $this->lang->line('common_auth_common_remember_me');
+        $string['title']             = $this->lang->line('common_title');
+        $string['auth_login']        = $this->lang->line('common_auth_common_login');
+        $string['auth_remember_me']  = $this->lang->line('common_auth_common_remember_me');
         $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['auth_login']);
 
-        $data['meta']['i18n']['country'] = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
+        $data['meta']['i18n']['country']  = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
         $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
 
         $this->load->view("auth/login/members/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));

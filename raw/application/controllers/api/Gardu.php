@@ -89,7 +89,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 break;
                 default:
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
                 }
             }
@@ -154,13 +154,13 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_induk', 'mgi');
                 if ($this->mgi->delete($data['id_tb_gardu_induk']))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                 = 1;
                     $response['data']['message']['notify']['delete']['success'] = [$this->lang->line('gardu_induk_common_delete_success')];
 
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                = 0;
                     $response['data']['message']['notify']['delete']['danger'] = [$this->lang->line('gardu_induk_common_delete_failed')];
                 }
             }
@@ -199,11 +199,11 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_induk'] = $this->postOrDefault('id', null);
-            $data['nama_gardu_induk'] = $this->postOrDefault('name', null);
+            $data['nama_gardu_induk']  = $this->postOrDefault('name', null);
 
             $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-            $this->callback_request['_id_gardu_induk_existence_check'] = true;
+            $this->callback_request['_id_gardu_induk_existence_check']             = true;
             $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = false;
 
             $this->form_validation->set_data($data);
@@ -219,18 +219,18 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_induk', 'mgi');
                 if ($this->mgi->insert($data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                    = 1;
                     $response['data']['message']['message']['register']['success'] = [$this->lang->line('gardu_induk_common_insert_success')];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['register']['danger'] = [$this->lang->line('gardu_induk_common_insert_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
@@ -264,11 +264,11 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_induk'] = $this->patchOrDefault('id', null);
-            $data['nama_gardu_induk'] = $this->patchOrDefault('name', null);
+            $data['nama_gardu_induk']  = $this->patchOrDefault('name', null);
 
             $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-            $this->callback_request['_id_gardu_induk_existence_check'] = true;
+            $this->callback_request['_id_gardu_induk_existence_check']             = true;
             $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = true;
 
             $this->form_validation->set_data($data);
@@ -286,19 +286,19 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 unset($data['id_tb_gardu_induk']);
                 if ($this->mgi->update($id, $data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                  = 1;
                     $response['data']['message']['message']['update']['success'] = [$this->lang->line('gardu_induk_common_update_success')];
-                    $response['data']['message']['notify']['update']['success'] = $response['data']['message']['message']['update']['success'];
+                    $response['data']['message']['notify']['update']['success']  = $response['data']['message']['message']['update']['success'];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                 = 0;
                     $response['data']['message']['message']['update']['danger'] = [$this->lang->line('gardu_induk_common_update_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
         }
@@ -327,7 +327,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         {
             unset($this->callback_request['_id_gardu_induk_existence_check']);
             $need_exist = isset($this->callback_request['_id_gardu_induk_existence_check_need_exists']) ? $this->callback_request['_id_gardu_induk_existence_check_need_exists'] : false;
-            $id = intval($id);
+            $id         = intval($id);
 
             $this->load->model('model_gardu_induk', 'mgi');
             if ($this->mgi->id_check($id))
@@ -383,7 +383,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 break;
                 default:
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
                 }
             }
@@ -448,13 +448,13 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_penyulang', 'mgp');
                 if ($this->mgp->delete($data['id_tb_gardu_penyulang']))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                 = 1;
                     $response['data']['message']['notify']['delete']['success'] = [$this->lang->line('gardu_penyulang_common_delete_success')];
 
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                = 0;
                     $response['data']['message']['notify']['delete']['danger'] = [$this->lang->line('gardu_penyulang_common_delete_failed')];
                 }
             }
@@ -493,11 +493,11 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_penyulang'] = $this->postOrDefault('id', null);
-            $data['nama_penyulang'] = $this->postOrDefault('name', null);
+            $data['nama_penyulang']        = $this->postOrDefault('name', null);
 
             $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
-            $this->callback_request['_id_gardu_penyulang_existence_check'] = true;
+            $this->callback_request['_id_gardu_penyulang_existence_check']             = true;
             $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] = false;
 
             $this->form_validation->set_data($data);
@@ -513,18 +513,18 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_penyulang', 'mgp');
                 if ($this->mgp->insert($data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                    = 1;
                     $response['data']['message']['message']['register']['success'] = [$this->lang->line('gardu_penyulang_common_insert_success')];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['register']['danger'] = [$this->lang->line('gardu_penyulang_common_insert_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
@@ -558,11 +558,11 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_penyulang'] = $this->patchOrDefault('id', null);
-            $data['nama_penyulang'] = $this->patchOrDefault('name', null);
+            $data['nama_penyulang']        = $this->patchOrDefault('name', null);
 
             $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
-            $this->callback_request['_id_gardu_penyulang_existence_check'] = true;
+            $this->callback_request['_id_gardu_penyulang_existence_check']             = true;
             $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] = true;
 
             $this->form_validation->set_data($data);
@@ -580,19 +580,19 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 unset($data['id_tb_gardu_penyulang']);
                 if ($this->mgp->update($id, $data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                  = 1;
                     $response['data']['message']['message']['update']['success'] = [$this->lang->line('gardu_penyulang_common_update_success')];
-                    $response['data']['message']['notify']['update']['success'] = $response['data']['message']['message']['update']['success'];
+                    $response['data']['message']['notify']['update']['success']  = $response['data']['message']['message']['update']['success'];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                 = 0;
                     $response['data']['message']['message']['update']['danger'] = [$this->lang->line('gardu_penyulang_common_update_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
         }
@@ -621,7 +621,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         {
             unset($this->callback_request['_id_gardu_penyulang_existence_check']);
             $need_exist = isset($this->callback_request['_id_gardu_penyulang_existence_check_need_exists']) ? $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] : false;
-            $id = intval($id);
+            $id         = intval($id);
 
             $this->load->model('model_gardu_penyulang', 'mgp');
             if ($this->mgp->id_check($id))
@@ -682,7 +682,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 break;
                 default:
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
                 }
             }
@@ -831,13 +831,13 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_index', 'mgidx');
                 if ($this->mgidx->delete($data['id_tb_gardu_index']))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                 = 1;
                     $response['data']['message']['notify']['delete']['success'] = [$this->lang->line('gardu_index_common_delete_success')];
 
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                = 0;
                     $response['data']['message']['notify']['delete']['danger'] = [$this->lang->line('gardu_index_common_delete_failed')];
                 }
             }
@@ -875,27 +875,27 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['id_tb_gardu_induk'] = $this->postOrDefault('induk_id', null);
+            $data['id_tb_gardu_induk']     = $this->postOrDefault('induk_id', null);
             $data['id_tb_gardu_penyulang'] = $this->postOrDefault('penyulang_id', null);
-            $data['jns_gardu'] = $this->postOrDefault('jenis', null);
-            $data['no_gardu'] = $this->postOrDefault('no', null);
-            $data['lokasi'] = $this->postOrDefault('lokasi', null);
-            $data['merk_trafo'] = $this->postOrDefault('merk', null);
-            $data['no_seri_trafo'] = $this->postOrDefault('serial', null);
-            $data['daya_trafo'] = $this->postOrDefault('daya', null);
-            $data['fasa'] = $this->postOrDefault('fasa', null);
-            $data['tap'] = $this->postOrDefault('tap', null);
-            $data['jml_jurusan'] = $this->postOrDefault('jurusan', null);
-            $data['latitude'] = $this->postOrDefault('lat', null);
-            $data['longitude'] = $this->postOrDefault('long', null);
+            $data['jns_gardu']             = $this->postOrDefault('jenis', null);
+            $data['no_gardu']              = $this->postOrDefault('no', null);
+            $data['lokasi']                = $this->postOrDefault('lokasi', null);
+            $data['merk_trafo']            = $this->postOrDefault('merk', null);
+            $data['no_seri_trafo']         = $this->postOrDefault('serial', null);
+            $data['daya_trafo']            = $this->postOrDefault('daya', null);
+            $data['fasa']                  = $this->postOrDefault('fasa', null);
+            $data['tap']                   = $this->postOrDefault('tap', null);
+            $data['jml_jurusan']           = $this->postOrDefault('jurusan', null);
+            $data['latitude']              = $this->postOrDefault('lat', null);
+            $data['longitude']             = $this->postOrDefault('long', null);
 
             $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
-            $this->callback_request['_id_gardu_index_existence_check'] = true;
-            $this->callback_request['_id_gardu_induk_existence_check'] = true;
-            $this->callback_request['_id_gardu_penyulang_existence_check'] = true;
-            $this->callback_request['_id_gardu_index_existence_check_need_exists'] = false;
-            $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = true;
+            $this->callback_request['_id_gardu_index_existence_check']                 = true;
+            $this->callback_request['_id_gardu_induk_existence_check']                 = true;
+            $this->callback_request['_id_gardu_penyulang_existence_check']             = true;
+            $this->callback_request['_id_gardu_index_existence_check_need_exists']     = false;
+            $this->callback_request['_id_gardu_induk_existence_check_need_exists']     = true;
             $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] = true;
 
             $this->form_validation->set_data($data);
@@ -921,18 +921,18 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_index', 'mgidx');
                 if ($this->mgidx->insert($data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                    = 1;
                     $response['data']['message']['message']['register']['success'] = [$this->lang->line('gardu_index_common_insert_success')];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                   = 0;
                     $response['data']['message']['message']['register']['danger'] = [$this->lang->line('gardu_index_common_insert_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();
@@ -965,20 +965,20 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['jns_gardu'] = $this->patchOrDefault('jenis', null);
-            $data['no_gardu'] = $this->patchOrDefault('no', null);
-            $data['lokasi'] = $this->patchOrDefault('lokasi', null);
-            $data['merk_trafo'] = $this->patchOrDefault('merk', null);
+            $data['jns_gardu']     = $this->patchOrDefault('jenis', null);
+            $data['no_gardu']      = $this->patchOrDefault('no', null);
+            $data['lokasi']        = $this->patchOrDefault('lokasi', null);
+            $data['merk_trafo']    = $this->patchOrDefault('merk', null);
             $data['no_seri_trafo'] = $this->patchOrDefault('serial', null);
-            $data['fasa'] = $this->patchOrDefault('fasa', null);
-            $data['tap'] = $this->patchOrDefault('tap', null);
-            $data['jml_jurusan'] = $this->patchOrDefault('jurusan', null);
-            $data['latitude'] = $this->patchOrDefault('lat', null);
-            $data['longitude'] = $this->patchOrDefault('long', null);
+            $data['fasa']          = $this->patchOrDefault('fasa', null);
+            $data['tap']           = $this->patchOrDefault('tap', null);
+            $data['jml_jurusan']   = $this->patchOrDefault('jurusan', null);
+            $data['latitude']      = $this->patchOrDefault('lat', null);
+            $data['longitude']     = $this->patchOrDefault('long', null);
 
             $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
-            $this->callback_request['_id_gardu_index_existence_check'] = true;
+            $this->callback_request['_id_gardu_index_existence_check']             = true;
             $this->callback_request['_id_gardu_index_existence_check_need_exists'] = true;
 
             $this->form_validation->set_data($data);
@@ -1003,19 +1003,19 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 unset($data['no_gardu']);
                 if ($this->mgidx->update($id, $data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                  = 1;
                     $response['data']['message']['message']['update']['success'] = [$this->lang->line('gardu_index_common_update_success')];
-                    $response['data']['message']['notify']['update']['success'] = $response['data']['message']['message']['update']['success'];
+                    $response['data']['message']['notify']['update']['success']  = $response['data']['message']['message']['update']['success'];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                 = 0;
                     $response['data']['message']['message']['update']['danger'] = [$this->lang->line('gardu_index_common_update_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                   = 0;
                 $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
             }
         }
@@ -1096,65 +1096,65 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['no_gardu'] = $this->postOrDefault('no_gardu', null);
-            $data['nama_petugas1'] = $this->postOrDefault('petugas1', '');
-            $data['nama_petugas2'] = $this->postOrDefault('petugas2', '');
-            $data['no_kontrak'] = $this->postOrDefault('no_kontrak', '');
-            $data['arus_R'] = $this->postOrDefault('ir', '');
-            $data['arus_S'] = $this->postOrDefault('is', '');
-            $data['arus_T'] = $this->postOrDefault('it', '');
-            $data['arus_N'] = $this->postOrDefault('in', '');
-            $data['teg_RN'] = $this->postOrDefault('vrn', '');
-            $data['teg_SN'] = $this->postOrDefault('vsn', '');
-            $data['teg_TN'] = $this->postOrDefault('vtn', '');
-            $data['teg_RS'] = $this->postOrDefault('vrs', '');
-            $data['teg_RT'] = $this->postOrDefault('vrt', '');
-            $data['teg_ST'] = $this->postOrDefault('vst', '');
-            $data['id_jurusan1'] = $this->postOrDefault('j_u1', '');
-            $data['arus_R_jurusan1'] = $this->postOrDefault('ir_u1', '');
-            $data['arus_S_jurusan1'] = $this->postOrDefault('is_u1', '');
-            $data['arus_T_jurusan1'] = $this->postOrDefault('it_u1', '');
-            $data['arus_N_jurusan1'] = $this->postOrDefault('in_u1', '');
-            $data['teg_RN_jurusan1'] = $this->postOrDefault('vrn_u1', '');
-            $data['teg_SN_jurusan1'] = $this->postOrDefault('vsn_u1', '');
-            $data['teg_TN_jurusan1'] = $this->postOrDefault('vtn_u1', '');
-            $data['teg_RS_jurusan1'] = $this->postOrDefault('vrs_u1', '');
-            $data['teg_RT_jurusan1'] = $this->postOrDefault('vrt_u1', '');
-            $data['teg_ST_jurusan1'] = $this->postOrDefault('vst_u1', '');
-            $data['id_jurusan2'] = $this->postOrDefault('j_u2', '');
-            $data['arus_R_jurusan2'] = $this->postOrDefault('ir_u2', '');
-            $data['arus_S_jurusan2'] = $this->postOrDefault('is_u2', '');
-            $data['arus_T_jurusan2'] = $this->postOrDefault('it_u2', '');
-            $data['arus_N_jurusan2'] = $this->postOrDefault('in_u2', '');
-            $data['teg_RN_jurusan2'] = $this->postOrDefault('vrn_u2', '');
-            $data['teg_SN_jurusan2'] = $this->postOrDefault('vsn_u2', '');
-            $data['teg_TN_jurusan2'] = $this->postOrDefault('vtn_u2', '');
-            $data['teg_RS_jurusan2'] = $this->postOrDefault('vrs_u2', '');
-            $data['teg_RT_jurusan2'] = $this->postOrDefault('vrt_u2', '');
-            $data['teg_ST_jurusan2'] = $this->postOrDefault('vst_u2', '');
-            $data['id_jurusan3'] = $this->postOrDefault('j_u3', '');
-            $data['arus_R_jurusan3'] = $this->postOrDefault('ir_u3', '');
-            $data['arus_S_jurusan3'] = $this->postOrDefault('is_u3', '');
-            $data['arus_T_jurusan3'] = $this->postOrDefault('it_u3', '');
-            $data['arus_N_jurusan3'] = $this->postOrDefault('in_u3', '');
-            $data['teg_RN_jurusan3'] = $this->postOrDefault('vrn_u3', '');
-            $data['teg_SN_jurusan3'] = $this->postOrDefault('vsn_u3', '');
-            $data['teg_TN_jurusan3'] = $this->postOrDefault('vtn_u3', '');
-            $data['teg_RS_jurusan3'] = $this->postOrDefault('vrs_u3', '');
-            $data['teg_RT_jurusan3'] = $this->postOrDefault('vrt_u3', '');
-            $data['teg_ST_jurusan3'] = $this->postOrDefault('vst_u3', '');
-            $data['id_jurusan4'] = $this->postOrDefault('j_u4', '');
-            $data['arus_R_jurusan4'] = $this->postOrDefault('ir_u4', '');
-            $data['arus_S_jurusan4'] = $this->postOrDefault('is_u4', '');
-            $data['arus_T_jurusan4'] = $this->postOrDefault('it_u4', '');
-            $data['arus_N_jurusan4'] = $this->postOrDefault('in_u4', '');
-            $data['teg_RN_jurusan4'] = $this->postOrDefault('vrn_u4', '');
-            $data['teg_SN_jurusan4'] = $this->postOrDefault('vsn_u4', '');
-            $data['teg_TN_jurusan4'] = $this->postOrDefault('vtn_u4', '');
-            $data['teg_RS_jurusan4'] = $this->postOrDefault('vrs_u4', '');
-            $data['teg_RT_jurusan4'] = $this->postOrDefault('vrt_u4', '');
-            $data['teg_ST_jurusan4'] = $this->postOrDefault('vst_u4', '');
-            $data['id_jurusank1'] = $this->postOrDefault('j_k1', '');
+            $data['no_gardu']         = $this->postOrDefault('no_gardu', null);
+            $data['nama_petugas1']    = $this->postOrDefault('petugas1', '');
+            $data['nama_petugas2']    = $this->postOrDefault('petugas2', '');
+            $data['no_kontrak']       = $this->postOrDefault('no_kontrak', '');
+            $data['arus_R']           = $this->postOrDefault('ir', '');
+            $data['arus_S']           = $this->postOrDefault('is', '');
+            $data['arus_T']           = $this->postOrDefault('it', '');
+            $data['arus_N']           = $this->postOrDefault('in', '');
+            $data['teg_RN']           = $this->postOrDefault('vrn', '');
+            $data['teg_SN']           = $this->postOrDefault('vsn', '');
+            $data['teg_TN']           = $this->postOrDefault('vtn', '');
+            $data['teg_RS']           = $this->postOrDefault('vrs', '');
+            $data['teg_RT']           = $this->postOrDefault('vrt', '');
+            $data['teg_ST']           = $this->postOrDefault('vst', '');
+            $data['id_jurusan1']      = $this->postOrDefault('j_u1', '');
+            $data['arus_R_jurusan1']  = $this->postOrDefault('ir_u1', '');
+            $data['arus_S_jurusan1']  = $this->postOrDefault('is_u1', '');
+            $data['arus_T_jurusan1']  = $this->postOrDefault('it_u1', '');
+            $data['arus_N_jurusan1']  = $this->postOrDefault('in_u1', '');
+            $data['teg_RN_jurusan1']  = $this->postOrDefault('vrn_u1', '');
+            $data['teg_SN_jurusan1']  = $this->postOrDefault('vsn_u1', '');
+            $data['teg_TN_jurusan1']  = $this->postOrDefault('vtn_u1', '');
+            $data['teg_RS_jurusan1']  = $this->postOrDefault('vrs_u1', '');
+            $data['teg_RT_jurusan1']  = $this->postOrDefault('vrt_u1', '');
+            $data['teg_ST_jurusan1']  = $this->postOrDefault('vst_u1', '');
+            $data['id_jurusan2']      = $this->postOrDefault('j_u2', '');
+            $data['arus_R_jurusan2']  = $this->postOrDefault('ir_u2', '');
+            $data['arus_S_jurusan2']  = $this->postOrDefault('is_u2', '');
+            $data['arus_T_jurusan2']  = $this->postOrDefault('it_u2', '');
+            $data['arus_N_jurusan2']  = $this->postOrDefault('in_u2', '');
+            $data['teg_RN_jurusan2']  = $this->postOrDefault('vrn_u2', '');
+            $data['teg_SN_jurusan2']  = $this->postOrDefault('vsn_u2', '');
+            $data['teg_TN_jurusan2']  = $this->postOrDefault('vtn_u2', '');
+            $data['teg_RS_jurusan2']  = $this->postOrDefault('vrs_u2', '');
+            $data['teg_RT_jurusan2']  = $this->postOrDefault('vrt_u2', '');
+            $data['teg_ST_jurusan2']  = $this->postOrDefault('vst_u2', '');
+            $data['id_jurusan3']      = $this->postOrDefault('j_u3', '');
+            $data['arus_R_jurusan3']  = $this->postOrDefault('ir_u3', '');
+            $data['arus_S_jurusan3']  = $this->postOrDefault('is_u3', '');
+            $data['arus_T_jurusan3']  = $this->postOrDefault('it_u3', '');
+            $data['arus_N_jurusan3']  = $this->postOrDefault('in_u3', '');
+            $data['teg_RN_jurusan3']  = $this->postOrDefault('vrn_u3', '');
+            $data['teg_SN_jurusan3']  = $this->postOrDefault('vsn_u3', '');
+            $data['teg_TN_jurusan3']  = $this->postOrDefault('vtn_u3', '');
+            $data['teg_RS_jurusan3']  = $this->postOrDefault('vrs_u3', '');
+            $data['teg_RT_jurusan3']  = $this->postOrDefault('vrt_u3', '');
+            $data['teg_ST_jurusan3']  = $this->postOrDefault('vst_u3', '');
+            $data['id_jurusan4']      = $this->postOrDefault('j_u4', '');
+            $data['arus_R_jurusan4']  = $this->postOrDefault('ir_u4', '');
+            $data['arus_S_jurusan4']  = $this->postOrDefault('is_u4', '');
+            $data['arus_T_jurusan4']  = $this->postOrDefault('it_u4', '');
+            $data['arus_N_jurusan4']  = $this->postOrDefault('in_u4', '');
+            $data['teg_RN_jurusan4']  = $this->postOrDefault('vrn_u4', '');
+            $data['teg_SN_jurusan4']  = $this->postOrDefault('vsn_u4', '');
+            $data['teg_TN_jurusan4']  = $this->postOrDefault('vtn_u4', '');
+            $data['teg_RS_jurusan4']  = $this->postOrDefault('vrs_u4', '');
+            $data['teg_RT_jurusan4']  = $this->postOrDefault('vrt_u4', '');
+            $data['teg_ST_jurusan4']  = $this->postOrDefault('vst_u4', '');
+            $data['id_jurusank1']     = $this->postOrDefault('j_k1', '');
             $data['arus_R_jurusank1'] = $this->postOrDefault('ir_k1', '');
             $data['arus_S_jurusank1'] = $this->postOrDefault('is_k1', '');
             $data['arus_T_jurusank1'] = $this->postOrDefault('it_k1', '');
@@ -1165,7 +1165,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['teg_RS_jurusank1'] = $this->postOrDefault('vrs_k1', '');
             $data['teg_RT_jurusank1'] = $this->postOrDefault('vrt_k1', '');
             $data['teg_ST_jurusank1'] = $this->postOrDefault('vst_k1', '');
-            $data['id_jurusank2'] = $this->postOrDefault('j_k2', '');
+            $data['id_jurusank2']     = $this->postOrDefault('j_k2', '');
             $data['arus_R_jurusank2'] = $this->postOrDefault('ir_k2', '');
             $data['arus_S_jurusank2'] = $this->postOrDefault('is_k2', '');
             $data['arus_T_jurusank2'] = $this->postOrDefault('it_k2', '');
@@ -1177,7 +1177,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['teg_RT_jurusank2'] = $this->postOrDefault('vrt_k2', '');
             $data['teg_ST_jurusank2'] = $this->postOrDefault('vst_k2', '');
 
-            $this->callback_request['_id_gardu_index_existence_check'] = true;
+            $this->callback_request['_id_gardu_index_existence_check']             = true;
             $this->callback_request['_id_gardu_index_existence_check_need_exists'] = true;
 
             $this->form_validation->set_data($data);
@@ -1191,18 +1191,18 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_index', 'mgidx');
                 if ($this->mgidx->insert_measurement($data))
                 {
-                    $response['data']['status'] = 1;
+                    $response['data']['status']                                   = 1;
                     $response['data']['message']['notify']['register']['success'] = [$this->lang->line('gardu_pengukuran_index_common_insert_success')];
                 }
                 else
                 {
-                    $response['data']['status'] = 0;
+                    $response['data']['status']                                  = 0;
                     $response['data']['message']['notify']['register']['danger'] = [$this->lang->line('gardu_pengukuran_index_common_insert_failed')];
                 }
             }
             else
             {
-                $response['data']['status'] = 0;
+                $response['data']['status']                                  = 0;
                 $response['data']['message']['notify']['validation']['info'] = $this->validation_errors();
             }
             $response['data']['csrf']['name'] = $this->security->get_csrf_token_name();

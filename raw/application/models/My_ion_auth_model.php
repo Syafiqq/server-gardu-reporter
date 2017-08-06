@@ -318,7 +318,7 @@ class My_ion_auth_model extends Ion_auth_model
         while (!$this->db->insert('token', $data))
         {
             $this->setApiToken($getApiToken = $this->refreshToken());
-            $data['token'] = $getApiToken['token'];
+            $data['token']   = $getApiToken['token'];
             $data['refresh'] = $getApiToken['refresh'];
         }
 

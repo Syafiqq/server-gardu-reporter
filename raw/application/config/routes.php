@@ -49,32 +49,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
-$route['404_override'] = '';
+$route['default_controller']   = 'welcome';
+$route['404_override']         = '';
 $route['translate_uri_dashes'] = true;
-$route['gardu/pengukuran'] = '/gardu/pengukuran/index';
+$route['gardu/pengukuran']     = '/gardu/pengukuran/index';
 
-$route['api/gardu/induk/find'] = '/api/gardu/induk_find';
-$route['api/gardu/induk/register'] = '/api/gardu/induk_register';
-$route['api/gardu/induk/delete'] = '/api/gardu/induk_delete';
-$route['api/gardu/induk/update'] = '/api/gardu/induk_update';
-$route['api/gardu/penyulang/find'] = '/api/gardu/penyulang_find';
+$route['api/gardu/induk/find']         = '/api/gardu/induk_find';
+$route['api/gardu/induk/register']     = '/api/gardu/induk_register';
+$route['api/gardu/induk/delete']       = '/api/gardu/induk_delete';
+$route['api/gardu/induk/update']       = '/api/gardu/induk_update';
+$route['api/gardu/penyulang/find']     = '/api/gardu/penyulang_find';
 $route['api/gardu/penyulang/register'] = '/api/gardu/penyulang_register';
-$route['api/gardu/penyulang/delete'] = '/api/gardu/penyulang_delete';
-$route['api/gardu/penyulang/update'] = '/api/gardu/penyulang_update';
-$route['api/gardu/index/find'] = '/api/gardu/index_find';
-$route['api/gardu/index/detail'] = '/api/gardu/index_detail';
-$route['api/gardu/index/register'] = '/api/gardu/index_register';
-$route['api/gardu/index/delete'] = '/api/gardu/index_delete';
-$route['api/gardu/index/update'] = '/api/gardu/index_update';
+$route['api/gardu/penyulang/delete']   = '/api/gardu/penyulang_delete';
+$route['api/gardu/penyulang/update']   = '/api/gardu/penyulang_update';
+$route['api/gardu/index/find']         = '/api/gardu/index_find';
+$route['api/gardu/index/detail']       = '/api/gardu/index_detail';
+$route['api/gardu/index/register']     = '/api/gardu/index_register';
+$route['api/gardu/index/delete']       = '/api/gardu/index_delete';
+$route['api/gardu/index/update']       = '/api/gardu/index_update';
 
-$route['api/mobile/gardu/induk/find'] = '/api/mobile/gardu/induk_find';
+$route['api/mobile/gardu/induk/find']     = '/api/mobile/gardu/induk_find';
 $route['api/mobile/gardu/penyulang/find'] = '/api/mobile/gardu/penyulang_find';
-$route['api/mobile/gardu/index/insert'] = '/api/mobile/gardu/index_register';
-$route['api/mobile/gardu/index/find'] = '/api/mobile/gardu/index_find';
+$route['api/mobile/gardu/index/insert']   = '/api/mobile/gardu/index_register';
+$route['api/mobile/gardu/index/find']     = '/api/mobile/gardu/index_find';
 
-$route['api/gardu/pengukuran/index/register'] = '/api/gardu/pengukuran_index_register';
 $route['api/mobile/gardu/pengukuran/index/register'] = '/api/mobile/gardu/pengukuran_index_register';
+
+$route['api/gardu/pengukuran/index/register']          = '/api/gardu/pengukuran_index_register';
+$route['api/rekap/pengukuran/gardu/find']              = '/api/rekap/pengukuran_gardu_find';
+$route['api/rekap/pengukuran/gardu/download']          = '/api/rekap/pengukuran_gardu_download';
+$route['api/rekap/pengukuran/tegangan/ujung/find']     = '/api/rekap/pengukuran_tegangan_ujung_find';
+$route['api/rekap/pengukuran/tegangan/ujung/download'] = '/api/rekap/pengukuran_tegangan_ujung_download';
+$route['api/rekap/pengukuran/beban/trafo/find']        = '/api/rekap/pengukuran_beban_trafo_find';
+$route['api/rekap/pengukuran/beban/trafo/download']    = '/api/rekap/pengukuran_beban_trafo_download';
+$route['api/rekap/pengukuran/beban/imbang/find'] = '/api/rekap/pengukuran_beban_imbang_find';
+$route['api/rekap/pengukuran/beban/imbang/download'] = '/api/rekap/pengukuran_beban_imbang_download';
 
 
 /*
@@ -82,5 +91,5 @@ $route['api/mobile/gardu/pengukuran/index/register'] = '/api/mobile/gardu/penguk
 | Sample REST API Routes
 | -------------------------------------------------------------------------
 */
-$route['apiapi/example/users/(:num)'] = 'apiapi/example/users/id/$1'; // Example 4
+$route['apiapi/example/users/(:num)']                         = 'apiapi/example/users/id/$1'; // Example 4
 $route['apiapi/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'apiapi/example/users/id/$1/format/$3$4'; // Example 8
