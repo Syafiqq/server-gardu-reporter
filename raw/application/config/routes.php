@@ -80,6 +80,8 @@ $route['api/rekap/pengukuran/gardu/find']              = '/api/rekap/pengukuran_
 $route['api/rekap/pengukuran/gardu/download']          = '/api/rekap/pengukuran_gardu_download';
 $route['api/rekap/pengukuran/tegangan/ujung/find']     = '/api/rekap/pengukuran_tegangan_ujung_find';
 $route['api/rekap/pengukuran/tegangan/ujung/download'] = '/api/rekap/pengukuran_tegangan_ujung_download';
+$route['api/rekap/pengukuran/beban/trafo/find']        = '/api/rekap/pengukuran_beban_trafo_find';
+$route['api/rekap/pengukuran/beban/trafo/download']    = '/api/rekap/pengukuran_beban_trafo_download';
 
 
 /*
