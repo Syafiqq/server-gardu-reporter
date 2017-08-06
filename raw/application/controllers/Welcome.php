@@ -1,9 +1,15 @@
 <?php
+/**
+ * This <server-gardu-reporter> project created by :
+ * Name         : syafiq
+ * Date / Time  : 01 August 2017, 9:16 AM.
+ * Email        : syafiq.rezpector@gmail.com
+ * Github       : syafiqq
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller
 {
-
     /**
      * Index Page for this controller.
      *
@@ -19,23 +25,18 @@ class Welcome extends CI_Controller
      * map to /index.php/welcome/<method_name>
      * @see https://codeigniter.com/user_guide/general/urls.html
      */
+
+    public function __construct()
+    {
+        parent::__construct();
+        // Your own constructor code
+    }
+
     public function index()
     {
-        $this->load->view('welcome_message');
-    }
-
-    public function html5_boilerplate()
-    {
-        $this->load->view('test/html5_boilerplate');
-    }
-
-    public function bootstrap()
-    {
-        $this->load->view('test/bootstrap');
-    }
-
-    public function admin_lte()
-    {
-        $this->load->view('test/admin_lte');
+        $this->load->helper('url');
+        redirect('/auth/login');
     }
 }
+
+?>

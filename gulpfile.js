@@ -20,20 +20,17 @@ var shell = require('gulp-shell');
 //noinspection JSAnnotator
 var {phpMinify} = require('@cedx/gulp-php-minify');
 
-gulp.task('move-application-assets', function ()
-{
+gulp.task('move-application-assets', function () {
     return gulp.src('./raw/application/**', {base: './raw/application/'})
         .pipe(gulp.dest('./application/'));
 });
 
-gulp.task('move-assets', function ()
-{
+gulp.task('move-assets', function () {
     return gulp.src('./raw/assets/**', {base: './raw/assets/'})
         .pipe(gulp.dest('./public/assets/'));
 });
 
-gulp.task('minify-img', function ()
-{
+gulp.task('minify-img', function () {
     return gulp.src('./raw/assets/**/{*.png,*.jpg,*.jpeg}', {base: './raw/assets/'})
         .pipe(imagemin([
             imagemin.gifsicle({interlaced: true}),
@@ -44,10 +41,17 @@ gulp.task('minify-img', function ()
         .pipe(gulp.dest('./public/assets/'));
 });
 
-gulp.task('minify-js', function (cb)
-{
+gulp.task('minify-js', function (cb) {
     pump([
-            gulp.src(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], {base: './raw/assets/'})
+            gulp.src(['./raw/assets/**/*.js',
+                '!./raw/assets/**/*.min.js',
+                '!./raw/assets/vendor/moment/templates/default.js',
+                '!./raw/assets/vendor/moment/src/moment.js',
+                '!./raw/assets/vendor/moment/templates/*.js',
+                '!./raw/assets/vendor/moment/src/locale/*.js',
+                '!./raw/assets/vendor/moment/src/lib/**/*.js',
+                '!./raw/assets/vendor/raphael/webpack.config.js'
+            ], {base: './raw/assets/'})
                 .pipe(rename({
                     suffix: ".min",
                     extname: ".js"
@@ -59,8 +63,7 @@ gulp.task('minify-js', function (cb)
     );
 });
 
-gulp.task('minify-css', function ()
-{
+gulp.task('minify-css', function () {
     return gulp.src(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], {base: './raw/assets/'})
         .pipe(cleanCSS({compatibility: 'ie8', rebase: false}))
         .pipe(rename({
@@ -70,8 +73,7 @@ gulp.task('minify-css', function ()
         .pipe(gulp.dest('./public/assets/'));
 });
 
-gulp.task('minify-html-view', function ()
-{
+gulp.task('minify-html-view', function () {
     return gulp.src('./raw/application/views/**/{*.php,*.html}', {base: './raw/application/views/'})
         .pipe(phpMinify({silent: true}))
         .pipe(htmlmin({
@@ -87,15 +89,13 @@ gulp.task('minify-html-view', function ()
         .pipe(gulp.dest('./application/views/'));
 });
 
-gulp.task('minify-php-content', function ()
-{
+gulp.task('minify-php-content', function () {
     return gulp.src(['./raw/application/**/*.php', '!./raw/application/views/**'], {base: './raw/application/'})
         .pipe(phpMinify({silent: true}))
         .pipe(gulp.dest('./application/'));
 });
 
-gulp.task('minify-json', function ()
-{
+gulp.task('minify-json', function () {
     return gulp.src(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], {base: './raw/assets/'})
         .pipe(jsonMinify())
         .pipe(rename({
@@ -105,31 +105,25 @@ gulp.task('minify-json', function ()
         .pipe(gulp.dest('./public/assets/'));
 });
 
-gulp.task('watch-move-application-assets', function ()
-{
+gulp.task('watch-move-application-assets', function () {
 // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./raw/application/**', function ()
-    {
+    return watch('./raw/application/**', function () {
         return gulp.src('./raw/application/**', {base: './raw/application/'})
             .pipe(gulp.dest('./application/'));
     });
 });
 
-gulp.task('watch-move-assets', function ()
-{
+gulp.task('watch-move-assets', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./raw/assets/**', function ()
-    {
+    return watch('./raw/assets/**', function () {
         return gulp.src('./raw/assets/**', {base: './raw/assets/'})
             .pipe(gulp.dest('./public/assets/'));
     });
 });
 
-gulp.task('watch-minify-img', function ()
-{
+gulp.task('watch-minify-img', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./raw/assets/**/{*.png,*.jpg,*.jpeg}', function ()
-    {
+    return watch('./raw/assets/**/{*.png,*.jpg,*.jpeg}', function () {
         return gulp.src('./raw/assets/**/{*.png,*.jpg,*.jpeg}', {base: './raw/assets/'})
             .pipe(imagemin([
                 imagemin.gifsicle({interlaced: true}),
@@ -141,11 +135,9 @@ gulp.task('watch-minify-img', function ()
     });
 });
 
-gulp.task('watch-minify-js', function ()
-{
+gulp.task('watch-minify-js', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], function (cb)
-    {
+    return watch(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], function (cb) {
         pump([
                 gulp.src(['./raw/assets/**/*.js', '!./raw/assets/**/*.min.js'], {base: './raw/assets/'})
                     .pipe(rename({
@@ -160,11 +152,9 @@ gulp.task('watch-minify-js', function ()
     });
 });
 
-gulp.task('watch-minify-css', function ()
-{
+gulp.task('watch-minify-css', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], function ()
-    {
+    return watch(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], function () {
         return gulp.src(['./raw/assets/**/*.css', '!./raw/assets/**/*.min.css'], {base: './raw/assets/'})
             .pipe(cleanCSS({compatibility: 'ie8', rebase: false}))
             .pipe(rename({
@@ -175,11 +165,9 @@ gulp.task('watch-minify-css', function ()
     });
 });
 
-gulp.task('watch-minify-html-view', function ()
-{
+gulp.task('watch-minify-html-view', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./raw/application/views/**/{*.php,*.html}', function ()
-    {
+    return watch('./raw/application/views/**/{*.php,*.html}', function () {
         return gulp.src('./raw/application/views/**/{*.php,*.html}', {base: './raw/application/views/'})
             .pipe(phpMinify({silent: true}))
             .pipe(htmlmin({
@@ -196,22 +184,18 @@ gulp.task('watch-minify-html-view', function ()
     });
 });
 
-gulp.task('watch-minify-php-content', function ()
-{
+gulp.task('watch-minify-php-content', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch('./raw/application/**/*.php', function ()
-    {
+    return watch('./raw/application/**/*.php', function () {
         return gulp.src(['./raw/application/**/*.php', '!./raw/application/views/**'], {base: './raw/application/'})
             .pipe(phpMinify({silent: true}))
             .pipe(gulp.dest('./application/'));
     });
 });
 
-gulp.task('watch-minify-json', function ()
-{
+gulp.task('watch-minify-json', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], function ()
-    {
+    return watch(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], function () {
         return gulp.src(['./raw/assets/**/*.json', '!./raw/assets/**/*.min.json'], {base: './raw/assets/'})
             .pipe(jsonMinify())
             .pipe(rename({
@@ -222,16 +206,14 @@ gulp.task('watch-minify-json', function ()
     });
 });
 
-gulp.task('cleaning-generated-file', function ()
-{
+gulp.task('cleaning-generated-file', function () {
     return gulp.src('cleaning.sh', {read: false})
         .pipe(shell([
             'sh <%= file.path %>'
         ]))
 });
 
-gulp.task('move-application-sql-migration', function ()
-{
+gulp.task('move-application-sql-migration', function () {
     return gulp.src('./raw/application/sql/*ion_auth*.sql', {base: './raw/application/sql/'})
         .pipe(gulp.dest('./assets/db/ddl/ion_auth/'));
 });

@@ -87,6 +87,8 @@ class My_ion_auth_model extends Ion_auth_model
                     return false;
                 }
 
+                $user->group = $group;
+
                 $this->set_session($user);
 
                 $this->update_last_login($user->id);
@@ -316,7 +318,7 @@ class My_ion_auth_model extends Ion_auth_model
         while (!$this->db->insert('token', $data))
         {
             $this->setApiToken($getApiToken = $this->refreshToken());
-            $data['token'] = $getApiToken['token'];
+            $data['token']   = $getApiToken['token'];
             $data['refresh'] = $getApiToken['refresh'];
         }
 
@@ -386,6 +388,36 @@ class My_ion_auth_model extends Ion_auth_model
     public function setTokenId(int $token_id)
     {
         $this->token_id = $token_id;
+    }
+
+    public function users_and_its_group($select)
+    {
+        $this->trigger_events('users_and_its_group');
+
+        $this->db->select($select);
+        $this->db->from('`users`');
+        $this->db->join('`users_groups`', '`users`.`id` = `users_groups`.`user_id`', 'RIGHT OUTER');
+        $this->db->join('`groups`', '`users_groups`.`group_id` = `groups`.`id`', 'LEFT OUTER');
+        $this->db->order_by('`users`.`id`', 'ASC');
+        $this->db->order_by('`groups`.`id`', 'ASC');
+        $response = $this->db->get();
+
+        return $response;
+    }
+
+    public function remove_from_group($group_ids = false, $user_id = false)
+    {
+        $result = parent::remove_from_group($group_ids, $user_id);
+        if ($result)
+        {
+            $this->set_message('success_remove_from_group');
+        }
+        else
+        {
+            $this->set_message('failed_remove_from_group');
+        }
+
+        return $result;
     }
 }
 

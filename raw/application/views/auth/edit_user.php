@@ -47,9 +47,9 @@
     <?php foreach ($groups as $group): ?>
         <label class="checkbox">
             <?php
-            $gID = $group['id'];
+            $gID     = $group['id'];
             $checked = null;
-            $item = null;
+            $item    = null;
             foreach ($currentGroups as $grp)
             {
                 if ($gID == $grp->id)
