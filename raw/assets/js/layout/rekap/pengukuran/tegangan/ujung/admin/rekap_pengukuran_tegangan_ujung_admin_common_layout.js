@@ -29,14 +29,14 @@
             },
             "columnDefs": [
                 {
-                    "targets": [9],
+                    "targets": [6],
                     "visible": false
                 }
             ]
         });
 
         yadcf.init(table, [{
-            column_number: 9,
+            column_number: 6,
             filter_type: "range_date",
             datepicker_type: 'jquery-ui',
             date_format: 'yyyy-mm-dd',
@@ -49,8 +49,8 @@
         $('button#content-download').on('click', function () {
             event.preventDefault();
             var input = {};
-            input['from'] = $(selector['timestamp-filter']).find('input#yadcf-filter--tabel_pengukuran-from-date-9').val();
-            input['to'] = $(selector['timestamp-filter']).find('input#yadcf-filter--tabel_pengukuran-to-date-9').val();
+            input['from'] = $(selector['timestamp-filter']).find('input#yadcf-filter--tabel_pengukuran-from-date-6').val();
+            input['to'] = $(selector['timestamp-filter']).find('input#yadcf-filter--tabel_pengukuran-to-date-6').val();
             input = removeEmptyValues(input);
 
             var download = $('meta[name="download"]').attr('content');
@@ -192,9 +192,9 @@
                             }
                         }
 
-                        if (response['data']['rekap_pengukuran_gardu'] !== undefined)
+                        if (response['data']['rekap_pengukuran_tegangan_ujung'] !== undefined)
                         {
-                            var contents = response['data']['rekap_pengukuran_gardu'];
+                            var contents = response['data']['rekap_pengukuran_tegangan_ujung'];
                             table.clear();
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
@@ -206,88 +206,15 @@
                                     content['lokasi'],
                                     content['latitude'],
                                     content['longitude'],
-                                    content['petugas_1'],
-                                    content['petugas_2'],
-                                    content['no_kontrak'],
                                     content['date'],
                                     moment(content['date'], "YYYY-MM-DD").tz('Asia/Jakarta').format('dddd, D MMMM YYYY'),
                                     moment(content['time'], "HH:mm:ss").tz('Asia/Jakarta').format('HH:mm:ss zz'),
-                                    content['ir'],
-                                    content['is'],
-                                    content['it'],
-                                    content['in'],
-                                    content['vrn'],
-                                    content['vsn'],
-                                    content['vtn'],
-                                    content['vrs'],
-                                    content['vrt'],
-                                    content['vst'],
-                                    content['id_u1'],
-                                    content['ir_u1'],
-                                    content['is_u1'],
-                                    content['it_u1'],
-                                    content['in_u1'],
-                                    content['vrn_u1'],
-                                    content['vsn_u1'],
-                                    content['vtn_u1'],
-                                    content['vrs_u1'],
-                                    content['vrt_u1'],
-                                    content['vst_u1'],
-                                    content['id_u2'],
-                                    content['ir_u2'],
-                                    content['is_u2'],
-                                    content['it_u2'],
-                                    content['in_u2'],
-                                    content['vrn_u2'],
-                                    content['vsn_u2'],
-                                    content['vtn_u2'],
-                                    content['vrs_u2'],
-                                    content['vrt_u2'],
-                                    content['vst_u2'],
-                                    content['id_u3'],
-                                    content['ir_u3'],
-                                    content['is_u3'],
-                                    content['it_u3'],
-                                    content['in_u3'],
-                                    content['vrn_u3'],
-                                    content['vsn_u3'],
-                                    content['vtn_u3'],
-                                    content['vrs_u3'],
-                                    content['vrt_u3'],
-                                    content['vst_u3'],
-                                    content['id_u4'],
-                                    content['ir_u4'],
-                                    content['is_u4'],
-                                    content['it_u4'],
-                                    content['in_u4'],
-                                    content['vrn_u4'],
-                                    content['vsn_u4'],
-                                    content['vtn_u4'],
-                                    content['vrs_u4'],
-                                    content['vrt_u4'],
-                                    content['vst_u4'],
-                                    content['id_k1'],
-                                    content['ir_k1'],
-                                    content['is_k1'],
-                                    content['it_k1'],
-                                    content['in_k1'],
-                                    content['vrn_k1'],
-                                    content['vsn_k1'],
-                                    content['vtn_k1'],
-                                    content['vrs_k1'],
-                                    content['vrt_k1'],
-                                    content['vst_k1'],
-                                    content['id_k2'],
-                                    content['ir_k2'],
-                                    content['is_k2'],
-                                    content['it_k2'],
-                                    content['in_k2'],
-                                    content['vrn_k2'],
-                                    content['vsn_k2'],
-                                    content['vtn_k2'],
-                                    content['vrs_k2'],
-                                    content['vrt_k2'],
-                                    content['vst_k2']
+                                    content['umum_1'],
+                                    content['umum_2'],
+                                    content['umum_3'],
+                                    content['umum_4'],
+                                    content['khusus_1'],
+                                    content['khusus_2']
                                 ]);
                             }
                             table.draw(true);

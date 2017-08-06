@@ -74,7 +74,7 @@ if (!isset($view))
     <link rel="stylesheet" href="/assets/vendor/yadcf/jquery.dataTables.yadcf.css">
     <!-- Custom -->
     <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
-    <link rel="stylesheet" href="/assets/css/layout/rekap/pengukuran/gardu/admin/rekap_pengukuran_gardu_admin_common_layout.min.css">
+    <link rel="stylesheet" href="/assets/css/layout/rekap/pengukuran/tegangan/ujung/admin/rekap_pengukuran_tegangan_ujung_admin_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -135,102 +135,24 @@ if (!isset($view))
                             <table id="tabel_pengukuran" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['no_gardu'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['gardu_induk'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['gardu_penyulang'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['lokasi'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['latitude'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['longitude'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['petugas_1'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['petugas_2'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['no_kontrak'] ?></th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['no_gardu'] ?> </th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['gardu_induk'] ?> </th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['gardu_penyulang'] ?> </th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['lokasi'] ?> </th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['latitude'] ?> </th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['longitude'] ?> </th>
                                     <th rowspan="2" style="vertical-align:middle">Timestamp</th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['date'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['time'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['ir'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['is'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['it'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['in'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['vrn'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['vsn'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['vtn'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['vrs'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['vrt'] ?></th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['vst'] ?></th>
-                                    <th colspan="11"><?php echo $string['tabel']['header']['umum_1'] ?></th>
-                                    <th colspan="11"><?php echo $string['tabel']['header']['umum_2'] ?></th>
-                                    <th colspan="11"><?php echo $string['tabel']['header']['umum_3'] ?></th>
-                                    <th colspan="11"><?php echo $string['tabel']['header']['umum_4'] ?></th>
-                                    <th colspan="11"><?php echo $string['tabel']['header']['khusus_1'] ?></th>
-                                    <th colspan="11"><?php echo $string['tabel']['header']['khusus_2'] ?></th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['date'] ?> </th>
+                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['time'] ?> </th>
+                                    <th colspan="6"><?php echo $string['tabel']['header']['status_tegangan_ujung'] ?> </th>
                                 </tr>
                                 <tr>
-                                    <th><?php echo $string['tabel']['header']['id_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['ir_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['is_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['it_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['in_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrn_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vsn_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vtn_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrs_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrt_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vst_u1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['id_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['ir_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['is_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['it_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['in_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrn_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vsn_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vtn_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrs_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrt_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vst_u2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['id_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['ir_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['is_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['it_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['in_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrn_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vsn_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vtn_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrs_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrt_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vst_u3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['id_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['ir_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['is_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['it_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['in_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrn_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vsn_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vtn_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrs_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrt_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vst_u4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['id_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['ir_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['is_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['it_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['in_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrn_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vsn_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vtn_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrs_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrt_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vst_k1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['id_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['ir_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['is_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['it_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['in_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrn_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vsn_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vtn_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrs_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vrt_k2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['vst_k2']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['umum_1']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['umum_2']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['umum_3']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['umum_4']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['khusus_1']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['khusus_2']; ?></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -298,7 +220,7 @@ if (!isset($view))
 </script>
 <script type="text/javascript" src="/assets/js/layout/common/common_function.min.js"></script>
 <script type="text/javascript" src="/assets/js/layout/common/profile/common_profile_edit_common_layout.min.js"></script>
-<script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/gardu/admin/rekap_pengukuran_gardu_admin_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/tegangan/ujung/admin/rekap_pengukuran_tegangan_ujung_admin_common_layout.min.js"></script>
 </body>
 </html>
 

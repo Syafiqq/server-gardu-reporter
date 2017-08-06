@@ -54,7 +54,7 @@ class Model_rekap_pengukuran extends CI_Model
     public function find_tegangan_ujung($select, $from = null, $to = null)
     {
         $this->db->select($select);
-        $this->db->from('`v_rekap_ukurgardufix`');
+        $this->db->from('`v_rekap_tegujungfix`');
         if (!is_null($from))
         {
             $this->db->where('`tgl_pengukuran` >=', $from);
@@ -63,7 +63,7 @@ class Model_rekap_pengukuran extends CI_Model
         {
             $this->db->where('`tgl_pengukuran` <=', $to);
         }
-        $this->db->order_by('`v_rekap_ukurgardufix`.`id_ukur_gardu`', 'ASC');
+        $this->db->order_by('`v_rekap_tegujungfix`.`id_ukur_gardu`', 'ASC');
         $response = $this->db->get();
 
         return $response;
