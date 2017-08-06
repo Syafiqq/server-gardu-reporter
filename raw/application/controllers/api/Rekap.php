@@ -1089,7 +1089,6 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
         $this->response($response, $response['status']);
     }
 
-
     /**
      *
      */
@@ -1380,13 +1379,13 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     $nomor++;
                 }
 
-//Membuat garis di body tabel (isi data)
+                //Membuat garis di body tabel (isi data)
                 $excel->getActiveSheet()->setSharedStyle($bodystyle, "A5:S$row");
 
-// Set sheet yang aktif adalah index pertama, jadi saat dibuka akan langsung fokus ke sheet pertama
+                // Set sheet yang aktif adalah index pertama, jadi saat dibuka akan langsung fokus ke sheet pertama
                 $excel->setActiveSheetIndex(0);
 
-// Mencetak File Excel 
+                // Mencetak File Excel
                 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
                 if (!is_null($from) && !is_null($to))
                 {
@@ -1412,6 +1411,343 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
         else
         {
             $response['data']['message']['message']['download']['info'] = [$this->lang->line('rekap_pengukuran_beban_trafo_common_download_forbidden')];
+        }
+
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
+
+    /**
+     *
+     */
+    public function pengukuran_beban_imbang_find_get()
+    {
+        /** @var array $response */
+        $response = [];
+
+        if ($this->ion_auth->logged_in())
+        {
+            $code = $this->getOrDefault('code', '');
+            $from = $this->getOrDefault('from', null);
+            $to   = $this->getOrDefault('to', null);
+            if (!is_null($from))
+            {
+                try
+                {
+                    $from = Carbon::createFromFormat('Y-m-d', $from)->toDateString();;
+                }
+                catch (InvalidArgumentException $ignored)
+                {
+                }
+            }
+            if (!is_null($to))
+            {
+                try
+                {
+                    $to = Carbon::createFromFormat('Y-m-d', $to)->toDateString();
+                }
+                catch (InvalidArgumentException $ignored)
+                {
+                }
+            }
+            switch ($code)
+            {
+                case '318A3' :
+                {
+                    $response = array_merge($response, $this->_pengukuran_beban_imbang_find_318A3_get($from, $to));
+                }
+                break;
+                default:
+                {
+                    $response['data']['status']                                   = 0;
+                    $response['data']['message']['message']['validation']['info'] = $this->validation_errors();
+                }
+            }
+        }
+        else
+        {
+            $this->lang->load('ion_auth_extended', $this->language);
+
+            $response['data']['message']['notify']['find']['info'] = [$this->lang->line('user_get_forbidden')];
+        }
+
+        $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
+        $this->response($response, $response['status']);
+    }
+
+    private function _pengukuran_beban_imbang_find_318A3_get($from = null, $to = null)
+    {
+        /** @var array $response */
+        $response = [];
+
+        $this->load->model('model_rekap_pengukuran', 'mrp');
+
+        $rekap = $this->mrp->find_beban_imbang("
+            `id_ukur_gardu`    AS 'no'             ,
+            `no_gardu`         AS 'no_gardu'       ,
+            `nama_gardu_induk` AS 'gardu_induk'    ,
+            `nama_penyulang`   AS 'gardu_penyulang',
+            `lokasi`           AS 'lokasi'         ,
+            `latitude`         AS 'latitude'       ,
+            `longitude`        AS 'longitude'      ,
+            `tgl_pengukuran`   AS 'date'           ,
+            `wkt_pengukuran`   AS 'time'           ,
+            `arus_R`           AS 'ir'             ,
+            `arus_S`           AS 'is'             ,
+            `arus_T`           AS 'it'             ,
+            `ratarata`         AS 'mean'           ,
+            `const_a`          AS 'const_a'        ,
+            `const_b`          AS 'const_b'        ,
+            `const_c`          AS 'const_c'        ,
+            `prosen_imbang`    AS 'percent'        ,
+            `status_beban`     AS 'status'         
+            "
+            , $from, $to)->result_array();
+        if (empty($rekap))
+        {
+            $response['data']['rekap_pengukuran_beban_imbang'] = [];
+        }
+        else
+        {
+            $response['data']['rekap_pengukuran_beban_imbang'] = $rekap;
+        }
+        $response['data']['status'] = 1;
+
+        return $response;
+    }
+
+    public function pengukuran_beban_imbang_download_get()
+    {
+        /** @var array $response */
+        $response                   = [];
+        $response['data']['status'] = 0;
+
+        $this->lang->load("layout/rekap/pengukuran/beban/imbang/rekap_pengukuran_beban_imbang_common", $this->language);
+
+        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        {
+            /** @var array $data
+             * @var string $tables
+             * @var string $identity_column
+             */
+            $data = [];
+
+            $from = $this->getOrDefault('from', null);
+            $to   = $this->getOrDefault('to', null);
+
+            $this->load->model('model_rekap_pengukuran', 'mrp');
+
+            $rekap = $this->mrp->find_beban_imbang("
+            `id_ukur_gardu`    AS 'no'             ,
+            `no_gardu`         AS 'no_gardu'       ,
+            `nama_gardu_induk` AS 'gardu_induk'    ,
+            `nama_penyulang`   AS 'gardu_penyulang',
+            `lokasi`           AS 'lokasi'         ,
+            `latitude`         AS 'latitude'       ,
+            `longitude`        AS 'longitude'      ,
+            `tgl_pengukuran`   AS 'date'           ,
+            `wkt_pengukuran`   AS 'time'           ,
+            `arus_R`           AS 'ir'             ,
+            `arus_S`           AS 'is'             ,
+            `arus_T`           AS 'it'             ,
+            `ratarata`         AS 'mean'           ,
+            `const_a`          AS 'const_a'        ,
+            `const_b`          AS 'const_b'        ,
+            `const_c`          AS 'const_c'        ,
+            `prosen_imbang`    AS 'percent'        ,
+            `status_beban`     AS 'status'         
+            "
+                , $from, $to)->result_array();
+            if (!empty($rekap))
+            {
+                $excel = new PHPExcel();
+
+                // Set document properties
+                $excel->getProperties()->setCreator("Eka Yuliana")
+                    ->setLastModifiedBy("PLN Bali Selatan")
+                    ->setTitle("Rekapitulasi Beban Imbang")
+                    ->setSubject("PLN")
+                    ->setCategory("Rahasia");
+
+                // Set lebar kolom
+                $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
+                $excel->getActiveSheet()->getColumnDimension('B')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+                $excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+                $excel->getActiveSheet()->getColumnDimension('E')->setWidth(50);
+                $excel->getActiveSheet()->getColumnDimension('F')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('G')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('H')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('I')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('J')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('K')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('L')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('M')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('N')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('O')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('P')->setWidth(10);
+                $excel->getActiveSheet()->getColumnDimension('Q')->setWidth(20);
+                $excel->getActiveSheet()->getColumnDimension('R')->setWidth(25);
+
+                // Mergecell, menyatukan beberapa kolom
+                $excel->setActiveSheetIndex(0)->mergeCells('A1:R1');
+                $excel->setActiveSheetIndex(0)->mergeCells('A2:R2');
+                $excel->setActiveSheetIndex(0)->mergeCells('A3:R3');
+
+                //Mengeset Style nya
+                $titlestyle  = new PHPExcel_Style();
+                $headerstyle = new PHPExcel_Style();
+                $bodystyle   = new PHPExcel_Style();
+
+                //setting title style
+                $titlestyle->applyFromArray(
+                    array('font' => array(
+                        'bold' => true,
+                        'color' => array('rgb' => '000000')),
+                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+                    ));
+
+                //setting header style
+                $headerstyle->applyFromArray(
+                    array('font' => array(
+                        'bold' => true,
+                        'color' => array('rgb' => '000000')),
+                        'fill' => array(
+                            'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                            'color' => array('argb' => 'FFEEEEEE')),
+                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                        'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                        )
+                    ));
+
+                //setting body style
+                $bodystyle->applyFromArray(
+                    array('fill' => array(
+                        'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                        'color' => array('argb' => 'FFFFFFFF')),
+                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                        'borders' => array(
+                            'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                        )
+                    ));
+
+                // mulai dari baris ke 4
+                $row = 4;
+
+                if (!is_null($from) && !is_null($to))
+                {
+                    $tglstart = Carbon::createFromFormat('Y-m-d', $from)->formatLocalized('%d %B %Y');
+                    $tglend   = Carbon::createFromFormat('Y-m-d', $to)->formatLocalized('%d %B %Y');
+
+                    $rentang = 'Berdasarkan Data Pengukuran Gardu pada Tanggal ' . $tglstart . ' s/d ' . $tglend;
+                }
+                else
+                {
+                    $rentang = 'Berdasarkan Data Pengukuran Gardu';
+                }
+
+                // Tulis judul tabel
+                $excel->setActiveSheetIndex(0)
+                    ->setCellValue('A1', 'PT. PLN (Persero) Area Bali Selatan')
+                    ->setCellValue('A2', 'REKAPITULASI BEBAN IMBANG')
+                    ->setCellValue('A3', $rentang)
+                    ->setCellValue('A' . $row, 'No')
+                    ->setCellValue('B' . $row, 'No. Gardu')
+                    ->setCellValue('C' . $row, 'Gardu Induk')
+                    ->setCellValue('D' . $row, 'Penyulang')
+                    ->setCellValue('E' . $row, 'Lokasi')
+                    ->setCellValue('F' . $row, 'Latitude')
+                    ->setCellValue('G' . $row, 'Longitude')
+                    ->setCellValue('H' . $row, 'Tgl Pengukuran')
+                    ->setCellValue('I' . $row, 'Waktu Pengukuran')
+                    ->setCellValue('J' . $row, 'Arus R')
+                    ->setCellValue('K' . $row, 'Arus S')
+                    ->setCellValue('L' . $row, 'Arus T')
+                    ->setCellValue('M' . $row, 'Rata-Rata')
+                    ->setCellValue('N' . $row, 'Const a')
+                    ->setCellValue('O' . $row, 'Const b')
+                    ->setCellValue('P' . $row, 'Const c')
+                    ->setCellValue('Q' . $row, 'Prosen Imbang')
+                    ->setCellValue('R' . $row, 'Status Beban');
+
+                //Menggunakan TitleStylenya
+                $excel->getActiveSheet()->setSharedStyle($titlestyle, "A1:R3");
+
+                //Menggunakan HeaderStylenya
+                $excel->getActiveSheet()->setSharedStyle($headerstyle, "A4:R4");
+
+                $nomor = 1; // set nomor urut = 1;
+
+                $row++; // pindah ke row bawahnya.
+
+                // lakukan perulangan untuk menuliskan data siswa
+                foreach ($rekap as $key => $content)
+                {
+                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'])->formatLocalized('%d %B %Y');
+                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'])->formatLocalized('%H:%M:%S');
+
+                    $excel->setActiveSheetIndex(0)
+                        ->setCellValueExplicit('A' . $row, $nomor, PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('B' . $row, $content['no_gardu'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('C' . $row, $content['gardu_induk'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('D' . $row, $content['gardu_penyulang'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('E' . $row, $content['lokasi'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('F' . $row, $content['latitude'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('G' . $row, $content['longitude'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('H' . $row, $tgl, PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('I' . $row, $wkt, PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('J' . $row, $content['ir'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('K' . $row, $content['is'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('L' . $row, $content['it'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('M' . $row, $content['mean'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('N' . $row, $content['const_a'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('O' . $row, $content['const_b'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('P' . $row, $content['const_c'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('Q' . $row, $content['percent'], PHPExcel_Cell_DataType::TYPE_STRING)
+                        ->setCellValueExplicit('R' . $row, $content['status'], PHPExcel_Cell_DataType::TYPE_STRING);
+
+                    $row++; // pindah ke row bawahnya ($row + 1)
+                    $nomor++;
+                }
+
+                //Membuat garis di body tabel (isi data)
+                $excel->getActiveSheet()->setSharedStyle($bodystyle, "A5:R$row");
+
+                // Set sheet yang aktif adalah index pertama, jadi saat dibuka akan langsung fokus ke sheet pertama
+                $excel->setActiveSheetIndex(0);
+
+                // Mencetak File Excel
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                if (!is_null($from) && !is_null($to))
+                {
+                    $_filename = "rekap-bbngardu-imbang_$from-to-$to.xlsx";
+                }
+                else
+                {
+                    $_filename = "rekap-bbngardu-imbang.xlsx";
+                }
+                header("Content-Disposition: attachment;filename=$_filename");
+                header('Cache-Control: max-age=0');
+
+                $objWriter = new PHPExcel_Writer_Excel5($excel);
+                ob_start();
+                $objWriter->save("php://output");
+                $xlsData = ob_get_contents();
+                ob_end_clean();
+                $response['data']['download']['content']  = "data:application/vnd.ms-excel;base64," . base64_encode($xlsData);
+                $response['data']['download']['filename'] = $_filename;
+            }
+            $response['data']['status'] = 1;
+        }
+        else
+        {
+            $response['data']['message']['message']['download']['info'] = [$this->lang->line('rekap_pengukuran_beban_imbang_common_download_forbidden')];
         }
 
         $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;

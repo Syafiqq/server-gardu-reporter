@@ -94,6 +94,30 @@ class Model_rekap_pengukuran extends CI_Model
         return $response;
     }
 
+    /**
+     * @param string $select
+     * @param null|string $from
+     * @param null|string $to
+     * @return CI_DB_result array
+     * @internal param array|null|string $id
+     */
+    public function find_beban_imbang($select, $from = null, $to = null)
+    {
+        $this->db->select($select);
+        $this->db->from('`v_rekap_garduimbangfix`');
+        if (!is_null($from))
+        {
+            $this->db->where('`tgl_pengukuran` >=', $from);
+        }
+        if (!is_null($to))
+        {
+            $this->db->where('`tgl_pengukuran` <=', $to);
+        }
+        $this->db->order_by('`v_rekap_garduimbangfix`.`id_ukur_gardu`', 'ASC');
+        $response = $this->db->get();
+
+        return $response;
+    }
 }
 
 ?>
