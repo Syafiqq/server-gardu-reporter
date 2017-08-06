@@ -192,9 +192,9 @@
                             }
                         }
 
-                        if (response['data']['rekap_pengukuran_tegangan_ujung'] !== undefined)
+                        if (response['data']['rekap_pengukuran_beban_trafo'] !== undefined)
                         {
-                            var contents = response['data']['rekap_pengukuran_tegangan_ujung'];
+                            var contents = response['data']['rekap_pengukuran_beban_trafo'];
                             table.clear();
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
@@ -209,12 +209,16 @@
                                     content['date'],
                                     moment(content['date'], "YYYY-MM-DD").tz('Asia/Jakarta').format('dddd, D MMMM YYYY'),
                                     moment(content['time'], "HH:mm:ss").tz('Asia/Jakarta').format('HH:mm:ss zz'),
-                                    content['umum_1'],
-                                    content['umum_2'],
-                                    content['umum_3'],
-                                    content['umum_4'],
-                                    content['khusus_1'],
-                                    content['khusus_2']
+                                    content['f'],
+                                    content['ir'],
+                                    content['is'],
+                                    content['it'],
+                                    content['vrn'],
+                                    content['vsn'],
+                                    content['vtn'],
+                                    content['w'],
+                                    content['percent'],
+                                    content['status']
                                 ]);
                             }
                             table.draw(true);

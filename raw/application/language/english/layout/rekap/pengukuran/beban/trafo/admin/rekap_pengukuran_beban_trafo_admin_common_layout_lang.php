@@ -9,10 +9,10 @@
 
 /** @var $lang array */
 //Page Propertis======================================================================================================
-$lang['rekap_pengukuran_tegangan_ujung_admin_common_layout_page_title'] = 'Rekapitulasi Tegangan Ujung';
-$lang['rekap_pengukuran_tegangan_ujung_admin_common_layout_download']   = 'Unduh';
+$lang['rekap_pengukuran_beban_trafo_admin_common_layout_page_title'] = 'Rekapitulasi Beban Trafo';
+$lang['rekap_pengukuran_beban_trafo_admin_common_layout_download']   = 'Unduh';
 
 //Exception===========================================================================================================
-$lang['rekap_pengukuran_tegangan_ujung_admin_common_layout_forbidden_access']                  = 'You Are Not Allowed Access This Page';
-$lang['rekap_pengukuran_tegangan_ujung_admin_common_layout_forbidden_access_auth_redirection'] = 'Please Login First.';
+$lang['rekap_pengukuran_beban_trafo_admin_common_layout_forbidden_access']                  = 'You Are Not Allowed Access This Page';
+$lang['rekap_pengukuran_beban_trafo_admin_common_layout_forbidden_access_auth_redirection'] = 'Please Login First.';
 ?>

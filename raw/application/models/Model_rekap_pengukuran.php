@@ -76,10 +76,10 @@ class Model_rekap_pengukuran extends CI_Model
      * @return CI_DB_result array
      * @internal param array|null|string $id
      */
-    public function find_gardu_trafo($select, $from = null, $to = null)
+    public function find_beban_trafo($select, $from = null, $to = null)
     {
         $this->db->select($select);
-        $this->db->from('`v_rekap_tegujungfix`');
+        $this->db->from('`v_rekap_garduobfix`');
         if (!is_null($from))
         {
             $this->db->where('`tgl_pengukuran` >=', $from);
@@ -88,7 +88,7 @@ class Model_rekap_pengukuran extends CI_Model
         {
             $this->db->where('`tgl_pengukuran` <=', $to);
         }
-        $this->db->order_by('`v_rekap_tegujungfix`.`id_ukur_gardu`', 'ASC');
+        $this->db->order_by('`v_rekap_garduobfix`.`id_ukur_gardu`', 'ASC');
         $response = $this->db->get();
 
         return $response;

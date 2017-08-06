@@ -317,9 +317,9 @@ class Rekap extends CI_Controller
 
     private function _pengukuran_tegangan_ujung()
     {
-        $this->lang_prefix                    = 'rekap_pengukuran_tegangan_ujung_admin';
-        $this->lang_layout                    = 'common_layout';
-        $this->lang_prefix_path               = 'rekap/pengukuran/tegangan/ujung/admin';
+        $this->lang_prefix      = 'rekap_pengukuran_tegangan_ujung_admin';
+        $this->lang_layout      = 'common_layout';
+        $this->lang_prefix_path = 'rekap/pengukuran/tegangan/ujung/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/rekap/pengukuran/tegangan/ujung/rekap_pengukuran_tegangan_ujung_common", $this->language);
 
@@ -460,11 +460,11 @@ class Rekap extends CI_Controller
 
     private function _pengukuran_beban_trafo()
     {
-        $this->lang_prefix      = 'rekap_pengukuran_tegangan_ujung_admin';
-        $this->lang_layout      = 'common_layout';
-        $this->lang_prefix_path = 'rekap/pengukuran/tegangan/ujung/admin';
+        $this->lang_prefix                              = 'rekap_pengukuran_beban_trafo_admin';
+        $this->lang_layout                              = 'common_layout';
+        $this->lang_prefix_path                         = 'rekap/pengukuran/beban/trafo/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
-        $this->lang->load("layout/rekap/pengukuran/tegangan/ujung/rekap_pengukuran_tegangan_ujung_common", $this->language);
+        $this->lang->load("layout/rekap/pengukuran/beban/trafo/rekap_pengukuran_beban_trafo_common", $this->language);
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
@@ -520,28 +520,31 @@ class Rekap extends CI_Controller
             $string['inline_client_form_role_id']       = 'role';
 
             //Table
-            $string['tabel']['header']['no_gardu']              = 'No. Gardu';
-            $string['tabel']['header']['gardu_induk']           = 'Gardu Induk';
-            $string['tabel']['header']['gardu_penyulang']       = 'Penyulang';
-            $string['tabel']['header']['lokasi']                = 'Lokasi';
-            $string['tabel']['header']['latitude']              = 'Latitude';
-            $string['tabel']['header']['longitude']             = 'Longitude';
-            $string['tabel']['header']['date']                  = 'Tanggal';
-            $string['tabel']['header']['time']                  = 'Waktu';
-            $string['tabel']['header']['status_tegangan_ujung'] = 'Status Tegangan Ujung';
-            $string['tabel']['header']['umum_1']                = 'Jusuan 1';
-            $string['tabel']['header']['umum_2']                = 'Jusuan 2';
-            $string['tabel']['header']['umum_3']                = 'Jusuan 3';
-            $string['tabel']['header']['umum_4']                = 'Jusuan 4';
-            $string['tabel']['header']['khusus_1']              = 'Jusuan Khusus 1';
-            $string['tabel']['header']['khusus_2']              = 'Jusuan Khusus 2';
+            $string['tabel']['header']['no_gardu']        = 'No. Gardu';
+            $string['tabel']['header']['gardu_induk']     = 'Gardu Induk';
+            $string['tabel']['header']['gardu_penyulang'] = 'Penyulang';
+            $string['tabel']['header']['lokasi']          = 'Lokasi';
+            $string['tabel']['header']['latitude']        = 'Latitude';
+            $string['tabel']['header']['longitude']       = 'Longitude';
+            $string['tabel']['header']['date']            = 'Tanggal';
+            $string['tabel']['header']['time']            = 'Waktu';
+            $string['tabel']['header']['f']               = 'Daya Trafo';
+            $string['tabel']['header']['ir']              = 'Arus R';
+            $string['tabel']['header']['is']              = 'Arus S';
+            $string['tabel']['header']['it']              = 'Arus T';
+            $string['tabel']['header']['vrn']             = 'Tegangan RN';
+            $string['tabel']['header']['vsn']             = 'Tegangan SN';
+            $string['tabel']['header']['vtn']             = 'Tegangan TN';
+            $string['tabel']['header']['w']               = 'Beban Trafo';
+            $string['tabel']['header']['percent']         = 'Prosen Beban';
+            $string['tabel']['header']['status']          = 'Status Gardu';
 
 
             $string['button']['download']                    = 'Unduh';
             $string['form']['label']['title']['filter_date'] = 'Pencarian';
 
-            $meta['retriever']      = site_url('/api/rekap/pengukuran/tegangan/ujung/find?code=39A74');
-            $meta['download']       = site_url('/api/rekap/pengukuran/tegangan/ujung/download');
+            $meta['retriever']      = site_url('/api/rekap/pengukuran/beban/trafo/find?code=5AB23');
+            $meta['download']       = site_url('/api/rekap/pengukuran/beban/trafo/download');
             $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
 
             $data['meta']['i18n']['country']  = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
@@ -564,7 +567,7 @@ class Rekap extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/rekap/pengukuran/tegangan/ujung")
+                    , 'redirector' => site_url("/rekap/pengukuran/beban/trafo")
                 ]
             ]);
             redirect('/auth/login/admin');

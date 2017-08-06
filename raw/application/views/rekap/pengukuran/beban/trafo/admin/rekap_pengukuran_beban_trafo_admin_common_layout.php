@@ -75,7 +75,7 @@ if (!isset($view))
     <link rel="stylesheet" href="/assets/vendor/yadcf/jquery.dataTables.yadcf.css">
     <!-- Custom -->
     <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
-    <link rel="stylesheet" href="/assets/css/layout/rekap/pengukuran/tegangan/ujung/admin/rekap_pengukuran_tegangan_ujung_admin_common_layout.min.css">
+    <link rel="stylesheet" href="/assets/css/layout/rekap/pengukuran/beban/trafo/admin/rekap_pengukuran_beban_trafo_admin_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -136,24 +136,25 @@ if (!isset($view))
                             <table id="tabel_pengukuran" class="table table-bordered table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['no_gardu'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['gardu_induk'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['gardu_penyulang'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['lokasi'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['latitude'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['longitude'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle">Timestamp</th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['date'] ?> </th>
-                                    <th rowspan="2" style="vertical-align:middle"><?php echo $string['tabel']['header']['time'] ?> </th>
-                                    <th colspan="6"><?php echo $string['tabel']['header']['status_tegangan_ujung'] ?> </th>
-                                </tr>
-                                <tr>
-                                    <th><?php echo $string['tabel']['header']['umum_1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['umum_2']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['umum_3']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['umum_4']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['khusus_1']; ?></th>
-                                    <th><?php echo $string['tabel']['header']['khusus_2']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['no_gardu']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['gardu_induk']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['gardu_penyulang']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['lokasi']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['latitude']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['longitude']; ?></th>
+                                    <th>Timestamp</th>
+                                    <th><?php echo $string['tabel']['header']['date']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['time']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['f']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['ir']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['is']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['it']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['vrn']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['vsn']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['vtn']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['w']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['percent']; ?></th>
+                                    <th><?php echo $string['tabel']['header']['status']; ?></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -221,7 +222,7 @@ if (!isset($view))
 </script>
 <script type="text/javascript" src="/assets/js/layout/common/common_function.min.js"></script>
 <script type="text/javascript" src="/assets/js/layout/common/profile/common_profile_edit_common_layout.min.js"></script>
-<script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/tegangan/ujung/admin/rekap_pengukuran_tegangan_ujung_admin_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/beban/trafo/admin/rekap_pengukuran_beban_trafo_admin_common_layout.min.js"></script>
 </body>
 </html>
 
