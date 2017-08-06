@@ -75,9 +75,11 @@ $route['api/mobile/gardu/index/find']     = '/api/mobile/gardu/index_find';
 
 $route['api/mobile/gardu/pengukuran/index/register'] = '/api/mobile/gardu/pengukuran_index_register';
 
-$route['api/gardu/pengukuran/index/register'] = '/api/gardu/pengukuran_index_register';
-$route['api/rekap/pengukuran/gardu/find']     = '/api/rekap/pengukuran_gardu_find';
-$route['api/rekap/pengukuran/gardu/download'] = '/api/rekap/pengukuran_gardu_download';
+$route['api/gardu/pengukuran/index/register']          = '/api/gardu/pengukuran_index_register';
+$route['api/rekap/pengukuran/gardu/find']              = '/api/rekap/pengukuran_gardu_find';
+$route['api/rekap/pengukuran/gardu/download']          = '/api/rekap/pengukuran_gardu_download';
+$route['api/rekap/pengukuran/tegangan/ujung/find']     = '/api/rekap/pengukuran_tegangan_ujung_find';
+$route['api/rekap/pengukuran/tegangan/ujung/download'] = '/api/rekap/pengukuran_tegangan_ujung_download';
 
 
 /*
