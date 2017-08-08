@@ -7,7 +7,8 @@
  * Github       : syafiqq
  */
 
-$lang['common_title'] = 'Gardu Reporter';
+/**@var array $lang */
+$lang['common_title'] = 'S I A G A';
 $lang['common_datatable_lang'] = '/assets/json/datatable/1.10.15/i18n/English.min.json';
 
 ?>
