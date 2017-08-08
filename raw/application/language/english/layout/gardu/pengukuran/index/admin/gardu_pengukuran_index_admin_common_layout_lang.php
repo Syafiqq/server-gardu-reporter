@@ -13,7 +13,7 @@
 $lang['gardu_pengukuran_index_admin_common_layout_page_title'] = 'Form Hasil Pengukuran Gardu';
 
 //Exception===========================================================================================================
-$lang['gardu_pengukuran_index_admin_common_layout_forbidden_access'] = 'You Are Not Allowed Access This Page';
+$lang['gardu_pengukuran_index_admin_common_layout_forbidden_access']                  = 'You Are Not Allowed Access This Page';
 $lang['gardu_pengukuran_index_admin_common_layout_forbidden_access_auth_redirection'] = 'Please Login First.';
 
 ?>

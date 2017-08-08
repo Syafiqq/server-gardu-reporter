@@ -6,10 +6,8 @@
  * Github       : syafiqq
  */
 
-(function ($)
-{
-    $(function ()
-    {
+(function ($) {
+    $(function () {
         NProgress.configure({
             showSpinner: false,
             template: '<div class="bar" role="bar" style="background-color: red"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'

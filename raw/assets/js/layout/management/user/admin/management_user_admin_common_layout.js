@@ -7,10 +7,8 @@
  */
 
 
-(function ($)
-{
-    $(function ()
-    {
+(function ($) {
+    $(function () {
         var table_report = 'table#table_user';
         var table = $(table_report).DataTable({
             "paging": true,
@@ -27,8 +25,7 @@
         var deleter = $('meta[name="deleter"]').attr('content');
         var creator = $('meta[name="creator"]').attr('content');
 
-        $(table_report).on('click', 'button.c-del-button', function (event)
-        {
+        $(table_report).on('click', 'button.c-del-button', function (event) {
             event.preventDefault();
             var user_id = $(this).attr('dx-user');
             var group_id = $(this).attr('dx-group');
@@ -47,8 +44,7 @@
                     type: 'DELETE',
                     dataType: 'json'
                 })
-                    .done(function (response)
-                    {
+                    .done(function (response) {
                         var kind = ['notify', 'message'];
                         var type = ['validation', 'delete'];
                         var status = ['danger', 'info', 'warning', 'success'];
@@ -116,11 +112,9 @@
                             }
                         }
                     })
-                    .fail(function ()
-                    {
+                    .fail(function () {
                     })
-                    .always(function ()
-                    {
+                    .always(function () {
                         NProgress.done();
                     });
             }
@@ -128,16 +122,14 @@
 
         });
 
-        var retreiveData = function (table, link, progress)
-        {
+        var retreiveData = function (table, link, progress) {
             progress.start();
             $.ajax({
                 type: 'get',
                 url: link,
                 dataType: 'json'
             })
-                .done(function (response)
-                {
+                .done(function (response) {
                     var kind = ['notify', 'message'];
                     var type = ['find'];
                     var status = ['danger', 'info', 'warning', 'success'];
@@ -207,14 +199,12 @@
                     }
                     progress.done();
                 })
-                .fail(function ()
-                {
+                .fail(function () {
                     progress.done();
                 });
         };
 
-        $('form#register').on('submit', function (event)
-        {
+        $('form#register').on('submit', function (event) {
             event.preventDefault();
             var form = $(this);
 
@@ -226,8 +216,7 @@
                 input,
                 null,
                 'json')
-                .done(function (response)
-                {
+                .done(function (response) {
                     var kind = ['notify', 'message'];
                     var type = ['validation', 'register'];
                     var status = ['danger', 'info', 'warning', 'success'];
@@ -290,25 +279,21 @@
                         {
                             if (response['data']['status'] === 1)
                             {
-                                $(form).find('input:text, input:password').each(function ()
-                                {
+                                $(form).find('input:text, input:password').each(function () {
                                     $(this).val('');
                                 });
                             }
                         }
                     }
                 })
-                .fail(function ()
-                {
+                .fail(function () {
                 })
-                .always(function ()
-                {
+                .always(function () {
                     NProgress.done();
                 });
         });
 
-        $('div#create_user').on('hide.bs.modal', function (e)
-        {
+        $('div#create_user').on('hide.bs.modal', function (e) {
             retreiveData(table, retriever, NProgress);
         });
 

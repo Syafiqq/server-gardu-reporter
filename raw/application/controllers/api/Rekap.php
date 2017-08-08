@@ -444,7 +444,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
                     ));
 
                 //setting header style
@@ -452,16 +452,16 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'fill' => array(
-                            'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                            'color' => array('argb' => 'FFEEEEEE')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                            'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER),
-                        'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'fill' => array(
+                              'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                              'color' => array('argb' => 'FFEEEEEE')),
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                                               'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER),
+                          'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                                             'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 //setting body style
@@ -469,13 +469,13 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('fill' => array(
                         'type' => PHPExcel_Style_Fill::FILL_SOLID,
                         'color' => array('argb' => 'FFFFFFFF')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-                        'borders' => array(
-                            'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                          'borders' => array(
+                              'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                              'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 // mulai dari baris ke 4
@@ -941,7 +941,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
                     ));
 
                 //setting header style
@@ -949,16 +949,16 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'fill' => array(
-                            'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                            'color' => array('argb' => 'FFEEEEEE')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                            'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER),
-                        'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'fill' => array(
+                              'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                              'color' => array('argb' => 'FFEEEEEE')),
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                                               'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER),
+                          'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                                             'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 //setting body style
@@ -966,13 +966,13 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('fill' => array(
                         'type' => PHPExcel_Style_Fill::FILL_SOLID,
                         'color' => array('argb' => 'FFFFFFFF')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-                        'borders' => array(
-                            'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                          'borders' => array(
+                              'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                              'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 // mulai dari baris ke 4
@@ -1265,7 +1265,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
                     ));
 
                 //setting header style
@@ -1273,15 +1273,15 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'fill' => array(
-                            'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                            'color' => array('argb' => 'FFEEEEEE')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-                        'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'fill' => array(
+                              'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                              'color' => array('argb' => 'FFEEEEEE')),
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                          'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                                             'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 //setting body style
@@ -1289,13 +1289,13 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('fill' => array(
                         'type' => PHPExcel_Style_Fill::FILL_SOLID,
                         'color' => array('argb' => 'FFFFFFFF')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-                        'borders' => array(
-                            'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                          'borders' => array(
+                              'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                              'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 // mulai dari baris ke 4
@@ -1604,7 +1604,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER)
                     ));
 
                 //setting header style
@@ -1612,15 +1612,15 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('font' => array(
                         'bold' => true,
                         'color' => array('rgb' => '000000')),
-                        'fill' => array(
-                            'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                            'color' => array('argb' => 'FFEEEEEE')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-                        'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'fill' => array(
+                              'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                              'color' => array('argb' => 'FFEEEEEE')),
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                          'borders' => array('bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                                             'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                                             'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 //setting body style
@@ -1628,13 +1628,13 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                     array('fill' => array(
                         'type' => PHPExcel_Style_Fill::FILL_SOLID,
                         'color' => array('argb' => 'FFFFFFFF')),
-                        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-                        'borders' => array(
-                            'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
-                            'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
-                            'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
-                        )
+                          'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+                          'borders' => array(
+                              'bottom' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'right' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM),
+                              'left' => array('style' => PHPExcel_Style_Border::BORDER_THIN),
+                              'top' => array('style' => PHPExcel_Style_Border::BORDER_THIN)
+                          )
                     ));
 
                 // mulai dari baris ke 4

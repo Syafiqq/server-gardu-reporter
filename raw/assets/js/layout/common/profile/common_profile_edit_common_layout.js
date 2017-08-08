@@ -6,14 +6,11 @@
  * Github       : syafiqq
  */
 
-(function ($)
-{
-    $(function ()
-    {
+(function ($) {
+    $(function () {
         var update_selector = 'form#update_form';
 
-        $(update_selector).on('submit', function (event)
-        {
+        $(update_selector).on('submit', function (event) {
             event.preventDefault();
             var form = $(this);
 
@@ -26,8 +23,7 @@
                 type: 'PATCH',
                 dataType: 'json'
             })
-                .done(function (response)
-                {
+                .done(function (response) {
                     var kind = ['notify', 'message'];
                     var type = ['validation', 'update'];
                     var status = ['danger', 'info', 'warning', 'success'];
@@ -92,17 +88,14 @@
                         }
                     }
                 })
-                .fail(function ()
-                {
+                .fail(function () {
                 })
-                .always(function ()
-                {
+                .always(function () {
                     NProgress.done();
                 });
         });
 
-        $('a#edit-user').on('click', function ()
-        {
+        $('a#edit-user').on('click', function () {
             var username = $(this).data('username');
             var email = $(this).data('email');
             var role = $(this).data('role');

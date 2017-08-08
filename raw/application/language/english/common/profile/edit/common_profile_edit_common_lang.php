@@ -9,5 +9,5 @@
 
 /**@var array $lang */
 $lang['common_profile_edit_common_client_username_placeholder'] = 'Enter Your New Username';
-$lang['common_profile_edit_common_client_email_placeholder'] = 'Enter Your New Email';
+$lang['common_profile_edit_common_client_email_placeholder']    = 'Enter Your New Email';
 ?>

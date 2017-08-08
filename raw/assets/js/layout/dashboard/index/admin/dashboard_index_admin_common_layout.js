@@ -6,10 +6,8 @@
  * Github       : syafiqq
  */
 
-(function ($)
-{
-    $(function ()
-    {
+(function ($) {
+    $(function () {
 
     });
     /*

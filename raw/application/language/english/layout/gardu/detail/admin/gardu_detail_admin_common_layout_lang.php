@@ -14,13 +14,13 @@ $lang['gardu_detail_admin_common_layout_page_title'] = 'Detail Gardu';
 
 
 //Exception===========================================================================================================
-$lang['gardu_detail_admin_common_layout_forbidden_access'] = 'You Are Not Allowed Access This Page';
+$lang['gardu_detail_admin_common_layout_forbidden_access']                  = 'You Are Not Allowed Access This Page';
 $lang['gardu_detail_admin_common_layout_forbidden_access_auth_redirection'] = 'Please Login First.';
 
-$lang['gardu_detail_admin_common_layout_no_gardu_found'] = 'Tidak Ada Gardu Dengan ID tersebut';
+$lang['gardu_detail_admin_common_layout_no_gardu_found']  = 'Tidak Ada Gardu Dengan ID tersebut';
 $lang['gardu_detail_admin_common_layout_no_gardu_filled'] = 'Gardu Tidak Ditemukan';
 
-$lang['gardu_detail_admin_common_layout_map_title'] = 'Peta Lokasi';
+$lang['gardu_detail_admin_common_layout_map_title']             = 'Peta Lokasi';
 $lang['gardu_detail_admin_common_layout_map_button_show_route'] = 'Tampilkan Rute';
 
 ?>
