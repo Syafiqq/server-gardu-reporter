@@ -92,6 +92,4 @@ $lang['gardu_pengukuran_index_common_form_teg_rs_jurusank2_label'] = 'Tegangan R
 $lang['gardu_pengukuran_index_common_form_teg_rt_jurusank2_label'] = 'Tegangan RT Khusus 2';
 $lang['gardu_pengukuran_index_common_form_teg_st_jurusank2_label'] = 'Tegangan ST Khusus 2';
 
-
 ?>
-

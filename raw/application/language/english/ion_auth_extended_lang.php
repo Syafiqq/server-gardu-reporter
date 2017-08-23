@@ -23,5 +23,4 @@ $lang['register_new_token_successful']        = 'Create new Token Successful';
 $lang['check_token_unsuccessful']             = 'Token Invalid';
 $lang['check_token_successful']               = 'Token Valid';
 
-
 ?>

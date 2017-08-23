@@ -21,4 +21,3 @@ $lang['management_user_admin_common_layout_register_client_title']              
 $lang['management_user_admin_common_layout_register_client_password_placeholder']              = 'Put the new member password here!';
 $lang['management_user_admin_common_layout_register_client_password_confirmation_placeholder'] = 'Confirm the new member password here!';
 ?>
-

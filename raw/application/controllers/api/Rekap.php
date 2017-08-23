@@ -255,6 +255,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
+            setlocale(LC_TIME, 'id_ID.utf8');
+
             /** @var array $data
              * @var string $tables
              * @var string $identity_column
@@ -485,8 +487,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
                 if (!is_null($from) && !is_null($to))
                 {
-                    $tglstart = Carbon::createFromFormat('Y-m-d', $from)->formatLocalized('%d %B %Y');
-                    $tglend   = Carbon::createFromFormat('Y-m-d', $to)->formatLocalized('%d %B %Y');
+                    $tglstart = Carbon::createFromFormat('Y-m-d', $from, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $tglend   = Carbon::createFromFormat('Y-m-d', $to, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
 
                     $rentang = 'Pada Tanggal ' . $tglstart . ' s/d ' . $tglend;
                 }
@@ -616,8 +618,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                 Carbon::setLocale('id');
                 foreach ($rekap as $key => $content)
                 {
-                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'])->formatLocalized('%d %B %Y');
-                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'])->formatLocalized('%H:%M:%S');
+                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%H:%M:%S');
 
                     $excel->setActiveSheetIndex(0)
                         ->setCellValueExplicit('A' . $row2, $nomor, PHPExcel_Cell_DataType::TYPE_STRING)
@@ -857,6 +859,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
+            setlocale(LC_TIME, 'id_ID.utf8');
+
             /** @var array $data
              * @var string $tables
              * @var string $identity_column
@@ -982,8 +986,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
                 if (!is_null($from) && !is_null($to))
                 {
-                    $tglstart = Carbon::createFromFormat('Y-m-d', $from)->formatLocalized('%d %B %Y');
-                    $tglend   = Carbon::createFromFormat('Y-m-d', $to)->formatLocalized('%d %B %Y');
+                    $tglstart = Carbon::createFromFormat('Y-m-d', $from, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $tglend   = Carbon::createFromFormat('Y-m-d', $to, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
 
                     $rentang = 'Berdasarkan Data Pengukuran Gardu pada Tanggal ' . $tglstart . ' s/d ' . $tglend;
                 }
@@ -1027,8 +1031,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                 // lakukan perulangan untuk menuliskan data siswa
                 foreach ($rekap as $key => $content)
                 {
-                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'])->formatLocalized('%d %B %Y');
-                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'])->formatLocalized('%H:%M:%S');
+                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%H:%M:%S');
 
                     $excel->setActiveSheetIndex(0)
                         ->setCellValueExplicit('A' . $row2, $nomor, PHPExcel_Cell_DataType::TYPE_STRING)
@@ -1199,6 +1203,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
+            setlocale(LC_TIME, 'id_ID.utf8');
+
             /** @var array $data
              * @var string $tables
              * @var string $identity_column
@@ -1303,8 +1309,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
                 if (!is_null($from) && !is_null($to))
                 {
-                    $tglstart = Carbon::createFromFormat('Y-m-d', $from)->formatLocalized('%d %B %Y');
-                    $tglend   = Carbon::createFromFormat('Y-m-d', $to)->formatLocalized('%d %B %Y');
+                    $tglstart = Carbon::createFromFormat('Y-m-d', $from, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $tglend   = Carbon::createFromFormat('Y-m-d', $to, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
 
                     $rentang = 'Berdasarkan Data Pengukuran Gardu pada Tanggal ' . $tglstart . ' s/d ' . $tglend;
                 }
@@ -1351,8 +1357,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                 // lakukan perulangan untuk menuliskan data siswa
                 foreach ($rekap as $key => $content)
                 {
-                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'])->formatLocalized('%d %B %Y');
-                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'])->formatLocalized('%H:%M:%S');
+                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%H:%M:%S');
 
                     $excel->setActiveSheetIndex(0)
                         ->setCellValueExplicit('A' . $row, $nomor, PHPExcel_Cell_DataType::TYPE_STRING)
@@ -1526,6 +1532,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
         {
+            setlocale(LC_TIME, 'id_ID.utf8');
+
             /** @var array $data
              * @var string $tables
              * @var string $identity_column
@@ -1642,8 +1650,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
                 if (!is_null($from) && !is_null($to))
                 {
-                    $tglstart = Carbon::createFromFormat('Y-m-d', $from)->formatLocalized('%d %B %Y');
-                    $tglend   = Carbon::createFromFormat('Y-m-d', $to)->formatLocalized('%d %B %Y');
+                    $tglstart = Carbon::createFromFormat('Y-m-d', $from, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $tglend   = Carbon::createFromFormat('Y-m-d', $to, 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
 
                     $rentang = 'Berdasarkan Data Pengukuran Gardu pada Tanggal ' . $tglstart . ' s/d ' . $tglend;
                 }
@@ -1689,8 +1697,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
                 // lakukan perulangan untuk menuliskan data siswa
                 foreach ($rekap as $key => $content)
                 {
-                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'])->formatLocalized('%d %B %Y');
-                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'])->formatLocalized('%H:%M:%S');
+                    $tgl = Carbon::createFromFormat('Y-m-d', $content['date'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%d %B %Y');
+                    $wkt = Carbon::createFromFormat('H:i:s', $content['time'], 'UTC')->setTimezone('Asia/Jakarta')->formatLocalized('%H:%M:%S');
 
                     $excel->setActiveSheetIndex(0)
                         ->setCellValueExplicit('A' . $row, $nomor, PHPExcel_Cell_DataType::TYPE_STRING)
