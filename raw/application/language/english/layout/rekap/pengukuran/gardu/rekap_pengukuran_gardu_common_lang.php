@@ -14,4 +14,3 @@ $lang['rekap_pengukuran_gardu_common_form_id_not_exists_error'] = 'The {field} d
 $lang['rekap_pengukuran_gardu_common_download_forbidden'] = 'You are not allowed to execute this operation';
 
 ?>
-

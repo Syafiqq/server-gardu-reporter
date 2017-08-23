@@ -11,4 +11,3 @@
 $lang['common_auth_token_form_token_label'] = 'Token';
 
 ?>
-

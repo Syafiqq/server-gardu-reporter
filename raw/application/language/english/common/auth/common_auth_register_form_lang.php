@@ -14,4 +14,3 @@ $lang['common_auth_register_form_role_label'] = 'Level';
 $lang['common_auth_register_form_password_confirmation_label'] = 'Confirm Password';
 
 ?>
-

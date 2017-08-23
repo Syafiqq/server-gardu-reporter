@@ -14,5 +14,3 @@ $lang['common_table_header_voltage'] = 'Voltage';
 $lang['common_table_header_location'] = 'Location';
 
 ?>
-
-

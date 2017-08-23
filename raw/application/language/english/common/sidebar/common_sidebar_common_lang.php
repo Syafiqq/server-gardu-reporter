@@ -20,4 +20,3 @@ $lang['common_sidebar_common_sidebar_info_gardu_feeder'] = 'Data Gardu Penyulang
 $lang['common_sidebar_common_sidebar_info_gardu_data'] = 'Data Gardu';
 $lang['common_sidebar_common_sidebar_info_user_management'] = 'User Management';
 ?>
-
