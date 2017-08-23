@@ -17,4 +17,3 @@ $lang['dashboard_index_admin_common_layout_menu_add_gardu_centre'] = 'Tambah Dat
 $lang['dashboard_index_admin_common_layout_menu_add_feeder'] = 'Tambah Data Penyulang';
 $lang['dashboard_index_admin_common_layout_menu_add_gardu'] = 'Tambah Data Gardu';
 ?>
-
