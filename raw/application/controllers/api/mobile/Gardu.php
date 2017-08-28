@@ -16,7 +16,7 @@ require_once APPPATH . '/libraries/MY_REST_Controller.php';
  * @property CI_Loader load
  * @property CI_Config config
  * @property CI_Security security
- * @property Ion_auth ion_auth
+ * @property Ion_auth|My_ion_auth_model ion_auth
  * @property array data
  * @property CI_Input input
  * @property CI_Session session
@@ -589,19 +589,22 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             /** @var array $data
              * @var string $identity_column
              */
-            $data = [];
+            $data            = [];
+            $userInformation = $this->ion_auth->getUserInformation();
 
-            $data['no_gardu']         = $this->postOrDefault('no_gardu', null);
-            $data['nama_petugas1']    = $this->postOrDefault('petugas1', '');
-            $data['nama_petugas2']    = $this->postOrDefault('petugas2', '');
-            $data['no_kontrak']       = $this->postOrDefault('no_kontrak', '');
-            $data['arus_R']           = $this->postOrDefault('ir', '');
-            $data['arus_S']           = $this->postOrDefault('is', '');
-            $data['arus_T']           = $this->postOrDefault('it', '');
-            $data['arus_N']           = $this->postOrDefault('in', '');
-            $data['teg_RN']           = $this->postOrDefault('vrn', '');
-            $data['teg_SN']           = $this->postOrDefault('vsn', '');
-            $data['teg_TN']           = $this->postOrDefault('vtn', '');
+            $data['no_gardu']      = $this->postOrDefault('no_gardu', null);
+            $data['nama_petugas1'] = $this->postOrDefault('petugas1', $this->ion_auth->users_and_its_group('`users_groups`.`id`', $userInformation['user_id'], $userInformation['group_id'])->row_array()['id']);
+            $data['nama_petugas2'] = $this->postOrDefault('petugas2', '');
+            $data['no_kontrak']    = $this->postOrDefault('no_kontrak', '');
+            $data['lat']           = $this->postOrDefault('lat', null);
+            $data['lng']           = $this->postOrDefault('lng', null);
+            $data['arus_R']        = $this->postOrDefault('ir', '');
+            $data['arus_S']        = $this->postOrDefault('is', '');
+            $data['arus_T']        = $this->postOrDefault('it', '');
+            $data['arus_N']        = $this->postOrDefault('in', '');
+            $data['teg_RN']        = $this->postOrDefault('vrn', '');
+            $data['teg_SN']        = $this->postOrDefault('vsn', '');
+            $data['teg_TN']        = $this->postOrDefault('vtn', '');
             $data['teg_RS']           = $this->postOrDefault('vrs', '');
             $data['teg_RT']           = $this->postOrDefault('vrt', '');
             $data['teg_ST']           = $this->postOrDefault('vst', '');
@@ -686,13 +689,16 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 $this->load->model('model_gardu_index', 'mgidx');
                 if ($this->mgidx->insert_measurement($data))
                 {
-                    $response['data']['status']  = 1;
-                    $response['data']['message'] = [$this->lang->line('gardu_pengukuran_index_common_insert_success')];
-                }
-                else
-                {
-                    $response['data']['status']  = 0;
-                    $response['data']['message'] = [$this->lang->line('gardu_pengukuran_index_common_insert_failed')];
+                    if (true)
+                    {
+                        $response['data']['status']  = 1;
+                        $response['data']['message'] = [$this->lang->line('gardu_pengukuran_index_common_insert_success')];
+                    }
+                    else
+                    {
+                        $response['data']['status']  = 0;
+                        $response['data']['message'] = [$this->lang->line('gardu_pengukuran_index_common_insert_failed')];
+                    }
                 }
             }
             else
