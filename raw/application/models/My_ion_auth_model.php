@@ -23,6 +23,7 @@ class My_ion_auth_model extends Ion_auth_model
      */
     private $api_token;
     private $token_id;
+    private $userInformation;
 
     /**
      * My_ion_auth_model constructor.
@@ -230,9 +231,11 @@ class My_ion_auth_model extends Ion_auth_model
 
                 $this->deactivate_previous_token($user->id);
 
+                $group_id = $this->groupByName($group)->row_array()['id'];
+
                 $this->setApiToken($this->refreshToken());
 
-                $this->register_new_token($user->id, $this->getApiToken(), $this->config->item('csrf_expire'));
+                $this->register_new_token($user->id, $group_id, $this->getApiToken(), $this->config->item('csrf_expire'));
 
                 $this->update_last_login($user->id);
 
@@ -301,13 +304,14 @@ class My_ion_auth_model extends Ion_auth_model
      * @param array $getApiToken
      * @param int $expiration
      */
-    private function register_new_token(int $id, array $getApiToken, int $expiration): void
+    private function register_new_token(int $id, int $group, array $getApiToken, int $expiration): void
     {
         $this->trigger_events('pre_register_new_token');
 
         $data = [
             'id' => null,
             'user' => $id,
+            'group' => $group,
             'token' => $getApiToken['token'],
             'refresh' => $getApiToken['refresh'],
             'active' => 1
@@ -361,6 +365,7 @@ class My_ion_auth_model extends Ion_auth_model
         {
             $user = $query->row();
             $this->setTokenId($user->user);
+            $this->setUserInformation($user->user, $user->group);
 
             $this->trigger_events(array('post_check_token', 'post_check_token_successful'));
             $this->messages = [];
@@ -390,7 +395,7 @@ class My_ion_auth_model extends Ion_auth_model
         $this->token_id = $token_id;
     }
 
-    public function users_and_its_group($select)
+    public function users_and_its_group($select, $user_id = null, $group_id = null)
     {
         $this->trigger_events('users_and_its_group');
 
@@ -398,11 +403,39 @@ class My_ion_auth_model extends Ion_auth_model
         $this->db->from('`users`');
         $this->db->join('`users_groups`', '`users`.`id` = `users_groups`.`user_id`', 'RIGHT OUTER');
         $this->db->join('`groups`', '`users_groups`.`group_id` = `groups`.`id`', 'LEFT OUTER');
+        if (!is_null($user_id))
+        {
+            $this->db->where('`users`.`id`', intval($user_id));
+        }
+        if (!is_null($group_id))
+        {
+            $this->db->where('`groups`.`id`', intval($group_id));
+        }
         $this->db->order_by('`users`.`id`', 'ASC');
         $this->db->order_by('`groups`.`id`', 'ASC');
         $response = $this->db->get();
 
         return $response;
+    }
+
+    /**
+     * @param null $name
+     * @return object
+     */
+    public function groupByName($name = null)
+    {
+        $this->trigger_events('group');
+
+
+        if (isset($name))
+        {
+            $this->where($this->tables['groups'] . '.name', $name);
+        }
+
+        $this->limit(1);
+        $this->order_by('id', 'desc');
+
+        return $this->groups();
     }
 
     public function remove_from_group($group_ids = false, $user_id = false)
@@ -418,6 +451,16 @@ class My_ion_auth_model extends Ion_auth_model
         }
 
         return $result;
+    }
+
+    private function setUserInformation($user, $group)
+    {
+        $this->userInformation = ['user_id' => $user, 'group_id' => $group];
+    }
+
+    public function getUserInformation()
+    {
+        return $this->userInformation;
     }
 }
 
