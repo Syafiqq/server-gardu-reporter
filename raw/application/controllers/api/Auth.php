@@ -66,7 +66,7 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
     }
 
     /**
-     *
+     * @param string $group
      */
     public function login_post($group = 'admin')
     {
