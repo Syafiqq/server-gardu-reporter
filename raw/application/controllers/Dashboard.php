@@ -266,7 +266,7 @@ class Dashboard extends CI_Controller
                     , 'redirector' => site_url("/{$this->lang_prefix_path}")
                 ]
             ]);
-            redirect('/auth/login/member');
+            redirect('/auth/login/members');
         }
     }
 }
