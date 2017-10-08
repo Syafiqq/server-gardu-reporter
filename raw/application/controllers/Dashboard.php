@@ -177,11 +177,12 @@ class Dashboard extends CI_Controller
 
     private function _members_index()
     {
-        $this->lang_prefix      = 'dashboard_index_admin';
-        $this->lang_prefix_path = 'dashboard/index/admin';
+        $this->lang_prefix      = 'dashboard_index_member';
+        $this->lang_prefix_path = 'dashboard/index/member';
         $this->lang->load("layout/$this->lang_prefix_path/{$this->lang_prefix}_common_layout", $this->language);
+        $group = $this->session->userdata('group');
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($group === 'members'))
         {
             $this->load->helper('form');
 
@@ -200,7 +201,7 @@ class Dashboard extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/dashboard');
 
             $string['title']        = $this->lang->line('common_title');
@@ -248,7 +249,7 @@ class Dashboard extends CI_Controller
 
             $_properties = compact('meta', 'string', 'data');
 
-            $view['sidebar']      = $this->load->view('common/common_menus_common_layout', $_properties, true);
+            $view['sidebar']      = $this->load->view('common/common_menus_member_common_layout', $_properties, true);
             $view['edit_profile'] = $this->load->view('common/profile/common_profile_edit_common_layout', $_properties, true);
 
             $_properties['view'] = $view;
@@ -265,7 +266,7 @@ class Dashboard extends CI_Controller
                     , 'redirector' => site_url("/{$this->lang_prefix_path}")
                 ]
             ]);
-            redirect('/auth/login/admin');
+            redirect('/auth/login/member');
         }
     }
 }
