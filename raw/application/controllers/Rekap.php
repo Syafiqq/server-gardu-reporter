@@ -1028,6 +1028,27 @@ class Rekap extends CI_Controller
 
     private function _pengukuran_beban_imbang()
     {
+        switch ($this->group)
+        {
+            case 'admin' :
+            {
+                $this->_pengukuran_beban_imbang_admin();
+            }
+            break;
+            case 'members':
+            {
+                $this->_pengukuran_beban_imbang_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    private function _pengukuran_beban_imbang_admin()
+    {
         $this->lang_prefix      = 'rekap_pengukuran_beban_imbang_admin';
         $this->lang_layout      = 'common_layout';
         $this->lang_prefix_path = 'rekap/pengukuran/beban/imbang/admin';
@@ -1139,6 +1160,11 @@ class Rekap extends CI_Controller
             ]);
             redirect('/auth/login/admin');
         }
+    }
+
+    private function _pengukuran_beban_imbang_member()
+    {
+
     }
 }
 
