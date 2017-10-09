@@ -140,6 +140,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     {
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
         if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
@@ -150,7 +151,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_induk'] = $this->deleteOrDefault('user_id', null);
-            $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
             $isValid = !empty($data['id_tb_gardu_induk']);
             if ($isValid)
@@ -192,6 +192,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
         if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
@@ -204,8 +205,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
 
             $data['id_tb_gardu_induk'] = $this->postOrDefault('id', null);
             $data['nama_gardu_induk']  = $this->postOrDefault('name', null);
-
-            $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
             $this->callback_request['_id_gardu_induk_existence_check']             = true;
             $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = false;
@@ -257,6 +256,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
         if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
@@ -269,8 +269,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
 
             $data['id_tb_gardu_induk'] = $this->patchOrDefault('id', null);
             $data['nama_gardu_induk']  = $this->patchOrDefault('name', null);
-
-            $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
             $this->callback_request['_id_gardu_induk_existence_check']             = true;
             $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = true;
@@ -321,6 +319,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     public function _id_gardu_induk_existence_check($id)
     {
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
         if (empty($this->callback_request['_id_gardu_induk_existence_check']))
         {
             show_404();
@@ -342,7 +341,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 }
                 else
                 {
-                    $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_induk_existence_check', $this->lang->line('gardu_induk_common_form_id_exists_error'));
 
                     return false;
@@ -352,7 +350,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             {
                 if ($need_exist)
                 {
-                    $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_induk_existence_check', $this->lang->line('gardu_induk_common_form_id_not_exists_error'));
 
                     return false;
