@@ -114,7 +114,7 @@ class Gardu extends CI_Controller
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
             $data['profile']['group']     = 'Admin';
-            $data['update']['redirector'] = site_url('/management/user');
+            $data['update']['redirector'] = site_url('/gardu');
 
             //Core Data
             $string['title']        = $this->lang->line('common_title');
@@ -314,7 +314,7 @@ class Gardu extends CI_Controller
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
             $data['profile']['group']     = 'Admin';
-            $data['update']['redirector'] = site_url('/management/user');
+            $data['update']['redirector'] = site_url('/gardu');
 
             //Core Data
             $string['title']        = $this->lang->line('common_title');
