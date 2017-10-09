@@ -64,4 +64,3 @@ $lang['gardu_index_admin_common_layout_update_existing_item_title'] = 'Perbarui 
 $lang['gardu_index_admin_common_layout_update_existing_item_button'] = 'Simpan';
 $lang['gardu_index_admin_common_layout_update_existing_item_detail'] = 'Detail';
 ?>
-

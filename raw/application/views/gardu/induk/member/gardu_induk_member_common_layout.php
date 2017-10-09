@@ -244,5 +244,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/gardu/induk/member/gardu_induk_member_common_layout.min.js"></script>
 </body>
 </html>
-
-

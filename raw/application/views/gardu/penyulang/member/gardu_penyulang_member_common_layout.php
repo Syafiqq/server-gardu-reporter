@@ -245,6 +245,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/gardu/penyulang/member/gardu_penyulang_member_common_layout.min.js"></script>
 </body>
 </html>
-
-
-

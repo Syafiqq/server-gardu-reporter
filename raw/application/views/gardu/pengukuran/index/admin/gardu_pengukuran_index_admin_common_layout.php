@@ -484,4 +484,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/gardu/pengukuran/index/admin/gardu_pengukuran_index_admin_common_layout.min.js"></script>
 </body>
 </html>
-

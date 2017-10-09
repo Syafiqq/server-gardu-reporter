@@ -223,5 +223,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/tegangan/ujung/member/rekap_pengukuran_tegangan_ujung_member_common_layout.min.js"></script>
 </body>
 </html>
-
-

@@ -335,7 +335,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/gardu/index/admin/gardu_index_admin_common_layout.min.js"></script>
 </body>
 </html>
-
-
-
-
