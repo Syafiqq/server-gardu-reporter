@@ -69,7 +69,7 @@ if (!isset($view))
     <link rel="stylesheet" href="/assets/vendor/jquery-confirm2/dist/jquery-confirm.min.css">
     <!-- Custom -->
     <link rel="stylesheet" href="/assets/css/layout/common/common_layout.min.css">
-    <link rel="stylesheet" href="/assets/css/layout/gardu/pengukuran/index/admin/gardu_pengukuran_index_admin_common_layout.min.css">
+    <link rel="stylesheet" href="/assets/css/layout/gardu/pengukuran/index/member/gardu_pengukuran_index_member_common_layout.min.css">
 
     <script type="text/javascript" src="/assets/vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -481,7 +481,7 @@ if (!isset($view))
 </script>
 <script type="text/javascript" src="/assets/js/layout/common/common_function.min.js"></script>
 <script type="text/javascript" src="/assets/js/layout/common/profile/common_profile_edit_common_layout.min.js"></script>
-<script type="text/javascript" src="/assets/js/layout/gardu/pengukuran/index/admin/gardu_pengukuran_index_admin_common_layout.min.js"></script>
+<script type="text/javascript" src="/assets/js/layout/gardu/pengukuran/index/member/gardu_pengukuran_index_member_common_layout.min.js"></script>
 </body>
 </html>
 

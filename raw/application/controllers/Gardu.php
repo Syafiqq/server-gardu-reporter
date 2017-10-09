@@ -313,7 +313,7 @@ class Gardu extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/gardu');
 
             //Core Data
@@ -497,7 +497,7 @@ class Gardu extends CI_Controller
             break;
             case 'members':
             {
-                return $this->_penyulang_memeber();
+                return $this->_penyulang_member();
             }
             break;
             default :
@@ -624,7 +624,7 @@ class Gardu extends CI_Controller
         }
     }
 
-    private function _penyulang_memeber()
+    private function _penyulang_member()
     {
         $this->lang_prefix      = 'gardu_penyulang_member';
         $this->lang_layout      = 'common_layout';
@@ -650,7 +650,7 @@ class Gardu extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/gardu/penyulang');
 
             //Core Data
@@ -905,7 +905,7 @@ class Gardu extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/gardu/induk');
 
             //Core Data
@@ -1199,7 +1199,7 @@ class Gardu extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url("/gardu/detail?gardu={$gardu}");
 
             //Core Data
@@ -1311,7 +1311,7 @@ class Gardu extends CI_Controller
             break;
             case 'members':
             {
-                return $this->_pengukuran_member();
+                return $this->_pengukuran_index_member();
             }
             break;
             default :
@@ -1682,13 +1682,13 @@ class Gardu extends CI_Controller
 
     private function _pengukuran_index_member()
     {
-        $this->lang_prefix      = 'gardu_pengukuran_index_admin';
+        $this->lang_prefix      = 'gardu_pengukuran_index_member';
         $this->lang_layout      = 'common_layout';
-        $this->lang_prefix_path = 'gardu/pengukuran/index/admin';
+        $this->lang_prefix_path = 'gardu/pengukuran/index/member';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/gardu/pengukuran/index/gardu_pengukuran_index_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && ($this->group === 'members'))
         {
             $this->load->helper('form');
 
@@ -1707,7 +1707,7 @@ class Gardu extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/gardu/pengukuran');
 
             //Core Data
@@ -2018,7 +2018,7 @@ class Gardu extends CI_Controller
 
             $_properties = compact('meta', 'string', 'data');
 
-            $view['sidebar']      = $this->load->view("common/common_menus_{$this->lang_layout}", $_properties, true);
+            $view['sidebar']      = $this->load->view("common/common_menus_member_{$this->lang_layout}", $_properties, true);
             $view['edit_profile'] = $this->load->view("common/profile/common_profile_edit_{$this->lang_layout}", $_properties, true);
 
             $_properties['view'] = $view;
@@ -2035,7 +2035,7 @@ class Gardu extends CI_Controller
                     , 'redirector' => site_url("/gardu/pengukuran")
                 ]
             ]);
-            redirect('/auth/login/admin');
+            redirect('/auth/login/members');
         }
     }
 }
