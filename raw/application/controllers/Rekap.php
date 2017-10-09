@@ -297,13 +297,13 @@ class Rekap extends CI_Controller
 
     private function _pengukuran_gardu_member()
     {
-        $this->lang_prefix      = 'rekap_pengukuran_gardu_admin';
+        $this->lang_prefix      = 'rekap_pengukuran_gardu_member';
         $this->lang_layout      = 'common_layout';
-        $this->lang_prefix_path = 'rekap/pengukuran/gardu/admin';
+        $this->lang_prefix_path = 'rekap/pengukuran/gardu/member';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/rekap/pengukuran/gardu/rekap_pengukuran_gardu_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && ($this->group === 'members'))
         {
             $this->load->helper('form');
 
@@ -467,7 +467,7 @@ class Rekap extends CI_Controller
 
             $_properties = compact('meta', 'string', 'data');
 
-            $view['sidebar']      = $this->load->view("common/common_menus_{$this->lang_layout}", $_properties, true);
+            $view['sidebar']      = $this->load->view("common/common_menus_member_{$this->lang_layout}", $_properties, true);
             $view['edit_profile'] = $this->load->view("common/profile/common_profile_edit_{$this->lang_layout}", $_properties, true);
 
             $_properties['view'] = $view;
@@ -484,7 +484,7 @@ class Rekap extends CI_Controller
                     , 'redirector' => site_url("/rekap/pengukuran/gardu")
                 ]
             ]);
-            redirect('/auth/login/admin');
+            redirect('/auth/login/members');
         }
     }
 
