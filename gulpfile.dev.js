@@ -79,7 +79,7 @@ gulp.task('minify-json', function ()
 gulp.task('watch-move-application-assets', function ()
 {
 // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    return watch(['./raw/application/**', '!**/*___jb_tmp___'], function ()
+    return watch(['./raw/application/**', '!./raw/application/**/*___jb_tmp___'], function ()
     {
         return gulp.src('./raw/application/**', {base: './raw/application/'})
             .pipe(gulp.dest('./application/'));
