@@ -754,28 +754,16 @@ class Rekap extends CI_Controller
     public function beban($beban = 'trafo')
     {
         $this->load->helper(['url', 'i18n']);
-        switch ($this->group)
+        switch ($beban)
         {
-            case 'admin' :
+            case 'trafo' :
             {
-                switch ($beban)
-                {
-                    case 'trafo' :
-                    {
-                        return $this->_pengukuran_beban_trafo();
-                    }
-                    break;
-                    case 'imbang' :
-                    {
-                        return $this->_pengukuran_beban_imbang();
-                    }
-                    break;
-                }
+                return $this->_pengukuran_beban_trafo();
             }
             break;
-            case 'members':
+            case 'imbang' :
             {
-                //return $this->_pengukuran_member();
+                return $this->_pengukuran_beban_imbang();
             }
             break;
             default :
@@ -786,6 +774,27 @@ class Rekap extends CI_Controller
     }
 
     private function _pengukuran_beban_trafo()
+    {
+        switch ($this->group)
+        {
+            case 'admin' :
+            {
+                $this->_pengukuran_beban_trafo_admin();
+            }
+            break;
+            case 'members':
+            {
+                $this->_pengukuran_beban_trafo_member();
+            }
+            break;
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    private function _pengukuran_beban_trafo_admin()
     {
         $this->lang_prefix      = 'rekap_pengukuran_beban_trafo_admin';
         $this->lang_layout      = 'common_layout';
@@ -899,6 +908,11 @@ class Rekap extends CI_Controller
             ]);
             redirect('/auth/login/admin');
         }
+    }
+
+    private function _pengukuran_beban_trafo_member()
+    {
+
     }
 
     private function _pengukuran_beban_imbang()
