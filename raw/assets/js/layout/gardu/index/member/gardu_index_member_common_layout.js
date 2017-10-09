@@ -24,94 +24,9 @@
         var retriever           = $('meta[name="retriever"]').attr('content');
         var induk_retriever     = $('meta[name="induk_retriever"]').attr('content');
         var penyulang_retriever = $('meta[name="penyulang_retriever"]').attr('content');
-        var deleter             = $('meta[name="deleter"]').attr('content');
         var editer              = $('meta[name="editer"]').attr('content');
         var detail              = $('meta[name="detail"]').attr('content');
         var creator             = $('meta[name="creator"]').attr('content');
-
-        $(table_report).on('click', 'button.c-del-button', function (event) {
-            event.preventDefault();
-            var user_id = $(this).attr('dx-user');
-            if (user_id !== undefined
-                && deleter !== undefined)
-            {
-                var data        = {};
-                data['user_id'] = user_id;
-                confirm("Yakin ingin menghapus data ini?");
-                NProgress.start();
-                $.ajax({
-                    url: deleter,
-                    data: data,
-                    type: 'DELETE',
-                    dataType: 'json'
-                })
-                    .done(function (response) {
-                        var kind   = ['notify', 'message'];
-                        var type   = ['validation', 'delete'];
-                        var status = ['danger', 'info', 'warning', 'success'];
-                        if (response['data'] !== undefined)
-                        {
-                            if (response['data']['message'] !== undefined)
-                            {
-                                for (var i = -1, is = kind.length; ++i < is;)
-                                {
-                                    if (response['data']['message'][kind[i]] !== undefined)
-                                    {
-                                        for (var j = -1, js = type.length; ++j < js;)
-                                        {
-                                            if (response['data']['message'][kind[i]][type[j]] !== undefined)
-                                            {
-                                                for (var k = -1, ks = status.length; ++k < ks;)
-                                                {
-                                                    if (response['data']['message'][kind[i]][type[j]][status[k]] !== undefined)
-                                                    {
-                                                        if (kind[i] === 'notify')
-                                                        {
-                                                            //noinspection JSDuplicatedDeclaration
-                                                            for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
-                                                            {
-                                                                $.notify({
-                                                                    message: response['data']['message'][kind[i]][type[j]][status[k]][l]
-                                                                }, {
-                                                                    type: status[k]
-                                                                });
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (response['data']['redirect'] !== undefined)
-                            {
-                                location.href = response['data']['redirect'];
-                            }
-
-                            if (response['data']['status'] !== undefined)
-                            {
-                                if (response['data']['status'] === 1)
-                                {
-                                    retreiveData(table, retriever, NProgress);
-                                }
-                            }
-                        }
-                    })
-                    .fail(function () {
-                    })
-                    .always(function () {
-                        NProgress.done();
-                    });
-            }
-
-
-        });
 
         $(table_report).on('click', 'button.c-upd-button', function (event) {
             event.preventDefault();
@@ -212,7 +127,6 @@
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                var del     = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['no'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button>";
                                 var upd     = "<button class='btn btn-info btn-xs c-upd-button' " +
                                     "dx-jenis='" + content['jenis'] + "' " +
                                     "dx-no='" + content['no'] + "' " +
@@ -226,7 +140,7 @@
                                     "dx-long='" + content['long'] + "' " +
                                     "type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button>";
                                 var dtl     = "<a class='btn btn-info btn-xs' type='button' href='" + sprintf(detail, content['no']) + "' data-toggle='tooltip' data-placement='right' title='Detail'><i class='fa fa-search'></i></a>";
-                                table.row.add([content['induk_id'], content['penyulang_id'], content['no'], content['lokasi'], dtl + "&nbsp;&nbsp;" + upd + "&nbsp;&nbsp;" + del]);
+                                table.row.add([content['induk_id'], content['penyulang_id'], content['no'], content['lokasi'], dtl + "&nbsp;&nbsp;" + upd + "&nbsp;&nbsp;"]);
                             }
                             table.draw(true);
                         }
