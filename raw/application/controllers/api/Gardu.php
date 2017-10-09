@@ -817,6 +817,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     {
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
         if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
@@ -827,7 +828,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_index'] = $this->deleteOrDefault('user_id', null);
-            $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $isValid = !empty($data['id_tb_gardu_index']);
             if ($isValid)
@@ -869,6 +869,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
         if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
@@ -892,8 +893,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['jml_jurusan']           = $this->postOrDefault('jurusan', null);
             $data['latitude']              = $this->postOrDefault('lat', null);
             $data['longitude']             = $this->postOrDefault('long', null);
-
-            $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $this->callback_request['_id_gardu_index_existence_check']                 = true;
             $this->callback_request['_id_gardu_induk_existence_check']                 = true;
@@ -959,6 +958,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
+
 
         if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
@@ -979,8 +980,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['jml_jurusan']   = $this->patchOrDefault('jurusan', null);
             $data['latitude']      = $this->patchOrDefault('lat', null);
             $data['longitude']     = $this->patchOrDefault('long', null);
-
-            $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $this->callback_request['_id_gardu_index_existence_check']             = true;
             $this->callback_request['_id_gardu_index_existence_check_need_exists'] = true;
@@ -1028,6 +1027,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $response['data']['message']['message']['update']['info'] = [$this->lang->line('gardu_index_common_manipulation_forbidden')];
         }
 
+        log_message('ERROR', var_export($response, true));
+
         $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
         $this->response($response, $response['status']);
     }
@@ -1038,6 +1039,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     public function _id_gardu_index_existence_check($id)
     {
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
+
         if (empty($this->callback_request['_id_gardu_index_existence_check']))
         {
             show_404();
@@ -1058,7 +1061,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 }
                 else
                 {
-                    $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_index_existence_check', $this->lang->line('gardu_index_common_form_id_exists_error'));
 
                     return false;
@@ -1068,7 +1070,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             {
                 if ($need_exist)
                 {
-                    $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_index_existence_check', $this->lang->line('gardu_index_common_form_id_not_exists_error'));
 
                     return false;
