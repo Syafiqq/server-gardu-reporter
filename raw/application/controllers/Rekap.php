@@ -68,22 +68,31 @@ class Rekap extends CI_Controller
     public function pengukuran($gardu = 'gardu')
     {
         $this->load->helper(['url', 'i18n']);
+        switch ($gardu)
+        {
+            case 'gardu' :
+            {
+                return $this->_pengukuran_gardu();
+            }
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    private function _pengukuran_gardu()
+    {
         switch ($this->group)
         {
             case 'admin' :
             {
-                switch ($gardu)
-                {
-                    case 'gardu' :
-                    {
-                        return $this->_pengukuran_gardu();
-                    }
-                }
+                return $this->_pengukuran_gardu_admin();
             }
             break;
             case 'members':
             {
-                //return $this->_pengukuran_member();
+                return $this->_pengukuran_gardu_member();
             }
             break;
             default :
@@ -93,7 +102,7 @@ class Rekap extends CI_Controller
         }
     }
 
-    private function _pengukuran_gardu()
+    private function _pengukuran_gardu_admin()
     {
         $this->lang_prefix      = 'rekap_pengukuran_gardu_admin';
         $this->lang_layout      = 'common_layout';
@@ -284,6 +293,11 @@ class Rekap extends CI_Controller
             ]);
             redirect('/auth/login/admin');
         }
+    }
+
+    private function _pengukuran_gardu_member()
+    {
+        
     }
 
     public function tegangan($direction = 'ujung')
