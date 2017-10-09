@@ -871,7 +871,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $response = [];
         $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -1128,13 +1128,13 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['teg_RS_jurusan1'] = $this->postOrDefault('vrs_u1', '');
             $data['teg_RT_jurusan1'] = $this->postOrDefault('vrt_u1', '');
             $data['teg_ST_jurusan1'] = $this->postOrDefault('vst_u1', '');
-            $data['id_jurusan2']      = $this->postOrDefault('j_u2', '');
-            $data['arus_R_jurusan2']  = $this->postOrDefault('ir_u2', '');
-            $data['arus_S_jurusan2']  = $this->postOrDefault('is_u2', '');
-            $data['arus_T_jurusan2']  = $this->postOrDefault('it_u2', '');
-            $data['arus_N_jurusan2']  = $this->postOrDefault('in_u2', '');
-            $data['teg_RN_jurusan2']  = $this->postOrDefault('vrn_u2', '');
-            $data['teg_SN_jurusan2']  = $this->postOrDefault('vsn_u2', '');
+            $data['id_jurusan2']     = $this->postOrDefault('j_u2', '');
+            $data['arus_R_jurusan2'] = $this->postOrDefault('ir_u2', '');
+            $data['arus_S_jurusan2'] = $this->postOrDefault('is_u2', '');
+            $data['arus_T_jurusan2'] = $this->postOrDefault('it_u2', '');
+            $data['arus_N_jurusan2'] = $this->postOrDefault('in_u2', '');
+            $data['teg_RN_jurusan2'] = $this->postOrDefault('vrn_u2', '');
+            $data['teg_SN_jurusan2'] = $this->postOrDefault('vsn_u2', '');
             $data['teg_TN_jurusan2']  = $this->postOrDefault('vtn_u2', '');
             $data['teg_RS_jurusan2']  = $this->postOrDefault('vrs_u2', '');
             $data['teg_RT_jurusan2']  = $this->postOrDefault('vrt_u2', '');
