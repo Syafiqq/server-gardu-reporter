@@ -236,4 +236,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/management/user/admin/management_user_admin_common_layout.min.js"></script>
 </body>
 </html>
-

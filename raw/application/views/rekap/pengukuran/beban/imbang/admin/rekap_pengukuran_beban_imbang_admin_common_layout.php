@@ -224,7 +224,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/beban/imbang/admin/rekap_pengukuran_beban_imbang_admin_common_layout.min.js"></script>
 </body>
 </html>
-
-
-
-

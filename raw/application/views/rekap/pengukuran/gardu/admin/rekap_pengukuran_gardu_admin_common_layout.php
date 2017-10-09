@@ -301,4 +301,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/gardu/admin/rekap_pengukuran_gardu_admin_common_layout.min.js"></script>
 </body>
 </html>
-

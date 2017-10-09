@@ -225,6 +225,3 @@ if (!isset($view))
 <script type="text/javascript" src="/assets/js/layout/rekap/pengukuran/beban/trafo/admin/rekap_pengukuran_beban_trafo_admin_common_layout.min.js"></script>
 </body>
 </html>
-
-
-

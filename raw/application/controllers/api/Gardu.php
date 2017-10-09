@@ -53,6 +53,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     private $callback_request;
 
+    private $group;
+
     /**
      * @var array $callback_request
      */
@@ -67,6 +69,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @noinspection PhpParamsInspection */
         $this->load->library(['session', 'ion_auth']);
         $this->load->helper(['url']);
+
+        $this->group = $this->session->userdata('group');
     }
 
     /**
@@ -136,8 +140,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     {
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -146,7 +151,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_induk'] = $this->deleteOrDefault('user_id', null);
-            $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
             $isValid = !empty($data['id_tb_gardu_induk']);
             if ($isValid)
@@ -188,8 +192,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -200,8 +205,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
 
             $data['id_tb_gardu_induk'] = $this->postOrDefault('id', null);
             $data['nama_gardu_induk']  = $this->postOrDefault('name', null);
-
-            $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
             $this->callback_request['_id_gardu_induk_existence_check']             = true;
             $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = false;
@@ -253,8 +256,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -265,8 +269,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
 
             $data['id_tb_gardu_induk'] = $this->patchOrDefault('id', null);
             $data['nama_gardu_induk']  = $this->patchOrDefault('name', null);
-
-            $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
             $this->callback_request['_id_gardu_induk_existence_check']             = true;
             $this->callback_request['_id_gardu_induk_existence_check_need_exists'] = true;
@@ -317,6 +319,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     public function _id_gardu_induk_existence_check($id)
     {
+        $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
         if (empty($this->callback_request['_id_gardu_induk_existence_check']))
         {
             show_404();
@@ -338,7 +341,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 }
                 else
                 {
-                    $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_induk_existence_check', $this->lang->line('gardu_induk_common_form_id_exists_error'));
 
                     return false;
@@ -348,7 +350,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             {
                 if ($need_exist)
                 {
-                    $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_induk_existence_check', $this->lang->line('gardu_induk_common_form_id_not_exists_error'));
 
                     return false;
@@ -430,8 +431,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     {
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -440,7 +442,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_penyulang'] = $this->deleteOrDefault('user_id', null);
-            $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
             $isValid = !empty($data['id_tb_gardu_penyulang']);
             if ($isValid)
@@ -482,8 +483,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -494,8 +496,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
 
             $data['id_tb_gardu_penyulang'] = $this->postOrDefault('id', null);
             $data['nama_penyulang']        = $this->postOrDefault('name', null);
-
-            $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
             $this->callback_request['_id_gardu_penyulang_existence_check']             = true;
             $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] = false;
@@ -547,8 +547,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -559,8 +560,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
 
             $data['id_tb_gardu_penyulang'] = $this->patchOrDefault('id', null);
             $data['nama_penyulang']        = $this->patchOrDefault('name', null);
-
-            $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
 
             $this->callback_request['_id_gardu_penyulang_existence_check']             = true;
             $this->callback_request['_id_gardu_penyulang_existence_check_need_exists'] = true;
@@ -611,6 +610,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     public function _id_gardu_penyulang_existence_check($id)
     {
+        $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
+
         if (empty($this->callback_request['_id_gardu_penyulang_existence_check']))
         {
             show_404();
@@ -632,7 +633,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 }
                 else
                 {
-                    $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_penyulang_existence_check', $this->lang->line('gardu_penyulang_common_form_id_exists_error'));
 
                     return false;
@@ -642,7 +642,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             {
                 if ($need_exist)
                 {
-                    $this->lang->load('layout/gardu/penyulang/gardu_penyulang_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_penyulang_existence_check', $this->lang->line('gardu_penyulang_common_form_id_not_exists_error'));
 
                     return false;
@@ -813,8 +812,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
     {
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -823,7 +823,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data = [];
 
             $data['id_tb_gardu_index'] = $this->deleteOrDefault('user_id', null);
-            $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $isValid = !empty($data['id_tb_gardu_index']);
             if ($isValid)
@@ -865,8 +864,9 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -888,8 +888,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['jml_jurusan']           = $this->postOrDefault('jurusan', null);
             $data['latitude']              = $this->postOrDefault('lat', null);
             $data['longitude']             = $this->postOrDefault('long', null);
-
-            $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $this->callback_request['_id_gardu_index_existence_check']                 = true;
             $this->callback_request['_id_gardu_induk_existence_check']                 = true;
@@ -955,8 +953,10 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->load->library('session');
         /** @var array $response */
         $response = [];
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -975,8 +975,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['jml_jurusan']   = $this->patchOrDefault('jurusan', null);
             $data['latitude']      = $this->patchOrDefault('lat', null);
             $data['longitude']     = $this->patchOrDefault('long', null);
-
-            $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
             $this->callback_request['_id_gardu_index_existence_check']             = true;
             $this->callback_request['_id_gardu_index_existence_check_need_exists'] = true;
@@ -1024,6 +1022,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $response['data']['message']['message']['update']['info'] = [$this->lang->line('gardu_index_common_manipulation_forbidden')];
         }
 
+        log_message('ERROR', var_export($response, true));
+
         $response['status'] = \Restserver\Libraries\REST_Controller::HTTP_OK;
         $this->response($response, $response['status']);
     }
@@ -1034,6 +1034,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     public function _id_gardu_index_existence_check($id)
     {
+        $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
+
         if (empty($this->callback_request['_id_gardu_index_existence_check']))
         {
             show_404();
@@ -1054,7 +1056,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
                 }
                 else
                 {
-                    $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_index_existence_check', $this->lang->line('gardu_index_common_form_id_exists_error'));
 
                     return false;
@@ -1064,7 +1065,6 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             {
                 if ($need_exist)
                 {
-                    $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
                     $this->form_validation->set_message('_id_gardu_index_existence_check', $this->lang->line('gardu_index_common_form_id_not_exists_error'));
 
                     return false;
@@ -1087,7 +1087,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -1096,47 +1096,47 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
              */
             $data = [];
 
-            $data['no_gardu']      = $this->postOrDefault('no_gardu', null);
-            $data['nama_petugas1'] = $this->postOrDefault('petugas1', $this->ion_auth->users_and_its_group('`users_groups`.`id`', $this->session->userdata('user_id'), $this->ion_auth->groupByName($this->session->userdata('group'))->row_array()['id'])->row_array()['id']);
-            $data['nama_petugas2'] = $this->postOrDefault('petugas2', '');
-            $data['no_kontrak']    = $this->postOrDefault('no_kontrak', '');
-            $data['lat']           = $this->postOrDefault('lat', null);
-            $data['lng']           = $this->postOrDefault('lng', null);
-            $data['arus_R']        = $this->postOrDefault('ir', '');
-            $data['arus_S']        = $this->postOrDefault('is', '');
-            $data['arus_T']        = $this->postOrDefault('it', '');
-            $data['arus_N']        = $this->postOrDefault('in', '');
-            $data['teg_RN']        = $this->postOrDefault('vrn', '');
-            $data['teg_SN']        = $this->postOrDefault('vsn', '');
-            $data['teg_TN']        = $this->postOrDefault('vtn', '');
-            $data['teg_RS']           = $this->postOrDefault('vrs', '');
-            $data['teg_RT']           = $this->postOrDefault('vrt', '');
-            $data['teg_ST']           = $this->postOrDefault('vst', '');
-            $data['id_jurusan1']      = $this->postOrDefault('j_u1', '');
-            $data['arus_R_jurusan1']  = $this->postOrDefault('ir_u1', '');
-            $data['arus_S_jurusan1']  = $this->postOrDefault('is_u1', '');
-            $data['arus_T_jurusan1']  = $this->postOrDefault('it_u1', '');
-            $data['arus_N_jurusan1']  = $this->postOrDefault('in_u1', '');
-            $data['teg_RN_jurusan1']  = $this->postOrDefault('vrn_u1', '');
-            $data['teg_SN_jurusan1']  = $this->postOrDefault('vsn_u1', '');
-            $data['teg_TN_jurusan1']  = $this->postOrDefault('vtn_u1', '');
-            $data['teg_RS_jurusan1']  = $this->postOrDefault('vrs_u1', '');
-            $data['teg_RT_jurusan1']  = $this->postOrDefault('vrt_u1', '');
-            $data['teg_ST_jurusan1']  = $this->postOrDefault('vst_u1', '');
-            $data['id_jurusan2']      = $this->postOrDefault('j_u2', '');
-            $data['arus_R_jurusan2']  = $this->postOrDefault('ir_u2', '');
-            $data['arus_S_jurusan2']  = $this->postOrDefault('is_u2', '');
-            $data['arus_T_jurusan2']  = $this->postOrDefault('it_u2', '');
-            $data['arus_N_jurusan2']  = $this->postOrDefault('in_u2', '');
-            $data['teg_RN_jurusan2']  = $this->postOrDefault('vrn_u2', '');
-            $data['teg_SN_jurusan2']  = $this->postOrDefault('vsn_u2', '');
-            $data['teg_TN_jurusan2']  = $this->postOrDefault('vtn_u2', '');
-            $data['teg_RS_jurusan2']  = $this->postOrDefault('vrs_u2', '');
-            $data['teg_RT_jurusan2']  = $this->postOrDefault('vrt_u2', '');
-            $data['teg_ST_jurusan2']  = $this->postOrDefault('vst_u2', '');
-            $data['id_jurusan3']      = $this->postOrDefault('j_u3', '');
-            $data['arus_R_jurusan3']  = $this->postOrDefault('ir_u3', '');
-            $data['arus_S_jurusan3']  = $this->postOrDefault('is_u3', '');
+            $data['no_gardu']        = $this->postOrDefault('no_gardu', null);
+            $data['nama_petugas1']   = $this->postOrDefault('petugas1', $this->ion_auth->users_and_its_group('`users_groups`.`id`', $this->session->userdata('user_id'), $this->ion_auth->groupByName($this->session->userdata('group'))->row_array()['id'])->row_array()['id']);
+            $data['nama_petugas2']   = $this->postOrDefault('petugas2', '');
+            $data['no_kontrak']      = $this->postOrDefault('no_kontrak', '');
+            $data['lat']             = $this->postOrDefault('lat', null);
+            $data['lng']             = $this->postOrDefault('lng', null);
+            $data['arus_R']          = $this->postOrDefault('ir', '');
+            $data['arus_S']          = $this->postOrDefault('is', '');
+            $data['arus_T']          = $this->postOrDefault('it', '');
+            $data['arus_N']          = $this->postOrDefault('in', '');
+            $data['teg_RN']          = $this->postOrDefault('vrn', '');
+            $data['teg_SN']          = $this->postOrDefault('vsn', '');
+            $data['teg_TN']          = $this->postOrDefault('vtn', '');
+            $data['teg_RS']          = $this->postOrDefault('vrs', '');
+            $data['teg_RT']          = $this->postOrDefault('vrt', '');
+            $data['teg_ST']          = $this->postOrDefault('vst', '');
+            $data['id_jurusan1']     = $this->postOrDefault('j_u1', '');
+            $data['arus_R_jurusan1'] = $this->postOrDefault('ir_u1', '');
+            $data['arus_S_jurusan1'] = $this->postOrDefault('is_u1', '');
+            $data['arus_T_jurusan1'] = $this->postOrDefault('it_u1', '');
+            $data['arus_N_jurusan1'] = $this->postOrDefault('in_u1', '');
+            $data['teg_RN_jurusan1'] = $this->postOrDefault('vrn_u1', '');
+            $data['teg_SN_jurusan1'] = $this->postOrDefault('vsn_u1', '');
+            $data['teg_TN_jurusan1'] = $this->postOrDefault('vtn_u1', '');
+            $data['teg_RS_jurusan1'] = $this->postOrDefault('vrs_u1', '');
+            $data['teg_RT_jurusan1'] = $this->postOrDefault('vrt_u1', '');
+            $data['teg_ST_jurusan1'] = $this->postOrDefault('vst_u1', '');
+            $data['id_jurusan2']     = $this->postOrDefault('j_u2', '');
+            $data['arus_R_jurusan2'] = $this->postOrDefault('ir_u2', '');
+            $data['arus_S_jurusan2'] = $this->postOrDefault('is_u2', '');
+            $data['arus_T_jurusan2'] = $this->postOrDefault('it_u2', '');
+            $data['arus_N_jurusan2'] = $this->postOrDefault('in_u2', '');
+            $data['teg_RN_jurusan2'] = $this->postOrDefault('vrn_u2', '');
+            $data['teg_SN_jurusan2'] = $this->postOrDefault('vsn_u2', '');
+            $data['teg_TN_jurusan2'] = $this->postOrDefault('vtn_u2', '');
+            $data['teg_RS_jurusan2'] = $this->postOrDefault('vrs_u2', '');
+            $data['teg_RT_jurusan2'] = $this->postOrDefault('vrt_u2', '');
+            $data['teg_ST_jurusan2'] = $this->postOrDefault('vst_u2', '');
+            $data['id_jurusan3']     = $this->postOrDefault('j_u3', '');
+            $data['arus_R_jurusan3'] = $this->postOrDefault('ir_u3', '');
+            $data['arus_S_jurusan3'] = $this->postOrDefault('is_u3', '');
             $data['arus_T_jurusan3']  = $this->postOrDefault('it_u3', '');
             $data['arus_N_jurusan3']  = $this->postOrDefault('in_u3', '');
             $data['teg_RN_jurusan3']  = $this->postOrDefault('vrn_u3', '');

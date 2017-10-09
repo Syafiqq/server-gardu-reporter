@@ -48,6 +48,7 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
      * @var array $callback_request
      */
     private $callback_request;
+    private $group;
 
     public function __construct()
     {
@@ -59,6 +60,8 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
         /** @noinspection PhpParamsInspection */
         $this->load->library(['ion_auth', 'form_validation']);
         $this->load->helper(['url']);
+
+        $this->group = $this->session->userdata('group');
     }
 
     /**
@@ -70,7 +73,7 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             /** @var array $data
              * @var string $tables
