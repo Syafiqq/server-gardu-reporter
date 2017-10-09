@@ -21,93 +21,7 @@
             }
         });
         var retriever    = $('meta[name="retriever"]').attr('content');
-        var deleter      = $('meta[name="deleter"]').attr('content');
         var editer       = $('meta[name="editer"]').attr('content');
-        var creator      = $('meta[name="creator"]').attr('content');
-
-        $(table_report).on('click', 'button.c-del-button', function (event) {
-            event.preventDefault();
-            var user_id = $(this).attr('dx-user');
-            if (user_id !== undefined
-                && deleter !== undefined)
-            {
-                var data        = {};
-                data['user_id'] = user_id;
-                confirm("Yakin ingin menghapus data ini?");
-                NProgress.start();
-                $.ajax({
-                    url: deleter,
-                    data: data,
-                    type: 'DELETE',
-                    dataType: 'json'
-                })
-                    .done(function (response) {
-                        var kind   = ['notify', 'message'];
-                        var type   = ['validation', 'delete'];
-                        var status = ['danger', 'info', 'warning', 'success'];
-                        if (response['data'] !== undefined)
-                        {
-                            if (response['data']['message'] !== undefined)
-                            {
-                                for (var i = -1, is = kind.length; ++i < is;)
-                                {
-                                    if (response['data']['message'][kind[i]] !== undefined)
-                                    {
-                                        for (var j = -1, js = type.length; ++j < js;)
-                                        {
-                                            if (response['data']['message'][kind[i]][type[j]] !== undefined)
-                                            {
-                                                for (var k = -1, ks = status.length; ++k < ks;)
-                                                {
-                                                    if (response['data']['message'][kind[i]][type[j]][status[k]] !== undefined)
-                                                    {
-                                                        if (kind[i] === 'notify')
-                                                        {
-                                                            //noinspection JSDuplicatedDeclaration
-                                                            for (var l = -1, ls = response['data']['message'][kind[i]][type[j]][status[k]].length; ++l < ls;)
-                                                            {
-                                                                $.notify({
-                                                                    message: response['data']['message'][kind[i]][type[j]][status[k]][l]
-                                                                }, {
-                                                                    type: status[k]
-                                                                });
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (response['data']['redirect'] !== undefined)
-                            {
-                                location.href = response['data']['redirect'];
-                            }
-
-                            if (response['data']['status'] !== undefined)
-                            {
-                                if (response['data']['status'] === 1)
-                                {
-                                    retreiveData(table, retriever, NProgress);
-                                }
-                            }
-                        }
-                    })
-                    .fail(function () {
-                    })
-                    .always(function () {
-                        NProgress.done();
-                    });
-            }
-
-
-        });
 
         $(table_report).on('click', 'button.c-upd-button', function (event) {
             event.preventDefault();
@@ -184,9 +98,8 @@
                             for (i = table.data().count() - 1, is = contents.length; ++i < is;)
                             {
                                 var content = contents[i];
-                                var del     = "<button class='btn btn-danger btn-xs c-del-button' dx-user='" + content['id'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Hapus'><i class='fa fa-trash-o'></i></button></a>";
                                 var upd     = "<button class='btn btn-info btn-xs c-upd-button' dx-user='" + content['id'] + "' dx-content='" + content['name'] + "' type='button' data-toggle='tooltip' data-placement='right' title='Edit'><i class='fa fa-edit'></i></button></a>";
-                                table.row.add([content['id'], content['name'], upd + "&nbsp;&nbsp;" + del]);
+                                table.row.add([content['id'], content['name'], upd + "&nbsp;&nbsp;"]);
                             }
                             table.draw(true);
                         }

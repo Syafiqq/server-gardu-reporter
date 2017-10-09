@@ -710,7 +710,6 @@ class Gardu extends CI_Controller
             $string['table_header_option'] = $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_table_header_option");
 
             $meta['retriever']      = site_url('/api/gardu/penyulang/find?code=B28FE');
-            $meta['deleter']        = site_url('/api/gardu/penyulang/delete');
             $meta['editer']         = site_url('/api/gardu/penyulang/update');
             $meta['datatable_lang'] = base_url($this->lang->line('common_datatable_lang'));
 
