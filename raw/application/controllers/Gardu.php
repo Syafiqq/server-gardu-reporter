@@ -934,9 +934,9 @@ class Gardu extends CI_Controller
 
     private function _detail_member()
     {
-        $this->lang_prefix      = 'gardu_detail_admin';
+        $this->lang_prefix      = 'gardu_detail_member';
         $this->lang_layout      = 'common_layout';
-        $this->lang_prefix_path = 'gardu/detail/admin';
+        $this->lang_prefix_path = 'gardu/detail/member';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/gardu/index/gardu_index_common", $this->language);
 
@@ -957,7 +957,7 @@ class Gardu extends CI_Controller
 
             return;
         }
-        else if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        else if ($this->ion_auth->logged_in() && ($this->group === 'members'))
         {
             $this->load->helper('form');
 
@@ -1049,7 +1049,7 @@ class Gardu extends CI_Controller
 
             $_properties = compact('meta', 'string', 'data');
 
-            $view['sidebar']      = $this->load->view("common/common_menus_{$this->lang_layout}", $_properties, true);
+            $view['sidebar']      = $this->load->view("common/common_menus_member_{$this->lang_layout}", $_properties, true);
             $view['edit_profile'] = $this->load->view("common/profile/common_profile_edit_{$this->lang_layout}", $_properties, true);
 
             $_properties['view'] = $view;
@@ -1066,7 +1066,7 @@ class Gardu extends CI_Controller
                     , 'redirector' => site_url("/{$this->lang_prefix_path}?gardu={$gardu}")
                 ]
             ]);
-            redirect('/auth/login/admin');
+            redirect('/auth/login/members');
         }
     }
 
