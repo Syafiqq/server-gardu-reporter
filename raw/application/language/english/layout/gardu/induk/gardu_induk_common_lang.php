@@ -24,4 +24,3 @@ $lang['gardu_induk_common_update_failed'] = 'Update Item Failed';
 
 
 ?>
-

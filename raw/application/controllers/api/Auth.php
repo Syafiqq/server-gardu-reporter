@@ -32,6 +32,7 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
      * @var mixed|null|string
      */
     private $language;
+    private $group;
 
     /**
      * Index Page for this controller.
@@ -66,7 +67,7 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
     }
 
     /**
-     *
+     * @param string $group
      */
     public function login_post($group = 'admin')
     {
@@ -134,11 +135,10 @@ class Auth extends \Restserver\Libraries\MY_REST_Controller
     {
         $this->load->library('session');
         /** @var array $response */
-        $response = [];
+        $response    = [];
+        $this->group = $this->session->userdata('group');
 
-        log_message('ERROR', var_export($this->post(), true));
-
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables

@@ -111,26 +111,38 @@ class Auth extends CI_Controller
 
     public function _members_login()
     {
-        $this->lang_prefix = 'auth_login_members';
+        if ($this->ion_auth->logged_in())
+        {
+            redirect('/dashboard');
+        }
+        else
+        {
+            $this->lang_prefix = 'auth_login_members';
 
-        $this->lang->load("layout/auth/login/members/{$this->lang_prefix}_common_layout", $this->language);
-        $this->lang->load('common/auth/common_auth_common', $this->language);
-        $this->lang->load('common/auth/common_auth_login', $this->language);
-        $this->lang->load('common', $this->language);
+            $this->lang->load("layout/auth/login/members/{$this->lang_prefix}_common_layout", $this->language);
+            $this->lang->load('common/auth/common_auth_common', $this->language);
+            $this->lang->load('common/auth/common_auth_login', $this->language);
+            $this->lang->load('common/auth/common_auth_login_form', $this->language);
+            $this->lang->load('common', $this->language);
 
-        $string = [];
-        $meta   = [];
-        $data   = [];
+            $string = [];
+            $meta   = [];
+            $data   = [];
 
-        $string['title']             = $this->lang->line('common_title');
-        $string['auth_login']        = $this->lang->line('common_auth_common_login');
-        $string['auth_remember_me']  = $this->lang->line('common_auth_common_remember_me');
-        $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['auth_login']);
+            $string['title']             = $this->lang->line('common_title');
+            $string['login_identity']    = $this->lang->line('common_auth_login_form_email_label');
+            $string['login_password']    = $this->lang->line('common_auth_login_form_password_label');
+            $string['login_remember_me'] = $this->lang->line('common_auth_login_form_remember_me_label');
+            $string['login_submit']      = $this->lang->line('common_auth_common_login');
+            $string['login_box_message'] = sprintf($this->lang->line('common_auth_login_login_box_message'), $string['login_submit']);
 
-        $data['meta']['i18n']['country']  = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
-        $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+            $data['meta']['i18n']['country']  = empty($data['meta']['i18n']['country'] = i18nGetCountryCode($this->country)) ? 'US' : $data['meta']['i18n']['country'];
+            $data['meta']['i18n']['language'] = empty($data['meta']['i18n']['language'] = i18nGetLanguageCode($this->language)) ? 'en' : $data['meta']['i18n']['language'];
+            $data['session']['flashdata']     = empty(@$this->session->userdata('flashdata')['message']) ? [] : $this->session->userdata('flashdata')['message'];
+            $data['session']['redirector']    = empty(@$this->session->userdata('flashdata')['redirector']) ? null : $this->session->userdata('flashdata')['redirector'];
 
-        $this->load->view("auth/login/members/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
+            $this->load->view("auth/login/members/{$this->lang_prefix}_common_layout", compact('meta', 'string', 'data'));
+        }
     }
 
     public function logout()

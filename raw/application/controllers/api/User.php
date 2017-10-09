@@ -50,6 +50,8 @@ class User extends \Restserver\Libraries\MY_REST_Controller
      */
     private $callback_request;
 
+    private $group;
+
     /**
      * @var array $callback_request
      */
@@ -64,6 +66,7 @@ class User extends \Restserver\Libraries\MY_REST_Controller
         /** @noinspection PhpParamsInspection */
         $this->load->library(['session', 'ion_auth']);
         $this->load->helper(['url']);
+        $this->group = $this->session->userdata('group');
     }
 
     /**
@@ -132,7 +135,7 @@ class User extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -190,7 +193,7 @@ class User extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
