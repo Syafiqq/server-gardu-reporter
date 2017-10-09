@@ -73,7 +73,7 @@ class Profile extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             /** @var array $data
              * @var string $tables
