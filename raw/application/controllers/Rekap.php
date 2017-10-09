@@ -491,22 +491,31 @@ class Rekap extends CI_Controller
     public function tegangan($direction = 'ujung')
     {
         $this->load->helper(['url', 'i18n']);
+        switch ($direction)
+        {
+            case 'ujung' :
+            {
+                return $this->_pengukuran_tegangan_ujung();
+            }
+            default :
+            {
+                show_404();
+            }
+        }
+    }
+
+    private function _pengukuran_tegangan_ujung()
+    {
         switch ($this->group)
         {
             case 'admin' :
             {
-                switch ($direction)
-                {
-                    case 'ujung' :
-                    {
-                        return $this->_pengukuran_tegangan_ujung();
-                    }
-                }
+                return $this->_pengukuran_tegangan_ujung_admin();
             }
             break;
             case 'members':
             {
-                //return $this->_pengukuran_member();
+                return $this->_pengukuran_tegangan_ujung_member();
             }
             break;
             default :
@@ -516,7 +525,7 @@ class Rekap extends CI_Controller
         }
     }
 
-    private function _pengukuran_tegangan_ujung()
+    private function _pengukuran_tegangan_ujung_admin()
     {
         $this->lang_prefix      = 'rekap_pengukuran_tegangan_ujung_admin';
         $this->lang_layout      = 'common_layout';
@@ -627,6 +636,11 @@ class Rekap extends CI_Controller
             ]);
             redirect('/auth/login/admin');
         }
+    }
+
+    private function _pengukuran_tegangan_ujung_member()
+    {
+
     }
 
     public function beban($beban = 'trafo')
