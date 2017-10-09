@@ -121,7 +121,7 @@ class Rekap extends CI_Controller
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
             $data['profile']['group']     = 'Admin';
-            $data['update']['redirector'] = site_url('/management/user');
+            $data['update']['redirector'] = site_url('/rekap/pengukuran/gardu');
 
             //Core Data
             $string['title']        = $this->lang->line('common_title');
@@ -342,7 +342,7 @@ class Rekap extends CI_Controller
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
             $data['profile']['group']     = 'Admin';
-            $data['update']['redirector'] = site_url('/management/user');
+            $data['update']['redirector'] = site_url('/rekap/tegangan/ujung');
 
             //Core Data
             $string['title']        = $this->lang->line('common_title');
@@ -420,7 +420,7 @@ class Rekap extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/rekap/pengukuran/tegangan/ujung")
+                    , 'redirector' => site_url("/rekap/tegangan/ujung")
                 ]
             ]);
             redirect('/auth/login/admin');
@@ -489,7 +489,7 @@ class Rekap extends CI_Controller
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
             $data['profile']['group']     = 'Admin';
-            $data['update']['redirector'] = site_url('/management/user');
+            $data['update']['redirector'] = site_url('/rekap/beban/trafo');
 
             //Core Data
             $string['title']        = $this->lang->line('common_title');
@@ -570,7 +570,7 @@ class Rekap extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/rekap/pengukuran/beban/trafo")
+                    , 'redirector' => site_url("/rekap/beban/trafo")
                 ]
             ]);
             redirect('/auth/login/admin');
@@ -605,7 +605,7 @@ class Rekap extends CI_Controller
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
             $data['profile']['group']     = 'Admin';
-            $data['update']['redirector'] = site_url('/management/user');
+            $data['update']['redirector'] = site_url('/rekap/beban/imbang');
 
             //Core Data
             $string['title']        = $this->lang->line('common_title');
@@ -685,7 +685,7 @@ class Rekap extends CI_Controller
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access"),
                         $this->lang->line("{$this->lang_prefix}_{$this->lang_layout}_forbidden_access_auth_redirection")
                     ]
-                    , 'redirector' => site_url("/rekap/pengukuran/beban/imbang")
+                    , 'redirector' => site_url("/rekap/beban/imbang")
                 ]
             ]);
             redirect('/auth/login/admin');
