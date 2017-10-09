@@ -53,6 +53,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
      */
     private $callback_request;
 
+    private $group;
+
     /**
      * @var array $callback_request
      */
@@ -67,6 +69,8 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @noinspection PhpParamsInspection */
         $this->load->library(['session', 'ion_auth']);
         $this->load->helper(['url']);
+
+        $this->group = $this->session->userdata('group');
     }
 
     /**
@@ -137,7 +141,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -189,7 +193,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -254,7 +258,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -431,7 +435,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -483,7 +487,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -548,7 +552,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -814,7 +818,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             /** @var array $data
              * @var string $tables
@@ -866,7 +870,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -956,7 +960,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -1087,7 +1091,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         /** @var array $response */
         $response = [];
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->library('form_validation');
 
@@ -1116,13 +1120,13 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
             $data['arus_R_jurusan1'] = $this->postOrDefault('ir_u1', '');
             $data['arus_S_jurusan1'] = $this->postOrDefault('is_u1', '');
             $data['arus_T_jurusan1'] = $this->postOrDefault('it_u1', '');
-            $data['arus_N_jurusan1']  = $this->postOrDefault('in_u1', '');
-            $data['teg_RN_jurusan1']  = $this->postOrDefault('vrn_u1', '');
-            $data['teg_SN_jurusan1']  = $this->postOrDefault('vsn_u1', '');
-            $data['teg_TN_jurusan1']  = $this->postOrDefault('vtn_u1', '');
-            $data['teg_RS_jurusan1']  = $this->postOrDefault('vrs_u1', '');
-            $data['teg_RT_jurusan1']  = $this->postOrDefault('vrt_u1', '');
-            $data['teg_ST_jurusan1']  = $this->postOrDefault('vst_u1', '');
+            $data['arus_N_jurusan1'] = $this->postOrDefault('in_u1', '');
+            $data['teg_RN_jurusan1'] = $this->postOrDefault('vrn_u1', '');
+            $data['teg_SN_jurusan1'] = $this->postOrDefault('vsn_u1', '');
+            $data['teg_TN_jurusan1'] = $this->postOrDefault('vtn_u1', '');
+            $data['teg_RS_jurusan1'] = $this->postOrDefault('vrs_u1', '');
+            $data['teg_RT_jurusan1'] = $this->postOrDefault('vrt_u1', '');
+            $data['teg_ST_jurusan1'] = $this->postOrDefault('vst_u1', '');
             $data['id_jurusan2']      = $this->postOrDefault('j_u2', '');
             $data['arus_R_jurusan2']  = $this->postOrDefault('ir_u2', '');
             $data['arus_S_jurusan2']  = $this->postOrDefault('is_u2', '');

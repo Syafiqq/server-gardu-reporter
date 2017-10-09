@@ -45,6 +45,7 @@ class Management extends CI_Controller
     private $lang_prefix;
     private $lang_layout;
     private $lang_prefix_path;
+    private $group;
 
     public function __construct()
     {
@@ -54,6 +55,7 @@ class Management extends CI_Controller
         $this->load->database();
         /** @noinspection PhpParamsInspection */
         $this->load->library(['ion_auth', 'session']);
+        $this->group = $this->session->userdata('group');
 
         $this->language = empty($this->language = get_cookie('common_language')) ? $this->config->item('language') : $this->language;
         $this->country  = empty($this->country = get_cookie('common_country')) ? $this->config->item('country') : $this->country;
@@ -67,9 +69,7 @@ class Management extends CI_Controller
     public function user()
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -95,7 +95,7 @@ class Management extends CI_Controller
         $this->lang_prefix_path = 'management/user/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 

@@ -43,6 +43,7 @@ class Dashboard extends CI_Controller
     private $country;
     private $lang_prefix;
     private $lang_prefix_path;
+    private $group;
 
     public function __construct()
     {
@@ -55,14 +56,13 @@ class Dashboard extends CI_Controller
 
         $this->language = empty($this->language = get_cookie('common_language')) ? $this->config->item('language') : $this->language;
         $this->country  = empty($this->country = get_cookie('common_country')) ? $this->config->item('country') : $this->country;
+        $this->group    = $this->session->userdata('group');
     }
 
     public function index()
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -87,7 +87,7 @@ class Dashboard extends CI_Controller
         $this->lang_prefix_path = 'dashboard/index/admin';
         $this->lang->load("layout/$this->lang_prefix_path/{$this->lang_prefix}_common_layout", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 
@@ -180,9 +180,8 @@ class Dashboard extends CI_Controller
         $this->lang_prefix      = 'dashboard_index_member';
         $this->lang_prefix_path = 'dashboard/index/member';
         $this->lang->load("layout/$this->lang_prefix_path/{$this->lang_prefix}_common_layout", $this->language);
-        $group = $this->session->userdata('group');
 
-        if ($this->ion_auth->logged_in() && ($group === 'members'))
+        if ($this->ion_auth->logged_in() && ($this->group === 'members'))
         {
             $this->load->helper('form');
 

@@ -67,9 +67,7 @@ class Gardu extends CI_Controller
     public function index()
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -96,7 +94,7 @@ class Gardu extends CI_Controller
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/gardu/index/gardu_index_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 
@@ -490,9 +488,7 @@ class Gardu extends CI_Controller
     public function penyulang()
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -518,7 +514,7 @@ class Gardu extends CI_Controller
         $this->lang_prefix_path = 'gardu/penyulang/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 
@@ -636,9 +632,7 @@ class Gardu extends CI_Controller
     public function induk()
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -664,7 +658,7 @@ class Gardu extends CI_Controller
         $this->lang_prefix_path = 'gardu/induk/admin';
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 
@@ -781,9 +775,7 @@ class Gardu extends CI_Controller
     public function detail()
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -827,7 +819,7 @@ class Gardu extends CI_Controller
 
             return;
         }
-        else if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        else if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 
@@ -948,9 +940,7 @@ class Gardu extends CI_Controller
     public function pengukuran($gardu = 'index')
     {
         $this->load->helper(['url', 'i18n']);
-        $group = $this->session->userdata('group');
-        $group = empty($group) ? 'admin' : $group;
-        switch ($group)
+        switch ($this->group)
         {
             case 'admin' :
             {
@@ -983,7 +973,7 @@ class Gardu extends CI_Controller
         $this->lang->load("layout/{$this->lang_prefix_path}/{$this->lang_prefix}_{$this->lang_layout}", $this->language);
         $this->lang->load("layout/gardu/pengukuran/index/gardu_pengukuran_index_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             $this->load->helper('form');
 

@@ -57,6 +57,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
      */
     private $callback_request;
 
+    private $group;
+
     /**
      * @var array $callback_request
      */
@@ -71,6 +73,8 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
         /** @noinspection PhpParamsInspection */
         $this->load->library(['session', 'ion_auth']);
         $this->load->helper(['url']);
+
+        $this->group = $this->session->userdata('group');
     }
 
     /**
@@ -253,7 +257,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         $this->lang->load("layout/rekap/pengukuran/gardu/rekap_pengukuran_gardu_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             setlocale(LC_TIME, 'id_ID.utf8');
 
@@ -857,7 +861,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         $this->lang->load("layout/rekap/pengukuran/tegangan/ujung/rekap_pengukuran_tegangan_ujung_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             setlocale(LC_TIME, 'id_ID.utf8');
 
@@ -1201,7 +1205,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         $this->lang->load("layout/rekap/pengukuran/beban/trafo/rekap_pengukuran_beban_trafo_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             setlocale(LC_TIME, 'id_ID.utf8');
 
@@ -1530,7 +1534,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         $this->lang->load("layout/rekap/pengukuran/beban/imbang/rekap_pengukuran_beban_imbang_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
         {
             setlocale(LC_TIME, 'id_ID.utf8');
 
