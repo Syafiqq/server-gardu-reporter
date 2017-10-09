@@ -961,7 +961,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $this->lang->load('layout/gardu/index/gardu_index_common', $this->language);
 
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
