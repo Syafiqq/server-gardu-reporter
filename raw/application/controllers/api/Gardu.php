@@ -194,7 +194,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $response = [];
         $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
@@ -258,7 +258,7 @@ class Gardu extends \Restserver\Libraries\MY_REST_Controller
         $response = [];
         $this->lang->load('layout/gardu/induk/gardu_induk_common', $this->language);
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             $this->load->library('form_validation');
 
