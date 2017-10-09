@@ -205,6 +205,7 @@ class Management extends CI_Controller
 
     private function _members_user()
     {
+        redirect('/dashboard');
     }
 
 
