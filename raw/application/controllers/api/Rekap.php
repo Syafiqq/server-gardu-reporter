@@ -861,7 +861,7 @@ class Rekap extends \Restserver\Libraries\MY_REST_Controller
 
         $this->lang->load("layout/rekap/pengukuran/tegangan/ujung/rekap_pengukuran_tegangan_ujung_common", $this->language);
 
-        if ($this->ion_auth->logged_in() && ($this->group === 'admin'))
+        if ($this->ion_auth->logged_in() && (($this->group === 'admin') ^ ($this->group === 'members')))
         {
             setlocale(LC_TIME, 'id_ID.utf8');
 
