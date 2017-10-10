@@ -322,7 +322,7 @@ class Rekap extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/rekap/pengukuran/gardu');
 
             //Core Data
@@ -665,7 +665,7 @@ class Rekap extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/rekap/tegangan/ujung');
 
             //Core Data
@@ -937,7 +937,7 @@ class Rekap extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/rekap/beban/trafo');
 
             //Core Data
@@ -1189,7 +1189,7 @@ class Rekap extends CI_Controller
             $_user                        = $this->ion_auth->user()->row_array();
             $data['profile']['username']  = $_user['username'];
             $data['profile']['email']     = $_user['email'];
-            $data['profile']['group']     = 'Admin';
+            $data['profile']['group']     = 'Member';
             $data['update']['redirector'] = site_url('/rekap/beban/imbang');
 
             //Core Data
